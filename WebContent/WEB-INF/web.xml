@@ -9,7 +9,7 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  
+
   <servlet>
   	<servlet-name>dispatcherServlet</servlet-name>
   	<servlet-class>com.invem.controller.DispatcherServlet</servlet-class>
@@ -18,9 +18,9 @@
   		<param-value>/config/CommandPro.properties</param-value>
   	</init-param>
   </servlet>
-  
+
   <servlet-mapping>
   	<servlet-name>dispatcherServlet</servlet-name>
-  	<url-pattern>*.do</url-pattern>
+  	<url-pattern>*.gg</url-pattern>
   </servlet-mapping>
 </web-app>
