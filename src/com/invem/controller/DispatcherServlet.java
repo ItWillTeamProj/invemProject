@@ -81,11 +81,11 @@ public class DispatcherServlet extends HttpServlet {
 		//=> /mymvc/tips/book.do
 		
 		String contextPath = request.getContextPath();
-		System.out.println("contextPath=" + contextPath); // /mymvc
+		System.out.println("contextPath=" + contextPath); 
 		
 		String cmd = uri;
 		if(uri.indexOf(contextPath) != -1) {
-			cmd = uri.substring(contextPath.length()); // => /tips/book.do
+			cmd = uri.substring(contextPath.length());
 		}
 		System.out.println("cmd=" + cmd);
 		
