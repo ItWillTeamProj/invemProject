@@ -1,5 +1,5 @@
 @charset "UTF-8";
-
+/*2020-06-23 패딩수정*/
 body {
 	font: 100%/1.4 Verdana, Arial, Helvetica, sans-serif;
 	background-color: rgba(0, 0, 0, 0.07);
@@ -64,9 +64,11 @@ a:hover, a:active, a:focus { /* 이 선택기 그룹은 마우스를 사용하�
 	height:100px;
 	padding-top: 10px;
 }
+
 .header img{
 	display:inline;
 }
+
 .sidebar1 {
 	float: left;
 	width: 20%; /*240px*/
@@ -122,7 +124,6 @@ ul.login li{
 }
 
 .content {
-	padding: 10px 0;
 	width: 60%;
 	float: left;
 	background-color: rgba(255, 255, 255, 1);

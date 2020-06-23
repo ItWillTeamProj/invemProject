@@ -34,8 +34,9 @@
 		<li><a href="#">챔피언정보</a></li>
 		<li><a href="#">자유게시판</a></li>
 		<li><a href="#">베스트공략</a></li>
-		<li><a href="#">화이팅</a></li>
+		<li><a href="invem_admin.jsp">관리자페이지</a></li>
 	</ul>
 	<!-- end .sidebar1 --></div>
 	  
 	<div class="content">
+	<section>
