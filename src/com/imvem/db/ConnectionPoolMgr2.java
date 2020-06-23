@@ -17,7 +17,7 @@ public class ConnectionPoolMgr2 {
 	private DataSource ds;
 	
 	//생성자
-	private ConnectionPoolMgr2(){
+	public ConnectionPoolMgr2(){
 		
 		try {
 			
