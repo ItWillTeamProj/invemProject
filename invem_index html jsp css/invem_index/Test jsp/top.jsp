@@ -15,12 +15,12 @@
 			width="240" height="90" align="left"/></a>
 		<a href="#">
 			<img src="img/index/top.png" alt="lck2020" name="Insert_logo" id="Insert_logo"
-				width="720" height="90"/></a> 
+				width="720" height="90"/></a>
 		<a href="#">
 			<img src="img/index/logo.png" alt="롤로고" name="Insert_logo" id="Insert_logo"
-				width="240" height="90" align="right"/></a>		
+				width="240" height="90" align="right"/></a>
 	<!-- end .header --></div>
-        
+
 	<div class="sidebar1">
 		<div class="logindiv">
 	 	<span>로그인</span>
@@ -34,8 +34,9 @@
 		<li><a href="#">챔피언정보</a></li>
 		<li><a href="#">자유게시판</a></li>
 		<li><a href="#">베스트공략</a></li>
-		<li><a href="#">화이팅</a></li>
+		<li><a href="invem_admin.jsp">관리자페이지</a></li>
 	</ul>
 	<!-- end .sidebar1 --></div>
-	  
+
 	<div class="content">
+	<section>
