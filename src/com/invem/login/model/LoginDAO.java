@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.imvem.db.ConnectionPoolMgr2;
+import com.invem.db.ConnectionPoolMgr2;
 import com.invem.login.model.LoginService;
 
 public class LoginDAO {

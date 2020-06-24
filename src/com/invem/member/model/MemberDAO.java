@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import com.imvem.db.ConnectionPoolMgr2;
+import com.invem.db.ConnectionPoolMgr2;
 import com.invem.member.model.MemberDTO;
 
 public class MemberDAO {
