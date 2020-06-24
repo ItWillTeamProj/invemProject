@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<link rel="stylesheet" href="invem_index.css" type="text/css">
+<link rel="stylesheet" href="../css/invem_index.css" type="text/css">
 <title>invem_index</title>
 <script type="text/javascript">
 $(function(){
@@ -29,13 +29,13 @@ $(function(){
 <div class="container">
 	<div class="header">
 		<a href="#">
-		<img src="img/index/invem.png" alt="인벰로고" name="Insert_logo" id="Insert_logo"
+		<img src="../images/index/invem.png" alt="인벰로고" name="Insert_logo" id="Insert_logo"
 			width="240" height="90" align="left"/></a>
 		<a href="#">
-			<img src="img/index/top.png" alt="lck2020" name="Insert_logo" id="Insert_logo"
+			<img src="../images/index/top.png" alt="lck2020" name="Insert_logo" id="Insert_logo"
 				width="720" height="90"/></a>
 		<a href="#">
-			<img src="img/index/logo.png" alt="롤로고" name="Insert_logo" id="Insert_logo"
+			<img src="../images/index/logo.png" alt="롤로고" name="Insert_logo" id="Insert_logo"
 				width="240" height="90" align="right"/></a>
 	<!-- end .header --></div>
 
@@ -45,8 +45,8 @@ $(function(){
 		<ul class="login">
 		   	<li>아이디　 <input type="text" name="userid" id="userid" class="userid"/></li>
 		   	<li>비밀번호 <input type="password" name="pw" id="pw" class="pw"/></li>
-		   	<li><a href="<%=request.getContextPath()%>/login/login.jsp">로그인</a>
-			<a href="<%=request.getContextPath()%>/login/agreement.jsp">회원가입</a></li>
+		   	<li><a href="<%=request.getContextPath()%>/login/login.do">로그인</a>
+			<a href="<%=request.getContextPath()%>/login/agreement.do">회원가입</a></li>
 		</ul>
 	</div>
 	<ul class="nav">
