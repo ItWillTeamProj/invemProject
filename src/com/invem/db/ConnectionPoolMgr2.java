@@ -1,4 +1,4 @@
-package com.imvem.db;
+package com.invem.db;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
