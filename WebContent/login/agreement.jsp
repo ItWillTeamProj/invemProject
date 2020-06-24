@@ -1,13 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ include file="../inc/top.jsp" %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
+<style type="text/css">	
+	.agree{
+		text-align: center;
+		margin: 0 auto;
+	}
+	
+	h2.title {
+	    text-align: left;
+	}
+	
+	div txt {
+	    text-align: left;
+	}
+	
+	input {
+		position: relative;
+	}
+	
 
+</style>
+<body>
+<script type="text/javascript" src="../js/jquery-3.5.1.min.js" charset="utf-8"></script>
 <script type="text/javascript">
 	$(function(){
 		$('form[name=frmAgree]').submit(function(){
@@ -26,20 +49,26 @@
 	});
 </script>
 
+
 	<article class="agree">
 		<form name="frmAgree" method="post" action="addLogin.jsp">
-			<h2>회원 약관</h2>
+			<h2 class="title">회원 약관</h2>
+			<div style="text-align: left;">
 				<input type="checkbox" name="chkAgree1" id="chkAgree1">
-				<label>(필수)인뱀 이용약관</label>	
-			<p><iframe src="provision.html" width="820" height="300"></iframe></p>
+				<label for="chkAgree1">(필수)인뱀 이용약관</label>	
+			</div>
+			<p><iframe src="provision.html" width="650" height="250"></iframe></p>
+			<div style="text-align: left;">
 				<input type="checkbox" name="chkAgree2" id="chkAgree2">
-				<label>(필수)개인정보 수집 및 이용 동의</label>
-			<p><iframe src="provision2.html" width="820" height="300"></iframe></p>
-				<div class="center">
-					<input type="submit" value="확인">
-					<input type="reset" value="취소">
+				<label for="chkAgree2">(필수)개인정보 수집 및 이용 동의</label>
+			</div>
+			<p><iframe src="provision2.html" width="650" height="250"></iframe></p>
+				<div>
+					<input type="submit" value="회원가입"> <input type="reset" value="돌아가기" onclick="history.back(-1);">
 				</div>	
 		</form>
 	</article>
 </body>
 </html>
+
+<%@ include file="../inc/bottom.jsp" %>

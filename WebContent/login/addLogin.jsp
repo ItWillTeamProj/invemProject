@@ -2,8 +2,11 @@
     pageEncoding="UTF-8"%>
 
 <%@ include file="../inc/top.jsp" %>
-
-<script type="text/javascript" src="../js/member.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/mainstyle.css" />
+<link rel="stylesheet" type="text/css" href="../css/clear.css" />
+<link rel="stylesheet" type="text/css" href="../css/formLayout.css" />
+<link rel="stylesheet" type="text/css" href="../css/mystyle.css" />
+<script type="text/javascript" src="../js/jquery-3.5.1.min.js" charset="utf-8"></script>
 <script type="text/javascript">
 	$(function(){
 		$('#wr_submit').click(function(){
@@ -40,18 +43,20 @@
 </script>
 
 <style type="text/css">
-	.width_80{
-		width:80px;
-	}
-	.width_350{
-		width:350px;
-	}	
+.divForm label, .divForm .sp1	{
+		width: 35%;
+		float: left;
+		text-align: right;
+		padding: 3px 15px 0 0;
+		clear: left;		
+		font-weight: bold;
+		}
 </style>
 <article>
 <div class="divForm">
 <form name="frm1" method="post" action="addLogin_ok.jsp">
 <fieldset>
-	<legend>회원 가입</legend>
+	<legend style = "margin-left: 80px">회원 가입</legend>
     <div>
         <label for="userid">회원ID</label>
         <input type="text" name="userid" id="userid" style="ime-mode:inactive">&nbsp;
@@ -74,7 +79,7 @@
         <input type="text" name="name" id="name" >
     </div>
     <div>        
-        <label for="dateofbirth">생년월일(yyyy-mm-dd)</label>
+        <label for="dateofbirth">생년월일<br>(yyyy-mm-dd)</label>
         <input type="text" name="dateofbirth" id="dateofbirth" >
     </div>
    <div>
@@ -88,13 +93,13 @@
        	</select>
         -
         <input type="text" name="phoneno2" id="phoneno2" maxlength="4" title="휴대폰 가운데자리"
-        	class="width_80">-
+        	class="width_80" style="width:50px;">-
         <input type="text" name="phoneno3" id="phoneno3" maxlength="4" title="휴대폰 뒷자리"
-        	class="width_80">
+        	class="width_80" style="width:50px;">
     </div>
     <div>
         <label for="email1">이메일 주소</label>
-        <input type="text" name="email1"  id="email1" title="이메일주소 앞자리">@
+        <input type="text" name="email1"  id="email1" title="이메일주소 앞자리" style="width:90px;">@
         <select name="email2" id="email2"  title="이메일주소 뒷자리">
             <option value="naver.com">naver.com</option>
             <option value="hanmail.net">hanmail.net</option>
@@ -120,6 +125,7 @@
     </div>
     <div class="center">
          <input type="submit" id="wr_submit" value="회원가입">
+         <input type="reset" value="돌아가기" onclick="history.back(-1);">
     </div>
 </fieldset>
 

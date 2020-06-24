@@ -1,0 +1,103 @@
+@charset "UTF-8";
+.ui-tooltip {
+	padding: 10px 5px;
+	color: black;
+	border-radius: 10px;
+	box-shadow: 0 0 7px gray;
+	background: #808080;
+	opacity: inherit;
+}
+
+#champList td div {
+	width: 80px;
+	height: 80px;
+	background-repeat: no-repeat;
+	background-size: contain;
+	overflow: hidden;
+	margin: 0 auto;
+}
+#champList td {
+	border: 5px solid white;
+	text-align: center;
+	width: 80px;
+}
+.ui-helper-hidden-accessible {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	width: 1000px;
+}
+.label{
+	text-align: right;
+	color: black;
+	width: 100px;
+	float: left;
+	margin-right: 10px;
+}
+.main{
+	width: 98%;
+	margin: 10px;
+	min-width: 500px;
+}
+#champs{
+	margin: 10px 0 20px 0;
+	text-align: center;
+	font-size: 0.7em;
+}
+#champs a{
+	margin: 0 5px;
+	font-size: 1.3em;
+}
+#filter{
+	font-size: 1em;
+	overflow: hidden;
+	margin-top: 15px;
+}
+#filter > div{
+	margin: 5px auto;
+	width: 90%;
+}
+#filter > div:first-of-type{
+	border-bottom: 1px solid #288ca8;
+}
+.skil{
+	display: inline-block;
+	line-height: 150%;
+}
+#champList{
+	width: 100%;
+	margin: 0 auto;
+	max-width: 800px;
+	border-collapse: collapse;
+}
+#champList span{
+	color: #3a3d4b;
+	font-size: 11px;
+}
+#searchDiv{
+	width: 90%;
+	margin: 0px auto;
+	border-top: 1px solid #288ca8;
+	padding-top: 5px;
+}
+.sel{
+	border: 2px solid #d4af37;
+	cursor: pointer;
+}
+.title{
+	background-image:  url("../images/champion/header.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 100%;
+	height: 61px;
+	margin: 0 auto;
+}
+
+.title h2{
+	color: white;
+	padding-top: 15px;
+	padding-left: 30px;
+}
