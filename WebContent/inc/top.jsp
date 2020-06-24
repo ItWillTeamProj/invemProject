@@ -6,23 +6,21 @@
 <meta charset="utf-8">
 <link rel="stylesheet" href="../css/invem_index.css" type="text/css">
 <title>invem_index</title>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
-$(function(){
-	$('#login[type=login]').submit(function(){
-		if($('#userid').val().length<1){
-			alert('아이디를 입력하세요');
-			$('#userid').focus();
-			event.preventDefault();
-		}else if($('#pw').val().length<1){
-			alert('비밀번호를 입력하세요');
-			$('#pw').focus();
-			event.preventDefault();
-		}
+	$(function(){
+		$('#login[type=login]').submit(function(){
+			if($('#userid').val().length<1){
+				alert('아이디를 입력하세요');
+				$('#userid').focus();
+				event.preventDefault();
+			}else if($('#pw').val().length<1){
+				alert('비밀번호를 입력하세요');
+				$('#pw').focus();
+				event.preventDefault();
+			}
+		});
 	});
-	$('#login[type=login]').submit(function(){
-
-});
-
 </script>
 </head>
 <body>

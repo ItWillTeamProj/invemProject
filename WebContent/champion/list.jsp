@@ -1,9 +1,34 @@
+<%@page import="java.util.List"%>
+<%@page import="com.invem.champion.model.ChampionVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../inc/top.jsp"%>
-<div>
-	<h2>챔피언 정보</h2>
-		<hr>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" ></script>
+<link href="https://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
+<link href="../css/champList.css" type="text/css" rel="stylesheet" >
+
+<%
+	List<ChampionVO> champList = (List)request.getAttribute("champList");
+	String[] legend = {"all", "ㄱ", "ㄴ", "ㄷ", "ㄹ", "ㅁ", "ㅂ", 
+			"ㅅ", "ㅇ", "ㅈ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ"};
+	int numOfRow = 7;
+%>
+<script type="text/javascript">
+	$(function() {
+		$("#champList .sel").tooltip({
+			content: function() {
+		        return $(this).prop('title');
+		   }
+		});
+	});
+	
+	function detail(no) {
+		location.href = "detail.jsp?no=" + no;
+	}
+</script>
+	<div class="title">
+		<h2>챔피언 정보</h2>
+	</div>
 		<!-- 검색 상자 테이블 -->
 		<form action="champianList.jsp" method="post" name="frmSearch">
 		<div id="filter">
@@ -43,50 +68,30 @@
 				name="champSearch" /> <input type="button" class="bt1" value="초기화" />
 		</div>
 		<div id=champs>
-			<%-- <%for (int i = 0; i < legend.length; i++) {	%>
+			<%for (int i = 0; i < legend.length; i++) {	%>
 					<a href="chamianList.jsp?val=<%=legend[i]%>"><%=legend[i]%></a>
-			<%}%> --%>
+			<%}%>
 		</div>
 		</form>
 			<table id="champList">
-			<!-- <colgroup>
-				<col width="14%">
-				<col width="14%">
-				<col width="14%">
-				<col width="14%">
-				<col width="14%">
-				<col width="14%">
-				<col width="14%">
-			</colgroup> -->
-				<%-- <%
-					for (int i = 0; i < list.size() / numOfRow; i++) {
-				%>
-				<tr>
-					<%
-						for (int j = 0; j < numOfRow; j++) {
-								vo = list.get((i * numOfRow) + j);
-								String title = "<img src='../images/championIcon/i"+vo.getNo()
-									+ ".png' style='width: 50px; float: left; margin: 5px;'>"
-									+ "<div style='float: left; display: inline-block; margin: 5px; font-weight: bold;'>"+vo.getChamp() + "<br>" + vo.getNickname() + "<br>"
-									+ vo.getRole()+vo.getLane()+ "</div><hr style='clear: both; margin-top: 5px;'>" 
-									+ "<p style='clear: both; margin-top: 5px; font-size: 14px;'>"+ vo.getDescribe()
-									+ "</p>";
-					%>
+			<%for (int i = 0; i < (int)Math.ceil((float)champList.size()/numOfRow); i++) {%><tr><%
+				for (int j = 0; j < numOfRow; j++) {
+					if((i * numOfRow) + j == champList.size()) break;
+					ChampionVO vo = champList.get((i * numOfRow) + j);
+					String title = "<img src='../images/championIcon/i"+vo.getNo()
+						+ ".png' style='width: 50px; float: left; margin: 5px;'>"
+						+ "<div style='float: left; display: inline-block; margin: 5px; font-weight: bold;'>"+vo.getChamp() + "<br>" + vo.getNickname() + "<br>"
+						+ vo.getRole()+vo.getLane()+ "</div><hr style='clear: both; margin-top: 5px;'>" 
+						+ "<p style='clear: both; margin-top: 5px; font-size: 14px;'>"+ vo.getDescribe()
+						+ "</p>";%>
 					<td data-geo="<%=vo.getNo()%>">
 						<div class="sel"
 							style="background-image: url('../images/championIcon/i<%=vo.getNo()%>.png');"
-							 title="<%=title%>" onclick="detail(<%=vo.getNo()%>)"><span>
-							<%=vo.getChamp()%>
-						</span></div>
+							 title="<%=title%>" onclick="detail(<%=vo.getNo()%>)"></div>
+						<span><%=vo.getChamp()%></span>
 					</td>
-					<%
-						}
-					%> 
-
+				<%}%> 
 				</tr>
-				<%
-					}
-				%>--%>
+			<%}%>
 			</table>
-</div>
 <%@ include file="../inc/bottom.jsp"%>

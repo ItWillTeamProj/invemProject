@@ -8,7 +8,7 @@ public class Utility {
 	public static final String UP_PATH = "photoUplode";
 	public static final String TEST_PATH
 		= "C:\\Users\\STU-03\\Documents\\lecture\\java\\workspace_list\\jsp_ws\\apiTest\\WebContent\\photoUplode";
-	
+		
 	/*<!-- 답변글인 경우 re이미지 보여주기 -->*/
 	public static String displayRe(int step) {
 		String result = "";
