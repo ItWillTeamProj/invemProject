@@ -7,12 +7,14 @@
 <%@ include file="../inc/top.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
 <%
 	String no = request.getParameter("no");
 	ChampionVO cVo = (ChampionVO)request.getAttribute("cVo");
+	Properties previewProp = (Properties)request.getAttribute("previewProp");
+
+	response.addHeader("X-Frame-Options", "DENY");
 %>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -53,8 +55,6 @@
 			</div>
 		</div>
 		<div id="tabs-2">
-		<fmt:bundle basename="../config/preview.properties">
-		<fmt:message key="1"/>
 		<c:set var="myArray" value="${fn:split(avility,',')}" />
 		<%@ include file="avilityTable.jsp" %>
 		
@@ -62,13 +62,12 @@
     		<div class="jetpack-video-wrapper">
     		<span class="embed-youtube" style="text-align:center; display: block;">
     			<iframe class="youtube-player"
-    			 src="https://www.youtube.com/embed/dFVxGRekRSg?version=3&rel=1&fs=1&autohide=2&showsearch=0&showinfo=1&iv_load_policy=1&wmode=transparent" 
-    			 allowfullscreen="true" 
+    			 src="<%=previewProp.getProperty(no).replace("watch?v=", "embed/").replace("&", "?") %>" 
+    			 allowfullscreen 
     			 style="border: 0px; display: block; margin: 0px; width: 100%; height: 210px;" 
     			 data-ratio="0.5625" data-width="560" data-height="315">
    			 </iframe></span></div>
 		</div>
-		</fmt:bundle>
 		</div>
 		<div id="tabs-3">
 			<p>Mauris eleifend est et turpis. Duis id erat. Suspendisse

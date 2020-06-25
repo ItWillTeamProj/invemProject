@@ -26,30 +26,29 @@ public class DetailController implements Controller{
 		
 		ChampionVO cVo = null;
 		List<AbilityVO> list = null;
+		String resource = request.getSession().getServletContext().getRealPath("/config/preview.properties");
+		resource = "preview.properties";
+		System.out.println(resource);
+		Properties properties = new Properties();
 		try {
 			cVo = service.searchByNo(Integer.parseInt(champNo));
 			list = aservService.searchByNo(Integer.parseInt(champNo));
+			
+			InputStream reader = getClass().getResourceAsStream(resource);
+            properties.load(reader);
+            
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-		String resource = "config/DB.properties";
-        Properties properties = new Properties();
-        
-        try {
-        	InputStream reader = getClass().getResourceAsStream(resource);
-            properties.load(reader);
-            System.out.println(properties.getProperty("driver"));
-            System.out.println(properties.getProperty("username"));
-            System.out.println(properties.getProperty("password"));
-            System.out.println(properties.getProperty("url"));
-        } catch (IOException e) {
+		}catch (IOException e) {
             e.printStackTrace();
         }
+        
 		
 		request.setAttribute("cVo", cVo);
 		request.setAttribute("aList", list);
+		request.setAttribute("previewProp", properties);
 		
 		return "/champion/detail.jsp";
 	}

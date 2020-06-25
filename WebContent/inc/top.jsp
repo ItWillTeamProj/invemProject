@@ -1,4 +1,4 @@
-y<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 	String userid=(String)session.getAttribute("userid");
@@ -12,7 +12,7 @@ y<%@ page language="java" contentType="text/html; charset=UTF-8"
 <html>
 <head>
 <meta charset="utf-8">
-<link rel="stylesheet" href="../css/invem_index.css" type="text/css">
+<link rel="stylesheet" href="../css/index.css" type="text/css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <title>invem_index</title>
 <script type="text/javascript">
