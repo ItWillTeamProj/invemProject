@@ -54,7 +54,7 @@
 </style>
 <article>
 <div class="divForm">
-<form name="frm1" method="post" action="addLogin_ok.jsp">
+<form name="frm1" method="post" action="/TestWeb/login/addLogin_ok.jsp">
 <fieldset>
 	<legend style = "margin-left: 80px">회원 가입</legend>
     <div>
@@ -80,7 +80,7 @@
     </div>
     <div>        
         <label for="dateofbirth">생년월일<br>(yyyy-mm-dd)</label>
-        <input type="text" name="dateofbirth" id="dateofbirth" >
+        <input type="text" name="dateofbirth" id="dateofbirth" style="margin-top: 15px;">
     </div>
    <div>
         <label for="phoneno1">핸드폰</label>&nbsp;<select name="phoneno1" id="phoneno1" title="휴대폰 앞자리">

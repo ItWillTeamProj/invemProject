@@ -12,7 +12,6 @@
 	scope="session"></jsp:useBean>
 <jsp:useBean id="vo" class="com.invem.member.model.MemberDTO" 
 	scope="page"></jsp:useBean>
-<jsp:setProperty property="*" name="vo"/>	
 
 <%
 
@@ -63,7 +62,7 @@
 	vo.setSum_name(sum_name);
 	vo.setCaution(caution);
 	
-	String msg="회원가입 실패!", url="/member/register.jsp";
+	String msg="회원가입 실패!", url="/login/addLogin.jsp";
 	try{
 		int cnt=memSer.insertMember(vo);
 		
@@ -81,26 +80,7 @@
 %>
 
 <jsp:forward page="../common/message.jsp"></jsp:forward>
-	
-<%
-	//2
-	try{
-		int cnt=memSer.insertMember(vo); 
-		if(cnt>0){ %>			
-			<script type="text/javascript">
-				alert('회원가입되었습니다.');
-				location.href="../index.jsp";
-			</script>
-		<%}else{%>
-			<script type="text/javascript">
-				alert('회원가입 실패!');
-				history.go(-1);
-			</script>
-		<%}			
-	}catch(SQLException e){
-		e.printStackTrace();
-	}
-	
-%>	
+
+
 </body>
 </html>
