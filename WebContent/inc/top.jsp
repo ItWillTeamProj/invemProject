@@ -32,8 +32,8 @@
 <head>
 <meta charset="utf-8">
 <link rel="stylesheet" href="../css/invem_index.css" type="text/css">
-<title>invem_index</title>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<title>invem_index</title>
 <script type="text/javascript">
 	$(function(){
 		$('#login[type=login]').submit(function(){

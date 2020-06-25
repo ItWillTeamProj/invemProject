@@ -78,17 +78,17 @@
 				for (int j = 0; j < numOfRow; j++) {
 					if((i * numOfRow) + j == champList.size()) break;
 					ChampionVO vo = champList.get((i * numOfRow) + j);
-					String title = "<img src='../images/championIcon/i"+vo.getNo()
+					String title = "<img src='../images/championIcon/i"+vo.getChamp_no()
 						+ ".png' style='width: 50px; float: left; margin: 5px;'>"
-						+ "<div style='float: left; display: inline-block; margin: 5px; font-weight: bold;'>"+vo.getChamp() + "<br>" + vo.getNickname() + "<br>"
+						+ "<div style='float: left; display: inline-block; margin: 5px; font-weight: bold;'>"+vo.getName() + "<br>" + vo.getNickname() + "<br>"
 						+ vo.getRole()+vo.getLane()+ "</div><hr style='clear: both; margin-top: 5px;'>" 
 						+ "<p style='clear: both; margin-top: 5px; font-size: 14px;'>"+ vo.getDescribe()
 						+ "</p>";%>
-					<td data-geo="<%=vo.getNo()%>">
+					<td data-geo="<%=vo.getChamp_no()%>">
 						<div class="sel"
-							style="background-image: url('../images/championIcon/i<%=vo.getNo()%>.png');"
-							 title="<%=title%>" onclick="detail(<%=vo.getNo()%>)"></div>
-						<span><%=vo.getChamp()%></span>
+							style="background-image: url('../images/championIcon/i<%=vo.getChamp_no()%>.png');"
+							 title="<%=title%>" onclick="detail(<%=vo.getChamp_no()%>)"></div>
+						<span><%=vo.getName()%></span>
 					</td>
 				<%}%> 
 				</tr>
