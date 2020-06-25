@@ -1,3 +1,4 @@
+<%@page import="com.invem.login.model.LoginService"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="com.invem.member.model.MemberDTO"%>
 <%@page import="com.invem.member.model.MemberService"%>
@@ -9,7 +10,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<jsp:useBean id="serv" class="com.invem.member.model.MemberService" 
+<jsp:useBean id="serv" class="com.invem.login.model.LoginService" 
 	scope="session"></jsp:useBean>
 <body>
 	<%
@@ -23,7 +24,7 @@
 		String msg="로그인 처리 실패!", url="/login/login.gg";
 		try{
 			int result=serv.loginCheck(userid, pwd);
-			if(result==MemberService.LOGIN_OK){ 
+			if(result==LoginService.LOGIN_OK){ 
 				MemberDTO vo=serv.selectMember(userid);
 
 				session.setAttribute("userid", userid);
@@ -43,9 +44,9 @@
 				
 				msg=vo.getName()+ "님 로그인되었습니다.";
 				url="/index.gg";
-			}else if(result==MemberService.PWD_DISAGREE){
+			}else if(result==LoginService.PWD_DISAGREE){
 				msg="비밀번호가 일치하지 않습니다.";
-			}else if(result==MemberService.ID_NONE){
+			}else if(result==LoginService.ID_NONE){
 				msg="해당 아이디가 존재하지 않습니다.";				
 			}else{
 				msg="탈퇴한 회원입니다.";
