@@ -1,6 +1,6 @@
 <%@page import="java.sql.SQLException"%>
-<%@page import="com.admin.member.model.AdminMemberDTO"%>
-<%@page import="com.admin.member.model.AdminMemberService"%>
+<%@page import="com.invem.adminmember.model.AdminMemberDTO"%>
+<%@page import="com.invem.adminmember.model.AdminMemberService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%

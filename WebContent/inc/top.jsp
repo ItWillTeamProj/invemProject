@@ -5,19 +5,19 @@
 <head>
 <meta charset="utf-8">
 <link rel="stylesheet" href="../css/index.css" type="text/css">
-<title>invem_index</title>
+<title>index</title>
 </head>
 <body>
 <div class="container">
 	<div class="header">
 		<a href="../index/index.jsp">
-		<img src="../img/invem.png" alt="인뱀로고" name="Insert_logo" id="Insert_logo"
+		<img src="../images/index/invem.png" alt="인뱀로고" name="Insert_logo" id="Insert_logo"
 			width="240" height="90" align="left"/></a>
 		<a href="#">
-			<img src="../img/top.png" alt="lck2020" name="Insert_logo" id="Insert_logo"
+			<img src="../images/index/top.png" alt="lck2020" name="Insert_logo" id="Insert_logo"
 				width="720" height="90"/></a> 
 		<a href="#">
-			<img src="../img/logo.png" alt="롤로고" name="Insert_logo" id="Insert_logo"
+			<img src="../images/index/logo.png" alt="롤로고" name="Insert_logo" id="Insert_logo"
 				width="240" height="90" align="right"/></a>		
 	<!-- end .header --></div>
         
