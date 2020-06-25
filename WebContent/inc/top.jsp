@@ -34,8 +34,8 @@ y<%@ page language="java" contentType="text/html; charset=UTF-8"
 <body>
 <div class="container">
 	<div class="header">
-		<a href="#">
-		<img src="../images/index/invem.png" alt="인벰로고" name="Insert_logo" id="Insert_logo"
+		<a href="../index/index.jsp">
+		<img src="../images/index/invem.png" alt="인뱀로고" name="Insert_logo" id="Insert_logo"
 			width="240" height="90" align="left"/></a>
 		<a href="#">
 			<img src="../images/index/top.png" alt="lck2020" name="Insert_logo" id="Insert_logo"
