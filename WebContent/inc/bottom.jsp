@@ -5,13 +5,13 @@
 	  
 	<div class="sidebar2">
 		<div>
-			<a href="#"><img src="../img/sidebar2_1.png" style="width:230px; margin-left: 5px;"></a>
+			<a href="#"><img src="../images/sidebar2/sidebar2_1.png" style="width:230px; margin-left: 5px;"></a>
 		</div>
 		<div>
-			<a href="#"><img src="../img/sidebar2_2.png" style="width:230px; margin-left: 5px;"></a>
+			<a href="#"><img src="../images/sidebar2/sidebar2_2.png" style="width:230px; margin-left: 5px;"></a>
 		</div>
 		<div>
-			<a href="#"><img src="../img/sidebar2_3.jpg" style="width:230px; margin-left: 5px;"></a>
+			<a href="#"><img src="../images/sidebar2/sidebar2_3.jpg" style="width:230px; margin-left: 5px;"></a>
 		</div>
 	<!-- end .sidebar2 --></div>
 	   
