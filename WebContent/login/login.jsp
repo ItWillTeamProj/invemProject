@@ -23,7 +23,7 @@ form{
 </head>
 <body>
 	<article class="simpleForm">
-	<form name="frmLogin" method="post" action="login_ok.gg">
+	<form name="frmLogin" method="post" action="login_ok.jsp">
 		<legend style="margin-top: 50px;font-size: x-large;font-family: none;">로그인</legend>
 		<fieldset style="margin-top: 50px;border-color: #6db92a;">
 			<div>
