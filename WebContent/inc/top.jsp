@@ -10,22 +10,6 @@
 	}
 %>
 
-<script type="text/javascript">
-	$(function(){
-		$('form[name=frmLogin]').submit(function(){
-			if($('#userid').val().length<1){
-				alert('아이디를 입력하세요');
-				$('#userid').focus();
-				event.preventDefault();
-			}else if($('#pwd').val().length<1){
-				alert('비밀번호를 입력하세요');
-				$('#pwd').focus();
-				event.preventDefault();
-			}
-		});
-	});
-	
-</script>
 
 <!doctype html>
 <html>
