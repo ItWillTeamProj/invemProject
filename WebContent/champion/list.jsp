@@ -5,7 +5,7 @@
 <%@ include file="../inc/top.jsp"%>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" ></script>
 <link href="https://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
-<link href="../css/champList.css" type="text/css" rel="stylesheet" >
+<link href="../css/champion/champList.css" type="text/css" rel="stylesheet" >
 
 <%
 	List<ChampionVO> champList = (List)request.getAttribute("champList");
@@ -23,7 +23,7 @@
 	});
 	
 	function detail(no) {
-		location.href = "detail.jsp?no=" + no;
+		location.href = "detail.gg?no=" + no;
 	}
 </script>
 	<div class="title">
