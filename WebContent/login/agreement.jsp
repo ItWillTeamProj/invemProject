@@ -5,12 +5,17 @@
 
 <!DOCTYPE html>
 <html>
-<body style="background-repeat:no-repeat;background-image: url('http://upload3.inven.co.kr/upload/2020/06/16/bbs/i13884237924.jpg');background-color: white;background-attachment: fixed;">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <style type="text/css">	
+	body{
+		background-repeat:no-repeat;
+		background-image: url('http://upload3.inven.co.kr/upload/2020/06/16/bbs/i13884237924.jpg');
+		background-color: white;
+		background-attachment: fixed;
+	}
 	.agree{
 		text-align: center;
 		margin: 0 auto;
