@@ -36,6 +36,9 @@ public class DetailController implements Controller{
 		}
 		
 		userid = vo.getUserid();
+		if("unknown".equals(userid) || userid.isEmpty() || userid == null) {
+			userid = vo.getNonuserid();
+		}
 		List<ReplyVO> list = null;
 		int cnt = 0;
 		try{
