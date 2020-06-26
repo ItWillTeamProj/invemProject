@@ -155,7 +155,7 @@ function postPopUp(formName) {
 		</a>
 	<%} %>
 	</div>
-	<form name="frmSearch" method="post" action='boardList.jsp' style = "text-align: center;">
+	<form name="frmSearch" method="post" action='<%=request.getContextPath() %>/board/boardList.gg' style = "text-align: center;">
         <select name="searchCondition">
             <option value="title"
             	<%if("title".equals(condition)){%>
