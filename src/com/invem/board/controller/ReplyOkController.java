@@ -35,16 +35,17 @@ public class ReplyOkController implements Controller{
 		
 		BoardService boardServ = new BoardService();
 		int cnt = 0;
-		String msg = "댓글등록 실패", url = "/board/detail.jsp?no=" + user_no;
+		String msg = "댓글등록 실패", url = "/board/detail.gg?no=" + user_no;
 		try{
 			cnt = boardServ.reply(vo);
+			if(cnt>0) {
+				System.out.println("userid = " + vo.getUserid());
+				msg = "댓글 등록 성공";
+			}
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
 		
-		if(cnt>0) {
-			msg = "댓글 등록 성공";
-		}
 		
 		request.setAttribute("msg", msg);
 		request.setAttribute("url", url);

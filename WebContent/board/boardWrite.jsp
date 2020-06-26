@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../inc/top.jsp"%>
 <%
-	String userid = (String)request.getAttribute("userid");
+	userid = (String)request.getAttribute("userid");
 	String boardName = (String)request.getAttribute("boardName");
 %>
 <script type="text/javascript" src="../js/jquery-3.5.1.min.js" charset="utf-8"></script>
@@ -33,7 +33,7 @@
 		});
 		
 		$('#cancel').click(function(){
-			location.href = "/board/boardList.gg";
+			location.href = "<%=request.getContextPath()%>/board/boardList.gg";
 		});
 	});
 </script>

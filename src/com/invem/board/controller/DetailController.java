@@ -23,14 +23,14 @@ public class DetailController implements Controller{
 		BoardVO vo = new BoardVO();
 		
 		String no = request.getParameter("no");
+		
 		//코드를 받아와서 게시판의 이름을 적는다 일단 페이지 확인때문에 code임의로 F로 넣음
 		String code = request.getParameter("code");
 		code = "F";
 		BoardService boardServ = new BoardService();
 		
-		BoardService service = new BoardService();
 		try{
-			vo = service.searchByNo(Integer.parseInt(no));
+			vo = boardServ.searchByNo(Integer.parseInt(no));
 		}catch(SQLException e){
 			e.printStackTrace();
 		}

@@ -23,7 +23,6 @@
 
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 %>
-<script type="text/javascript" src = "jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 $(function(){
 	$('#rowNum').change(function(){
@@ -156,7 +155,7 @@ function postPopUp(formName) {
 		</a>
 	<%} %>
 	</div>
-	<form name="frmSearch" method="post" action='boardList.jsp' style = "text-align: center;">
+	<form name="frmSearch" method="post" action='<%=request.getContextPath() %>/board/boardList.gg' style = "text-align: center;">
         <select name="searchCondition">
             <option value="title"
             	<%if("title".equals(condition)){%>

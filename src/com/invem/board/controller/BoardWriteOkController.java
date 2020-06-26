@@ -45,7 +45,7 @@ public class BoardWriteOkController implements Controller{
 			int cnt = boardServ.insertBoard(vo);
 			if(cnt > 0){
 				msg = "글 등록 성공";
-				url = "/board/boardList.jsp";
+				url = "/board/boardList.gg";
 			}
 		}catch(SQLException e){
 			e.printStackTrace();

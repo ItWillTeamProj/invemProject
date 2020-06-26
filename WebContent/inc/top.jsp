@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<link rel="stylesheet" href="../css/index.css" type="text/css">
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/index.css" type="text/css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <title>invem_index</title>
 <script type="text/javascript">
@@ -34,14 +34,14 @@
 <body>
 <div class="container">
 	<div class="header">
-		<a href="../index/index.jsp">
-		<img src="../images/index/invem.png" alt="인뱀로고" name="Insert_logo" id="Insert_logo"
+		<a href="<%=request.getContextPath() %>/index/index.jsp">
+		<img src="<%=request.getContextPath() %>/images/index/invem.png" alt="인뱀로고" name="Insert_logo" id="Insert_logo"
 			width="240" height="90" align="left"/></a>
 		<a href="#">
-			<img src="../images/index/top.png" alt="lck2020" name="Insert_logo" id="Insert_logo"
+			<img src="<%=request.getContextPath() %>/images/index/top.png" alt="lck2020" name="Insert_logo" id="Insert_logo"
 				width="720" height="90"/></a>
 		<a href="#">
-			<img src="../images/index/logo.png" alt="롤로고" name="Insert_logo" id="Insert_logo"
+			<img src="<%=request.getContextPath() %>/images/index/logo.png" alt="롤로고" name="Insert_logo" id="Insert_logo"
 
 				width="240" height="90" align="right"/></a>
 	<!-- end .header --></div>
@@ -53,8 +53,8 @@
 		<ul class="login" style="margin-left: 15px;">
 		   <%if(!isLogin){ %>
 				<button style="border-radius: 0.5em;border-color: #6db92a; background-color:white" onclick="/login/login.jsp">
-    			<img src="../images/invemlogin.png"><span style="padding-left: 5px;vertical-align:15px;margin-right: 10px;">로그인</span></button>
-				<li style="font-size:10px" color=black;><a href="/invem/login/agreement.jsp" style="margin-left: 4px;">회원가입</a>
+    			<img src="<%=request.getContextPath() %>/images/invemlogin.png"><span style="padding-left: 5px;vertical-align:15px;margin-right: 10px;">로그인</span></button>
+				<li style="font-size:10px" color=black;><a href="<%=request.getContextPath() %>/login/agreement.jsp" style="margin-left: 4px;">회원가입</a>
 				<a href="<%=request.getContextPath()%>/login/munhi.jsp" style="margin-left: 45px;">아이디·비밀번호찾기</a></li>
 			<%}else{ %>
 				<li><a href="<%=request.getContextPath()%>/login/logout.jsp">로그아웃</a></li>
@@ -63,9 +63,9 @@
 		</ul>
 	</div>
 	<ul class="nav">
-		<li><a href="#">INVEM HOME</a></li>
+		<li><a href="<%=request.getContextPath()%>/index.gg">INVEM HOME</a></li>
 		<li><a href="<%=request.getContextPath()%>/champion/list.gg">챔피언정보</a></li>
-		<li><a href="#">자유게시판</a></li>
+		<li><a href="<%=request.getContextPath()%>/board/boardList.gg">자유게시판</a></li>
 		<li><a href="#">베스트공략</a></li>
 		<li><a href="#">화이팅</a></li>
 	</ul>
