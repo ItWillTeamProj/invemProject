@@ -23,7 +23,14 @@
 
 <script type="text/javascript">
 	$(function() {
+		$(".content1").hide();
 		$("#tabs").tabs();
+		
+		$("#reply tr").each(function() {
+			$(this).click(function() {
+				$(this).next().show();
+			});
+		});
 	});
 </script>
 <style type="text/css">
@@ -96,5 +103,29 @@
 				hendrerit hendrerit.</p>
 		</div>
 	</nav>
+	<div>
+	<table style="border: 1px solid gray; border-collapse: collapse; width: 600px;" id="reply">
+		<tr>
+			<th>번호</th>
+			<th>제목</th>
+			<th>닉네임</th>
+			<th>작성일</th>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>java</td>
+			<td>kim</td>
+			<td>0909</td>
+		</tr>
+		<tr class="content1"><td colspan="4">아무말대잔치</td></tr>
+		<tr>
+			<td>2</td>
+			<td>oracle</td>
+			<td>lee</td>
+			<td>0930</td>
+		</tr>
+		<tr class="content1"><td colspan="4">가나다라마바사</td></tr>
+	</table>
+	</div>
 </article>
 <%@ include file="../inc/bottom.jsp"%>
