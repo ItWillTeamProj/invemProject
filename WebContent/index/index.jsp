@@ -22,7 +22,9 @@
 			allowfullscreen>
 		</iframe>
 	</div>
-
+	<div class="grid" id="grid2" style="float:right; text-align: center;">
+		invem 인기글
+	</div>
 	
 	<div>
 		<a href="../admin/admin.jsp">관리자</a>

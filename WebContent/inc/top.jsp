@@ -47,9 +47,8 @@
 	<!-- end .header --></div>
 
 	<div class="sidebar1">
-		<div style="background: whitesmoke;margin-top: 20px;">
+		<div style="background: whitesmoke; margin-top: 20px;">
 	 	<span style="color:black; margin-left:45px;">리그오브레전드 인뱀</span><br>
-
 		<ul class="login" style="margin-left: 15px;">
 		   <%if(!isLogin){ %>
 				<button style="border-radius: 0.5em;border-color: #6db92a; background-color:white" onclick="/login/login.jsp">
