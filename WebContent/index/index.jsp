@@ -3,6 +3,12 @@
 <%@ include file="../inc/top.jsp" %>
 <article>
 	<style>
+	body{
+		background-repeat:no-repeat;
+		background-image: url('<%=request.getContextPath() %>/images/backimage.jpg');
+		background-color: white;
+		background-attachment: fixed;
+	}
 	.grid{
 		border: 1px solid gray;
 		width:348px;

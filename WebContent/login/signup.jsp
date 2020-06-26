@@ -64,11 +64,11 @@
 		font-weight: bold;
 		}
 body{
-	background-repeat:no-repeat;
-	background-image: url('http://upload3.inven.co.kr/upload/2020/06/16/bbs/i13884237924.jpg');
-	background-color: white;
-	background-attachment: fixed;
-}
+		background-repeat:no-repeat;
+		background-image: url('<%=request.getContextPath() %>/images/backimage.jpg');
+		background-color: white;
+		background-attachment: fixed;
+	}
 </style>
 <article>
 <div class="divForm">
@@ -76,28 +76,28 @@ body{
 <fieldset>
 	<legend style = "margin-left: 80px">회원 가입</legend>
     <div>
-        <label for="userid">회원ID</label>
+        <label for="userid">회원ID(필수)</label>
         <input type="text" name="userid" id="userid" style="ime-mode:inactive">&nbsp;
         <input type="button" value="중복확인" id="btnChkId" title="새창열림">
     </div>
     <div>        
-        <label for="nickname">닉네임</label>
+        <label for="nickname">닉네임(필수)</label>
         <input type="text" name="nickname" id="nickname" >
     </div>
     <div>
-        <label for="pwd">비밀번호</label>
+        <label for="pwd">비밀번호(필수)</label>
         <input type="Password" name="pwd" id="pwd">
     </div>
     <div>
-        <label for="pwd2">비밀번호 확인</label>
+        <label for="pwd2">비밀번호 확인(필수)</label>
         <input type="Password" name="pwd2" id="pwd2">
     </div>
     <div>        
-        <label for="name">이름</label>
+        <label for="name">이름(필수)</label>
         <input type="text" name="name" id="name" >
     </div>
     <div>        
-        <label for="dateofbirth">생년월일<br>(yy-mm-dd)</label>
+        <label for="dateofbirth">생년월일(필수)<br>(yy-mm-dd)</label>
         <input type="text" name="dateofbirth" id="dateofbirth" style="margin-top: 15px;">
     </div>
    	<div style="margin-top: 8px;">
@@ -130,17 +130,17 @@ body{
         	style="visibility:hidden">
     </div>
     <div>
-        <label for="zipcode">주소</label>
-        <input type="text" name="zipcode" id="zipcode" ReadOnly title="우편번호">
+        <label for="zipcode">우편번호(필수)</label><!-- ReadOnly -->
+        <input type="text" name="zipcode" id="zipcode" title="우편번호" style="margin-top: 1px;">
         <input type="Button" value="우편번호 찾기" id="btnZipcode" title="새창열림"><br />
-        <span class="sp1">&nbsp;</span>
-        <input type="text" name="address" ReadOnly title="주소"  class="width_350"><br />
-        <span class="sp1">&nbsp;</span>
-        <input type="text" name="addressDetail" title="상세주소"  class="width_350">
+        <span class="sp1">주소</span>
+        <input type="text" name="address" title="주소"  class="width_350" style="margin-top: 2px;"><br />
+        <span class="sp1">상세주소</span>
+        <input type="text" name="addressDetail" title="상세주소"  class="width_350" style="margin-top: 4px;">
     </div>
     <div>        
-        <label for="sum_name">소환사명</label>
-        <input type="text" name="sum_name" id="sum_name" >
+        <label for="sum_name">소환사명(필수)</label>
+        <input type="text" name="sum_name" id="sum_name" style="margin-top: 3px;">
     </div>
     <div class="center">
          <input type="submit" id="wr_submit" value="회원가입">
