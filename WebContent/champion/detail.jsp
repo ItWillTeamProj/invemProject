@@ -16,6 +16,7 @@
 
 	response.addHeader("X-Frame-Options", "DENY");
 %>
+
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <link rel="stylesheet" href="<%=request.getContextPath()%>/css/champion/detail.css">
@@ -55,19 +56,24 @@
 			</div>
 		</div>
 		<div id="tabs-2">
-		<c:set var="myArray" value="${fn:split(avility,',')}" />
-		<%@ include file="avilityTable.jsp" %>
+			<c:set var="myArray" value="${fn:split(avility,',')}" />
+			<%@ include file="avilityTable.jsp" %>
+			
+			<div class="view"><span>챔피언 소개 영상</span></div>
 		
-		<div class="video-container">
-    		<div class="jetpack-video-wrapper">
-    		<span class="embed-youtube" style="text-align:center; display: block;">
-    			<iframe class="youtube-player"
-    			 src="<%=previewProp.getProperty(no).replace("watch?v=", "embed/").replace("&", "?") %>" 
-    			 allowfullscreen 
-    			 style="border: 0px; display: block; margin: 0px; width: 100%; height: 210px;" 
-    			 data-ratio="0.5625" data-width="560" data-height="315">
-   			 </iframe></span></div>
-		</div>
+			<div class="video-container">
+	    		<div class="jetpack-video-wrapper">
+	    		<span class="embed-youtube" style="text-align:center; display: block;">
+	    			<iframe class="youtube-player"
+	    			 src="<%=previewProp.getProperty(no).replace("watch?v=", "embed/").replace("&", "?") %>" 
+	    			 allowfullscreen 
+	    			 style="border: 1px solid #d9e5f7; display: block; margin: 0px; width: 99%; 
+	    			 height: 210px;" 
+	    			 data-ratio="0.5625" data-width="560" data-height="315">
+	   			 	</iframe>
+	   			 </span>
+	   			 </div>
+	 		</div>
 		</div>
 		<div id="tabs-3">
 			<p>Mauris eleifend est et turpis. Duis id erat. Suspendisse

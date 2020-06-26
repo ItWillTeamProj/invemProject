@@ -28,4 +28,5 @@ public class LoginService {
 		return logindao.selectMember(userid);
 	}
 	
+		
 }

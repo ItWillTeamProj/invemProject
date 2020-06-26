@@ -47,19 +47,24 @@
 	<!-- end .header --></div>
 
 	<div class="sidebar1">
-		<div style="background: whitesmoke; margin-top: 20px;">
+		<div style="background: whitesmoke;margin-top: 20px;">
 	 	<span style="color:black; margin-left:45px;">리그오브레전드 인뱀</span><br>
-		<ul class="login" style="margin-left: 15px;">
-		   <%if(!isLogin){ %>
-				<button style="border-radius: 0.5em;border-color: #6db92a; background-color:white" onclick="/login/login.jsp">
-    			<img src="<%=request.getContextPath() %>/images/invemlogin.png"><span style="padding-left: 5px;vertical-align:15px;margin-right: 10px;">로그인</span></button>
-				<li style="font-size:10px" color=black;><a href="<%=request.getContextPath() %>/login/agreement.jsp" style="margin-left: 4px;">회원가입</a>
-				<a href="<%=request.getContextPath()%>/login/munhi.jsp" style="margin-left: 45px;">아이디·비밀번호찾기</a></li>
+
+			<%if(!isLogin){ %>
+				<div class="login" style="margin-left: 15px;">
+					<button style="border-radius: 0.5em;border-color: #6db92a;background-color:white;margin-top: 5px;margin-left: 11px;margin-bottom: 5px;" onclick="location.href='../login/login.gg'">
+	    			<img src="../images/invemlogin.png"><span style="padding-left: 5px;vertical-align:15px;margin-right: 10px;">로그인</span></button>
+					<li style="font-size:10px" color=black;><a href="<%=request.getContextPath()%>/login/agreement.gg" style="margin-left: 2px;">회원가입</a>
+					<a href="<%=request.getContextPath()%>/login/munhi.gg" style="margin-left: 25px;">아이디·비밀번호찾기</a></li>
+				<br>
+				</div>
 			<%}else{ %>
-				<li><a href="<%=request.getContextPath()%>/login/logout.jsp">로그아웃</a></li>
-				<li><a href="<%=request.getContextPath()%>/member/memberEdit.jsp">회원정보수정</a></li>
+				<img alt="브론즈" src="../images/bronze.png">
+		   		<div style="font-size:10px" color=black;>
+					<li><a href="<%=request.getContextPath()%>/login/logout.gg" style="margin-left: 4px;">로그아웃</a>
+					<a href="<%=request.getContextPath()%>/member/memberEdit.gg" style="margin-left: 45px;">회원정보수정</a></li>
+		  	 	</div>
 			<%} %>
-		</ul>
 	</div>
 	<ul class="nav">
 		<li><a href="<%=request.getContextPath()%>/index.gg">INVEM HOME</a></li>
@@ -69,5 +74,4 @@
 		<li><a href="#">화이팅</a></li>
 	</ul>
 	<!-- end .sidebar1 --></div>
-
 	<div class="content">

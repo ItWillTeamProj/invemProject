@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <%@ include file="../inc/top.jsp" %>
+
 <link rel="stylesheet" type="text/css" href="../css/mainstyle.css" />
 <link rel="stylesheet" type="text/css" href="../css/clear.css" />
 <link rel="stylesheet" type="text/css" href="../css/formLayout.css" />
@@ -10,26 +11,37 @@
 <script type="text/javascript">
 	$(function(){
 		$('#wr_submit').click(function(){
-			if($('#name').val().length<1){
-				alert('이름을 입력하세요!');
-				$('#name').focus();
-				event.preventDefault();
-			}else if(!validate_userid($('#userid').val())){
+			if(!validate_userid($('#userid').val())){
 				alert('아이디는 영문대소문자,숫자,_만 가능합니다!');
 				$('#userid').focus();
 				event.preventDefault();
+			}else if($('#nickname').val().length<1){
+				alert('닉네임을 입력해주세요!');
+				$('#nickname').focus();
+				event.preventDefault();
 			}else if($('#pwd').val().length<1){
-				alert('비밀번호를 입력하세요');
+				alert('비밀번호를 입력해주세요');
 				$('#pwd').focus();
 				event.preventDefault();
 			}else if($('#pwd').val()!=$('#pwd2').val()){
 				alert('비밀번호가 일치하지 않습니다.');
 				$('#pwd2').focus();
 				event.preventDefault();
-			}else if(!validate_phone($('#hp2').val()) || 
-					!validate_phone($('#hp3').val())){
-				alert('핸드폰은 숫자만 가능합니다!');
-				$('#hp2').focus();
+			}else if($('#name').val().length<1){
+				alert('이름을 입력해주세요!');
+				$('#name').focus();
+				event.preventDefault();
+			}else if($('#dateofbirth').val().length<1){
+				alert('생일을 입력해주세요!');
+				$('#dateofbirth').focus();
+				event.preventDefault();
+			}else if($('#zipcode').val().length<1){
+				alert('우편번호을 입력해주세요!');
+				$('#zipcode').focus();
+				event.preventDefault();
+			}else if($('#address').val().length<1){
+				alert('주소를 입력해주세요!');
+				$('#address').focus();
 				event.preventDefault();
 			}else if($('#chkId').val()!='Y'){
 				alert('아이디 중복확인을 하셔야 합니다.');
@@ -51,10 +63,16 @@
 		clear: left;		
 		font-weight: bold;
 		}
+body{
+	background-repeat:no-repeat;
+	background-image: url('http://upload3.inven.co.kr/upload/2020/06/16/bbs/i13884237924.jpg');
+	background-color: white;
+	background-attachment: fixed;
+}
 </style>
 <article>
 <div class="divForm">
-<form name="frm1" method="post" action="/TestWeb/login/addLogin_ok.jsp">
+<form name="frm1" method="post" action="<%=request.getContextPath() %>/login/signup_ok.gg">
 <fieldset>
 	<legend style = "margin-left: 80px">회원 가입</legend>
     <div>
@@ -79,11 +97,11 @@
         <input type="text" name="name" id="name" >
     </div>
     <div>        
-        <label for="dateofbirth">생년월일<br>(yyyy-mm-dd)</label>
+        <label for="dateofbirth">생년월일<br>(yy-mm-dd)</label>
         <input type="text" name="dateofbirth" id="dateofbirth" style="margin-top: 15px;">
     </div>
-   <div>
-        <label for="phoneno1">핸드폰</label>&nbsp;<select name="phoneno1" id="phoneno1" title="휴대폰 앞자리">
+   	<div style="margin-top: 8px;">
+        <label for="phoneno1">핸드폰</label><select name="phoneno1" id="phoneno1" title="휴대폰 앞자리">
             <option value="010">010</option>
             <option value="011">011</option>
             <option value="016">016</option>
@@ -93,7 +111,8 @@
        	</select>
         -
         <input type="text" name="phoneno2" id="phoneno2" maxlength="4" title="휴대폰 가운데자리"
-        	class="width_80" style="width:50px;">-
+        	class="width_80" style="width:50px;">
+        -
         <input type="text" name="phoneno3" id="phoneno3" maxlength="4" title="휴대폰 뒷자리"
         	class="width_80" style="width:50px;">
     </div>
