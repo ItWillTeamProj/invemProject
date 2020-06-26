@@ -61,7 +61,7 @@ body{
 </style>
 <article>
 <div class="divForm">
-<form name="frm1" method="post" action="/invem/login/addLogin_ok.jsp">
+<form name="frm1" method="post" action="<%=request.getContextPath() %>/login/addLogin_ok.jsp">
 <fieldset>
 	<legend style = "margin-left: 80px">회원 가입</legend>
     <div>

@@ -39,7 +39,7 @@
 	 	
 			<%if(!isLogin){ %>	
 				<div class="login" style="margin-left: 15px;">
-					<button style="border-radius: 0.5em;border-color: #6db92a;background-color:white;margin-top: 5px;margin-left: 11px;margin-bottom: 5px;" onclick="location.href='/invem/login/login.gg'">
+					<button style="border-radius: 0.5em;border-color: #6db92a;background-color:white;margin-top: 5px;margin-left: 11px;margin-bottom: 5px;" onclick="location.href='../login/login.gg'">
 	    			<img src="../images/invemlogin.png"><span style="padding-left: 5px;vertical-align:15px;margin-right: 10px;">로그인</span></button>
 					<li style="font-size:10px" color=black;><a href="<%=request.getContextPath()%>/login/agreement.gg" style="margin-left: 2px;">회원가입</a>
 					<a href="<%=request.getContextPath()%>/login/munhi.gg" style="margin-left: 25px;">아이디·비밀번호찾기</a></li>	            

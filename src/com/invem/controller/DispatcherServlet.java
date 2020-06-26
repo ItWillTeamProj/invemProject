@@ -94,7 +94,7 @@ public class DispatcherServlet extends HttpServlet {
 
 		try {
 			// 문자열을 클래스로 변환
-			Class<?> cmdClass = Class.forName(cmdVal);
+			Class cmdClass = Class.forName(cmdVal);
 
 			//클래스를 인스턴스로
 			Controller controller = (Controller) cmdClass.newInstance();
