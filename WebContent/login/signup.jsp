@@ -11,26 +11,37 @@
 <script type="text/javascript">
 	$(function(){
 		$('#wr_submit').click(function(){
-			if($('#name').val().length<1){
-				alert('이름을 입력하세요!');
-				$('#name').focus();
-				event.preventDefault();
-			}else if(!validate_userid($('#userid').val())){
+			if(!validate_userid($('#userid').val())){
 				alert('아이디는 영문대소문자,숫자,_만 가능합니다!');
 				$('#userid').focus();
 				event.preventDefault();
+			}else if($('#nickname').val().length<1){
+				alert('닉네임을 입력해주세요!');
+				$('#nickname').focus();
+				event.preventDefault();
 			}else if($('#pwd').val().length<1){
-				alert('비밀번호를 입력하세요');
+				alert('비밀번호를 입력해주세요');
 				$('#pwd').focus();
 				event.preventDefault();
 			}else if($('#pwd').val()!=$('#pwd2').val()){
 				alert('비밀번호가 일치하지 않습니다.');
 				$('#pwd2').focus();
 				event.preventDefault();
-			}else if(!validate_phone($('#hp2').val()) || 
-					!validate_phone($('#hp3').val())){
-				alert('핸드폰은 숫자만 가능합니다!');
-				$('#hp2').focus();
+			}else if($('#name').val().length<1){
+				alert('이름을 입력해주세요!');
+				$('#name').focus();
+				event.preventDefault();
+			}else if($('#dateofbirth').val().length<1){
+				alert('생일을 입력해주세요!');
+				$('#dateofbirth').focus();
+				event.preventDefault();
+			}else if($('#zipcode').val().length<1){
+				alert('우편번호을 입력해주세요!');
+				$('#zipcode').focus();
+				event.preventDefault();
+			}else if($('#address').val().length<1){
+				alert('주소를 입력해주세요!');
+				$('#address').focus();
 				event.preventDefault();
 			}else if($('#chkId').val()!='Y'){
 				alert('아이디 중복확인을 하셔야 합니다.');
@@ -61,7 +72,7 @@ body{
 </style>
 <article>
 <div class="divForm">
-<form name="frm1" method="post" action="<%=request.getContextPath() %>/login/addLogin_ok.jsp">
+<form name="frm1" method="post" action="<%=request.getContextPath() %>/login/signup_ok.gg">
 <fieldset>
 	<legend style = "margin-left: 80px">회원 가입</legend>
     <div>

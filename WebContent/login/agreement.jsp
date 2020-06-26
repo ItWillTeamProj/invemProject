@@ -55,7 +55,7 @@
 
 
 	<article class="agree">
-		<form name="frmAgree" method="post" action="addLogin.gg">
+		<form name="frmAgree" method="post" action="signup.gg">
 			<h2 class="title" style="margin-top: 30px;margin-left: 20px;">회원 약관</h2>
 			<div style="text-align: left; margin-left: 30px;border-left-width: 30px;padding-left: 10px;margin-bottom: 5px;">
 				<input type="checkbox" name="chkAgree1" id="chkAgree1">

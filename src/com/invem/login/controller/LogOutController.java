@@ -13,7 +13,7 @@ public class LogOutController implements Controller{
 		HttpSession session = request.getSession();
 		session.invalidate();
 		
-		return "/index.gg";
+		return "/index/index.jsp";
 	}
 
 	@Override

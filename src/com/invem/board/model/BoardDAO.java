@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.imvem.db.ConnectionPoolMgr2;
+import com.invem.db.ConnectionPoolMgr2;
 import com.invem.board.model.BoardVO;
 
 public class BoardDAO {
