@@ -37,4 +37,11 @@ public class BoardService {
 	public List<ReplyVO> selectReplyByNo(int no) throws SQLException {
 		return dao.selectReplyByNo(no);
 	}
+	
+	public int countByUserid(String userid) throws SQLException {
+		return dao.countByUserid(userid);
+	}
+	public List<BoardVO> selectById(String userid) throws SQLException{
+		return dao.selectById(userid);
+	}
 }
