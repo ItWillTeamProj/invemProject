@@ -11,7 +11,7 @@
 	String code = (String)request.getAttribute("code");
 	BoardVO vo = (BoardVO)request.getAttribute("vo");
 	List<ReplyVO> list = (List<ReplyVO>)request.getAttribute("list");
-	String userid = (String)request.getAttribute("userid");
+	userid = (String)request.getAttribute("userid");
 	String no = request.getParameter("no");
 	
 	
