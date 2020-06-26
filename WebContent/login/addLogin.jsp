@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <%@ include file="../inc/top.jsp" %>
+
 <link rel="stylesheet" type="text/css" href="../css/mainstyle.css" />
 <link rel="stylesheet" type="text/css" href="../css/clear.css" />
 <link rel="stylesheet" type="text/css" href="../css/formLayout.css" />
@@ -51,10 +52,16 @@
 		clear: left;		
 		font-weight: bold;
 		}
+body{
+	background-repeat:no-repeat;
+	background-image: url('http://upload3.inven.co.kr/upload/2020/06/16/bbs/i13884237924.jpg');
+	background-color: white;
+	background-attachment: fixed;
+}
 </style>
 <article>
 <div class="divForm">
-<form name="frm1" method="post" action="/TestWeb/login/addLogin_ok.jsp">
+<form name="frm1" method="post" action="<%=request.getContextPath() %>/login/addLogin_ok.jsp">
 <fieldset>
 	<legend style = "margin-left: 80px">회원 가입</legend>
     <div>
@@ -79,11 +86,11 @@
         <input type="text" name="name" id="name" >
     </div>
     <div>        
-        <label for="dateofbirth">생년월일<br>(yyyy-mm-dd)</label>
+        <label for="dateofbirth">생년월일<br>(yy-mm-dd)</label>
         <input type="text" name="dateofbirth" id="dateofbirth" style="margin-top: 15px;">
     </div>
-   <div>
-        <label for="phoneno1">핸드폰</label>&nbsp;<select name="phoneno1" id="phoneno1" title="휴대폰 앞자리">
+   	<div style="margin-top: 8px;">
+        <label for="phoneno1">핸드폰</label><select name="phoneno1" id="phoneno1" title="휴대폰 앞자리">
             <option value="010">010</option>
             <option value="011">011</option>
             <option value="016">016</option>
@@ -93,7 +100,8 @@
        	</select>
         -
         <input type="text" name="phoneno2" id="phoneno2" maxlength="4" title="휴대폰 가운데자리"
-        	class="width_80" style="width:50px;">-
+        	class="width_80" style="width:50px;">
+        -
         <input type="text" name="phoneno3" id="phoneno3" maxlength="4" title="휴대폰 뒷자리"
         	class="width_80" style="width:50px;">
     </div>

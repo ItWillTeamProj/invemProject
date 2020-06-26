@@ -1,4 +1,4 @@
-<%@page import="java.sql.SQLException"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -62,13 +62,13 @@
 	vo.setSum_name(sum_name);
 	vo.setCaution(caution);
 	
-	String msg="회원가입 실패!", url="/login/addLogin.jsp";
+	String msg="회원가입 실패!", url="/login/addLogin.gg";
 	try{
 		int cnt=memSer.insertMember(vo);
 		
 		if(cnt>0){
 			msg="회원가입되었습니다.";
-			url="/index.jsp";
+			url="/index.gg";
 		}
 	}catch(SQLException e){
 		e.printStackTrace();

@@ -65,7 +65,8 @@ public class LoginDAO {
 			con=pool.getConnection();
 			
 			//3
-			String sql="select * from member where userid=?";
+			String sql="select * from member" + 
+					" where userid=?";
 			ps=con.prepareStatement(sql);
 			ps.setString(1, userid);
 			
@@ -95,7 +96,6 @@ public class LoginDAO {
 				vo.setDetail(detail);
 				vo.setSum_name(sum_name);
 				vo.setRegdate(regdate);
-				vo.setCaution(caution);
 				vo.setUserid(userid);
 			}
 			
@@ -107,5 +107,4 @@ public class LoginDAO {
 			pool.dbClose(con, ps, rs);
 		}
 	}
-	
 }

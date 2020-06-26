@@ -9,6 +9,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
+	body{
+		background-repeat:no-repeat;
+		background-image: url('http://upload3.inven.co.kr/upload/2020/06/16/bbs/i13884237924.jpg');
+		background-color: white;
+		background-attachment: fixed;
+	}
 	p{
 	text-align:center;
     margin-top: 100px;
