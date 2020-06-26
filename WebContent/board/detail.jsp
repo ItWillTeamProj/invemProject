@@ -8,30 +8,11 @@
 <%@ include file = "../inc/top.jsp"%>
 
 <%
-	BoardVO vo = new BoardVO();
+	String code = (String)request.getAttribute("code");
+	BoardVO vo = (BoardVO)request.getAttribute("vo");
+	List<ReplyVO> list = (List<ReplyVO>)request.getAttribute("list");
+	String userid = (String)request.getAttribute("userid");
 	String no = request.getParameter("no");
-	//코드를 받아와서 게시판의 이름을 적는다 일단 페이지 확인때문에 code임의로 F로 넣음
-	String code = request.getParameter("code");
-	code = "F";
-	BoardService boardServ = new BoardService();
-	
-	BoardService service = new BoardService();
-	try{
-		vo = service.searchByNo(Integer.parseInt(no));
-	}catch(SQLException e){
-		e.printStackTrace();
-	}
-	
-	String userid = vo.getUserid();
-	List <ReplyVO> list = null;
-	
-	try{
-		list = boardServ.selectReplyByNo(Integer.parseInt(no));
-	}catch(SQLException e){
-		e.printStackTrace();
-	}
-	
-	
 	
 	
 	
@@ -41,14 +22,14 @@
 <script type="text/javascript">
 $(function(){
 	$('#list').click(function(){
-		location.href = "boardList.jsp";
+		location.href = "<%=request.getContextPath()%>/board/boardList.gg";
 	});
 });
 </script>
 
 <article>
 	<%
-	
+	code = "F"; //임시로 설정
 	String boardName = "";
 	switch(code){
 		case "F":
@@ -57,7 +38,7 @@ $(function(){
 		default:%>
 		<script type="text/javascript">
 			alert('잘못된 접근입니다.');
-			location.href = "../index.jsp";
+			location.href = "<%=request.getContextPath()%>/index.jsp";
 		</script>
 		<%break;
 	}
@@ -109,7 +90,7 @@ $(function(){
 		<a href = "#"><img src = "../images/bad.jpg" style = "max-width: 100px; max-height:100px; float: left; text-align: center" alt = "신고"/></a>
 	</div>
 	
-	<form name="frmReply" action="reply_ok.jsp" method="post" >
+	<form name="frmReply" action="<%=request.getContextPath() %>/board/reply_ok.gg" method="post" >
 	<div>
 	<%if(userid != null && !userid.isEmpty()){%>
 		<span style = "float: left; width: 15%">

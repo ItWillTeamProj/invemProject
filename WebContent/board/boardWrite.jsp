@@ -2,14 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../inc/top.jsp"%>
 <%
-	String userid = request.getParameter("userid");
-
-	//코드를 받아와서 게시판의 이름을 적는다 일단 페이지 확인때문에 code임의로 F로 넣음
-	String code = request.getParameter("code");
-	code = "F";
-	if(userid == null || userid.isEmpty()){
-		userid = "";
-	}
+	String userid = (String)request.getAttribute("userid");
+	String boardName = (String)request.getAttribute("boardName");
 %>
 <script type="text/javascript" src="../js/jquery-3.5.1.min.js" charset="utf-8"></script>
 <script type="text/javascript" src="../se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
@@ -39,28 +33,15 @@
 		});
 		
 		$('#cancel').click(function(){
-			location.href = "boardList.jsp";
+			location.href = "/board/boardList.gg";
 		});
 	});
 </script>
 <article style="width: 800px">
-	<%
-	String boardName = "";
-	switch(code){
-		case "F":
-		boardName = "자유게시판";
-		break;
-		default:%>
-	<script type="text/javascript">
-			alert('잘못된 접근입니다.');
-			location.href = "../index.jsp";
-		</script>
-	<%break;
-	}
-	%>
+	
 	<h3><%=boardName %></h3>
 	<hr style="border: 0; height: 2px; background: skyblue">
-	<form name="frm" method="post" action="boardWrite_ok.jsp">
+	<form name="frm" method="post" action="boardWrite_ok.gg">
 		<%if(userid == null || userid.isEmpty()){%>
 		<input type="text" size="20" style="margin-left: 10px"
 			value="별명을 입력 해 주세요" name="nonuserid" onfocus="this.value=''">

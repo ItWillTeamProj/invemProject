@@ -243,7 +243,7 @@ public class BoardDAO {
 			con = pool.getConnection();
 			
 			String sql = "insert into board";
-			if(vo.getUserid() != null && !vo.getUserid().isEmpty()) {
+			if(!vo.getUserid().equals("unknown")) {
 				sql += "(no, userid, title, describe, cat_code)" + 
 						" values(board_seq.nextval, ?, ?, ?, ?)";
 			}else {
@@ -253,7 +253,7 @@ public class BoardDAO {
 			
 			ps = con.prepareStatement(sql);
 			System.out.println("vo = " + vo);
-			if(vo.getUserid() == null || vo.getUserid().isEmpty()) {
+			if(vo.getUserid().equals("unknown")) {
 				ps.setString(1, vo.getUserid());
 				ps.setString(2, vo.getNonuserid());
 				ps.setString(3, vo.getPwd());
@@ -277,6 +277,12 @@ public class BoardDAO {
 			
 		}
 	}
+	
+	/**
+	 * 모든 게시판 글 검색
+	 * @return
+	 * @throws SQLException
+	 */
 	
 	public List<BoardVO> selectAll() throws SQLException{
 		Connection con = null;
@@ -365,6 +371,91 @@ public class BoardDAO {
 		}finally {
 			pool.dbClose(con, ps);
 			
+		}
+	}
+	/**
+	 * 게시물 총 개수 유저아이디로 검색
+	 * @param userid
+	 * @return
+	 * @throws SQLException
+	 */
+	public int countByUserid(String userid) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		int cnt = 0;
+		
+		try {
+			con = pool.getConnection();
+
+			String sql = "select count(*) from board where userid = ?";
+			ps = con.prepareStatement(sql);
+			
+			ps.setString(1, userid);
+			
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				cnt = rs.getInt(1);
+			}
+			
+			System.out.println("cnt = " + cnt + ", 매개변수 userid = " + userid);
+			return cnt;
+		}finally {
+			pool.dbClose(con, ps, rs);
+			
+		}
+	}
+	
+	/**
+	 * 아이디로 게시글 상세 검색
+	 * @param userid
+	 * @return
+	 * @throws SQLException
+	 */
+	public List<BoardVO> selectById(String userid) throws SQLException{
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<BoardVO> list = new ArrayList<BoardVO>();
+		
+		
+		try{
+			con = pool.getConnection();
+			String sql = "select * from board where userid = ? order by no desc";
+			ps = con.prepareStatement(sql);
+			
+			ps.setString(1, userid);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				
+				int no = rs.getInt("no");
+				
+				String nonuserid = rs.getString("nonuserid");
+				String pwd = rs.getString("pwd");
+				String title = rs.getString("title");
+				Timestamp regdate = rs.getTimestamp("regdate");
+				String describe = rs.getString("describe");
+				int recommend =rs.getInt("recommend");
+				int views = rs.getInt("views");
+				String filename = rs.getString("filename");
+				long filesize = rs.getLong("filesize");
+				int downcount = rs.getInt("downcount");
+				String originalfilename = rs.getString("originalfilename");
+				String ipaddress = rs.getString("ipaddress");
+				String delflag = rs.getString("delflag");
+				String cat_code = rs.getString("cat_code");
+				
+				BoardVO vo = new BoardVO(no, userid, nonuserid, pwd, title, regdate, describe, recommend, views, filename, filesize, downcount, originalfilename, ipaddress, delflag, cat_code);
+				list.add(vo);
+				
+			}
+			System.out.println("list.size() = " + list.size());
+			return list;
+		}finally { 
+			pool.dbClose(con, ps, rs);
 		}
 	}
 	
