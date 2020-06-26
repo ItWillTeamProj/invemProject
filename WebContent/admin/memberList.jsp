@@ -59,7 +59,7 @@
 		for(int i=0;i<list.size();i++){
 				AdminMemberDTO dto = list.get(i);%>
 				<tr class="align_center" >
-					<td><a href="memberDetail.jsp?userid=<%=dto.getUserid() %>"><%=dto.getUserid() %></a></td>
+					<td><a href="memberDetail.jsp?id=<%=dto.getUserid() %>"><%=dto.getUserid() %></a></td>
 					<td><%=dto.getNickname() %></td>
 					<td><%=dto.getName() %></td>
 					<td><%=dto.getPhoneno() %></td>

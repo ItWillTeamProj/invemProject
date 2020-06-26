@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<link rel="stylesheet" href="../css/invem_index.css" type="text/css">
+<link rel="stylesheet" href="../css/index.css" type="text/css">
 <script type="text/javascript" scr = "../js/jquery-3.5.1.min.js"></script>
 <title>invem_index</title>
 <style type="text/css">

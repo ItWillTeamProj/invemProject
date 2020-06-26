@@ -6,8 +6,8 @@
 <%
 	request.setCharacterEncoding("utf-8");
 
-	String userid = request.getParameter("userid");
-	if(userid==null || userid.isEmpty()){ %>
+	String id = request.getParameter("id");
+	if(id==null || id.isEmpty()){ %>
 	<script type="text/javascript">
 		alert("잘못된 url 입니다.");
 		location.href="memberList.jsp";
@@ -21,7 +21,7 @@
 	AdminMemberDTO dto = null;
 	
 	try{
-		dto = adminMemberService.selectByUserid(userid);		
+		dto = adminMemberService.selectByUserid(id);		
 	}catch(SQLException e){
 		e.printStackTrace();
 	}
@@ -93,10 +93,6 @@
         	<a href='memberList.jsp'>목록</a>			
 		</div>
 	</div>
-
-
-
-
 
 </article>	
 <%@ include file="../inc/bottom.jsp" %>
