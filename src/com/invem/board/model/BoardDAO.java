@@ -8,7 +8,8 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.invem.db.ConnectionPoolMgr2;
+import com.imvem.db.ConnectionPoolMgr2;
+import com.invem.board.model.BoardVO;
 
 public class BoardDAO {
 	private ConnectionPoolMgr2 pool;
@@ -367,5 +368,33 @@ public class BoardDAO {
 			
 		}
 	}
+	
+	public List<BoardVO> selectMainNotice() throws SQLException{
+	      Connection con = null;
+	      PreparedStatement ps = null;
+	      ResultSet rs = null;
+	      
+	      List<BoardVO> list = new ArrayList<BoardVO>();
+	      try {
+	         con = pool.getConnection();
+	         String sql = "select A.* from (select no, title from board order by regdate desc)A" + 
+	               " where rownum <= 6";
+	         ps = con.prepareStatement(sql);
+	         rs = ps.executeQuery();
+	         
+	         while(rs.next()) {
+	            BoardVO vo = new BoardVO();
+	            
+	            vo.setNo(rs.getInt("no"));
+	            vo.setTitle(rs.getString("title"));
+	            
+	            list.add(vo);
+	         }
+	         System.out.println("list.size() = " + list.size());
+	         return list;
+	      }finally {
+	         pool.dbClose(con, ps, rs);
+	      }
+	 }
 	
 }

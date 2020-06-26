@@ -4,11 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 
-import com.invem.db.ConnectionPoolMgr2;
+import com.imvem.db.ConnectionPoolMgr2;
 import com.invem.login.model.LoginService;
-import com.invem.member.model.MemberDTO;
 
 public class LoginDAO {
 	
@@ -53,59 +51,4 @@ public class LoginDAO {
 			pool.dbClose(con, ps, rs);
 		}
 	}
-	
-	public MemberDTO selectMember(String userid) throws SQLException {
-		Connection con=null;
-		PreparedStatement ps=null;
-		ResultSet rs=null;
-		
-		MemberDTO vo = new MemberDTO();
-		try {
-			//1,2
-			con=pool.getConnection();
-			
-			//3
-			String sql="select * from member where userid=?";
-			ps=con.prepareStatement(sql);
-			ps.setString(1, userid);
-			
-			rs=ps.executeQuery();
-			if(rs.next()) {
-				String nickname=rs.getString("nickname");
-				String pwd=rs.getString("pwd");
-				String name=rs.getString("name");
-				String dateofbirth=rs.getString("dateofbirth");
-				String phoneno=rs.getString("phoneno");
-				String email=rs.getString("email");
-				String zipcode=rs.getString("zipcode");
-				String address=rs.getString("address");
-				String detail=rs.getString("detail");
-				String sum_name=rs.getString("sum_name");
-				Timestamp regdate=rs.getTimestamp("regdate");
-				int caution=rs.getInt("caution");
-				
-				vo.setNickname(nickname);
-				vo.setPwd(pwd);
-				vo.setName(name);
-				vo.setDateofbirth(dateofbirth);
-				vo.setPhoneno(phoneno);
-				vo.setEmail(email);
-				vo.setZipcode(zipcode);
-				vo.setAddress(address);
-				vo.setDetail(detail);
-				vo.setSum_name(sum_name);
-				vo.setRegdate(regdate);
-				vo.setCaution(caution);
-				vo.setUserid(userid);
-			}
-			
-			System.out.println("회원정보 조회 결과 vo="+vo
-					+", 매개변수 userid="+userid);
-			
-			return vo;
-		}finally {
-			pool.dbClose(con, ps, rs);
-		}
-	}
-	
 }

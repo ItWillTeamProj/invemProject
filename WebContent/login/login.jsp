@@ -4,6 +4,7 @@
 
 <!DOCTYPE html>
 <html>
+<body style="background-repeat:no-repeat;background-image: url('http://upload3.inven.co.kr/upload/2020/06/16/bbs/i13884237924.jpg');background-color: white;background-attachment: fixed;">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -23,11 +24,12 @@ form{
 </head>
 <body>
 	<article class="simpleForm">
-	<form name="frmLogin" method="post" action="login_ok.jsp">
+	<form name="frmLogin" method="post" 
+	action="<%=request.getContextPath() %>/login/login_ok.gg">
 		<legend style="margin-top: 50px;font-size: x-large;font-family: none;">로그인</legend>
 		<fieldset style="margin-top: 50px;border-color: #6db92a;">
 			<div>
-				<label for="userid" class="label" style="margin-left: 15px;">아이디</label>
+				<label for="userid" class="label" style="margin-left: 16px;">아이디</label>
 				<input type = "text" name = "userid" id = "userid" value = "userid">
 			</div>
 			<div>

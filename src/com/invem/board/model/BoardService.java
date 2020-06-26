@@ -37,4 +37,10 @@ public class BoardService {
 	public List<ReplyVO> selectReplyByNo(int no) throws SQLException {
 		return dao.selectReplyByNo(no);
 	}
+	
+	public List<BoardVO> selectMainNotice() throws SQLException{
+		return dao.selectMainNotice();
+	}
+	
+	
 }

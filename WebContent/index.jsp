@@ -1,12 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>invem.gg</title>
-</head>
-<body>
-<h1>메인페이지입니다.</h1>
-</body>
-</html>
+<%@ include file="inc/top.jsp" %>    
+
+<article id="centerCon">
+	<img src="images/herb.JPG" alt="허브 이미지">
+</article>
+<article id="rightCon">
+<%@include file="inc/mainNotice.jsp" %>
+</article>
+<article id="listCon">
+	<h2>상품 목록</h2>
+</article>
+
+
+<%@ include file="inc/bottom.jsp" %>    

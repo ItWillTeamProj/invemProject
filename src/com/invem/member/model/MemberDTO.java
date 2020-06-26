@@ -16,7 +16,7 @@ public class MemberDTO {
     private String detail;
     private String sum_name;
     private Timestamp regdate;
-    private int caution;
+    private String caution;
     
 	public MemberDTO() {
 		super();
@@ -24,7 +24,7 @@ public class MemberDTO {
 
 	public MemberDTO(String userid, String nickname, String pwd, String name, String dateofbirth, String phoneno,
 			String email, String zipcode, String address, String detail, String sum_name, Timestamp regdate,
-			int caution) {
+			String caution) {
 		super();
 		this.userid = userid;
 		this.nickname = nickname;
@@ -137,11 +137,11 @@ public class MemberDTO {
 		this.regdate = regdate;
 	}
 
-	public int getCaution() {
+	public String getCaution() {
 		return caution;
 	}
 
-	public void setCaution(int caution) {
+	public void setCaution(String caution) {
 		this.caution = caution;
 	}
 
