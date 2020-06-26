@@ -1,37 +1,24 @@
 package com.invem.champion.model;
 
 public class ChampionVO {
-	private int no;
-	private String champ;
+	private int champ_no;
+	private String name;
 	private String role;
 	private String lane;
 	private String skill;
 	private String nickname;
 	private String describe;
-	public ChampionVO() {
-		super();
+	public int getChamp_no() {
+		return champ_no;
 	}
-	public ChampionVO(int no, String champ, String role, String lane, String skill, String nickname, String describe) {
-		super();
-		this.no = no;
-		this.champ = champ;
-		this.role = role;
-		this.lane = lane;
-		this.skill = skill;
-		this.nickname = nickname;
-		this.describe = describe;
+	public void setChamp_no(int champ_no) {
+		this.champ_no = champ_no;
 	}
-	public int getNo() {
-		return no;
+	public String getName() {
+		return name;
 	}
-	public void setNo(int no) {
-		this.no = no;
-	}
-	public String getChamp() {
-		return champ;
-	}
-	public void setChamp(String champ) {
-		this.champ = champ;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getRole() {
 		return role;
@@ -65,7 +52,22 @@ public class ChampionVO {
 	}
 	@Override
 	public String toString() {
-		return "ChampVO [no=" + no + ", champ=" + champ + ", role=" + role + ", lane=" + lane + ", skill=" + skill
-				+ ", nickname=" + nickname + ", describe=" + describe + "]";
+		return "ChampionVO [champ_no=" + champ_no + ", name=" + name + ", role=" + role + ", lane=" + lane + ", skill="
+				+ skill + ", nickname=" + nickname + ", describe=" + describe + "]";
 	}
+	public ChampionVO(int champ_no, String name, String role, String lane, String skill, String nickname,
+			String describe) {
+		super();
+		this.champ_no = champ_no;
+		this.name = name;
+		this.role = role;
+		this.lane = lane;
+		this.skill = skill;
+		this.nickname = nickname;
+		this.describe = describe;
+	}
+	public ChampionVO() {
+		super();
+	}
+	
 }

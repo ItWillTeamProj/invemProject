@@ -13,11 +13,23 @@
 <head>
 <meta charset="utf-8">
 <link rel="stylesheet" href="../css/index.css" type="text/css">
-<script type="text/javascript" scr = "../js/jquery-3.5.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <title>invem_index</title>
-<style type="text/css">
-
-</style>
+<script type="text/javascript">
+	$(function(){
+		$('#login[type=login]').submit(function(){
+			if($('#userid').val().length<1){
+				alert('아이디를 입력하세요');
+				$('#userid').focus();
+				event.preventDefault();
+			}else if($('#pw').val().length<1){
+				alert('비밀번호를 입력하세요');
+				$('#pw').focus();
+				event.preventDefault();
+			}
+		});
+	});
+</script>
 </head>
 <body>
 <div class="container">
@@ -30,6 +42,7 @@
 				width="720" height="90"/></a>
 		<a href="#">
 			<img src="../images/index/logo.png" alt="롤로고" name="Insert_logo" id="Insert_logo"
+
 				width="240" height="90" align="right"/></a>
 	<!-- end .header --></div>
 
@@ -51,7 +64,7 @@
 	</div>
 	<ul class="nav">
 		<li><a href="#">INVEM HOME</a></li>
-		<li><a href="#">챔피언정보</a></li>
+		<li><a href="<%=request.getContextPath()%>/champion/list.gg">챔피언정보</a></li>
 		<li><a href="#">자유게시판</a></li>
 		<li><a href="#">베스트공략</a></li>
 		<li><a href="#">화이팅</a></li>
