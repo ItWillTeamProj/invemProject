@@ -44,4 +44,17 @@ public class BoardService {
 	public List<BoardVO> selectById(String userid) throws SQLException{
 		return dao.selectById(userid);
 	}
+
+	public List<BoardVO> selectMainNotice() throws SQLException{
+		return dao.selectMainNotice();
+	}
+	
+	public int checkRegdate(int no) throws SQLException {
+		return dao.checkRegdate(no);
+	}
+	
+	public int checkReply(int no) throws SQLException {
+		return dao.checkReply(no);
+	}
+
 }

@@ -1,3 +1,4 @@
+<%@page import="com.invem.board.model.BoardService"%>
 <%@page import="com.invem.board.model.BoardVO"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.invem.common.PagingVO"%>
@@ -20,6 +21,7 @@
 	int num = pageVo.getNum();	//페이지당 시작 글 번호가 될수도 있지만 게시판별로
 	// 나눴을때 num + 1 로 no를 대체할 수 있다.
 	int curPos = pageVo.getCurPos();	//페이지당 시작 인덱스 번호
+	BoardService boardServ = new BoardService();
 
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 %>
@@ -54,6 +56,9 @@ function postPopUp(formName) {
 	frm.submit();
 }
 </script>
+<link rel="stylesheet" href="../css/bootstrap/bootstrap.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <article>
 	<%
 	String boardName = "";
@@ -82,7 +87,7 @@ function postPopUp(formName) {
 		</select>
 	</div><hr style = "border: 0; height: 2px; background: skyblue">
 
-	<table style = "width: 700px">
+	<table style = "width: 700px" class="table table-hover table-sm">
 		<!-- caption걸어주는게 좋다고 들음 -->
 		<caption><%=boardName %> 목록입니다.</caption>
 		<colgroup>
@@ -94,12 +99,12 @@ function postPopUp(formName) {
 			<col style = "width: 7%">
 		</colgroup>
 		<tr>
-			<th>번호</th>
+			<th style = "text-align: center">번호</th>
 			<th>제목</th>
-			<th>작성자</th>
-			<th>작성일</th>
-			<th>조회</th>
-			<th>추천</th>
+			<th style = "text-align: center">작성자</th>
+			<th style = "text-align: center">작성일</th>
+			<th style = "text-align: center">조회</th>
+			<th style = "text-align: center">추천</th>
 		</tr>
 		<%
 		if(list == null || list.isEmpty()){%>
@@ -121,7 +126,12 @@ function postPopUp(formName) {
 						<td style = "text-align: center"><%=vo.getNonuserid() %></td>
 				<%}else{ %>
 				<!-- userid가 있으면 userid만 detail로 보낸다. -->
-						<td><a href = "<%=request.getContextPath() %>/board/detail.gg?no=<%=vo.getNo()%>&userid=<%=vo.getUserid()%>"><%=vo.getTitle() %></a></td>
+						<td><a href = "<%=request.getContextPath() %>/board/detail.gg?no=<%=vo.getNo()%>&userid=<%=vo.getUserid()%>"><%=vo.getTitle() %>
+						<!-- 24시간 이내 작성글인경우 new띄우기 -->
+						<%if(boardServ.checkRegdate(vo.getNo())==1){ %>
+						<span class="badge badge-primary">new</span>
+						<%} %>
+						</a></td>
 						<td style = "text-align: center"><a href = "#" onclick="javascript:postPopUp('this.form');" id = "toBlog"><%=vo.getUserid() %></a></td>
 				<%}%>
 						<td style = "text-align: center;"><%=sdf.format(vo.getRegdate()) %></td>
@@ -194,7 +204,7 @@ function postPopUp(formName) {
     
 </article>
 
-
+<script type ="text/javascript" src = "../js/bootstrap/bootstrap.js"></script> 
 
 
 <%@ include file = "../inc/bottom.jsp"%>

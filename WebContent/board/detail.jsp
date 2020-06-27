@@ -14,6 +14,7 @@
 	String userid = (String)request.getAttribute("userid");
 	String no = request.getParameter("no");
 	
+	int replyCount = (int)request.getAttribute("replyCount");
 	
 	
 	
@@ -23,6 +24,10 @@
 $(function(){
 	$('#list').click(function(){
 		location.href = "<%=request.getContextPath()%>/board/boardList.gg";
+	});
+	
+	$('#edit').click(function(){
+		location.href = "<%=request.getContextPath()%>/board/boardEdit.gg?no=<%=no%>&code=<%=code%>";
 	});
 });
 </script>
@@ -49,13 +54,16 @@ $(function(){
 		<h4 style = "margin-left: 10px"><%=vo.getTitle() %></h4><br>
 		<%if(!"unknown".equals(userid) && userid != null && !userid.isEmpty()){%>
 			<span style = "float: left; margin-left: 30px"><%=vo.getUserid() %> | <%=vo.getRegdate() %></span>
-			<span style = "float: right; margin-right: 20px">조회 <%=vo.getViews() %> | 추천 <%=vo.getRecommend() %> | 댓글 </span>
+			<span style = "float: right; margin-right: 20px">조회 <%=vo.getViews() %> | 추천 <%=vo.getRecommend() %> | 댓글<%=replyCount %> </span>
 		<%}else{%>
 			<span style = "float: left; margin-left: 30px"><%=vo.getNonuserid() %>(<%=vo.getIpaddress() %>) | <%=vo.getRegdate() %></span>
-			<span style = "float: right; margin-right: 20px">조회 <%=vo.getViews() %> | 추천 <%=vo.getRecommend() %> | 댓글 </span>
+			<span style = "float: right; margin-right: 20px">조회 <%=vo.getViews() %> | 추천 <%=vo.getRecommend() %> | 댓글<%=replyCount %>  </span>
 		<%} %>
 	</div><br><hr style = "border: 0; height: 2px; background: skyblue">
-	<div><%=vo.getDescribe() %></div>
+	<div><%=vo.getDescribe() %></div><br>
+	<div style = "float: right; border-right: 20px">
+		<input type = button id = "edit" value = "수정">
+	</div>
 	<br><hr style = "border: 0; height: 2px; background: skyblue">
 	
 	<%if(list != null && !list.isEmpty()){%>

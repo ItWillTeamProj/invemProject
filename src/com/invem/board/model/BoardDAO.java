@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.invem.db.ConnectionPoolMgr2;
@@ -459,4 +460,95 @@ public class BoardDAO {
 		}
 	}
 	
+
+	public List<BoardVO> selectMainNotice() throws SQLException{
+	      Connection con = null;
+	      PreparedStatement ps = null;
+	      ResultSet rs = null;
+	      
+	      List<BoardVO> list = new ArrayList<BoardVO>();
+	      try {
+	         con = pool.getConnection();
+	         String sql = "select A.* from (select no, title from board order by regdate desc)A" + 
+	               " where rownum <= 6";
+	         ps = con.prepareStatement(sql);
+	         rs = ps.executeQuery();
+	         
+	         while(rs.next()) {
+	            BoardVO vo = new BoardVO();
+	            
+	            vo.setNo(rs.getInt("no"));
+	            vo.setTitle(rs.getString("title"));
+	            
+	            list.add(vo);
+	         }
+	         System.out.println("list.size() = " + list.size());
+	         return list;
+	      }finally {
+	         pool.dbClose(con, ps, rs);
+	      }
+	 }
+	
+	/**
+	 * 24시간 이내 글 new띄울라고 시도중
+	 * @param no
+	 * @return
+	 * @throws SQLException
+	 */
+	public int checkRegdate(int no) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Timestamp regdate = null;
+		try {
+			con=pool.getConnection();
+			String sql = "select regdate from board where no=?";
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, no);
+			
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				regdate = rs.getTimestamp("regdate");
+			}
+			
+			Date today = new Date();
+			long gap=(today.getTime() - regdate.getTime())/1000;
+			gap = gap/(60*60);
+			System.out.println(gap);
+			int result = 0;
+			if(gap < 24) {
+				result = 1;
+			}
+			return result;
+			
+		}finally {
+			pool.dbClose(con, ps, rs);
+		}
+	}
+	
+	public int checkReply(int no) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			con = pool.getConnection();
+			String sql = "select count(*) from reply where groupno = ?";
+			ps = con.prepareStatement(sql);
+			
+			ps.setInt(1, no);
+			
+			rs = ps.executeQuery();
+			
+			int result = 0;
+			if(rs.next()){
+				result = rs.getInt(1);
+			}
+			return result;
+		}finally {
+			pool.dbClose(con, ps, rs);
+		}
+	}
+
 }
