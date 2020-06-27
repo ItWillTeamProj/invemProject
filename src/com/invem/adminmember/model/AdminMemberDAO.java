@@ -34,6 +34,7 @@ public class AdminMemberDAO {
 			String sql="select * from member";
 			ps=con.prepareStatement(sql);
 			
+
 			rs=ps.executeQuery();
 			while(rs.next()) {
 				
@@ -57,8 +58,8 @@ public class AdminMemberDAO {
 				list.add(dto);
 			}
 			
-			System.out.println("게스트북 목록 결과 list.size : "+list.size());
-			
+			System.out.println("list.size()="+list.size());
+
 			return list;
 			
 		}finally {
@@ -99,8 +100,8 @@ public class AdminMemberDAO {
 				String address=rs.getString("address");
 				String detail=rs.getString("detail");
 				String sum_name=rs.getString("sum_name");
-				Timestamp regdate=rs.getTimestamp("regdate");;
-				int caution=rs.getInt("caution");;
+				Timestamp regdate=rs.getTimestamp("regdate");
+				int caution=rs.getInt("caution");
 	
 				dto.setUserid(userid);
 				dto.setNickname(nickname);
@@ -123,6 +124,43 @@ public class AdminMemberDAO {
 			return dto;
 		}finally {
 			pool.dbClose(con, ps, rs);
+		}
+		
+	}
+	
+	public int updateMember(AdminMemberDTO dto) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		try {
+			con = pool.getConnection();
+			
+			String sql="update member" 
+					+" set nickname=?, name=?, dateOfBirth=?, phoneno=?,"
+					+" email=?, zipcode=?, address=?, detail=?, sum_name=? , caution=?" 
+					+" where userid=?";
+			ps=con.prepareStatement(sql);
+			
+			ps.setString(1, dto.getNickname());
+			ps.setString(2, dto.getName());
+			ps.setString(3, dto.getDateofbirth());
+			ps.setString(4, dto.getPhoneno());
+			ps.setString(5, dto.getEmail());
+			ps.setString(6, dto.getZipcode());
+			ps.setString(7, dto.getAddress());
+			ps.setString(8, dto.getDetail());
+			ps.setString(9, dto.getSum_name());
+			ps.setInt(10, dto.getCaution()); 
+			
+			ps.setString(11, dto.getUserid());
+			
+			int cnt=ps.executeUpdate();
+			System.out.println("회원정보 수정결과, cnt="+cnt+", 매개변수 dto="+dto);
+			
+			return cnt;
+			
+		}finally {
+			pool.dbClose(con, ps);
 		}
 		
 	}

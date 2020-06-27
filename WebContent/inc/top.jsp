@@ -88,7 +88,7 @@
 					<a href="<%=request.getContextPath()%>/member/memberEdit.gg" style="margin-left: 45px;">회원정보수정</a></li>
 		  	 	</div>
 			<%} %>
-	</div>
+		</div>
 	<ul class="nav">
 		<li><a href="<%=request.getContextPath()%>/index.gg">INVEM HOME</a></li>
 		<li><a href="<%=request.getContextPath()%>/champion/list.gg">챔피언정보</a></li>
@@ -96,5 +96,6 @@
 		<li><a href="#">베스트공략</a></li>
 		<li><a href="#">화이팅</a></li>
 	</ul>
-	<!-- end .sidebar1 --></div>
+	</div>
+	<!-- end .sidebar1 -->
 	<div class="content">
