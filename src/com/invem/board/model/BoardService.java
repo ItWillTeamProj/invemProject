@@ -57,4 +57,10 @@ public class BoardService {
 		return dao.checkReply(no);
 	}
 
+	public int editBoard(BoardVO vo) throws SQLException {
+		return dao.editBoard(vo);
+	}
+	public boolean checkPwd(int no, String pwd) throws SQLException {
+		return dao.checkPwd(no, pwd);
+	}
 }

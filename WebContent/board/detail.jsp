@@ -13,6 +13,7 @@
 	List<ReplyVO> list = (List<ReplyVO>)request.getAttribute("list");
 	String userid = (String)request.getAttribute("userid");
 	String no = request.getParameter("no");
+	String nonuserid = (String)request.getAttribute("nonuserid");
 	
 	int replyCount = (int)request.getAttribute("replyCount");
 	
@@ -56,7 +57,7 @@ $(function(){
 			<span style = "float: left; margin-left: 30px"><%=vo.getUserid() %> | <%=vo.getRegdate() %></span>
 			<span style = "float: right; margin-right: 20px">조회 <%=vo.getViews() %> | 추천 <%=vo.getRecommend() %> | 댓글<%=replyCount %> </span>
 		<%}else{%>
-			<span style = "float: left; margin-left: 30px"><%=vo.getNonuserid() %>(<%=vo.getIpaddress() %>) | <%=vo.getRegdate() %></span>
+			<span style = "float: left; margin-left: 30px"><%=nonuserid %>(<%=vo.getIpaddress() %>) | <%=vo.getRegdate() %></span>
 			<span style = "float: right; margin-right: 20px">조회 <%=vo.getViews() %> | 추천 <%=vo.getRecommend() %> | 댓글<%=replyCount %>  </span>
 		<%} %>
 	</div><br><hr style = "border: 0; height: 2px; background: skyblue">

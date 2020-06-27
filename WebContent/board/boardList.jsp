@@ -122,17 +122,21 @@ function postPopUp(formName) {
 				<!-- userid가 null이면 nonuserid 비밀번호 ip주소 를 detail로 보낸다. -->
 				<%if(vo.getUserid() == null || vo.getUserid().isEmpty() || vo.getUserid().equals("unknown")){%>
 						<td><a href = "<%=request.getContextPath() %>/board/detail.gg?nonuserid=<%=vo.getNonuserid()%>&pwd=<%=vo.getPwd()%>
-							&ipaddress=<%=vo.getIpaddress()%>&no=<%=vo.getNo() %>"><%=vo.getTitle() %></a></td>
+							&ipaddress=<%=vo.getIpaddress()%>&no=<%=vo.getNo() %>"><%=vo.getTitle() %>
+							<%if(boardServ.checkRegdate(vo.getNo())==1){ %>
+								<span class="badge badge-pill badge-primary">new</span>
+							<%} %>
+						</a></td>
 						<td style = "text-align: center"><%=vo.getNonuserid() %></td>
 				<%}else{ %>
 				<!-- userid가 있으면 userid만 detail로 보낸다. -->
 						<td><a href = "<%=request.getContextPath() %>/board/detail.gg?no=<%=vo.getNo()%>&userid=<%=vo.getUserid()%>"><%=vo.getTitle() %>
 						<!-- 24시간 이내 작성글인경우 new띄우기 -->
 						<%if(boardServ.checkRegdate(vo.getNo())==1){ %>
-						<span class="badge badge-primary">new</span>
+						<span class="badge badge-pill badge-primary">new</span>
 						<%} %>
 						</a></td>
-						<td style = "text-align: center"><a href = "#" onclick="javascript:postPopUp('this.form');" id = "toBlog"><%=vo.getUserid() %></a></td>
+						<td style = "text-align: center"><a href = "#" onclick="javascript:postPopUp('this.form');"><%=vo.getUserid() %></a></td>
 				<%}%>
 						<td style = "text-align: center;"><%=sdf.format(vo.getRegdate()) %></td>
 						<td style = "text-align: center;"><%=vo.getViews() %></td>

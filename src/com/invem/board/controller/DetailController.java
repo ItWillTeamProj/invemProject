@@ -38,6 +38,7 @@ public class DetailController implements Controller{
 		}
 		
 		userid = vo.getUserid();
+		
 		if("unknown".equals(userid) || userid.isEmpty() || userid == null) {
 			userid = vo.getNonuserid();
 		}
@@ -45,6 +46,7 @@ public class DetailController implements Controller{
 		List<ReplyVO> list = null;
 		int cnt = 0;
 		try{
+			cnt = boardServ.updateReadCount(Integer.parseInt(no));
 			list = boardServ.selectReplyByNo(Integer.parseInt(no));
 		}catch(SQLException e){
 			e.printStackTrace();
@@ -65,7 +67,7 @@ public class DetailController implements Controller{
 		request.setAttribute("list", list);
 		request.setAttribute("userid", userid);
 		request.setAttribute("replyCount", replyCount);
-		
+		request.setAttribute("nonuserid", nonuserid);
 		
 		return "/board/detail.jsp";
 	}

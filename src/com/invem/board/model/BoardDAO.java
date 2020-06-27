@@ -550,5 +550,72 @@ public class BoardDAO {
 			pool.dbClose(con, ps, rs);
 		}
 	}
+	
+	/**
+	 * 게시판 글 수정
+	 * @param vo
+	 * @return
+	 * @throws SQLException
+	 */
+	public int editBoard(BoardVO vo) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		try {
+			con = pool.getConnection();
+			
+			String sql = "update board" +
+						" set title = ?, describe = ?" + 
+						" where no =?";
+			
+			ps = con.prepareStatement(sql);
+				ps.setString(1, vo.getTitle());
+				ps.setString(2, vo.getDescribe());
+				ps.setInt(3, vo.getNo());
+			
+			int cnt = ps.executeUpdate();
+			System.out.println("cnt = " + cnt + ", 매개변수 vo = " + vo);
+			return cnt;
+		
+		}finally {
+			pool.dbClose(con, ps);
+			
+		}
+	}
+	
+	public boolean checkPwd(int no, String pwd) throws SQLException {
+		Connection con=null;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		
+		try {
+			//1,2
+			con=pool.getConnection();
+			
+			//3
+			String sql="select pwd from board where no=?";
+			ps=con.prepareStatement(sql);
+			
+			ps.setInt(1, no);
+			
+			//4
+			rs=ps.executeQuery();
+			boolean result=false;
+			if(rs.next()) {
+				String dbPwd=rs.getString(1);
+				
+				if(dbPwd.equals(pwd)) {
+					result=true;  //비밀번호 일치
+				}
+			}
+			
+			System.out.println("비밀번호 체크 결과, result="+result
+				+", 매개변수 no="+no+", pwd="+pwd);
+			
+			return result;
+		}finally {
+			pool.dbClose(con, ps, rs);
+		}
+	}
 
 }
