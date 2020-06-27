@@ -30,7 +30,7 @@
 $(function(){
 	$('#rowNum').change(function(){
 		var pageRow = $('#rowNum option:selected').val();
-		location.href = "<%=request.getContextPath()%>/board/boardList.gg?rowNum=" + pageRow;
+		location.href = "<%=request.getContextPath()%>/board/boardList.gg?rowNum="+pageRow;
 	});
 	
 	$('#all').click(function(){
@@ -59,6 +59,8 @@ function postPopUp(formName) {
 <link rel="stylesheet" href="../css/bootstrap/bootstrap.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <article>
 	<%
 	String boardName = "";
@@ -147,28 +149,29 @@ function postPopUp(formName) {
 
 			}%>
 	</table><hr style = "border: 0; height: 2px; background: skyblue">
+	
+	
 	<div style = "text-align: center">
-	<%if(pageVo.getFirstPage() > 1){ %>
-		<a href = "<%=request.getContextPath()%>/board/boardList.gg?currentPage=<%=pageVo.getFirstPage() - 1 %>">
-		<img src = "../images/first.JPG" alt = "이전 블럭으로 이동">
-		</a>
-	<%} %>
-
-	<%for(int i = pageVo.getFirstPage(); i <= pageVo.getLastPage(); i++){
-		if(i > pageVo.getTotalPage()) break;
-	%>
-		<%if(i != pageVo.getCurrentPage()){ %>
-		<a href ="<%=request.getContextPath() %>/board/boardList.gg?currentPage=<%=i%>">[<%=i %>]</a>
-	<%}else{ %>
-		<span style = "color: blue;font-weight: bold"><%=i %></span>
-		<%}//if %>
-	<%}//for %>
-
-	<%if(pageVo.getLastPage() < pageVo.getTotalPage()){ %>
-		<a href = "<%=request.getContextPath()%>/board/boardList.gg?currentPage=<%=pageVo.getLastPage() + 1 %>">
-		<img src = "../images/last.JPG" alt = "다음 블럭으로 이동">
-		</a>
-	<%} %>
+		<ul class="pagination pagination-sm">
+		<%if(pageVo.getFirstPage() > 1){ %>
+			 <li class="previous"><a href="<%=request.getContextPath()%>/board/boardList.gg?currentPage=<%=pageVo.getFirstPage() - 1 %>">Previous</a></li>
+		<%} %>
+	
+		<%for(int i = pageVo.getFirstPage(); i <= pageVo.getLastPage(); i++){
+			if(i > pageVo.getTotalPage()) break;
+		%>
+			<%if(i != pageVo.getCurrentPage()){ %>
+			<li><a href="<%=request.getContextPath() %>/board/boardList.gg?currentPage=<%=i%>"><%=i %></a></li>
+			
+		<%}else{ %>
+			<li class="active"><a href="<%=request.getContextPath() %>/board/boardList.gg?currentPage=<%=i%>"><%=i %></a></li>
+			<%}//if %>
+		<%}//for %>
+	
+		<%if(pageVo.getLastPage() < pageVo.getTotalPage()){ %>
+			<li class="next"><a href="<%=request.getContextPath()%>/board/boardList.gg?currentPage=<%=pageVo.getLastPage() + 1 %>">Next</a></li>
+		<%} %>
+		</ul>
 	</div>
 	<form name="frmSearch" method="post" action='<%=request.getContextPath() %>/board/boardList.gg' style = "text-align: center;">
         <select name="searchCondition">

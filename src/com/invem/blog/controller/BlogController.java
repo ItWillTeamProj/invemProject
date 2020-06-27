@@ -25,8 +25,6 @@ public class BlogController implements Controller {
 		List<BoardVO> list = boardServ.selectById(userid);
 		
 		
-		
-		
 		//3. myReply.jsp
 		
 		//4. guestbook.jsp

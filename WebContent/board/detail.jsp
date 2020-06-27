@@ -94,9 +94,9 @@ $(function(){
 		<%} %>
 	<br>
 	
-	<div style="width: 100%; height: 200px; text-align: center; float: left">
-		<a href = "#"><img src = "../images/good.jpg" style = "max-width: 100px; max-height:100px;float: left; text-align: center" alt = "추천"/></a>
-		<a href = "#"><img src = "../images/bad.jpg" style = "max-width: 100px; max-height:100px; float: left; text-align: center" alt = "신고"/></a>
+	<div style="width: 100%; height: 200px; text-align: center; float:right">
+		<a href = "#"><img src = "../images/good.jpg" style = "max-width: 100px; max-height:100px;float: left" alt = "추천"/></a>
+		<a href = "#"><img src = "../images/bad.jpg" style = "max-width: 100px; max-height:100px; float: left" alt = "신고"/></a>
 	</div>
 	
 	<form name="frmReply" action="<%=request.getContextPath() %>/board/reply_ok.gg" method="post" >
