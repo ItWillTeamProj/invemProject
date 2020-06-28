@@ -60,7 +60,7 @@
 		<tbody>
 			<%if(list==null || list.isEmpty()){ %>
 				<tr style="text-align: center;">
-					<td colspan="10" >
+					<td colspan="6" >
 						회원이 존재하지 않습니다.</td>
 				</tr>			
 			<%}else{
@@ -72,7 +72,7 @@
 						<td><%=dto.getName() %></td>					
 						<td><%=dto.getEmail() %></td>
 						<td><%=sdf.format(dto.getRegdate()) %></td>
-						<td><%=dto.getCaution() %></td>
+						<td>&nbsp;<%=dto.getCaution() %>회</td>
 					</tr>
 					
 				<%}//for 
