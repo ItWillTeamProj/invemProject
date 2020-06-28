@@ -71,7 +71,7 @@ body {
 <body>
 <div class="container" >
 	<div class="header" style="background-color: rgb(0, 0, 60);">
-		<a href="<%=request.getContextPath() %>/index/index.jsp">
+		<a href="<%=request.getContextPath() %>/index/index.gg">
 			<img src="<%=request.getContextPath() %>/images/index/bar_invem.png"
 			alt="인뱀로고" name="Insert_logo" id="Insert_logo"
 			style="width:auto; height:33px; padding:6px 5px 5px 5px; margin-left:55px " align="left"/>
