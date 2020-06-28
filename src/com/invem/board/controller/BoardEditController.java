@@ -1,5 +1,7 @@
 package com.invem.board.controller;
 
+import java.sql.SQLException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -20,19 +22,23 @@ public class BoardEditController implements Controller{
 		switch(code){
 			case "F":
 			boardName = "자유게시판";
-			url = "/board/boardEdit.jsp?code=F";
+			url = "/board/boardEdit.jsp?code="+code;
 			break;
 			default:
 				msg = "잘못된 접근입니다.";
-				url = "index.gg";
+				url = "/index.gg";
+				num = 1;
 			break;
 		}
 		
 		BoardService boardServ = new BoardService();
 		BoardVO vo = new BoardVO();
 		
-		vo = boardServ.searchByNo(Integer.parseInt(no));
-		
+		try {
+			vo = boardServ.searchByNo(Integer.parseInt(no));
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
 		
 		
 		
@@ -44,6 +50,7 @@ public class BoardEditController implements Controller{
 		
 		request.setAttribute("vo", vo);
 		request.setAttribute("boardName", boardName);
+		request.setAttribute("code", code);
 		
 		if(num == 1) {
 			return "/common/message.jsp";

@@ -64,4 +64,8 @@ public class BoardService {
 	public boolean checkPwd(int no, String pwd) throws SQLException {
 		return dao.checkPwd(no, pwd);
 	}
+	
+	public List<ReplyVO> selectAllReply(String userid) throws SQLException{
+		return dao.selectAllReply(userid);
+	}
 }

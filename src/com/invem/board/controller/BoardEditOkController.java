@@ -36,6 +36,7 @@ public class BoardEditOkController implements Controller{
 		vo.setTitle(title);
 		vo.setDescribe(describe);
 		vo.setCat_code(cat_code);
+		vo.setNo(Integer.parseInt(no));
 		System.out.println(no);
 		String msg = "글 수정 실패", url = "/board/boardEdit.gg?no="+no+"&code="+vo.getCat_code();
 		try{
@@ -44,6 +45,8 @@ public class BoardEditOkController implements Controller{
 					System.out.println("비밀번호 일치");
 				}else {
 					msg="비밀번호 불일치";
+					request.setAttribute("msg", msg);
+					request.setAttribute("url", url);
 					return "/common/message.jsp";
 				}
 			}
@@ -51,7 +54,7 @@ public class BoardEditOkController implements Controller{
 			int cnt = boardServ.editBoard(vo);
 			if(cnt > 0){
 				msg = "글 수정 성공";
-				url = "/board/detail.gg?no="+no;
+				url = "/board/detail.gg?no="+no+"&code="+vo.getCat_code();
 			}
 		}catch(SQLException e){
 			e.printStackTrace();
