@@ -6,11 +6,8 @@
 <%
 	String boardName = (String)request.getAttribute("boardName");
 	BoardVO vo = (BoardVO)request.getAttribute("vo");
-	String userid = vo.getUserid();	
+	userid = vo.getUserid();	
 	String nonuserid = vo.getNonuserid();
-	
-	
-	
 	
 
 %>
