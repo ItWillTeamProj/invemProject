@@ -153,3 +153,12 @@ ul.login li{
 	font-size: 1px;
 	line-height: 0px;
 }
+
+#divLangSelect {
+ position:absolute;
+ display:none;
+ background-color:#ffffff;
+ padding:10px;
+}
+
+.ui-menu { width: 150px; }
