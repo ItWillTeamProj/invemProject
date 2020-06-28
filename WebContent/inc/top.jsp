@@ -59,19 +59,22 @@
 				<br>
 				</div>
 			<%}else{ %>
-				<img alt="브론즈" src="../images/bronze.png">
-		   		<div style="font-size:10px" color=black;>
-					<li><a href="<%=request.getContextPath()%>/login/logout.gg" style="margin-left: 4px;">로그아웃</a>
-					<a href="<%=request.getContextPath()%>/member/memberEdit.gg" style="margin-left: 45px;">회원정보수정</a></li>
-		  	 	</div>
+				<div>
+					<img alt="브론즈" src="../images/bronze.png"/>
+			   		<div style="font-size:10px" color=black;>
+						<li><a href="<%=request.getContextPath()%>/login/logout.gg" style="margin-left: 4px;">로그아웃</a>
+						<a href="<%=request.getContextPath()%>/member/memberEdit.gg" style="margin-left: 45px;">회원정보수정</a></li>
+			  	 	</div>
+				</div>
 			<%} %>
-	</div>
+		</div>
 	<ul class="nav">
-		<li><a href="<%=request.getContextPath()%>/index.gg">INVEM HOME</a></li>
+		<li><a href="<%=request.getContextPath()%>/index/index.gg">INVEM HOME</a></li>
 		<li><a href="<%=request.getContextPath()%>/champion/list.gg">챔피언정보</a></li>
 		<li><a href="<%=request.getContextPath()%>/board/boardList.gg">자유게시판</a></li>
 		<li><a href="#">베스트공략</a></li>
 		<li><a href="#">화이팅</a></li>
 	</ul>
-	<!-- end .sidebar1 --></div>
+	</div>
+	<!-- end .sidebar1 -->
 	<div class="content">

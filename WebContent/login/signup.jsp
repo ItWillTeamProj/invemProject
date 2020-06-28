@@ -73,7 +73,8 @@ body{
 <article>
 <div class="divForm">
 <form name="frm1" method="post" action="<%=request.getContextPath() %>/login/signup_ok.gg">
-<fieldset>
+<fieldset style="margin-top: 20px;border-radius: 0.5em;border-color: #6db92a;background-color:white;border-left-width: 2px;border-top-width: 2px;border-right-width: 2px;">
+<div style="margin-top: 30px; margin-bottom: 30px; margin-left: 30px; margin-right: 30px;">
 	<legend style = "margin-left: 80px">회원 가입</legend>
     <div>
         <label for="userid">회원ID(필수)</label>
@@ -139,15 +140,15 @@ body{
         <input type="text" name="addressDetail" title="상세주소"  class="width_350" style="margin-top: 4px;">
     </div>
     <div>        
-        <label for="sum_name">소환사명(필수)</label>
+        <label for="sum_name">소환사명</label>
         <input type="text" name="sum_name" id="sum_name" style="margin-top: 3px;">
     </div>
     <div class="center">
          <input type="submit" id="wr_submit" value="회원가입">
          <input type="reset" value="돌아가기" onclick="history.back(-1);">
     </div>
+</div>
 </fieldset>
-
     <input type ="hidden" name="chkId" id="chkId">
     <input type ="hidden" name="caution" id="caution">
         

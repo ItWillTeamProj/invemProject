@@ -1,3 +1,4 @@
+<%@page import="com.invem.board.model.BoardService"%>
 <%@page import="com.invem.board.model.BoardVO"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.invem.common.PagingVO"%>
@@ -20,6 +21,7 @@
 	int num = pageVo.getNum();	//페이지당 시작 글 번호가 될수도 있지만 게시판별로
 	// 나눴을때 num + 1 로 no를 대체할 수 있다.
 	int curPos = pageVo.getCurPos();	//페이지당 시작 인덱스 번호
+	BoardService boardServ = new BoardService();
 
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 %>
@@ -27,7 +29,7 @@
 $(function(){
 	$('#rowNum').change(function(){
 		var pageRow = $('#rowNum option:selected').val();
-		location.href = "<%=request.getContextPath()%>/board/boardList.gg?rowNum=" + pageRow;
+		location.href = "<%=request.getContextPath()%>/board/boardList.gg?rowNum="+pageRow;
 	});
 	
 	$('#all').click(function(){
@@ -53,6 +55,11 @@ function postPopUp(formName) {
 	frm.submit();
 }
 </script>
+<link rel="stylesheet" href="../css/bootstrap/bootstrap.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <article>
 	<%
 	String boardName = "";
@@ -81,7 +88,7 @@ function postPopUp(formName) {
 		</select>
 	</div><hr style = "border: 0; height: 2px; background: skyblue">
 
-	<table style = "width: 700px">
+	<table style = "width: 700px" class="table table-hover table-sm">
 		<!-- caption걸어주는게 좋다고 들음 -->
 		<caption><%=boardName %> 목록입니다.</caption>
 		<colgroup>
@@ -93,12 +100,12 @@ function postPopUp(formName) {
 			<col style = "width: 7%">
 		</colgroup>
 		<tr>
-			<th>번호</th>
+			<th style = "text-align: center">번호</th>
 			<th>제목</th>
-			<th>작성자</th>
-			<th>작성일</th>
-			<th>조회</th>
-			<th>추천</th>
+			<th style = "text-align: center">작성자</th>
+			<th style = "text-align: center">작성일</th>
+			<th style = "text-align: center">조회</th>
+			<th style = "text-align: center">추천</th>
 		</tr>
 		<%
 		if(list == null || list.isEmpty()){%>
@@ -116,12 +123,21 @@ function postPopUp(formName) {
 				<!-- userid가 null이면 nonuserid 비밀번호 ip주소 를 detail로 보낸다. -->
 				<%if(vo.getUserid() == null || vo.getUserid().isEmpty() || vo.getUserid().equals("unknown")){%>
 						<td><a href = "<%=request.getContextPath() %>/board/detail.gg?nonuserid=<%=vo.getNonuserid()%>&pwd=<%=vo.getPwd()%>
-							&ipaddress=<%=vo.getIpaddress()%>&no=<%=vo.getNo() %>"><%=vo.getTitle() %></a></td>
+							&ipaddress=<%=vo.getIpaddress()%>&no=<%=vo.getNo() %>"><%=vo.getTitle() %>
+							<%if(boardServ.checkRegdate(vo.getNo())==1){ %>
+								<span class="badge badge-pill badge-primary">new</span>
+							<%} %>
+						</a></td>
 						<td style = "text-align: center"><%=vo.getNonuserid() %></td>
 				<%}else{ %>
 				<!-- userid가 있으면 userid만 detail로 보낸다. -->
-						<td><a href = "<%=request.getContextPath() %>/board/detail.gg?no=<%=vo.getNo()%>&userid=<%=vo.getUserid()%>"><%=vo.getTitle() %></a></td>
-						<td style = "text-align: center"><a href = "#" onclick="javascript:postPopUp('this.form');" id = "toBlog"><%=vo.getUserid() %></a></td>
+						<td><a href = "<%=request.getContextPath() %>/board/detail.gg?no=<%=vo.getNo()%>&userid=<%=vo.getUserid()%>"><%=vo.getTitle() %>
+						<!-- 24시간 이내 작성글인경우 new띄우기 -->
+						<%if(boardServ.checkRegdate(vo.getNo())==1){ %>
+						<span class="badge badge-pill badge-primary">new</span>
+						<%} %>
+						</a></td>
+						<td style = "text-align: center"><a href = "#" onclick="javascript:postPopUp('this.form');"><%=vo.getUserid() %></a></td>
 				<%}%>
 						<td style = "text-align: center;"><%=sdf.format(vo.getRegdate()) %></td>
 						<td style = "text-align: center;"><%=vo.getViews() %></td>
@@ -132,28 +148,29 @@ function postPopUp(formName) {
 
 			}%>
 	</table><hr style = "border: 0; height: 2px; background: skyblue">
+	
+	
 	<div style = "text-align: center">
-	<%if(pageVo.getFirstPage() > 1){ %>
-		<a href = "<%=request.getContextPath()%>/board/boardList.gg?currentPage=<%=pageVo.getFirstPage() - 1 %>">
-		<img src = "../images/first.JPG" alt = "이전 블럭으로 이동">
-		</a>
-	<%} %>
-
-	<%for(int i = pageVo.getFirstPage(); i <= pageVo.getLastPage(); i++){
-		if(i > pageVo.getTotalPage()) break;
-	%>
-		<%if(i != pageVo.getCurrentPage()){ %>
-		<a href ="<%=request.getContextPath() %>/board/boardList.gg?currentPage=<%=i%>">[<%=i %>]</a>
-	<%}else{ %>
-		<span style = "color: blue;font-weight: bold"><%=i %></span>
-		<%}//if %>
-	<%}//for %>
-
-	<%if(pageVo.getLastPage() < pageVo.getTotalPage()){ %>
-		<a href = "<%=request.getContextPath()%>/board/boardList.gg?currentPage=<%=pageVo.getLastPage() + 1 %>">
-		<img src = "../images/last.JPG" alt = "다음 블럭으로 이동">
-		</a>
-	<%} %>
+		<ul class="pagination pagination-sm">
+		<%if(pageVo.getFirstPage() > 1){ %>
+			 <li class="previous"><a href="<%=request.getContextPath()%>/board/boardList.gg?currentPage=<%=pageVo.getFirstPage() - 1 %>">Previous</a></li>
+		<%} %>
+	
+		<%for(int i = pageVo.getFirstPage(); i <= pageVo.getLastPage(); i++){
+			if(i > pageVo.getTotalPage()) break;
+		%>
+			<%if(i != pageVo.getCurrentPage()){ %>
+			<li><a href="<%=request.getContextPath() %>/board/boardList.gg?currentPage=<%=i%>"><%=i %></a></li>
+			
+		<%}else{ %>
+			<li class="active"><a href="<%=request.getContextPath() %>/board/boardList.gg?currentPage=<%=i%>"><%=i %></a></li>
+			<%}//if %>
+		<%}//for %>
+	
+		<%if(pageVo.getLastPage() < pageVo.getTotalPage()){ %>
+			<li class="next"><a href="<%=request.getContextPath()%>/board/boardList.gg?currentPage=<%=pageVo.getLastPage() + 1 %>">Next</a></li>
+		<%} %>
+		</ul>
 	</div>
 	<form name="frmSearch" method="post" action='<%=request.getContextPath() %>/board/boardList.gg' style = "text-align: center;">
         <select name="searchCondition">
@@ -193,7 +210,7 @@ function postPopUp(formName) {
     
 </article>
 
-
+<script type ="text/javascript" src = "../js/bootstrap/bootstrap.js"></script> 
 
 
 <%@ include file = "../inc/bottom.jsp"%>
