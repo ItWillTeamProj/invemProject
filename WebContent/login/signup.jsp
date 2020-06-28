@@ -10,7 +10,7 @@
 <script type="text/javascript" src="../js/jquery-3.5.1.min.js" charset="utf-8"></script>
 <script type="text/javascript">
 	$(function(){
-		$('#wr_submit').submit(function(){
+		$('#wr_submit').click(function(){
 			if(!validate_userid($('#userid').val())){
 				alert('아이디는 영문대소문자,숫자,_만 가능합니다!');
 				$('#userid').focus();
