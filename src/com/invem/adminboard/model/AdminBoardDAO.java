@@ -139,4 +139,57 @@ public class AdminBoardDAO {
 		
 	}
 	
+	public int updateBoard(AdminBoardDTO dto) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		try {
+			con = pool.getConnection();
+			
+			String sql="update board" 
+					+" set title=?, describe=?, cat_code=?"
+					+" where no=? and userid=?";
+			ps=con.prepareStatement(sql);
+			
+			ps.setString(1, dto.getTitle());
+			ps.setString(2, dto.getDescribe());
+			ps.setString(3, dto.getCat_code());			
+			ps.setInt(4, dto.getNo());
+			ps.setString(5, dto.getUserid());
+			
+			int cnt=ps.executeUpdate();
+			System.out.println("게시물 수정결과, cnt="+cnt+", 매개변수 dto="+dto);
+			
+			return cnt;
+			
+		}finally {
+			pool.dbClose(con, ps);
+		}
+		
+	}
+	
+	public int deleteBoard(int no) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		try {
+			con = pool.getConnection();
+			
+			String sql="delete board" 
+					+" where no=?";
+			ps=con.prepareStatement(sql);
+			
+			ps.setInt(1, no);
+			
+			int cnt=ps.executeUpdate();
+			System.out.println("게시물 삭제결과, cnt="+cnt+", 매개변수 no="+no);
+			
+			return cnt;
+			
+		}finally {
+			pool.dbClose(con, ps);
+		}
+		
+	}
+	
 }

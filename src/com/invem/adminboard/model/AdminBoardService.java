@@ -18,4 +18,12 @@ public class AdminBoardService {
 	public AdminBoardDTO selectByNo(int no) throws SQLException {
 		return adminBoardDao.selectByNo(no);
 	}
+	
+	public int updateBoard(AdminBoardDTO dto) throws SQLException {
+		return adminBoardDao.updateBoard(dto);
+	}
+	
+	public int deleteBoard(int no) throws SQLException {
+		return adminBoardDao.deleteBoard(no);
+	}
 }
