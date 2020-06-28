@@ -6,16 +6,15 @@ body {
 	margin: 0;
 	padding: 0;
 	color: #000;
-}
-body{
 	background-repeat:no-repeat;
-	background-image: url('<%=request.getContextPath() %>/images/backimage.jpg');
+	background-image: url('../images/backimage.jpg');
 	background-color: white;
 	background-attachment: fixed;
 	background-size: cover;
 }
 .container {
 	overflow: hidden;
+	padding: 0;
 }
 
 ul, ol, dl {
@@ -72,6 +71,7 @@ a:hover, a:active, a:focus { /* 이 선택기 그룹은 마우스를 사용하�
 
 .header img{
 	display:inline;
+	width: 150%;
 }
 .sidebar1 {
 	float: left;
