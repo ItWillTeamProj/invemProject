@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 <%
 	String blogId = request.getParameter("blogId"); 
-	System.out.println(blogId);
+	String test2 = request.getParameter("test2");
+	System.out.println(test2);
 %>
 <!doctype html>
 <html lang="en">

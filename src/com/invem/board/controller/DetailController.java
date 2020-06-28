@@ -26,7 +26,6 @@ public class DetailController implements Controller{
 		
 		//코드를 받아와서 게시판의 이름을 적는다 일단 페이지 확인때문에 code임의로 F로 넣음
 		String code = request.getParameter("code");
-		code = "F";
 		BoardService boardServ = new BoardService();
 		int replyCount = 0;
 		
@@ -38,11 +37,7 @@ public class DetailController implements Controller{
 		}
 		
 		userid = vo.getUserid();
-		
-		if("unknown".equals(userid) || userid.isEmpty() || userid == null) {
-			userid = vo.getNonuserid();
-		}
-		
+
 		List<ReplyVO> list = null;
 		int cnt = 0;
 		try{
