@@ -5,14 +5,30 @@
 
 	<div class="sidebar2">
 		<div>
-			<a href="#"><img src="<%=request.getContextPath() %>/images/sidebar2/sidebar2_1.png" style="width:230px; margin-left: 5px;"></a>
+			<a href="#"><img src="<%=request.getContextPath() %>/images/sidebar2/sidebar2_1.png" 
+				style="width:220px; margin: 10px 10px 0px 10px;"></a>
 		</div>
 		<div>
-			<a href="#"><img src="<%=request.getContextPath() %>/images/sidebar2/sidebar2_2.png" style="width:230px; margin-left: 5px;"></a>
+
+				style="width:220px; margin: 5px 10px 5px 10px;"></a>
 		</div>
 		<div>
-			<a href="#"><img src="<%=request.getContextPath() %>/images/sidebar2/sidebar2_3.jpg" style="width:230px; margin-left: 5px;"></a>
+			<a href="#"><img src="<%=request.getContextPath() %>/images/sidebar2/sidebar2_3.png" 
+				style="width:220px; margin: 5px 10px 5px 10px;"></a>
 		</div>
+		<div>
+			<a href="#"><img src="<%=request.getContextPath() %>/images/sidebar2/sidebar2_3.png" 
+				style="width:220px; margin: 5px 10px 5px 10px;"></a>
+		</div>
+		<div>
+			<a href="#"><img src="<%=request.getContextPath() %>/images/sidebar2/sidebar2_3.png" 
+				style="width:220px; margin: 5px 10px 5px 10px;"></a>
+		</div>
+		<div>
+			<a href="#"><img src="<%=request.getContextPath() %>/images/sidebar2/sidebar2_3.png" 
+				style="width:220px; margin: 5px 10px 5px 10px;"></a>
+
+		
 	<!-- end .sidebar2 --></div>
 
 	<div class="footer">

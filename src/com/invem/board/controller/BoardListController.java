@@ -33,7 +33,7 @@ public class BoardListController implements Controller{
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
-
+		
 		//페이징 처리
 		int currentPage = 1;	//설정된 현재 페이지
 
@@ -49,7 +49,9 @@ public class BoardListController implements Controller{
 		int blockSize = 10;	// 페이지의 블럭개수
 
 		PagingVO pageVo = new PagingVO(currentPage, totalRecord, pageSize, blockSize);
+		
 
+		
 		
 		System.out.println(pageSize);
 		

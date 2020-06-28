@@ -14,8 +14,7 @@ public class BlogController implements Controller {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		String userid = request.getParameter("userid");
-		userid = "fe5882";
-		
+		String curPage = request.getParameter("currentPage");
 		//1. myBoard.jsp
 		
 		BoardService boardServ = new BoardService();
@@ -25,14 +24,12 @@ public class BlogController implements Controller {
 		List<BoardVO> list = boardServ.selectById(userid);
 		
 		
-		
-		
 		//3. myReply.jsp
 		
 		//4. guestbook.jsp
 		
 		
-		
+		request.setAttribute("curPage", curPage);
 		request.setAttribute("writeCount", writeCount);
 		request.setAttribute("list", list);
 		request.setAttribute("userid", userid);

@@ -26,35 +26,43 @@ public class DetailController implements Controller{
 		
 		//코드를 받아와서 게시판의 이름을 적는다 일단 페이지 확인때문에 code임의로 F로 넣음
 		String code = request.getParameter("code");
-		code = "F";
 		BoardService boardServ = new BoardService();
+		int replyCount = 0;
 		
 		try{
 			vo = boardServ.searchByNo(Integer.parseInt(no));
+			
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
 		
 		userid = vo.getUserid();
-		if("unknown".equals(userid) || userid.isEmpty() || userid == null) {
-			userid = vo.getNonuserid();
-		}
+
 		List<ReplyVO> list = null;
 		int cnt = 0;
 		try{
-			list = boardServ.selectReplyByNo(Integer.parseInt(no));
 			cnt = boardServ.updateReadCount(Integer.parseInt(no));
+			list = boardServ.selectReplyByNo(Integer.parseInt(no));
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
 		System.out.println("조회수 증가 결과 cnt=" + cnt);
 		
+		try {
+			replyCount = boardServ.checkReply(Integer.parseInt(no));
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		
 		request.setAttribute("code", code);
 		request.setAttribute("vo", vo);
 		request.setAttribute("list", list);
 		request.setAttribute("userid", userid);
-		
-		
+		request.setAttribute("replyCount", replyCount);
+		request.setAttribute("nonuserid", nonuserid);
 		
 		return "/board/detail.jsp";
 	}
