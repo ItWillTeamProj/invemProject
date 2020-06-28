@@ -82,7 +82,7 @@ function postPopUp(formName) {
 	
 	<div style = "margin-right: 20px;">
 		<input type = "button" value = "전체글" id = "all"><input type = "button" value = "인기글" id = "best" ><input type = "button" value = "공지" id = "notice">
-		<span style = "float: right"><a href = "<%=request.getContextPath()%>/board/boardWrite.gg"><img src="<%=request.getContextPath()%>/images/writeIcon.png" style="width: 20px; height: auto"></a></span><!-- 추후 아이콘으로 대체 예정 -->
+		<span style = "float: right"><a href = "<%=request.getContextPath()%>/board/boardWrite.gg?code=<%=code%>"><img src="<%=request.getContextPath()%>/images/writeIcon.png" style="width: 20px; height: auto"></a></span><!-- 추후 아이콘으로 대체 예정 -->
 		<select style = "float: right; margin-right: 10px" id = "rowNum">
 			<option value = "10">10개</option>
 			<option value = "20">20개</option>

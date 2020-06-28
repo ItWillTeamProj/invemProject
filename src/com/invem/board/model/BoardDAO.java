@@ -245,7 +245,7 @@ public class BoardDAO {
 			con = pool.getConnection();
 
 			String sql = "insert into board";
-			if(!vo.getUserid().equals("unknown")) {
+			if(!"unknown".equals(vo.getUserid())) {
 				sql += "(no, userid, title, describe, cat_code)" +
 						" values(board_seq.nextval, ?, ?, ?, ?)";
 			}else {
@@ -255,7 +255,7 @@ public class BoardDAO {
 
 			ps = con.prepareStatement(sql);
 			System.out.println("vo = " + vo);
-			if(vo.getUserid().equals("unknown")) {
+			if("unknown".equals(vo.getUserid())) {
 				ps.setString(1, vo.getUserid());
 				ps.setString(2, vo.getNonuserid());
 				ps.setString(3, vo.getPwd());

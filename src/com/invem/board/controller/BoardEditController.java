@@ -50,6 +50,7 @@ public class BoardEditController implements Controller{
 		
 		request.setAttribute("vo", vo);
 		request.setAttribute("boardName", boardName);
+		request.setAttribute("code", code);
 		
 		if(num == 1) {
 			return "/common/message.jsp";

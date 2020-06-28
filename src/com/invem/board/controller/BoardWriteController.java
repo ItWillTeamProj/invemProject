@@ -9,9 +9,8 @@ public class BoardWriteController implements Controller{
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-		String userid = request.getParameter("userid");
+		String userid = (String)request.getSession().getAttribute("userid"); 
 		String code = request.getParameter("code");
-		code = "F";
 		if(userid == null || userid.isEmpty()){
 			userid = "";
 		}
@@ -21,11 +20,11 @@ public class BoardWriteController implements Controller{
 		switch(code){
 			case "F":
 			boardName = "자유게시판";
-			url = "/board/boardWrite.jsp?code=F";
+			url = "/board/boardWrite.jsp?code="+code;
 			break;
 			default:
 				msg = "잘못된 접근입니다.";
-				url = "index.gg";
+				url = "/index.gg";
 				num = 1;
 			break;
 			
