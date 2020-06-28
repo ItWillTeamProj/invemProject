@@ -13,7 +13,9 @@
 	List<ReplyVO> list = (List<ReplyVO>)request.getAttribute("list");
 	userid = (String)request.getAttribute("userid");
 	String no = request.getParameter("no");
+	String nonuserid = (String)request.getAttribute("nonuserid");
 	
+	int replyCount = (int)request.getAttribute("replyCount");
 	
 	
 	
@@ -23,6 +25,10 @@
 $(function(){
 	$('#list').click(function(){
 		location.href = "<%=request.getContextPath()%>/board/boardList.gg";
+	});
+	
+	$('#edit').click(function(){
+		location.href = "<%=request.getContextPath()%>/board/boardEdit.gg?no=<%=no%>&code=<%=code%>";
 	});
 });
 </script>
@@ -49,13 +55,16 @@ $(function(){
 		<h4 style = "margin-left: 10px"><%=vo.getTitle() %></h4><br>
 		<%if(!"unknown".equals(userid) && userid != null && !userid.isEmpty()){%>
 			<span style = "float: left; margin-left: 30px"><%=vo.getUserid() %> | <%=vo.getRegdate() %></span>
-			<span style = "float: right; margin-right: 20px">조회 <%=vo.getViews() %> | 추천 <%=vo.getRecommend() %> | 댓글 </span>
+			<span style = "float: right; margin-right: 20px">조회 <%=vo.getViews() %> | 추천 <%=vo.getRecommend() %> | 댓글<%=replyCount %> </span>
 		<%}else{%>
-			<span style = "float: left; margin-left: 30px"><%=vo.getNonuserid() %>(<%=vo.getIpaddress() %>) | <%=vo.getRegdate() %></span>
-			<span style = "float: right; margin-right: 20px">조회 <%=vo.getViews() %> | 추천 <%=vo.getRecommend() %> | 댓글 </span>
+			<span style = "float: left; margin-left: 30px"><%=nonuserid %>(<%=vo.getIpaddress() %>) | <%=vo.getRegdate() %></span>
+			<span style = "float: right; margin-right: 20px">조회 <%=vo.getViews() %> | 추천 <%=vo.getRecommend() %> | 댓글<%=replyCount %>  </span>
 		<%} %>
 	</div><br><hr style = "border: 0; height: 2px; background: skyblue">
-	<div><%=vo.getDescribe() %></div>
+	<div><%=vo.getDescribe() %></div><br>
+	<div style = "float: right; border-right: 20px">
+		<input type = button id = "edit" value = "수정">
+	</div>
 	<br><hr style = "border: 0; height: 2px; background: skyblue">
 	
 	<%if(list != null && !list.isEmpty()){%>
@@ -85,9 +94,9 @@ $(function(){
 		<%} %>
 	<br>
 	
-	<div style="width: 100%; height: 200px; text-align: center; float: left">
-		<a href = "#"><img src = "../images/good.jpg" style = "max-width: 100px; max-height:100px;float: left; text-align: center" alt = "추천"/></a>
-		<a href = "#"><img src = "../images/bad.jpg" style = "max-width: 100px; max-height:100px; float: left; text-align: center" alt = "신고"/></a>
+	<div style="width: 100%; height: 200px; text-align: center; float:right">
+		<a href = "#"><img src = "../images/good.jpg" style = "max-width: 100px; max-height:100px;float: left" alt = "추천"/></a>
+		<a href = "#"><img src = "../images/bad.jpg" style = "max-width: 100px; max-height:100px; float: left" alt = "신고"/></a>
 	</div>
 	
 	<form name="frmReply" action="<%=request.getContextPath() %>/board/reply_ok.gg" method="post" >
