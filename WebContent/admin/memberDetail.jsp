@@ -26,6 +26,8 @@
 		e.printStackTrace();
 	}
 	
+	
+	int ct = dto.getCaution();
 %>
 
 <%@ include file="../inc/top.jsp" %>
@@ -88,10 +90,15 @@
 			<tr style="background:white;">
 				<td style="padding-left: 30px;">가입일</td>
 				<td><%=dto.getRegdate() %></td>
-			</tr>
+			</tr> 
 			<tr style="border-bottom:1px solid gray;">
 				<td style="padding-left: 30px;">경고</td>
-				<td><%=dto.getCaution() %></td>
+				<%if(ct<5){%>
+				<td><%=ct %>회</td>
+				<%}else{%>
+				<td><%=ct %>회 (# 경고 5회 이상 블라인드 회원)</td>
+				<%}%>
+				
 			</tr>
 		</table>
 				
