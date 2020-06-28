@@ -32,11 +32,7 @@
 		
 		$("#reply .row1").each(function(){
 			$(this).click(function() {
-<<<<<<< Updated upstream
-				$(".content1").each(function() {
-=======
 				$(".content1").not(this).each(function() {
->>>>>>> Stashed changes
 					$(this).addClass("contentHide");
 				});
 				$(this).parent().next().toggleClass("contentHide");
