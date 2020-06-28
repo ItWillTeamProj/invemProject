@@ -22,8 +22,11 @@
 		});
 	});
 </script>
-<form name="reply" action='<c:url value="/champion/reply_ok.gg" />'>
+<form name="reply" action='<c:url value="/champion/reply_ok.gg" />' method="post">
 	<hr>
+	<input type="hidden" name="userid" value="unknown">
+	<input type="hidden" name="champNo" value="${param.no }">
+	<input type="hidden" name="code" value="C">
 	<div>
 		<label for="title">제목</label> 
 		<input type="text" name="title" id="title"
@@ -34,7 +37,7 @@
 		 <input value="" type="text" name="nickName" id="nickName">
 	</div>
 	<div>
-		<textarea id="reContent" rows="7" cols="75"></textarea>
+		<textarea id="reContent" rows="7" cols="75" name="reContent"></textarea>
 	</div>
 	<div>
 		<input type="submit" value="등록">

@@ -1,7 +1,6 @@
 package com.invem.board.controller;
 
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 

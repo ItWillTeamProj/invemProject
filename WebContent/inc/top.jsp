@@ -14,6 +14,13 @@
 <meta charset="utf-8">
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/index.css" type="text/css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<<<<<<< Updated upstream
+=======
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+>>>>>>> Stashed changes
 <title>invem_index</title>
 <script type="text/javascript">
 	$(function(){
@@ -59,6 +66,17 @@
 	<div class="sidebar1">
 		<div style="background: whitesmoke;margin-top: 20px;">
 	 	<span style="color:black; margin-left:45px;">리그오브레전드 인뱀</span><br>
+<<<<<<< Updated upstream
+=======
+			<%if(!isLogin){ %>
+				<div class="login" style="margin-left: 9px;">
+					<button style="border-radius: 0.5em; border-color: #6db92a; background-color:white;
+						margin-top: 7px; margin-left: 18px; margin-bottom: 5px;"
+						onclick="location.href='../login/login.gg'">
+		    			<img src="../images/invemlogin.png">
+		    			<span style="padding-left: 5px; vertical-align:15px; margin-right: 10px; color: black; margin-top: 20px; display: inline-block;">로그인</span>
+	    			</button>
+>>>>>>> Stashed changes
 
 			<%if(!isLogin){ %>
 				<div class="login" style="margin-left: 15px;">

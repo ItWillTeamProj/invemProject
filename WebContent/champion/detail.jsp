@@ -7,7 +7,8 @@
 <%@ include file="../inc/top.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <%
 	String no = request.getParameter("no");
@@ -31,7 +32,11 @@
 		
 		$("#reply .row1").each(function(){
 			$(this).click(function() {
+<<<<<<< Updated upstream
 				$(".content1").each(function() {
+=======
+				$(".content1").not(this).each(function() {
+>>>>>>> Stashed changes
 					$(this).addClass("contentHide");
 				});
 				$(this).parent().next().toggleClass("contentHide");
@@ -113,9 +118,9 @@
 <!-- 폼 레이어  -->
 <div id="divLangSelect" style="background: #fff0">
 <ul id="menu">
-  <li><div>블로그 가기</div></li>
-  <li><div>작성글, 댓글보기</div></li>
-  <li><div>댓글 삭제</div></li>
+  <li><div><a>블로그 가기</a></div></li>
+  <li><div><a>작성글, 댓글보기</a></div></li>
+  <li><div><a>댓글 삭제</a></div></li>
 </ul>
 </div>
 <!-- //폼 레이어  -->
