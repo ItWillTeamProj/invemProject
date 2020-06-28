@@ -17,8 +17,6 @@
 	response.addHeader("X-Frame-Options", "DENY");
 %>
 
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <link rel="stylesheet" href="<%=request.getContextPath()%>/css/champion/detail.css">
 
 <script type="text/javascript">
@@ -31,26 +29,12 @@
 		
 		$("#reply .row1").each(function(){
 			$(this).click(function() {
-				$(".content1").each(function() {
+				$(".content1").not(".contentHide").each(function() {
 					$(this).addClass("contentHide");
 				});
 				$(this).parent().next().toggleClass("contentHide");
 			});
 		});
-		
-		$( "#menu" ).menu();
-		
-		$(document).mouseup(function (e){
-
-		    var container = $('#divLangSelect');
-
-		    if( container.has(e.target).length === 0){
-
-		      container.css('display','none');
-
-		    }
-
-		  });
 		
 	});
 

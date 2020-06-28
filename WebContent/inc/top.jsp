@@ -14,6 +14,8 @@
 <meta charset="utf-8">
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/index.css" type="text/css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <title>invem_index</title>
 <script type="text/javascript">
 	$(function(){
@@ -30,7 +32,7 @@
 		});
 		//-- 버튼 클릭시 버튼을 클릭한 위치 근처에 레이어 생성 --//
 		$('.aSelect').click(function(e) {
-		 var divTop = e.pageY - 20; //상단 좌표
+		 var divTop = e.pageY - 15; //상단 좌표
 		 var divLeft = e.pageX + 20; //좌측 좌표
 		 $('#divLangSelect').css({
 		     "top": divTop
@@ -38,6 +40,20 @@
 		     , "position": "absolute"
 		 }).show();
 		});
+		
+		$( "#menu" ).menu();
+		
+		$(document).mouseup(function (e){
+
+	    var container = $('#divLangSelect');
+
+	    if( container.has(e.target).length === 0){
+
+	      container.css('display','none');
+
+	    }
+
+	  });
 	});
 </script>
 </head>
