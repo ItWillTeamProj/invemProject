@@ -22,16 +22,57 @@
   <link rel="stylesheet" href="<%=request.getContextPath()%>/css/champion/detail.css">
 
 <script type="text/javascript">
+
+	
 	$(function() {
-		$(".content1").hide();
 		$("#tabs").tabs();
 		
-		$("#reply tr").each(function() {
+		$(".content1").addClass("contentHide");
+		
+		$("#reply .row1").each(function(){
+			$(this).click(function() {
+				$(this).parent().next().toggleClass("contentHide");
+			});
+		});
+		
+		$( "#menu" ).menu();
+		
+		$(document).mouseup(function (e){
+
+		    var container = $('#divLangSelect');
+
+		    if( container.has(e.target).length === 0){
+
+		      container.css('display','none');
+
+		    }
+
+		  });
+		
+		/*$("#reply tr.row1").each(function(){
+			$(this).toggleClass("contentHide");
+			
+		});*/
+		
+		/*$("#reply tr").each(function() {
 			$(this).click(function() {
 				$(this).next().show();
 			});
+		});*/
+		
+		//-- 버튼 클릭시 버튼을 클릭한 위치 근처에 레이어 생성 --//
+		$('.aSelect').click(function(e) {
+		 var divTop = e.pageY - 20; //상단 좌표
+		 var divLeft = e.pageX + 20; //좌측 좌표
+		 $('#divLangSelect').css({
+		     "top": divTop
+		     ,"left": divLeft
+		     , "position": "absolute"
+		 }).show();
 		});
+		
 	});
+
 </script>
 <style type="text/css">
 
@@ -44,7 +85,6 @@
 		<ul class="nav nav-tabs">
 		    <li><a href="#tabs-1" class="active">챔피언 정보</a></li>
 		    <li><a href="#tabs-2">능력치</a></li>
-		    <li><a href="#tabs-3">스토리</a></li>
 		  </ul>
 		<div id="tabs-1" style="background-image: url('../images/championSkin/s<%=no%>.jpg');">
 			<div id="icon">
@@ -82,50 +122,21 @@
 	   			 </div>
 	 		</div>
 		</div>
-		<div id="tabs-3">
-			<p>Mauris eleifend est et turpis. Duis id erat. Suspendisse
-				potenti. Aliquam vulputate, pede vel vehicula accumsan, mi neque
-				rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante.
-				Class aptent taciti sociosqu ad litora torquent per conubia nostra,
-				per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim
-				commodo pellentesque. Praesent eu risus hendrerit ligula tempus
-				pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus a,
-				lacus.</p>
-			<p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at,
-				semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra
-				justo vitae neque. Praesent blandit adipiscing velit. Suspendisse
-				potenti. Donec mattis, pede vel pharetra blandit, magna ligula
-				faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque.
-				Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi
-				lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean
-				vehicula velit eu tellus interdum rutrum. Maecenas commodo.
-				Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus
-				hendrerit hendrerit.</p>
-		</div>
 	</nav>
 	<div>
-	<table style="border: 1px solid gray; border-collapse: collapse; width: 600px;" id="reply">
-		<tr>
-			<th>번호</th>
-			<th>제목</th>
-			<th>닉네임</th>
-			<th>작성일</th>
-		</tr>
-		<tr>
-			<td>1</td>
-			<td>java</td>
-			<td>kim</td>
-			<td>0909</td>
-		</tr>
-		<tr class="content1"><td colspan="4">아무말대잔치</td></tr>
-		<tr>
-			<td>2</td>
-			<td>oracle</td>
-			<td>lee</td>
-			<td>0930</td>
-		</tr>
-		<tr class="content1"><td colspan="4">가나다라마바사</td></tr>
-	</table>
+	<%@include file="replyList.jsp" %>
+	<%@include file="replyInsert.jsp" %>
 	</div>
+
+
+<!-- 폼 레이어  -->
+<div id="divLangSelect" style="background: #fff0">
+<ul id="menu">
+  <li><div>Books</div></li>
+  <li><div>Clothing</div></li>
+  <li><div>Movies</div></li>
+</ul>
+</div>
+<!-- //폼 레이어  -->
 </article>
 <%@ include file="../inc/bottom.jsp"%>
