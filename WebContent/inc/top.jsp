@@ -67,6 +67,16 @@ body {
 	background-color: white;
 	background-attachment: fixed;
 }
+button{
+	border-radius: 0.5em;
+	border-color: #6db92a;
+	background-color:white;
+	margin-top: 7px; margin-left: 18px;
+	margin-bottom: 5px;
+}
+span{
+	color:black;
+}
 </style>
 <body>
 <div class="container" >
@@ -103,14 +113,12 @@ body {
 
 	<div class="sidebar1">
 		<div style="background: whitesmoke; padding-top: 7px; width:240px; height:125px;">
-	 	<span style="color:black; margin-left:45px;">리그오브레전드 인뱀</span><br>
+	 	<span style="margin-left:45px;">리그오브레전드 인뱀</span><br>
 			<%if(!isLogin){ %>
-				<div class="login" style="margin-left: 9px;">
-					<button style="border-radius: 0.5em; border-color: #6db92a; background-color:white;
-						margin-top: 7px; margin-left: 18px; margin-bottom: 5px;"
-						onclick="location.href='../login/login.gg'">
+				<div style="margin-left: 9px;">
+					<button onclick="location.href='../login/login.gg'">
 		    			<img src="../images/invemlogin.png">
-		    			<span style="padding-left: 5px; vertical-align:15px; margin-right: 10px;">로그인</span>
+		    			<span style="padding-left: 5px; vertical-align:sub; margin-right: 10px;">로그인</span>
 	    			</button>
 
 					<li style="font-size:12.5px; margin-top:5px;" color=black ;>
