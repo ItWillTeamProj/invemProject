@@ -51,7 +51,7 @@ public class BoardEditOkController implements Controller{
 			int cnt = boardServ.editBoard(vo);
 			if(cnt > 0){
 				msg = "글 수정 성공";
-				url = "/board/detail.gg?no="+no;
+				url = "/board/detail.gg?no="+no+"&code="+vo.getCat_code();
 			}
 		}catch(SQLException e){
 			e.printStackTrace();

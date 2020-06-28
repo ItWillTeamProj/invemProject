@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../inc/top.jsp"%>
 <%
-	userid = (String)request.getAttribute("userid");
+	userid = (String)session.getAttribute("userid");
 	String boardName = (String)request.getAttribute("boardName");
 %>
 <script type="text/javascript" src="../se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>

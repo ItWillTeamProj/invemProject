@@ -57,7 +57,7 @@
 	
 	<h3>게시글 수정 : <%=boardName %></h3>
 	<hr style="border: 0; height: 2px; background: skyblue">
-	<form name="frm" method="post" action="<%=request.getContextPath()%>/board/boardEdit_ok.gg">
+	<form name="frmEdit" method="post" action="<%=request.getContextPath()%>/board/boardEdit_ok.gg">
 		<%if("unknown".equals(userid) || userid == null || userid.isEmpty()){%>
 		<input type="text" size="20" style="margin-left: 10px"
 			value="<%=vo.getNonuserid()%>" name="nonuserid" disabled>
