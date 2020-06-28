@@ -90,14 +90,7 @@ nav #tabs-2{
     height: 100%;
     border: 1px solid #d9e5f7;
 }
-.title{
-	background-image:  url("../../images/champion/header.png");
-	background-repeat: no-repeat;
-	background-size: cover;
-	width: 100%;
-	height: 61px;
-	margin: 0 auto;
-}
+
 .title h2{
 	color: white;
 	padding-top: 15px;
@@ -124,3 +117,64 @@ nav #tabs-2{
     font-weight: bold;
     text-shadow: 2px 2px #041021;
 }
+
+.contentHide{
+	display: none;
+}
+
+#reply{
+	border: 1px solid gray;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+#reply th{
+	background: #8090ab;
+}
+
+#reply .content1 td{
+	height: 50px;
+	padding: 5px 20px;
+	border-bottom: 1px solid gray;
+}
+
+#reply .row1{
+	height: 25px;
+	
+}
+
+form[name=reply]{
+	margin: 30px auto;
+	clear: both;
+	overflow: hidden;
+	font-size: 1.2em;
+}
+
+form[name=reply] div:first-of-type {
+	float: left;
+}
+
+form[name=reply] div:nth-of-type(2){
+	float: right;
+	margin-right: 5px;
+	margin-bottom: 20px;
+}
+
+form[name=reply] span{
+	font-size: 1.2em;
+}
+
+form[name=reply] div:nth-of-type(3){
+	clear: both;
+}
+
+form[name=reply] div:last-of-type{
+	float: right;
+	padding-right: 5px;
+}
+
+form[name=reply] input[type=submit]{
+	width: 100px;
+	height: 30px;
+}
+

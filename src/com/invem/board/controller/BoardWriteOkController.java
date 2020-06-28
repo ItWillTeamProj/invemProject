@@ -40,12 +40,12 @@ public class BoardWriteOkController implements Controller{
 		vo.setDescribe(describe);
 		vo.setCat_code(cat_code);
 		
-		String msg = "글 등록 실패", url = "/board/boardWrite.gg?userid="+userid;
+		String msg = "글 등록 실패", url = "/board/boardWrite.gg?userid="+userid+"&code="+cat_code;
 		try{
 			int cnt = boardServ.insertBoard(vo);
 			if(cnt > 0){
 				msg = "글 등록 성공";
-				url = "/board/boardList.gg";
+				url = "/board/boardList.gg?code="+cat_code;
 			}
 		}catch(SQLException e){
 			e.printStackTrace();

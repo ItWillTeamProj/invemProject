@@ -153,3 +153,21 @@ ul.login li{
 	font-size: 1px;
 	line-height: 0px;
 }
+
+#divLangSelect {
+ position:absolute;
+ display:none;
+ background-color:#ffffff;
+ padding:10px;
+}
+
+.ui-menu { width: 150px; }
+
+.title{
+	background-image:  url("../images/champion/header.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 100%;
+	height: 61px;
+	margin: 0 auto;
+}

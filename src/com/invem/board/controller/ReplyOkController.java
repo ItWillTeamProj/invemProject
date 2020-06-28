@@ -18,7 +18,7 @@ public class ReplyOkController implements Controller{
 		String pwd = request.getParameter("pwd");
 		String reply = request.getParameter("reply");
 		String user_no = request.getParameter("no"); 
-		
+		String code = request.getParameter("code");
 		String username = nonuserid;
 		if(userid != null && !userid.isEmpty() && userid.equals("unknown")){
 			username = userid;
@@ -35,7 +35,7 @@ public class ReplyOkController implements Controller{
 		
 		BoardService boardServ = new BoardService();
 		int cnt = 0;
-		String msg = "댓글등록 실패", url = "/board/detail.gg?no=" + user_no;
+		String msg = "댓글등록 실패", url = "/board/detail.gg?no="+user_no+"&code="+code;
 		try{
 			cnt = boardServ.reply(vo);
 			if(cnt>0) {
