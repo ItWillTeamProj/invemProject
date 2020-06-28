@@ -16,7 +16,7 @@
 
 	List <BoardVO> list = (List<BoardVO>)request.getAttribute("list");
 	PagingVO pageVo = (PagingVO)request.getAttribute("pageVo");
-	String code = (String)request.getAttribute("code");
+	String code = (String)request.getParameter("code");
 	
 	int num = pageVo.getNum();	//페이지당 시작 글 번호가 될수도 있지만 게시판별로
 	// 나눴을때 num + 1 로 no를 대체할 수 있다.
@@ -81,8 +81,8 @@ function postPopUp(formName) {
 	
 	<div style = "margin-right: 20px">
 		<input type = "button" value = "전체글" id = "all"><input type = "button" value = "인기글" id = "best" ><input type = "button" value = "공지" id = "notice">
-		<span style = "float: right"><a href = "<%=request.getContextPath()%>/board/boardWrite.gg">글쓰기</a></span><!-- 추후 아이콘으로 대체 예정 -->
-		<select style = "float: right" id = "rowNum">
+		<span style = "float: right"><a href = "<%=request.getContextPath()%>/board/boardWrite.gg"><img src="<%=request.getContextPath()%>/images/writeIcon.png" style="width: 20px; height: auto"></a></span><!-- 추후 아이콘으로 대체 예정 -->
+		<select style = "float: right; margin-right: 10px" id = "rowNum">
 			<option value = "10">10개</option>
 			<option value = "20">20개</option>
 			<option value = "50">50개</option>
@@ -124,7 +124,7 @@ function postPopUp(formName) {
 				<!-- userid가 null이면 nonuserid 비밀번호 ip주소 를 detail로 보낸다. -->
 				<%if(vo.getUserid() == null || vo.getUserid().isEmpty() || vo.getUserid().equals("unknown")){%>
 						<td><a href = "<%=request.getContextPath() %>/board/detail.gg?nonuserid=<%=vo.getNonuserid()%>&pwd=<%=vo.getPwd()%>
-							&ipaddress=<%=vo.getIpaddress()%>&no=<%=vo.getNo() %>"><%=vo.getTitle() %>
+							&ipaddress=<%=vo.getIpaddress()%>&no=<%=vo.getNo() %>&code=<%=code%>"><%=vo.getTitle() %>
 							<%if(boardServ.checkRegdate(vo.getNo())==1){ %>
 								<span class="badge badge-pill badge-primary">new</span>
 							<%} %>
@@ -132,20 +132,20 @@ function postPopUp(formName) {
 						<td style = "text-align: center"><%=vo.getNonuserid() %></td>
 				<%}else{ %>
 				<!-- userid가 있으면 userid만 detail로 보낸다. -->
-						<td><a href = "<%=request.getContextPath() %>/board/detail.gg?no=<%=vo.getNo()%>&userid=<%=vo.getUserid()%>"><%=vo.getTitle() %>
+						<td><a href = "<%=request.getContextPath() %>/board/detail.gg?no=<%=vo.getNo()%>&userid=<%=vo.getUserid()%>&code=<%=code%>"><%=vo.getTitle() %>
 						<!-- 24시간 이내 작성글인경우 new띄우기 -->
 						<%if(boardServ.checkRegdate(vo.getNo())==1){ %>
 						<span class="badge badge-pill badge-primary">new</span>
 						<%} %>
 						</a></td>
-						<td style = "text-align: center"><a href = "#" onclick="javascript:postPopUp('this.form');"><%=vo.getUserid() %></a></td>
+						<td style = "text-align: center"><a href = "#" onclick="javascript:postPopUp('this.form');" id = "toBlog"><%=vo.getUserid() %></a></td>
 				<%}%>
 						<td style = "text-align: center;"><%=sdf.format(vo.getRegdate()) %></td>
 						<td style = "text-align: center;"><%=vo.getViews() %></td>
 						<td style = "text-align: center;"><%=vo.getRecommend() %></td>
 					</tr>
 			<%}
-
+			
 
 			}%>
 	</table><hr style = "border: 0; height: 2px; background: skyblue">

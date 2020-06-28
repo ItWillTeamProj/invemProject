@@ -8,7 +8,7 @@
 <%@ include file = "../inc/top.jsp"%>
 
 <%
-	String code = (String)request.getAttribute("code");
+	String code = request.getParameter("code");
 	BoardVO vo = (BoardVO)request.getAttribute("vo");
 	List<ReplyVO> list = (List<ReplyVO>)request.getAttribute("list");
 	String userid = (String)request.getAttribute("userid");
@@ -24,7 +24,7 @@
 <script type="text/javascript">
 $(function(){
 	$('#list').click(function(){
-		location.href = "<%=request.getContextPath()%>/board/boardList.gg";
+		location.href = "<%=request.getContextPath()%>/board/boardList.gg?code=<%=code%>";
 	});
 	
 	$('#edit').click(function(){
@@ -35,7 +35,6 @@ $(function(){
 
 <article>
 	<%
-	code = "F"; //임시로 설정
 	String boardName = "";
 	switch(code){
 		case "F":

@@ -32,7 +32,7 @@
 	<ul class="nav">
 		<li><a href="#">INVEM HOME</a></li>
 		<li><a href="#">챔피언정보</a></li>
-		<li><a href="#">자유게시판</a></li>
+		<li><a href="<%=request.getContextPath()%>/board/boardList.gg?code=F">자유게시판</a></li>
 		<li><a href="#">베스트공략</a></li>
 		<li><a href="#">페이지</a></li>
 	</ul>
