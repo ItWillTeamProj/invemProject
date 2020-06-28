@@ -10,12 +10,6 @@
 <title>Insert title here</title>
 </head>
 <style type="text/css">	
-body{
-		background-repeat:no-repeat;
-		background-image: url('<%=request.getContextPath() %>/images/backimage.jpg');
-		background-color: white;
-		background-attachment: fixed;
-	}
 	.agree{
 		text-align: center;
 		margin: 0 auto;

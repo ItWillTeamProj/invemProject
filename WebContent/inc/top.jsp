@@ -57,6 +57,15 @@
 	});
 </script>
 </head>
+<style type="text/css">
+body {
+	background-repeat: no-repeat;
+	background-image:
+		url('<%=request.getContextPath()%>/images/backimage.jpg');
+	background-color: white;
+	background-attachment: fixed;
+}
+</style>
 <body>
 <div class="container" >
 	<div class="header" style="background-color: rgb(0, 0, 60);">

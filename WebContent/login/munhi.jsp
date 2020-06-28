@@ -9,12 +9,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-	body{
-		background-repeat:no-repeat;
-		background-image: url('<%=request.getContextPath() %>/images/backimage.jpg');
-		background-color: white;
-		background-attachment: fixed;
-	}
 	p{
 	text-align:center;
     margin-top: 100px;
