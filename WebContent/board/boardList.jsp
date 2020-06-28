@@ -75,8 +75,9 @@ function postPopUp(formName) {
 		<%break;
 	}
 	%>
-	<h3><%=boardName %></h3>
-
+	<div class="title">
+		<h2><%=boardName %></h2>
+	</div>
 	
 	<div style = "margin-right: 20px;">
 		<input type = "button" value = "전체글" id = "all"><input type = "button" value = "인기글" id = "best" ><input type = "button" value = "공지" id = "notice">
