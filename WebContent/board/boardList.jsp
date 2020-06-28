@@ -36,12 +36,13 @@ $(function(){
 		location.href = "<%=request.getContextPath()%>/board/boardList.gg";
 	});
 
+$('#toBlog').click(function(){
+	var sId = $('#uId').html();
+	$('#blogId').html(sId);
+	window.open('<%=request.getContextPath()%>/blog/blog.gg?userid='+sId, 'viewer', 'width=1000, height=700');
+});
 });
 
-$('#toblog').click(function(){
-	var sId = (this).html();
-	$('#blogId').html(sId);
-});
 
 
 function postPopUp(formName) {
@@ -138,7 +139,7 @@ function postPopUp(formName) {
 						<span class="badge badge-pill badge-primary">new</span>
 						<%} %>
 						</a></td>
-						<td style = "text-align: center"><a href = "#" onclick="javascript:postPopUp('this.form');" id = "toBlog"><%=vo.getUserid() %></a></td>
+						<td style = "text-align: center"><a href = "#" class = "aSelect" id = "uId"><%=vo.getUserid() %></a></td>
 				<%}%>
 						<td style = "text-align: center;"><%=sdf.format(vo.getRegdate()) %></td>
 						<td style = "text-align: center;"><%=vo.getViews() %></td>
@@ -208,7 +209,13 @@ function postPopUp(formName) {
 테스트값2&nbsp;<input type="text" name="test2" value="aa"><br><br>
 
 </form>
-    
+ <div id="divLangSelect" style="background: #fff0">
+<ul id="menu">
+  <li><div id = "toBlog">블로그 가기</div></li>
+  <li><div>작성글, 댓글보기</div></li>
+  <li><div>댓글 삭제</div></li>
+</ul>
+</div>   
 </article>
 
 <script type ="text/javascript" src = "../js/bootstrap/bootstrap.js"></script> 

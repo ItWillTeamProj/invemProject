@@ -106,7 +106,7 @@ $(function(){
 	
 	<form name="frmReply" action="<%=request.getContextPath() %>/board/reply_ok.gg" method="post" >
 	<div>
-	<%if(userid != null && !userid.isEmpty()){%>
+	<%if("unknown".equals(userid) || userid == null || userid.isEmpty()){%>
 		<span style = "float: left; width: 15%">
 			<input type = "text" name = "nonuserid" size = "15" style = "margin-left: 5px; margin-top: 5px" value="닉네임"
 				onfocus="this.value=''">

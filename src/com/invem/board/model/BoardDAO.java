@@ -617,5 +617,44 @@ public class BoardDAO {
 			pool.dbClose(con, ps, rs);
 		}
 	}
+	
+	
+	public List<ReplyVO> selectAllReply(String userid) throws SQLException{
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		List<ReplyVO> list = new ArrayList<ReplyVO>();
+		try {
+			con = pool.getConnection();
+			String sql = "select * from reply where userid=?";
+			ps = con.prepareStatement(sql);
+			
+			ps.setString(1, userid);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				int no = rs.getInt("no");
+				String delflag = rs.getString("delflag");
+				int groupno = rs.getInt("groupno");
+				Timestamp regdate = rs.getTimestamp("regdate");
+				int rep_no = rs.getInt("rep_no");
+				String reply = rs.getString("reply");
+				int sortno = rs.getInt("sortno");
+				int step = rs.getInt("step");
+						
+				ReplyVO vo = new ReplyVO(rep_no, userid, reply, regdate, rep_no, groupno, sortno, step, delflag);
+				
+				list.add(vo);
+						
+			}
+			
+			return list;
+		}finally {
+			pool.dbClose(con, ps, rs);
+			
+		}
+				
+	}
 
 }
