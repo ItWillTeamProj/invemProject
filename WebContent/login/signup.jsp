@@ -10,7 +10,7 @@
 <script type="text/javascript" src="../js/jquery-3.5.1.min.js" charset="utf-8"></script>
 <script type="text/javascript">
 	$(function(){
-		$('#wr_submit').submit(function(){
+		$('#wr_submit').click(function(){
 			if(!validate_userid($('#userid').val())){
 				alert('아이디는 영문대소문자,숫자,_만 가능합니다!');
 				$('#userid').focus();
@@ -86,27 +86,36 @@
 </script>
 
 <style type="text/css">
-.divForm label, .divForm .sp1	{
-		width: 35%;
-		float: left;
-		text-align: right;
-		padding: 3px 15px 0 0;
-		clear: left;		
-		font-weight: bold;
-		}
-body{
-		background-repeat:no-repeat;
-		background-image: url('<%=request.getContextPath() %>/images/backimage.jpg');
-		background-color: white;
-		background-attachment: fixed;
+	.divForm fieldset {
+	  min-width: 0;
+	  padding: .35em .625em .75em;
+	  margin: 0 2px;
+	  margin-top: 30px;
+	  border:1px solid silver;
+	  border-radius: 0.5em;
+	  border-color: #6db92a;
+	  background-color:white;
 	}
+	label{
+	font-size:13px;
+	}
+	body, td, th, span, p{
+	font-size:13px;
+	}
+	.divForm label, .divForm .sp1{
+	width:40%;
+	}
+	form{
+	margin-left:50px;
+	}
+
+
 </style>
 <article>
 <div class="divForm">
 <form name="frm1" method="post" action="<%=request.getContextPath() %>/login/signup_ok.gg">
-<fieldset style="margin-top: 20px;border-radius: 0.5em;border-color: #6db92a;background-color:white;border-left-width: 2px;border-top-width: 2px;border-right-width: 2px;">
-<div style="margin-top: 30px; margin-bottom: 30px; margin-left: 30px; margin-right: 30px;">
-	<legend style = "margin-left: 80px">회원 가입</legend>
+<fieldset>
+	<h2 style="text-align:center;">회원 가입</h2>
     <div>
         <label for="userid">회원ID(필수)</label>
         <input type="text" name="userid" id="userid" style="ime-mode:inactive">&nbsp;
@@ -178,7 +187,6 @@ body{
          <input type="submit" id="wr_submit" value="회원가입">
          <input type="reset" value="돌아가기" onclick="history.back(-1);">
     </div>
-</div>
 </fieldset>
     <input type ="hidden" name="chkId" id="chkId">
     <input type ="hidden" name="caution" id="caution">
