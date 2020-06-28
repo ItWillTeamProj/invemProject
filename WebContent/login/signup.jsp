@@ -166,9 +166,9 @@ body{
         <input type="text" name="zipcode" id="zipcode" title="우편번호" style="margin-top: 1px;">
         <input type="Button" value="우편번호 찾기" id="btnZipcode" title="새창열림"><br />
         <span class="sp1">주소</span>
-        <input type="text" name="address" title="주소"  class="width_350" style="margin-top: 2px;"><br />
+        <input type="text" name="address" title="주소" style="margin-top: 2px;"><br />
         <span class="sp1">상세주소</span>
-        <input type="text" name="addressDetail" title="상세주소"  class="width_350" style="margin-top: 4px;">
+        <input type="text" name="addressDetail" title="상세주소" style="margin-top: 4px;">
     </div>
     <div>        
         <label for="sum_name">소환사명</label>
