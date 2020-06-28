@@ -1,4 +1,7 @@
 @charset "UTF-8";
+.container{
+	padding: 0;
+}
 article{
 	width: 98%;
 	margin: 0 auto;
@@ -6,7 +9,7 @@ article{
 nav #tabs-1{
 	background-repeat: no-repeat;
 	background-size: contain;
-	height: 385px;
+	height: 408px;
 }
 nav#tabs {
 	width: 99%;
@@ -20,7 +23,7 @@ nav#tabs {
 
 #icon div:nth-of-type(2){
 	position: relative; 
-	top: -104px; 
+	top: -98px; 
 	left: 29px;
 }
 
@@ -178,3 +181,6 @@ form[name=reply] input[type=submit]{
 	height: 30px;
 }
 
+.ui-state-hover{
+	color: black;
+}
