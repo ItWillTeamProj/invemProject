@@ -10,6 +10,12 @@
 <title>Insert title here</title>
 </head>
 <style type="text/css">	
+body{
+		background-repeat:no-repeat;
+		background-image: url('<%=request.getContextPath() %>/images/backimage.jpg');
+		background-color: white;
+		background-attachment: fixed;
+	}
 	.agree{
 		text-align: center;
 		margin: 0 auto;
@@ -35,15 +41,13 @@
 	$(function(){
 		$('form[name=frmAgree]').submit(function(){
 			if(!$('#chkAgree1').is(':checked')){
-				alert("약관에 동의하셔야 합니다!");
+				alert("이용 약관에 동의하셔야 합니다!");
 				$('#chkAgree1').focus();
 				event.preventDefault();
-			
-				if(!$('#chkAgree2').is(':checked')){
-					alert("약관에 동의하셔야 합니다!");
-					$('#chkAgree2').focus();
-					event.preventDefault();
-				}
+			}else if(!$('#chkAgree2').is(':checked')){
+				alert("개인정보 약관에 동의하셔야 합니다!");
+				$('#chkAgree2').focus();
+				event.preventDefault();
 			}
 		});
 	});
@@ -51,21 +55,25 @@
 
 
 	<article class="agree">
-		<form name="frmAgree" method="post" action="addLogin.jsp">
+		<form name="frmAgree" method="post" action="signup.gg">
+		<div style="margin-top: 30px; margin-bottom: 30px; margin-left: 30px; margin-right: 30px;">
+		<fieldset style="margin-top: 20px; border-radius: 0.5em;border-color: #6db92a;background-color:white;">
 			<h2 class="title" style="margin-top: 30px;margin-left: 20px;">회원 약관</h2>
 			<div style="text-align: left; margin-left: 30px;border-left-width: 30px;padding-left: 10px;margin-bottom: 5px;">
 				<input type="checkbox" name="chkAgree1" id="chkAgree1">
 				<label for="chkAgree1">(필수)인뱀 이용약관</label>	
 			</div>
-			<p><iframe src="provision.html" width="650" height="250"></iframe></p>
+			<p><iframe src="provision.html" width="600" height="250"></iframe></p>
 			<div style="text-align: left; margin-left: 30px;border-left-width: 30px;padding-left: 10px;margin-bottom: 5px;">
-				<input type="checkbox" name="chkAgree2" id="chkAgree2">
-				<label for="chkAgree2">(필수)개인정보 수집 및 이용 동의</label>
-			</div>
-			<p><iframe src="provision2.html" width="650" height="250"></iframe></p>
+			<input type="checkbox" name="chkAgree2" id="chkAgree2">
+			<label for="chkAgree2">개인정보 수집 및 이용 동의</label>
+		</div>
+			<p><iframe src="provision2.html" width="600" height="250"></iframe></p>
 				<div style="margin-bottom: 50px;">
 					<input type="submit" value="회원가입"> <input type="reset" value="돌아가기" onclick="history.back(-1);">
 				</div>	
+			</fieldset>
+		</div>
 		</form>
 	</article>
 </body>

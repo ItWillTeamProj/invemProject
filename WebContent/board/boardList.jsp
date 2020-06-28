@@ -25,7 +25,6 @@
 
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 %>
-<script type="text/javascript" src = "jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 $(function(){
 	$('#rowNum').change(function(){

@@ -9,7 +9,7 @@ public class IndexController implements Controller{
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-		return "/index.jsp";
+		return "/index/index.jsp";
 	}
 
 	@Override

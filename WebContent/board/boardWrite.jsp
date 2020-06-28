@@ -2,10 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../inc/top.jsp"%>
 <%
-	String userid = (String)request.getAttribute("userid");
+	userid = (String)request.getAttribute("userid");
 	String boardName = (String)request.getAttribute("boardName");
 %>
-<script type="text/javascript" src="../js/jquery-3.5.1.min.js" charset="utf-8"></script>
 <script type="text/javascript" src="../se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 <script type="text/javascript">
 	$(function(){
@@ -33,7 +32,7 @@
 		});
 		
 		$('#cancel').click(function(){
-			location.href = "/board/boardList.gg";
+			location.href = "<%=request.getContextPath()%>/board/boardList.gg";
 		});
 	});
 </script>
@@ -41,8 +40,8 @@
 	
 	<h3><%=boardName %></h3>
 	<hr style="border: 0; height: 2px; background: skyblue">
-	<form name="frm" method="post" action="boardWrite_ok.gg">
-		<%if(userid == null || userid.isEmpty()){%>
+	<form name="frm" method="post" action="<%=request.getContextPath()%>/board/boardWrite_ok.gg">
+		<%if(userid.equals("unknown") || userid == null || userid.isEmpty()){%>
 		<input type="text" size="20" style="margin-left: 10px"
 			value="별명을 입력 해 주세요" name="nonuserid" onfocus="this.value=''">
 		<input type="text" size="20" style="margin-left: 10px"

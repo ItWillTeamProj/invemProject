@@ -5,7 +5,7 @@ import java.util.List;
 
 public class BoardService {
 	private BoardDAO dao;
-	
+
 	public BoardService() {
 		dao = new BoardDAO();
 	}
@@ -13,31 +13,32 @@ public class BoardService {
 	public List<BoardVO> searchall(String keyword, String condition, String code) throws SQLException{
 		return dao.searchall(keyword, condition, code);
 	}
-	
+
 	public int updateReadCount(int no) throws SQLException {
 		return dao.updateReadCount(no);
 	}
-	
+
 	public BoardVO searchByNo(int no) throws SQLException {
 		return dao.searchByNo(no);
 	}
-	
+
 	public int reply(ReplyVO vo) throws SQLException {
 		return dao.reply(vo);
 	}
-	
+
 	public int insertBoard(BoardVO vo) throws SQLException {
 		return dao.insertBoard(vo);
 	}
-	
+
 	public List<BoardVO> selectAll() throws SQLException{
 		return dao.selectAll();
 	}
-	
+
 	public List<ReplyVO> selectReplyByNo(int no) throws SQLException {
 		return dao.selectReplyByNo(no);
 	}
-	
+
+
 	public int countByUserid(String userid) throws SQLException {
 		return dao.countByUserid(userid);
 	}
@@ -48,11 +49,11 @@ public class BoardService {
 	public List<BoardVO> selectMainNotice() throws SQLException{
 		return dao.selectMainNotice();
 	}
-	
+
 	public int checkRegdate(int no) throws SQLException {
 		return dao.checkRegdate(no);
 	}
-	
+
 	public int checkReply(int no) throws SQLException {
 		return dao.checkReply(no);
 	}

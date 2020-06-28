@@ -24,22 +24,22 @@ public class ChampionDAO {
 		
 		try {
 			con = pool.getConnection();
-			String sql = "select * from champ order by CHAMP";
+			String sql = "select * from champ_list order by CHAMP_no";
 			ps = con.prepareStatement(sql);
 			
 			rs = ps.executeQuery();
 			ChampionVO vo = null;
 			List<ChampionVO> list = new ArrayList<ChampionVO>();
 			while(rs.next()) {
-				int no = rs.getInt("no");
-				String champ = rs.getString("champ");
+				int no = rs.getInt("champ_no");
+				String name = rs.getString("name");
 				String role = rs.getString("role");
 				String lane = rs.getString("lane");
 				String skill = rs.getString("skill");
 				String nickName = rs.getString("nickname");
 				String describe = rs.getString("describe");
 				
-				vo = new ChampionVO(no, champ, role, lane, skill, nickName, describe);
+				vo = new ChampionVO(no, name, role, lane, skill, nickName, describe);
 				list.add(vo);
 				
 			}//while
@@ -58,21 +58,21 @@ public class ChampionDAO {
 		ChampionVO vo = null;
 		try {
 			con = pool.getConnection();
-			String sql = "select * from champ where no = ?";
+			String sql = "select * from champ_list where champ_no = ?";
 			ps = con.prepareStatement(sql);
 			
 			ps.setInt(1, no);
 			rs = ps.executeQuery();
 			if(rs.next()) {
 				
-				String champ = rs.getString("champ");
+				String name = rs.getString("name");
 				String role = rs.getString("role");
 				String lane = rs.getString("lane");
 				String skill = rs.getString("skill");
 				String nickName = rs.getString("nickname");
 				String describe = rs.getString("describe");
 				
-				vo = new ChampionVO(no, champ, role, lane, skill, nickName, describe);
+				vo = new ChampionVO(no, name, role, lane, skill, nickName, describe);
 			}
 			System.out.println("vo = " + vo);
 			return vo;

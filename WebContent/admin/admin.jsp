@@ -3,21 +3,28 @@
 <%@ include file="../inc/top.jsp" %>  
 <article>
 	<%-- ADMIN 첫 화면 --%>
-	<a href="memberList.jsp">
-    	<div style="width:360px; height:600px; float:left;
-    		background: rgba(255, 220, 220, 0.5); text-align: center;">
-			<img src="../img/member.png" alt="member" 
-				style="width:80%; margin-top: 80px; margin-left: 10%; margin-right: 10%;" />
-			<b style="font-size: 300%; color: black;">회원관리</b>
+	<div style="margin-top: 10px; width: 720px; height:61px;
+		background-size:100%; color:white; font-size: 30px; margin-bottom:10px;
+		background-image: url('<%=request.getContextPath() %>/images/champion/header.png');">
+		<div style="padding: 9px;">
+			<h4>관리자 페이지</h4>
 		</div>
-    </a>
-    <a href="#">
-    	<div style="width:360px; height:600px; float:right;
-    		background: rgba(170, 220, 250, 0.5); text-align: center;">
-			<img src="../img/board.png" alt="board" 
-				style="width:80%; margin-top: 80px; margin-left: 10%; margin-right: 10%;" />
-			<b style="font-size: 300%; color: black; ">게시판관리</b>
-		</div>
-	</a>
+	</div>
+	<div style="float:left; width:360px; height:240px; background-color: pink;
+		margin-top:5px;">
+		<a href="<%=request.getContextPath() %>/admin/memberList.jsp">
+			<img src="<%=request.getContextPath() %>/images/admin/member.png" 
+			style="width:auto; height:240px;" >
+		</a>
+	</div>	
+	
+	<div style="float:left; width:360px; height:240px; background-color: lightblue;
+		margin-top:5px;">
+		<a href="<%=request.getContextPath() %>/admin/boardList.jsp">
+			<img src="<%=request.getContextPath() %>/images/admin/board.png" 
+			style="width:auto; height:230px; margin-top:20px; margin-left: 5px;" >
+		</a>
+	</div>
+
 </article>	
 <%@ include file="../inc/bottom.jsp" %>

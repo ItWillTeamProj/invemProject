@@ -5,5 +5,4 @@
 	<h1>게시판관리창입니다</h1>
 	
 	
-
 <%@ include file="../inc/bottom.jsp" %>
