@@ -13,7 +13,6 @@
 		border: 1px solid lightgray;
 		width:348px;
 		height:348px;
-<<<<<<< Updated upstream
 		margin: 5px 5px 5px 5px;
 	}
 	</style>
@@ -25,7 +24,7 @@
 		<span>새로운 챔피언 '세나' 소개 영상</span>
 		<br><br>
 		<iframe width="340px" height="auto" src="https://www.youtube.com/embed/arJbRqeeYG4" 
-=======
+
 		margin: 10px 5px 0px 5px;
 		background: white;
 		font-size: 90%
@@ -51,13 +50,14 @@
 		<div>
 			<iframe style="width:348px; height:auto;"
 			src="https://www.youtube.com/embed/arJbRqeeYG4" 
->>>>>>> Stashed changes
 			frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
 			allowfullscreen>
 			</iframe>
 		</div>
 	</div>
-
+	<div class="grid" id="grid2" style="float:right; text-align: center;">
+		invem 인기글
+	</div>
 	
 	<div>
 		<a href="../admin/admin.jsp">관리자</a>

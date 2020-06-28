@@ -6,8 +6,8 @@
 <%
 	request.setCharacterEncoding("utf-8");
 
-	String userid = request.getParameter("userid");
-	if(userid==null || userid.isEmpty()){ %>
+	String id = request.getParameter("id");
+	if(id==null || id.isEmpty()){ %>
 	<script type="text/javascript">
 		alert("잘못된 url 입니다.");
 		location.href="memberList.jsp";
@@ -21,7 +21,7 @@
 	AdminMemberDTO dto = null;
 	
 	try{
-		dto = adminMemberService.selectByUserid(userid);		
+		dto = adminMemberService.selectByUserid(id);		
 	}catch(SQLException e){
 		e.printStackTrace();
 	}
@@ -99,14 +99,5 @@
 			<input type="Button" value="정보수정" onclick="location.href='memberEdit.jsp?id=<%=dto.getUserid() %>'" />  
 		</div>
 	</div>
-<<<<<<< Updated upstream
-
-
-
-
-
-=======
-	
->>>>>>> Stashed changes
 </article>	
 <%@ include file="../inc/bottom.jsp" %>
