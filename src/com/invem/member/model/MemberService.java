@@ -14,4 +14,8 @@ public class MemberService {
 		return memberdao.insertMember(vo);
 	}
 	
+	public int overlap(String userid) throws SQLException {
+		return memberdao.overlap(userid);
+	}
+	
 }

@@ -2,9 +2,11 @@ package com.invem.member.model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.invem.db.ConnectionPoolMgr2;
+import com.invem.login.model.LoginService;
 import com.invem.member.model.MemberDTO;
 
 public class MemberDAO {
@@ -45,5 +47,38 @@ private ConnectionPoolMgr2 pool;
 		}finally {
 			pool.dbClose(con, ps);
 		}
+	}
+	
+	public int overlap(String userid) throws SQLException {
+		Connection con=null;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		
+		int result=0;
+		try {
+			//1.2
+			con=pool.getConnection();
+			
+			//3.
+			String sql="select COUNT(*) from member	where userid = ?";
+			ps=con.prepareStatement(sql);
+			ps.setString(1, userid);
+			
+			rs=ps.executeQuery();
+			if(rs.next()) {
+				int count = rs.getInt(1);
+				if(count>0) { 
+					result=LoginService.EXIST_ID;
+				}else {
+					result=LoginService.NON_EXIST_ID;
+				}
+			}
+			
+			System.out.println("아이디 중복확인 결과 result="+result);
+			return result;
+		}finally {
+			pool.dbClose(con, ps, rs);
+		}
+		
 	}
 }

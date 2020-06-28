@@ -58,22 +58,22 @@
 	<div style = "text-align: center">
 		<ul class="pagination pagination-sm">
 		<%if(pageVo.getFirstPage() > 1){ %>
-			 <li class="previous"><a href="/common/myBoard.jsp?currentPage=<%=pageVo.getFirstPage() - 1 %>">Previous</a></li>
+			 <li class="previous"><a href="/blog/blog.gg#tabs-2?currentPage=<%=pageVo.getFirstPage() - 1 %>">Previous</a></li>
 		<%} %>
 	
 		<%for(int i = pageVo.getFirstPage(); i <= pageVo.getLastPage(); i++){
 			if(i > pageVo.getTotalPage()) break;
 		%>
 			<%if(i != pageVo.getCurrentPage()){ %>
-			<li><a href="/common/myBoard.jsp?currentPage=<%=i%>"><%=i %></a></li>
+			<li><a href="/blog/blog.gg#tabs-2?currentPage=<%=i%>"><%=i %></a></li>
 			
 		<%}else{ %>
-			<li class="active"><a href="/common/myBoard.jsp?currentPage=<%=i%>"><%=i %></a></li>
+			<li class="active"><a href="/blog/blog.gg#tabs-2?currentPage=<%=i%>"><%=i %></a></li>
 			<%}//if %>
 		<%}//for %>
 	
 		<%if(pageVo.getLastPage() < pageVo.getTotalPage()){ %>
-			<li class="next"><a href="/common/myBoard.jsp?currentPage=<%=pageVo.getLastPage() + 1 %>">Next</a></li>
+			<li class="next"><a href="/blog/blog.gg#tabs-2?currentPage=<%=pageVo.getLastPage() + 1 %>">Next</a></li>
 		<%} %>
 		</ul>
 	</div>

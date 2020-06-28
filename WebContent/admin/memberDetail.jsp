@@ -106,6 +106,5 @@
 			<input type="Button" value="정보수정" onclick="location.href='memberEdit.jsp?id=<%=dto.getUserid() %>'" />  
 		</div>
 	</div>
-	
 </article>	
 <%@ include file="../inc/bottom.jsp" %>
