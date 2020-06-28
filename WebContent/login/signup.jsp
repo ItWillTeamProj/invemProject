@@ -10,7 +10,7 @@
 <script type="text/javascript" src="../js/jquery-3.5.1.min.js" charset="utf-8"></script>
 <script type="text/javascript">
 	$(function(){
-		$('#wr_submit').click(function(){
+		$('#wr_submit').submit(function(){
 			if(!validate_userid($('#userid').val())){
 				alert('아이디는 영문대소문자,숫자,_만 가능합니다!');
 				$('#userid').focus();
@@ -48,8 +48,39 @@
 				$("#btnChkId").focus();
 				event.preventDefault();
 			}			
-		});//click
+		});
+		$('#email2').change(function(){
+			if($(this).val()=='etc'){
+				$('#email3').val("");
+				$('#email3').css('visibility','visible');
+				$('#email3').focus();				
+			}else{
+				$('#email3').css('visibility','hidden');
+			}
+		});
+		
+		$('#btnChkId').click(function(){
+			var userid=$('#userid').val();
+			
+			window.open('<%=request.getContextPath()%>/member/checkUserid.gg?userid='+userid,'chk',
+	'width=400,height=300,left=0,top=0,location=yes,resizable=yes');	
+		});
+		
+		$('#btnZipcode').click(function(){
+			window.open('<%=request.getContextPath()%>/zipcode/zipcode.gg','zip',
+	'width=500,height=500,left=0,top=0,location=yes,resizable=yes');
+		});
 	});
+	
+	function validate_userid(id){
+		var pattern = new RegExp(/^[a-zA-Z0-9_]+$/g);
+		return pattern.test(id);
+	}
+
+	function validate_phone(tel){
+		var pattern = new RegExp(/^[0-9]*$/g);
+		return pattern.test(tel);
+	}
 	
 	
 </script>
