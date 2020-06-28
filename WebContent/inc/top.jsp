@@ -28,6 +28,16 @@
 				event.preventDefault();
 			}
 		});
+		//-- 버튼 클릭시 버튼을 클릭한 위치 근처에 레이어 생성 --//
+		$('.aSelect').click(function(e) {
+		 var divTop = e.pageY - 20; //상단 좌표
+		 var divLeft = e.pageX + 20; //좌측 좌표
+		 $('#divLangSelect').css({
+		     "top": divTop
+		     ,"left": divLeft
+		     , "position": "absolute"
+		 }).show();
+		});
 	});
 </script>
 </head>

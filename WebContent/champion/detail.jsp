@@ -31,6 +31,9 @@
 		
 		$("#reply .row1").each(function(){
 			$(this).click(function() {
+				$(".content1").each(function() {
+					$(this).addClass("contentHide");
+				});
 				$(this).parent().next().toggleClass("contentHide");
 			});
 		});
@@ -48,28 +51,6 @@
 		    }
 
 		  });
-		
-		/*$("#reply tr.row1").each(function(){
-			$(this).toggleClass("contentHide");
-			
-		});*/
-		
-		/*$("#reply tr").each(function() {
-			$(this).click(function() {
-				$(this).next().show();
-			});
-		});*/
-		
-		//-- 버튼 클릭시 버튼을 클릭한 위치 근처에 레이어 생성 --//
-		$('.aSelect').click(function(e) {
-		 var divTop = e.pageY - 20; //상단 좌표
-		 var divLeft = e.pageX + 20; //좌측 좌표
-		 $('#divLangSelect').css({
-		     "top": divTop
-		     ,"left": divLeft
-		     , "position": "absolute"
-		 }).show();
-		});
 		
 	});
 
@@ -132,9 +113,9 @@
 <!-- 폼 레이어  -->
 <div id="divLangSelect" style="background: #fff0">
 <ul id="menu">
-  <li><div>Books</div></li>
-  <li><div>Clothing</div></li>
-  <li><div>Movies</div></li>
+  <li><div>블로그 가기</div></li>
+  <li><div>작성글, 댓글보기</div></li>
+  <li><div>댓글 삭제</div></li>
 </ul>
 </div>
 <!-- //폼 레이어  -->

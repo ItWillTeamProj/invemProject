@@ -185,11 +185,3 @@ form[name=reply] input[type=submit]{
 	height: 30px;
 }
 
-#divLangSelect {
- position:absolute;
- display:none;
- background-color:#ffffff;
- padding:10px;
-}
-
-.ui-menu { width: 150px; }
