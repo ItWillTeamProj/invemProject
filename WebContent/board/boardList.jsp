@@ -36,9 +36,7 @@ $(function(){
 	$('#all').click(function(){
 		location.href = "<%=request.getContextPath()%>/board/boardList.gg";
 	});
-	
 
-	
 });
 
 $('#toblog').click(function(){
@@ -62,6 +60,7 @@ function postPopUp(formName) {
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 <article>
 	<%
 	String boardName = "";
