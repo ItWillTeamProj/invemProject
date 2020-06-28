@@ -37,7 +37,7 @@
 		 <input value="" type="text" name="nickName" id="nickName">
 	</div>
 	<div>
-		<textarea id="reContent" rows="7" cols="75" name="reContent"></textarea>
+		<textarea id="reContent" rows="4" cols="97" name="reContent"></textarea>
 	</div>
 	<div>
 		<input type="submit" value="등록">
