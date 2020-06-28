@@ -35,34 +35,34 @@
 <div class="container" >
 	<div class="header" style="background-color: rgb(0, 0, 60);">
 		<a href="<%=request.getContextPath() %>/index/index.jsp">
-			<img src="<%=request.getContextPath() %>/images/index/bar_invem.png" 
+			<img src="<%=request.getContextPath() %>/images/index/bar_invem.png"
 			alt="인뱀로고" name="Insert_logo" id="Insert_logo"
 			style="width:auto; height:33px; padding:6px 5px 5px 5px; margin-left:55px " align="left"/>
 		</a>
 		<a href="#">
-			<img src="<%=request.getContextPath() %>/images/index/bar_lol.png" 
+			<img src="<%=request.getContextPath() %>/images/index/bar_lol.png"
 			alt="롤로고" name="Insert_logo" id="Insert_logo"
 			style="width:auto; height:38px; padding:6px 5px 5px 5px; margin-left:220px;" align="left"/>
 		</a>
 		<a href="#">
-			<img src="<%=request.getContextPath() %>/images/index/bar_youtube.png" 
+			<img src="<%=request.getContextPath() %>/images/index/bar_youtube.png"
 			alt="유튜브" name="Insert_logo" id="Insert_logo"
 			style="width:auto; height:35px; padding:10px 5px 5px 5px; margin-left:233px;" align="left"/>
 		</a>
 		<a href="#">
-			<img src="<%=request.getContextPath() %>/images/index/bar_facebook.png" 
+			<img src="<%=request.getContextPath() %>/images/index/bar_facebook.png"
 			alt="페이스북" name="Insert_logo" id="Insert_logo"
 			style="width:auto; height:30px; padding:11px 5px 5px 5px; margin-left:7px;" align="left"/>
 		</a>
 		<a href="#">
-			<img src="<%=request.getContextPath() %>/images/index/bar_twitter.png" 
+			<img src="<%=request.getContextPath() %>/images/index/bar_twitter.png"
 			alt="트위터" name="Insert_logo" id="Insert_logo"
 			style="width:auto; height:28px; padding:12px 5px 5px 5px; margin-left:7px;" align="left"/>
 		</a>
-		
 
-	</div>	
-	<!-- end .header -->	
+
+	</div>
+	<!-- end .header -->
 
 	<div class="sidebar1">
 		<div style="background: whitesmoke; padding-top: 7px; width:240px; height:125px;">
@@ -70,12 +70,12 @@
 			<%if(!isLogin){ %>
 				<div class="login" style="margin-left: 9px;">
 					<button style="border-radius: 0.5em; border-color: #6db92a; background-color:white;
-						margin-top: 7px; margin-left: 18px; margin-bottom: 5px;" 
+						margin-top: 7px; margin-left: 18px; margin-bottom: 5px;"
 						onclick="location.href='../login/login.gg'">
 		    			<img src="../images/invemlogin.png">
 		    			<span style="padding-left: 5px; vertical-align:15px; margin-right: 10px;">로그인</span>
 	    			</button>
-					
+
 					<li style="font-size:12.5px; margin-top:5px;" color=black ;>
 					<a href="<%=request.getContextPath()%>/login/agreement.gg" style="margin-left:2px;">회원가입</a>
 					<a href="<%=request.getContextPath()%>/login/munhi.gg" style="margin-left:15px;">아이디·비밀번호찾기</a></li>
