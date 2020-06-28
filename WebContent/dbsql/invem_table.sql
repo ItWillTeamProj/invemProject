@@ -1,27 +1,27 @@
-/* Ã¨ÇÇ¾ð¸ñ·Ï */
+/* Ã¨ï¿½Ç¾ï¿½ï¿½ï¿½ */
 CREATE TABLE champ_list (
-	champ_no NUMBER NOT NULL, /* ¹øÈ£ */
-	name VARCHAR2(100) NOT NULL, /* ÀÌ¸§ */
-	role VARCHAR2(100) NOT NULL, /* ¿ªÇÒ */
-	lane VARCHAR2(100) NOT NULL, /* Æ÷Áö¼Ç */
-	skill VARCHAR2(100) NOT NULL, /* ½ºÅ³ */
-	nickname VARCHAR2(1000) NOT NULL, /* º°¸í */
-	describe CLOB NOT NULL /* ¼³¸í */
+	champ_no NUMBER NOT NULL, /* ï¿½ï¿½È£ */
+	name VARCHAR2(100) NOT NULL, /* ï¿½Ì¸ï¿½ */
+	role VARCHAR2(100) NOT NULL, /* ï¿½ï¿½ï¿½ï¿½ */
+	lane VARCHAR2(100) NOT NULL, /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
+	skill VARCHAR2(100) NOT NULL, /* ï¿½ï¿½Å³ */
+	nickname VARCHAR2(1000) NOT NULL, /* ï¿½ï¿½ï¿½ï¿½ */
+	describe CLOB NOT NULL /* ï¿½ï¿½ï¿½ï¿½ */
 );
 
-/* ºñÈ¸¿ø°Ô½ÃÆÇ */
+/* ï¿½ï¿½È¸ï¿½ï¿½ï¿½Ô½ï¿½ï¿½ï¿½ */
 CREATE TABLE nonuser_board (
-	nonuser_no NUMBER NOT NULL, /* ¹øÈ£ */
-	title VARCHAR2(300) NOT NULL, /* Á¦¸ñ */
-	username VARCHAR2(100) NOT NULL, /* ÀÛ¼ºÀÚ */
-	regdate DATE DEFAULT sysdate, /* µî·ÏÀÏ */
-	pwd VARCHAR2(100) NOT NULL, /* ºñ¹Ð¹øÈ£ */
-	describe CLOB NOT NULL, /* ³»¿ë */
-	recommend NUMBER DEFAULT 0, /* ÃßÃµ */
-	views NUMBER DEFAULT 0, /* Á¶È¸¼ö */
-	ipaddress VARCHAR2(30) NOT NULL, /* ipÁÖ¼Ò */
-	delflag CHAR(1 BYTE) DEFAULT 'N', /* »èÁ¦ÇÃ·¹±× */
-	cat_code CHAR(1 BYTE) NOT NULL /* °Ô½ÃÆÇÄÚµå */
+	nonuser_no NUMBER NOT NULL, /* ï¿½ï¿½È£ */
+	title VARCHAR2(300) NOT NULL, /* ï¿½ï¿½ï¿½ï¿½ */
+	username VARCHAR2(100) NOT NULL, /* ï¿½Û¼ï¿½ï¿½ï¿½ */
+	regdate DATE DEFAULT sysdate, /* ï¿½ï¿½ï¿½ï¿½ï¿½ */
+	pwd VARCHAR2(100) NOT NULL, /* ï¿½ï¿½Ð¹ï¿½È£ */
+	describe CLOB NOT NULL, /* ï¿½ï¿½ï¿½ï¿½ */
+	recommend NUMBER DEFAULT 0, /* ï¿½ï¿½Ãµ */
+	views NUMBER DEFAULT 0, /* ï¿½ï¿½È¸ï¿½ï¿½ */
+	ipaddress VARCHAR2(30) NOT NULL, /* ipï¿½Ö¼ï¿½ */
+	delflag CHAR(1 BYTE) DEFAULT 'N', /* ï¿½ï¿½ï¿½ï¿½ï¿½Ã·ï¿½ï¿½ï¿½ */
+	cat_code CHAR(1 BYTE) NOT NULL /* ï¿½Ô½ï¿½ï¿½ï¿½ï¿½Úµï¿½ */
 );
 
 ALTER TABLE nonuser_board
@@ -31,21 +31,21 @@ ALTER TABLE nonuser_board
 			nonuser_no
 		);
 
-/* È¸¿ø°Ô½ÃÆÇ */
+/* È¸ï¿½ï¿½ï¿½Ô½ï¿½ï¿½ï¿½ */
 CREATE TABLE user_board (
-	user_no NUMBER NOT NULL, /* ¹øÈ£ */
-	userid VARCHAR2(100) NOT NULL, /* ¾ÆÀÌµð */
-	title VARCHAR2(300) NOT NULL, /* Á¦¸ñ */
-	regdate DATE DEFAULT sysdate, /* µî·ÏÀÏ */
-	describe CLOB NOT NULL, /* ³»¿ë */
-	recommend NUMBER DEFAULT 0, /* ÃßÃµ */
-	views NUMBER DEFAULT 0, /* Á¶È¸¼ö */
-	filename VARCHAR2(1000), /* ÆÄÀÏ¸í */
-	filesize NUMBER, /* ÆÄÀÏÅ©±â */
-	downcount NUMBER DEFAULT 0, /* ´Ù¿î·Îµå¼ö */
-	originalfilename VARCHAR2(1000), /* ¿øº»ÆÄÀÏ ÀÌ¸§ */
-	delflag CHAR(1 BYTE) DEFAULT 'N', /* »èÁ¦ÇÃ·¹±× */
-	cat_code CHAR(1 BYTE) NOT NULL /* °Ô½ÃÆÇÄÚµå */
+	user_no NUMBER NOT NULL, /* ï¿½ï¿½È£ */
+	userid VARCHAR2(100) NOT NULL, /* ï¿½ï¿½ï¿½Ìµï¿½ */
+	title VARCHAR2(300) NOT NULL, /* ï¿½ï¿½ï¿½ï¿½ */
+	regdate DATE DEFAULT sysdate, /* ï¿½ï¿½ï¿½ï¿½ï¿½ */
+	describe CLOB NOT NULL, /* ï¿½ï¿½ï¿½ï¿½ */
+	recommend NUMBER DEFAULT 0, /* ï¿½ï¿½Ãµ */
+	views NUMBER DEFAULT 0, /* ï¿½ï¿½È¸ï¿½ï¿½ */
+	filename VARCHAR2(1000), /* ï¿½ï¿½ï¿½Ï¸ï¿½ */
+	filesize NUMBER, /* ï¿½ï¿½ï¿½ï¿½Å©ï¿½ï¿½ */
+	downcount NUMBER DEFAULT 0, /* ï¿½Ù¿ï¿½Îµï¿½ï¿½ */
+	originalfilename VARCHAR2(1000), /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ */
+	delflag CHAR(1 BYTE) DEFAULT 'N', /* ï¿½ï¿½ï¿½ï¿½ï¿½Ã·ï¿½ï¿½ï¿½ */
+	cat_code CHAR(1 BYTE) NOT NULL /* ï¿½Ô½ï¿½ï¿½ï¿½ï¿½Úµï¿½ */
 );
 
 ALTER TABLE user_board
@@ -55,18 +55,18 @@ ALTER TABLE user_board
 			user_no
 		);
 
-/* ´ñ±ÛÅ×ÀÌºí */
+/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìºï¿½ */
 CREATE TABLE reply (
-	rep_no NUMBER NOT NULL, /* ¹øÈ£ */
-	nonuser_no NUMBER, /* ºñÈ¸¿ø°Ô½ÃÆÇ¹øÈ£ */
-	username VARCHAR2(50) NOT NULL, /* ¾ÆÀÌµð */
-	reply VARCHAR2(1000) NOT NULL, /* ´ñ±Û */
-	regdate DATE DEFAULT sysdate, /* ÀÛ¼ºÀÏ */
-	user_no NUMBER, /* È¸¿ø°Ô½ÃÆÇ¹øÈ£ */
-	groupno NUMBER DEFAULT 0, /* ´ñ±Û¹øÈ£ */
-	sortno NUMBER DEFAULT 0, /* Á¤·Ä¹øÈ£ */
-	step NUMBER DEFAULT 0, /* Â÷¼ö */
-	delflag CHAR(1 BYTE) DEFAULT 'N' /* »èÁ¦ÇÃ·¹±× */
+	rep_no NUMBER NOT NULL, /* ï¿½ï¿½È£ */
+	nonuser_no NUMBER, /* ï¿½ï¿½È¸ï¿½ï¿½ï¿½Ô½ï¿½ï¿½Ç¹ï¿½È£ */
+	username VARCHAR2(50) NOT NULL, /* ï¿½ï¿½ï¿½Ìµï¿½ */
+	reply VARCHAR2(1000) NOT NULL, /* ï¿½ï¿½ï¿½ */
+	regdate DATE DEFAULT sysdate, /* ï¿½Û¼ï¿½ï¿½ï¿½ */
+	user_no NUMBER, /* È¸ï¿½ï¿½ï¿½Ô½ï¿½ï¿½Ç¹ï¿½È£ */
+	groupno NUMBER DEFAULT 0, /* ï¿½ï¿½Û¹ï¿½È£ */
+	sortno NUMBER DEFAULT 0, /* ï¿½ï¿½ï¿½Ä¹ï¿½È£ */
+	step NUMBER DEFAULT 0, /* ï¿½ï¿½ï¿½ï¿½ */
+	delflag CHAR(1 BYTE) DEFAULT 'N' /* ï¿½ï¿½ï¿½ï¿½ï¿½Ã·ï¿½ï¿½ï¿½ */
 );
 
 ALTER TABLE reply
@@ -76,21 +76,21 @@ ALTER TABLE reply
 			rep_no
 		);
 
-/* È¸¿ø */
+/* È¸ï¿½ï¿½ */
 CREATE TABLE member (
-	userid VARCHAR2(100) NOT NULL, /* ¾ÆÀÌµð */
-	nickname VARCHAR2(100) NOT NULL, /* ´Ð³×ÀÓ */
-	pwd VARCHAR2(100) NOT NULL, /* ºñ¹Ð¹øÈ£ */
-	name VARCHAR2(50) NOT NULL, /* ÀÌ¸§ */
-	dateofbirth VARCHAR2(10) NOT NULL, /* »ý³â¿ùÀÏ */
-	phoneno VARCHAR2(20), /* ÈÞ´ëÆù¹øÈ£ */
-	email VARCHAR2(100), /* ÀÌ¸ÞÀÏ */
-	zipcode VARCHAR2(10) NOT NULL, /* ¿ìÆí¹øÈ£ */
-	address VARCHAR2(200) NOT NULL, /* ÁÖ¼Ò */
-	detail VARCHAR2(200), /* »ó¼¼ÁÖ¼Ò */
-	sum_name VARCHAR2(60), /* ¼ÒÈ¯»ç¸í */
-	regdate DATE DEFAULT sysdate, /* µî·ÏÀÏ */
-	caution NUMBER DEFAULT 0 /* ´©Àû°æ°í */
+	userid VARCHAR2(100) NOT NULL, /* ï¿½ï¿½ï¿½Ìµï¿½ */
+	nickname VARCHAR2(100) NOT NULL, /* ï¿½Ð³ï¿½ï¿½ï¿½ */
+	pwd VARCHAR2(100) NOT NULL, /* ï¿½ï¿½Ð¹ï¿½È£ */
+	name VARCHAR2(50) NOT NULL, /* ï¿½Ì¸ï¿½ */
+	dateofbirth VARCHAR2(10) NOT NULL, /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
+	phoneno VARCHAR2(20), /* ï¿½Þ´ï¿½ï¿½ï¿½ï¿½ï¿½È£ */
+	email VARCHAR2(100), /* ï¿½Ì¸ï¿½ï¿½ï¿½ */
+	zipcode VARCHAR2(10) NOT NULL, /* ï¿½ï¿½ï¿½ï¿½ï¿½È£ */
+	address VARCHAR2(200) NOT NULL, /* ï¿½Ö¼ï¿½ */
+	detail VARCHAR2(200), /* ï¿½ï¿½ï¿½Ö¼ï¿½ */
+	sum_name VARCHAR2(60), /* ï¿½ï¿½È¯ï¿½ï¿½ï¿½ */
+	regdate DATE DEFAULT sysdate, /* ï¿½ï¿½ï¿½ï¿½ï¿½ */
+	caution NUMBER DEFAULT 0 /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 );
 
 ALTER TABLE member
@@ -107,11 +107,11 @@ ALTER TABLE member
 			nickname
 		);
 
-/* °Ô½ÃÆÇÁ¾·ù */
+/* ï¿½Ô½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 CREATE TABLE category (
-	cat_code CHAR(1 BYTE) NOT NULL, /* °Ô½ÃÆÇÄÚµå */
-	cat_name VARCHAR2(30) NOT NULL, /* °Ô½ÃÆÇÀÌ¸§ */
-	isuser CHAR(1 BYTE) DEFAULT 'N' NOT NULL /* Á¦¾à»çÇ× */
+	cat_code CHAR(1 BYTE) NOT NULL, /* ï¿½Ô½ï¿½ï¿½ï¿½ï¿½Úµï¿½ */
+	cat_name VARCHAR2(30) NOT NULL, /* ï¿½Ô½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ */
+	isuser CHAR(1 BYTE) DEFAULT 'N' NOT NULL /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 );
 
 ALTER TABLE category
@@ -121,21 +121,21 @@ ALTER TABLE category
 			cat_code
 		);
 
-/* ºí·Î±× */
+/* ï¿½ï¿½Î±ï¿½ */
 CREATE TABLE blog (
-	userid VARCHAR2(100) NOT NULL, /* ¾ÆÀÌµð */
-	write_cnt NUMBER DEFAULT 0, /* ÀÛ¼º°Ô½Ã¹°¼ö */
-	comment_cnt NUMBER DEFAULT 0, /* ÀÛ¼ºÄÚ¸àÆ®¼ö */
-	mem_level NUMBER DEFAULT 0, /* ·¹º§ */
-	point NUMBER DEFAULT 0 /* Æ÷ÀÎÆ® */
+	userid VARCHAR2(100) NOT NULL, /* ï¿½ï¿½ï¿½Ìµï¿½ */
+	write_cnt NUMBER DEFAULT 0, /* ï¿½Û¼ï¿½ï¿½Ô½Ã¹ï¿½ï¿½ï¿½ */
+	comment_cnt NUMBER DEFAULT 0, /* ï¿½Û¼ï¿½ï¿½Ú¸ï¿½Æ®ï¿½ï¿½ */
+	mem_level NUMBER DEFAULT 0, /* ï¿½ï¿½ï¿½ï¿½ */
+	point NUMBER DEFAULT 0 /* ï¿½ï¿½ï¿½ï¿½Æ® */
 );
 
-/* ¹æ¸í·Ï */
+/* ï¿½ï¿½ï¿½ï¿½ */
 CREATE TABLE guestbook (
-	gno NUMBER NOT NULL, /* ¹æ¸í·Ï¹øÈ£ */
-	userid VARCHAR2(100) NOT NULL, /* ¾ÆÀÌµð */
-	g_comment VARCHAR2(1000) NOT NULL, /* ¹æ¸í·Ï */
-	regdate DATE DEFAULT sysdate /* ÀÛ¼ºÀÏ */
+	gno NUMBER NOT NULL, /* ï¿½ï¿½ï¿½Ï¹ï¿½È£ */
+	userid VARCHAR2(100) NOT NULL, /* ï¿½ï¿½ï¿½Ìµï¿½ */
+	g_comment VARCHAR2(1000) NOT NULL, /* ï¿½ï¿½ï¿½ï¿½ */
+	regdate DATE DEFAULT sysdate /* ï¿½Û¼ï¿½ï¿½ï¿½ */
 );
 
 ALTER TABLE guestbook
@@ -220,6 +220,12 @@ create sequence user_board_seq
 increment by 1
 start with 1
 nocache;
+
+create sequence zipcode_seq
+increment by 1
+start with 1
+nocache;
+
 
 create sequence nonuser_board_seq
 increment by 1

@@ -81,8 +81,6 @@
 		  </tbody>
 	</table>	   
 	</div>
-
-
 </article>
 
 <%@ include file="../inc/bottom.jsp" %>

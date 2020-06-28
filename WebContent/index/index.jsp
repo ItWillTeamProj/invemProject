@@ -19,8 +19,7 @@
 	}
 	</style>
 	<%-- 첫 화면 입니다 --%>
-
-	<div class="grid" id="grid1" style="float:left;">
+		<div class="grid" id="grid1" style="float:left;">
 	
 		<div style="border-bottom: 1px solid lightgray; padding-top:3px;
 			width:348px; height:25px; ">

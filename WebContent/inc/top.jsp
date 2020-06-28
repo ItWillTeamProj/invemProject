@@ -16,6 +16,8 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <title>invem_index</title>
 <script type="text/javascript">
 	$(function(){
@@ -40,9 +42,9 @@
 		     , "position": "absolute"
 		 }).show();
 		});
-		
+
 		$( "#menu" ).menu();
-		
+
 		$(document).mouseup(function (e){
 
 	    var container = $('#divLangSelect');
@@ -108,15 +110,17 @@
 				<br>
 				</div>
 			<%}else{ %>
-				<img alt="브론즈" src="../images/bronze.png">
-		   		<div style="font-size:10px" color=black;>
-					<li><a href="<%=request.getContextPath()%>/login/logout.gg" style="margin-left: 4px;">로그아웃</a>
-					<a href="<%=request.getContextPath()%>/member/memberEdit.gg" style="margin-left: 45px;">회원정보수정</a></li>
-		  	 	</div>
+				<div>
+					<img alt="브론즈" src="../images/bronze.png"/>
+			   		<div style="font-size:10px" color=black;>
+						<li><a href="<%=request.getContextPath()%>/login/logout.gg" style="margin-left: 4px;">로그아웃</a>
+						<a href="<%=request.getContextPath()%>/member/memberEdit.gg" style="margin-left: 45px;">회원정보수정</a></li>
+			  	 	</div>
+				</div>
 			<%} %>
 		</div>
 	<ul class="nav">
-		<li><a href="<%=request.getContextPath()%>/index.gg">INVEM HOME</a></li>
+		<li><a href="<%=request.getContextPath()%>/index/index.gg">INVEM HOME</a></li>
 		<li><a href="<%=request.getContextPath()%>/champion/list.gg">챔피언정보</a></li>
 		<li><a href="<%=request.getContextPath()%>/board/boardList.gg?code=F">자유게시판</a></li>
 		<li><a href="#">베스트공략</a></li>

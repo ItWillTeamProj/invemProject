@@ -10,7 +10,7 @@
 <script type="text/javascript" src="../js/jquery-3.5.1.min.js" charset="utf-8"></script>
 <script type="text/javascript">
 	$(function(){
-		$('#wr_submit').click(function(){
+		$('#wr_submit').submit(function(){
 			if(!validate_userid($('#userid').val())){
 				alert('아이디는 영문대소문자,숫자,_만 가능합니다!');
 				$('#userid').focus();
@@ -48,8 +48,39 @@
 				$("#btnChkId").focus();
 				event.preventDefault();
 			}			
-		});//click
+		});
+		$('#email2').change(function(){
+			if($(this).val()=='etc'){
+				$('#email3').val("");
+				$('#email3').css('visibility','visible');
+				$('#email3').focus();				
+			}else{
+				$('#email3').css('visibility','hidden');
+			}
+		});
+		
+		$('#btnChkId').click(function(){
+			var userid=$('#userid').val();
+			
+			window.open('<%=request.getContextPath()%>/member/checkUserid.gg?userid='+userid,'chk',
+	'width=400,height=300,left=0,top=0,location=yes,resizable=yes');	
+		});
+		
+		$('#btnZipcode').click(function(){
+			window.open('<%=request.getContextPath()%>/zipcode/zipcode.gg','zip',
+	'width=500,height=500,left=0,top=0,location=yes,resizable=yes');
+		});
 	});
+	
+	function validate_userid(id){
+		var pattern = new RegExp(/^[a-zA-Z0-9_]+$/g);
+		return pattern.test(id);
+	}
+
+	function validate_phone(tel){
+		var pattern = new RegExp(/^[0-9]*$/g);
+		return pattern.test(tel);
+	}
 	
 	
 </script>
@@ -73,7 +104,8 @@ body{
 <article>
 <div class="divForm">
 <form name="frm1" method="post" action="<%=request.getContextPath() %>/login/signup_ok.gg">
-<fieldset>
+<fieldset style="margin-top: 20px;border-radius: 0.5em;border-color: #6db92a;background-color:white;border-left-width: 2px;border-top-width: 2px;border-right-width: 2px;">
+<div style="margin-top: 30px; margin-bottom: 30px; margin-left: 30px; margin-right: 30px;">
 	<legend style = "margin-left: 80px">회원 가입</legend>
     <div>
         <label for="userid">회원ID(필수)</label>
@@ -134,20 +166,20 @@ body{
         <input type="text" name="zipcode" id="zipcode" title="우편번호" style="margin-top: 1px;">
         <input type="Button" value="우편번호 찾기" id="btnZipcode" title="새창열림"><br />
         <span class="sp1">주소</span>
-        <input type="text" name="address" title="주소"  class="width_350" style="margin-top: 2px;"><br />
+        <input type="text" name="address" title="주소" style="margin-top: 2px;"><br />
         <span class="sp1">상세주소</span>
-        <input type="text" name="addressDetail" title="상세주소"  class="width_350" style="margin-top: 4px;">
+        <input type="text" name="addressDetail" title="상세주소" style="margin-top: 4px;">
     </div>
     <div>        
-        <label for="sum_name">소환사명(필수)</label>
+        <label for="sum_name">소환사명</label>
         <input type="text" name="sum_name" id="sum_name" style="margin-top: 3px;">
     </div>
     <div class="center">
          <input type="submit" id="wr_submit" value="회원가입">
          <input type="reset" value="돌아가기" onclick="history.back(-1);">
     </div>
+</div>
 </fieldset>
-
     <input type ="hidden" name="chkId" id="chkId">
     <input type ="hidden" name="caution" id="caution">
         

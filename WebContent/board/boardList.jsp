@@ -181,7 +181,7 @@ function postPopUp(formName) {
             		selected = "selected"
             	<%} %>
             	>제목</option>
-            	}
+            	
             <option value="describe"
             	<%if("content".equals(condition)){%>
             		selected = "selected"
