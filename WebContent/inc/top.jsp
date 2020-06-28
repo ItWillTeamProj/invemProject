@@ -77,6 +77,9 @@ button{
 span{
 	color:black;
 }
+html{
+	font-size:15px;
+}
 </style>
 <body>
 <div class="container" >

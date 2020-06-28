@@ -16,6 +16,10 @@ fieldset {
   margin: 0 2px;
   border:1px solid silver;
 }
+label{
+	font-size:13px;
+}
+
 </style>
 <body>
 <script type="text/javascript" src="../js/jquery-3.5.1.min.js" charset="utf-8"></script>
@@ -47,11 +51,11 @@ fieldset {
 			</div>
 			<p><iframe src="provision.html" width="600" height="250"></iframe></p>
 			<div style="text-align: left; margin-left: 30px;border-left-width: 30px;padding-left: 10px;margin-bottom: 5px;">
-			<input type="checkbox" name="chkAgree2" id="chkAgree2">
-			<label for="chkAgree2">개인정보 수집 및 이용 동의</label>
+				<input type="checkbox" name="chkAgree2" id="chkAgree2">
+				<label for="chkAgree2">개인정보 수집 및 이용 동의</label>
 		</div>
 			<p><iframe src="provision2.html" width="600" height="250"></iframe></p>
-				<div style="margin-bottom: 50px;text-align: center;">
+				<div style="margin-bottom: 50px;text-align: center; font-size:12px;">
 					<input type="submit" value="회원가입"> <input type="reset" value="돌아가기" onclick="history.back(-1);">
 				</div>	
 			</fieldset>
