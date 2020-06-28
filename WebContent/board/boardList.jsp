@@ -17,6 +17,10 @@
 	List <BoardVO> list = (List<BoardVO>)request.getAttribute("list");
 	PagingVO pageVo = (PagingVO)request.getAttribute("pageVo");
 	String code = (String)request.getParameter("code");
+	String rowNum = request.getParameter("rowNum");
+	if(rowNum == null || rowNum.isEmpty()){
+		rowNum = "10";
+	}
 	
 	int num = pageVo.getNum();	//페이지당 시작 글 번호가 될수도 있지만 게시판별로
 	// 나눴을때 num + 1 로 no를 대체할 수 있다.
@@ -29,7 +33,7 @@
 $(function(){
 	$('#rowNum').change(function(){
 		var pageRow = $('#rowNum option:selected').val();
-		location.href = "<%=request.getContextPath()%>/board/boardList.gg?rowNum="+pageRow;
+		location.href = "<%=request.getContextPath()%>/board/boardList.gg?rowNum="+pageRow+"&code="+"<%=code%>";
 	});
 	
 	$('#all').click(function(){
@@ -45,15 +49,7 @@ $('#toBlog').click(function(){
 
 
 
-function postPopUp(formName) {
-	var check=document.form2;
-	frm = document.getElementById(formName);
-	window.open('<%=request.getContextPath()%>/blog/blog.gg', 'viewer', 'width=1000, height=700');
-	frm.action = "<%=request.getContextPath()%>/blog/blog.gg";
-	frm.target = "form";
-	frm.method = "post";
-	frm.submit();
-}
+
 </script>
 <link rel="stylesheet" href="../css/bootstrap/bootstrap.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -84,9 +80,12 @@ function postPopUp(formName) {
 		<input type = "button" value = "전체글" id = "all"><input type = "button" value = "인기글" id = "best" ><input type = "button" value = "공지" id = "notice">
 		<span style = "float: right"><a href = "<%=request.getContextPath()%>/board/boardWrite.gg?code=<%=code%>"><img src="<%=request.getContextPath()%>/images/writeIcon.png" style="width: 20px; height: auto"></a></span><!-- 추후 아이콘으로 대체 예정 -->
 		<select style = "float: right; margin-right: 10px" id = "rowNum">
-			<option value = "10">10개</option>
-			<option value = "20">20개</option>
-			<option value = "50">50개</option>
+			<option value = "10" <%if(rowNum.equals("10")){ %>
+			selected="selected"<%} %>>10개</option>
+			<option value = "20" <%if(rowNum.equals("20")){ %>
+			selected="selected"<%} %>>20개</option>
+			<option value = "50" <%if(rowNum.equals("50")){ %>
+			selected="selected"<%} %>>50개</option>
 		</select>
 	</div><br>
 

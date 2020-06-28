@@ -15,6 +15,7 @@
 	userid = (String)request.getAttribute("userid");
 	String no = request.getParameter("no");
 	
+	
 	int replyCount = (int)request.getAttribute("replyCount");
 	
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -27,8 +28,20 @@ $(function(){
 		location.href = "<%=request.getContextPath()%>/board/boardList.gg?code=<%=code%>";
 	});
 	
+	if("<%=vo.getUserid()%>" != "" && "<%=vo.getUserid()%>" != "unknown" && "<%=vo.getUserid()%>" != "<%=userid%>"){
+		$('#delete').css("display", "none");
+	}
+	
+	if("<%=vo.getUserid()%>" != "" && "<%=vo.getUserid()%>" != "unknown" && "<%=vo.getUserid()%>" != "<%=userid%>"){
+		$('#edit').css("display", "none");
+	}
+	
 	$('#edit').click(function(){
 		location.href = "<%=request.getContextPath()%>/board/boardEdit.gg?no=<%=no%>&code=<%=code%>";
+	});
+
+	$('#delete').click(function(){
+		location.href = "<%=request.getContextPath()%>/board/boardDelete.gg?no=<%=no%>&code=<%=code%>";
 	});
 });
 </script>
@@ -51,7 +64,10 @@ $(function(){
 	<h3><%=boardName %></h3>	
 	<hr style = "border: 0; height: 2px; background: skyblue">
 	<div>
-		<h4 style = "margin-left: 10px"><%=vo.getTitle() %></h4><a class = "btn btn-default pull-right" id="edit">수정</a>
+		<h4 style = "margin-left: 10px"><%=vo.getTitle() %></h4>
+		<a class = "btn btn-danger pull-right" id="delete">삭제</a>
+		<a class = "btn btn-info pull-right" id="edit">수정</a>
+		
 	</div>
 	<div>
 		<%if(!"unknown".equals(userid) && userid != null && !userid.isEmpty()){%>
@@ -66,8 +82,8 @@ $(function(){
 	<br><hr style = "border: 0; height: 2px; background: skyblue">
 	
 	<div style="width: 100%; height: 200px; text-align: center; float:right">
-		<a href = "#"><img src = "../images/good.jpg" style = "max-width: 100px; max-height:100px;float: left" alt = "추천"/></a>
-		<a href = "#"><img src = "../images/bad.jpg" style = "max-width: 100px; max-height:100px; float: left" alt = "신고"/></a>
+		<a href = "#"><img src = "../images/good.png" style = "max-width: 100px; max-height:100px;float: left" alt = "추천"/></a>
+		<a href = "#"><img src = "../images/bad.png" style = "max-width: 100px; max-height:100px; float: left" alt = "신고"/></a>
 	</div>
 	
 	<%if(list != null && !list.isEmpty()){%>
