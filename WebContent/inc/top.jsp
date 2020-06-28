@@ -119,8 +119,8 @@ html{
 	 	<span style="margin-left:45px;">리그오브레전드 인뱀</span><br>
 			<%if(!isLogin){ %>
 				<div style="margin-left: 9px;">
-					<button onclick="location.href='../login/login.gg'">
-		    			<img src="../images/invemlogin.png">
+					<button onclick="location.href='<%=request.getContextPath()%>/login/login.gg'">
+		    			<img src="<%=request.getContextPath()%>/images/invemlogin.png">
 		    			<span style="padding-left: 5px; vertical-align:sub; margin-right: 10px;">로그인</span>
 	    			</button>
 
@@ -140,7 +140,7 @@ html{
 			<%} %>
 		</div>
 	<ul class="nav">
-		<li><a href="<%=request.getContextPath()%>/index/index.gg">INVEM HOME</a></li>
+		<li><a href="<%=request.getContextPath()%>/index.gg">INVEM HOME</a></li>
 		<li><a href="<%=request.getContextPath()%>/champion/list.gg">챔피언정보</a></li>
 		<li><a href="<%=request.getContextPath()%>/board/boardList.gg?code=F">자유게시판</a></li>
 		<li><a href="#">베스트공략</a></li>
