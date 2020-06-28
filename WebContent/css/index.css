@@ -7,7 +7,13 @@ body {
 	padding: 0;
 	color: #000;
 }
-
+body{
+	background-repeat:no-repeat;
+	background-image: url('<%=request.getContextPath() %>/images/backimage.jpg');
+	background-color: white;
+	background-attachment: fixed;
+	background-size: cover;
+}
 .container {
 	overflow: hidden;
 }
