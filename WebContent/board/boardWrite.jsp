@@ -12,7 +12,26 @@
 <script type="text/javascript" src="../se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 <script type="text/javascript">
 	$(function(){
-
+		$('form[name = frm]').submit(function(){
+			if($('#nonuserid').val()=='' || $('#nonuserid').val() == "별명을 입력 해 주세요"){
+				alert('별명을 입력하세요');
+				event.preventDefault();
+			}else if($('#pwd').val() =='' || $('#pwd').val() == "비밀번호를 입력 해 주세요"){
+				alert('비밀번호를 입력하세요');
+				event.preventDefault();
+			}else if($('#title').val()=='' || $('#title').val() == "제목을 입력 해 주세요"){
+				alert('제목을 입력하세요');
+				event.preventDefault();
+			}
+		});
+		
+		
+		
+		
+		
+		
+		
+		
 		var oEditors = [];
 		nhn.husky.EZCreator.createInIFrame({
 		 oAppRef: oEditors,
@@ -36,7 +55,7 @@
 		});
 		
 		$('#cancel').click(function(){
-			location.href = "<%=request.getContextPath()%>/board/boardList.gg";
+			location.href = "<%=request.getContextPath()%>/board/boardList.gg?code=<%=code%>";
 		});
 	});
 </script>
@@ -47,11 +66,11 @@
 	<form name="frm" method="post" action="<%=request.getContextPath()%>/board/boardWrite_ok.gg">
 		<%if("unknown".equals(userid) || userid == null || userid.isEmpty()){%>
 		<input type="text" size="20" style="margin-left: 10px"
-			value="별명을 입력 해 주세요" name="nonuserid" onfocus="this.value=''">
+			value="별명을 입력 해 주세요" id = "nonuserid" name="nonuserid" onfocus="this.value=''">
 		<input type="text" size="20" style="margin-left: 10px"
-			value="비밀번호를 입력 해 주세요" name="pwd"
+			value="비밀번호를 입력 해 주세요" name="pwd" id = "pwd"
 			onfocus="this.value=''; type = 'password'"><br>
-		<input type="text" size="70" id="title" style="margin-left: 10px"
+		<input type="text" size="70" id="title" style="margin-left: 10px" 
 			name="title" value="제목을 입력 해 주세요" onfocus="this.value=''"><br>			
 		<input type="hidden" name="userid" value="<%=userid %>"> 
 		<input type="hidden" name="code" value="<%=code%>"> <br>
@@ -59,7 +78,7 @@
 
 		<input type="hidden" name="userid" value="<%=userid %>"> 
 		<input type="hidden" name="code" value="<%=code%>"> <br>
-		<input type="text" size="70" id="title" style="margin-left: 10px"
+		<input type="text" size="70" id="title" style="margin-left: 10px" id = "title2"
 			name="title" value="제목을 입력 해 주세요" onfocus="this.value=''"><br>
 		<%}%>
 			<hr style="border: 0; height: 2px; background: skyblue">

@@ -16,9 +16,8 @@ public class BoardListController implements Controller{
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-		//코드를 받아와서 게시판의 이름을 적는다 일단 페이지 확인때문에 code임의로 F로 넣음
+		//코드를 받아와서 게시판의 이름을 적는다
 		String code = request.getParameter("code");
-		code = "F";
 
 		//검색 버튼을 눌렀을때 option의 이름과 검색어를 받아온다.
 		String condition = request.getParameter("searchCondition");
