@@ -32,7 +32,6 @@
 	AdminBoardDTO dto = new AdminBoardDTO();
 
 	
-	//글작성
 	dto.setUserid(id);
 	dto.setPwd(bpwd);
 	dto.setTitle(title);
@@ -41,13 +40,13 @@
 	
 	String cpwd="";
 	try{
-		cpwd = adminMemberService.checkAdminPwd(id);
+		cpwd = adminMemberService.selectAdminPwd(id);
 	}catch(SQLException e){
 		e.printStackTrace();
 	}
 	
 	
-	if(cpwd.equals(apwd)){
+	if(apwd.equals(cpwd)){
 		int cnt=0;
 		try{
 			cnt = adminBoardService.insertBoard(dto);	
@@ -66,8 +65,8 @@
 				alert('게시물 등록 실패');
 				history.back();
 			</script>
-		<%}
-	}else if(!cpwd.equals(apwd)){%>
+		<%}%>
+	<%}else{%>
 		<script type="text/javascript">
 			alert('관리자 비밀번호 불일치!');
 			history.back();

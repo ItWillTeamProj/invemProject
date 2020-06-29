@@ -59,7 +59,7 @@ public class AdminBoardDAO {
 			con=pool.getConnection();
 			
 			//3
-			String sql="select * from board where cat_code=?";
+			String sql="select * from board where cat_code=? order by regdate desc";
 			ps=con.prepareStatement(sql);
 			
 			ps.setString(1, code);

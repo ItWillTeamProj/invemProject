@@ -68,7 +68,7 @@ public class AdminMemberDAO {
 		
 	}
 	
-	public String checkAdminPwd(String userid) throws SQLException {
+	public String selectAdminPwd(String id) throws SQLException {
 		Connection con=null;
 		PreparedStatement ps=null;
 		ResultSet rs=null;
@@ -81,16 +81,18 @@ public class AdminMemberDAO {
 			//3
 			String sql="select pwd from member"
 					 +" where userid=?";
+			
 			ps=con.prepareStatement(sql);
-			ps.setString(1, userid);
+			ps.setString(1, id);
 			
 			rs=ps.executeQuery();
+			if(rs.next()) {
+				pwd = rs.getString("pwd");
+			}
 			
-			pwd = rs.getString("pwd");
-			
-			System.out.println("매개변수 userid : ="+userid+", pwd="+pwd);
-			
+			System.out.println("매개변수 userid="+id+", pwd="+pwd);
 			return pwd;
+			
 		}finally {
 			pool.dbClose(con, ps, rs);
 		}
@@ -148,8 +150,8 @@ public class AdminMemberDAO {
 			}
 			
 			System.out.println("회원 상세보기 결과, dto="+dto+", 매개변수 userid="+userid);
-			
 			return dto;
+			
 		}finally {
 			pool.dbClose(con, ps, rs);
 		}
