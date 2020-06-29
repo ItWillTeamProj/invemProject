@@ -45,14 +45,14 @@
 #champs{
 	margin: 10px 0 20px 0;
 	text-align: center;
-	font-size: 0.7em;
+	font-size: 1em;
 }
 #champs a{
 	margin: 0 5px;
 	font-size: 1.3em;
 }
 #filter{
-	font-size: 1em;
+	font-size: 1.7em;
 	overflow: hidden;
 	margin-top: 15px;
 }

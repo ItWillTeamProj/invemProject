@@ -133,6 +133,7 @@ nav #tabs-2{
 
 #reply th{
 	background: #8090ab;
+	text-align: center;
 }
 
 #reply .content1 td{
@@ -147,10 +148,10 @@ nav #tabs-2{
 }
 
 form[name=reply]{
-	margin: 30px auto;
+	margin: 0 auto 20px auto;
 	clear: both;
 	overflow: hidden;
-	font-size: 1.2em;
+	font-size: 1em;
 }
 
 form[name=reply] div:first-of-type {
@@ -183,4 +184,11 @@ form[name=reply] input[type=submit]{
 
 .ui-state-hover{
 	color: black;
+}
+
+form[name=frmSearch]{
+	font-size: 1.6em;
+}
+form[name=frmSearch] .label{
+	font-size: 90%;
 }
