@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.herbmall.member.model.MemberVO;
 import com.invem.db.ConnectionPoolMgr2;
 import com.invem.login.model.LoginService;
 import com.invem.member.model.MemberDTO;
