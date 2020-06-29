@@ -18,7 +18,7 @@
 	response.addHeader("X-Frame-Options", "DENY");
 %>
 
-  <link rel="stylesheet" href="<%=request.getContextPath()%>/css/champion/detail.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/champion/detail.css">
 
 <script type="text/javascript">
 
@@ -51,6 +51,7 @@
 		<ul class="nav nav-tabs">
 		    <li><a href="#tabs-1" class="active">챔피언 정보</a></li>
 		    <li><a href="#tabs-2">능력치</a></li>
+		    <li><a href="#tabs-3">챔피언 소개</a></li>
 		  </ul>
 		<div id="tabs-1" style="background-image: url('../images/championSkin/s<%=no%>.jpg');">
 			<div id="icon">
@@ -72,7 +73,7 @@
 			<c:set var="myArray" value="${fn:split(avility,',')}" />
 			<%@ include file="avilityTable.jsp" %>
 
-			<div class="view"><span>챔피언 소개 영상</span></div>
+			<div class="view"><span style="color: #d9e5f7">챔피언 소개 영상</span></div>
 
 			<div class="video-container">
 	    		<div class="jetpack-video-wrapper">
@@ -87,6 +88,9 @@
 	   			 </span>
 	   			 </div>
 	 		</div>
+		</div>
+		<div id="tabs-3">
+		<p><%=cVo.getDescribe() %></p>
 		</div>
 	</nav>
 	<div>
