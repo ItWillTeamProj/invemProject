@@ -10,9 +10,9 @@
 <%@ include file = "../inc/top.jsp"%>
 
 <%
-	String condition = (String)request.getAttribute("condition");
-	String keyword = (String)request.getAttribute("keyword");
-
+	String condition = (String)request.getParameter("condition");
+	String keyword = (String)request.getParameter("keyword");
+	
 
 	List <BoardVO> list = (List<BoardVO>)request.getAttribute("list");
 	PagingVO pageVo = (PagingVO)request.getAttribute("pageVo");
@@ -22,6 +22,7 @@
 		rowNum = "10";
 	}
 	
+	
 	int num = pageVo.getNum();	//페이지당 시작 글 번호가 될수도 있지만 게시판별로
 	// 나눴을때 num + 1 로 no를 대체할 수 있다.
 	int curPos = pageVo.getCurPos();	//페이지당 시작 인덱스 번호
@@ -29,6 +30,7 @@
 
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 %>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 $(function(){
 	$('#rowNum').change(function(){
@@ -37,14 +39,17 @@ $(function(){
 	});
 	
 	$('#all').click(function(){
-		location.href = "<%=request.getContextPath()%>/board/boardList.gg";
+		location.href = "<%=request.getContextPath()%>/board/boardList.gg?code=<%=code%>";
 	});
 
-$('#toBlog').click(function(){
-	var sId = $('#uId').html();
-	$('#blogId').html(sId);
-	window.open('<%=request.getContextPath()%>/blog/blog.gg?userid='+sId, 'viewer', 'width=1000, height=700');
-});
+	$('#toBlog').click(function(){
+		var sId = $('#uId').html();
+		$('#blogId').html(sId);
+		window.open('<%=request.getContextPath()%>/blog/blog.gg?userid='+sId, 'viewer', 'width=1000, height=700');
+	
+	
+	});
+	
 });
 
 
@@ -53,7 +58,6 @@ $('#toBlog').click(function(){
 </script>
 <link rel="stylesheet" href="../css/bootstrap/bootstrap.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
@@ -89,7 +93,7 @@ $('#toBlog').click(function(){
 		</select>
 	</div><br>
 
-	<table style = "width: 700px" class="table table-hover table-sm">
+	<table style = "width: 700px" class="table table-striped table-sm table-hover">
 		<!-- caption걸어주는게 좋다고 들음 -->
 		<caption><%=boardName %> 목록입니다.</caption>
 		<colgroup>
@@ -126,7 +130,7 @@ $('#toBlog').click(function(){
 						<td><a href = "<%=request.getContextPath() %>/board/detail.gg?nonuserid=<%=vo.getNonuserid()%>&pwd=<%=vo.getPwd()%>
 							&ipaddress=<%=vo.getIpaddress()%>&no=<%=vo.getNo() %>&code=<%=code%>"><%=vo.getTitle() %>
 							<%if(boardServ.checkRegdate(vo.getNo())==1){ %>
-								<span class="badge badge-pill badge-primary">new</span>
+								<span class="badge badge-primary">new</span>
 							<%} %>
 						</a></td>
 						<td style = "text-align: center"><%=vo.getNonuserid() %></td>
@@ -135,7 +139,7 @@ $('#toBlog').click(function(){
 						<td><a href = "<%=request.getContextPath() %>/board/detail.gg?no=<%=vo.getNo()%>&userid=<%=vo.getUserid()%>&code=<%=code%>"><%=vo.getTitle() %>
 						<!-- 24시간 이내 작성글인경우 new띄우기 -->
 						<%if(boardServ.checkRegdate(vo.getNo())==1){ %>
-						<span class="badge badge-pill badge-primary">new</span>
+						<span class="badge badge-primary">new</span>
 						<%} %>
 						</a></td>
 						<td style = "text-align: center"><a href = "#" class = "aSelect" id = "uId"><%=vo.getUserid() %></a></td>
@@ -154,22 +158,22 @@ $('#toBlog').click(function(){
 	<div style = "text-align: center">
 		<ul class="pagination pagination-sm">
 		<%if(pageVo.getFirstPage() > 1){ %>
-			 <li class="previous"><a href="<%=request.getContextPath()%>/board/boardList.gg?currentPage=<%=pageVo.getFirstPage() - 1 %>&code=<%=code%>">Previous</a></li>
+			 <li class="previous"><a href="<%=request.getContextPath()%>/board/boardList.gg?currentPage=<%=pageVo.getFirstPage() - 1 %>&code=<%=code%>&rowNum=<%=rowNum%>">Previous</a></li>
 		<%} %>
 	
 		<%for(int i = pageVo.getFirstPage(); i <= pageVo.getLastPage(); i++){
 			if(i > pageVo.getTotalPage()) break;
 		%>
 			<%if(i != pageVo.getCurrentPage()){ %>
-			<li><a href="<%=request.getContextPath() %>/board/boardList.gg?currentPage=<%=i%>&code=<%=code%>"><%=i %></a></li>
+			<li><a href="<%=request.getContextPath() %>/board/boardList.gg?currentPage=<%=i%>&code=<%=code%>&rowNum=<%=rowNum%>"><%=i %></a></li>
 			
 		<%}else{ %>
-			<li class="active"><a href="<%=request.getContextPath() %>/board/boardList.gg?currentPage=<%=i%>&code=<%=code%>"><%=i %></a></li>
+			<li class="active"><a href="<%=request.getContextPath() %>/board/boardList.gg?currentPage=<%=i%>&code=<%=code%>&rowNum=<%=rowNum%>"><%=i %></a></li>
 			<%}//if %>
 		<%}//for %>
 	
 		<%if(pageVo.getLastPage() < pageVo.getTotalPage()){ %>
-			<li class="next"><a href="<%=request.getContextPath()%>/board/boardList.gg?currentPage=<%=pageVo.getLastPage() + 1 %>&code=<%=code%>">Next</a></li>
+			<li class="next"><a href="<%=request.getContextPath()%>/board/boardList.gg?currentPage=<%=pageVo.getLastPage() + 1 %>&code=<%=code%>&rowNum=<%=rowNum%>">Next</a></li>
 		<%} %>
 		</ul>
 	</div>
@@ -200,12 +204,11 @@ $('#toBlog').click(function(){
 		
         <input type="text" name="searchKeyword" title="검색어 입력" value = "<%=keyword%>">
 		<input type="submit" value="검색">
-
+		<input type="hidden" name = "code"value="<%=code %>">
     </form>
     
 <form name="form2" method="post">
 테스트값1&nbsp;<input type="text" name="test1" id = "blogId" ><br>
-테스트값2&nbsp;<input type="text" name="test2" value="aa"><br><br>
 
 </form>
  <div id="divLangSelect" style="background: #fff0">

@@ -656,5 +656,30 @@ public class BoardDAO {
 		}
 				
 	}
+	
+	public int boardDelete(int no, String code) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		try {
+			con = pool.getConnection();
+			String sql = "delete from board where no=? and cat_code=?";
+			
+			ps = con.prepareStatement(sql);
+			
+			ps.setInt(1, no);
+			ps.setString(2, code);
+			
+			int cnt = ps.executeUpdate();
+			
+			System.out.println("삭제 결과 cnt = " + cnt + ", 매개변수 no = " + no + ", code = " + code);
+			
+			return cnt;
+			
+			
+			
+		}finally {
+			pool.dbClose(con, ps);
+		}
+	}
 
 }

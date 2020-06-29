@@ -68,4 +68,8 @@ public class BoardService {
 	public List<ReplyVO> selectAllReply(String userid) throws SQLException{
 		return dao.selectAllReply(userid);
 	}
+	
+	public int boardDelete(int no, String code) throws SQLException {
+		return dao.boardDelete(no, code);
+	}
 }
