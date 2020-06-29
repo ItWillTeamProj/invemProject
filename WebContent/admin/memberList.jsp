@@ -38,7 +38,7 @@
 	<div>
 	<table class="memberBox"
 		style="border-top :1px solid gray; border-bottom: 1px solid gray;
-			font-size: 90%; border-collapse: collapse; margin-left: 10px; margin-right: 10px">
+			font-size: 100%; border-collapse: collapse; margin-left: 10px; margin-right: 10px">
 		<colgroup>
 			<col style="width:110px;" />
 			<col style="width:110px;" />

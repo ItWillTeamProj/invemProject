@@ -48,7 +48,7 @@
 	<form name="formEdit" method="post" action="memberEdit_ok.jsp">
 		<!-- 수정 시 id가 필요 hidden에 담아서 보낸다 -->
 		<input type="hidden" name="id" value="<%=id %>">
-		<table style="font-size: 90%; border-collapse: collapse; margin-left:10px;
+		<table style="font-size: 100%; border-collapse: collapse; margin-left:10px;
 			width:700px;">
 			<tr style="background:white; border-top:1px solid gray;">
 				<td style="padding-left: 30px;">아이디</td>

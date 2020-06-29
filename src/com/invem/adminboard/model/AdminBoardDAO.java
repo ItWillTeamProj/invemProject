@@ -8,7 +8,6 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.invem.adminmember.model.AdminMemberDTO;
 import com.invem.db.ConnectionPoolMgr2;
 
 public class AdminBoardDAO {
@@ -16,6 +15,35 @@ public class AdminBoardDAO {
 	
 	public AdminBoardDAO() {
 		pool = new ConnectionPoolMgr2();
+	}
+	
+	public int insertBoard(AdminBoardDTO dto) throws SQLException {
+		
+		Connection con=null;
+		PreparedStatement ps=null;
+		
+		try {
+			//1,2
+			con=pool.getConnection();
+			
+			//3
+			String sql="insert into board(no, userid, pwd, title, describe, cat_code)" + 
+					" values(board_seq.nextval, ?, ?, ?, ?, ?)";
+			ps=con.prepareStatement(sql);
+			
+			ps.setString(1, dto.getUserid());
+			ps.setString(2, dto.getPwd());
+			ps.setString(3, dto.getTitle());
+			ps.setString(4, dto.getDescribe());
+			ps.setString(5, dto.getCat_code());
+			
+			int cnt=ps.executeUpdate();
+			System.out.println("게시물 등록 결과, cnt="+cnt+", 매개변수 dto="+dto);
+			
+			return cnt;
+		}finally {
+			pool.dbClose(con, ps);
+		}
 	}
 	
 	public List<AdminBoardDTO> selectAll(String code) throws SQLException{
@@ -135,6 +163,59 @@ public class AdminBoardDAO {
 			return dto;
 		}finally {
 			pool.dbClose(con, ps, rs);
+		}
+		
+	}
+	
+	public int updateBoard(AdminBoardDTO dto) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		try {
+			con = pool.getConnection();
+			
+			String sql="update board" 
+					+" set title=?, describe=?, cat_code=?"
+					+" where no=? and userid=?";
+			ps=con.prepareStatement(sql);
+			
+			ps.setString(1, dto.getTitle());
+			ps.setString(2, dto.getDescribe());
+			ps.setString(3, dto.getCat_code());			
+			ps.setInt(4, dto.getNo());
+			ps.setString(5, dto.getUserid());
+			
+			int cnt=ps.executeUpdate();
+			System.out.println("게시물 수정결과, cnt="+cnt+", 매개변수 dto="+dto);
+			
+			return cnt;
+			
+		}finally {
+			pool.dbClose(con, ps);
+		}
+		
+	}
+	
+	public int deleteBoard(int no) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		try {
+			con = pool.getConnection();
+			
+			String sql="delete board" 
+					+" where no=?";
+			ps=con.prepareStatement(sql);
+			
+			ps.setInt(1, no);
+			
+			int cnt=ps.executeUpdate();
+			System.out.println("게시물 삭제결과, cnt="+cnt+", 매개변수 no="+no);
+			
+			return cnt;
+			
+		}finally {
+			pool.dbClose(con, ps);
 		}
 		
 	}

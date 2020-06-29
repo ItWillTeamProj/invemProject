@@ -1,19 +1,15 @@
-package com.invem.login.controller;
+package com.invem.zipcode.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.invem.controller.Controller;
 
-public class LogOutController implements Controller{
+public class ZipcodeOKController implements Controller{
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-		HttpSession session = request.getSession();
-		session.invalidate();
-		
-		return "/index.gg";
+		return "/common/message.jsp";
 	}
 
 	@Override

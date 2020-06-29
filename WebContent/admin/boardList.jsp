@@ -32,19 +32,20 @@
 			<b>게시판관리</b>
 		</div>
 	</div>
-	<p style="font-size: 18.7px; font-weight: bold; margin-top: 15px;">
-		<%if(code=="F"){ %>
-		자유게시판
-		<%}else if(code=="E"){%>
-		기타게시판
-		<%} %></p> <!-- 억지로맞춤 -->
+	
+	<%if(code.equals("F")){ %>
+		<h3>자유게시판</h3>	
+	<%}else if(code.equals("E")){%>
+		<h3>기타게시판</h3>	
+	<%} %>
+	
 	<div style="text-align: right; margin: 0px 10px 10px 10px;">
-		<input type="Button" value="게시판 선택 페이지" onclick="location.href='admin/boardSelect.jsp'" />  
+		<input type="Button" value="게시판 선택 페이지" onclick="location.href='<%=request.getContextPath() %>/admin/boardSelect.jsp'" />  
 	</div>
 	<div>
 	<table class="boardBox"
 		style="border-top :1px solid gray; border-bottom: 1px solid gray;
-			font-size: 90%; border-collapse: collapse; margin-left: 10px; margin-right: 10px">
+			font-size: 100%; border-collapse: collapse; margin-left: 10px; margin-right: 10px">
 		<colgroup>
 			<col style="width:80px;" />
 			<col style="width:120px;" />
@@ -80,7 +81,9 @@
 						<td><%=dto.getViews() %></td>
 						<%if(code.equals("F")){%>
 						<td>자유게시판</td>
-						<%}%>
+						<%}else if(code.equals("E")){%>
+						<td>기타게시판</td>
+						<%} %>
 						
 					</tr>
 					
@@ -88,7 +91,8 @@
 			}%>
 			  	<!--반복처리 끝  -->
 		  </tbody>
-	</table>	   
+	</table>
+		   
 	</div>
 
 

@@ -69,7 +69,7 @@ public class LoginOKController implements Controller{
 				}
 				
 				msg=vo.getName()+ "님 로그인되었습니다.";
-				url="/index/index.gg";
+				url="/index.gg";
 			}else if(result==LoginService.PWD_DISAGREE){
 				msg="비밀번호가 일치하지 않습니다.";
 			}else if(result==LoginService.ID_NONE){
