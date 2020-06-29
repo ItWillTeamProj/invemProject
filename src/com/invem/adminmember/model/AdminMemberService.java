@@ -23,7 +23,7 @@ public class AdminMemberService {
 		return adminMemberDao.updateMember(dto);
 	}
 	
-	public String checkAdminPwd(String userid) throws SQLException {
-		return adminMemberDao.checkAdminPwd(userid);
+	public String selectAdminPwd(String id) throws SQLException {
+		return adminMemberDao.selectAdminPwd(id);
 	}
 }

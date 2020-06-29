@@ -102,7 +102,7 @@ $('#toBlog').click(function(){
 		</colgroup>
 		<tr>
 			<th style = "text-align: center">번호</th>
-			<th>제목</th>
+			<th style = "text-align: center">제목</th>
 			<th style = "text-align: center">작성자</th>
 			<th style = "text-align: center">작성일</th>
 			<th style = "text-align: center">조회</th>

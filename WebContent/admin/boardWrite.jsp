@@ -9,13 +9,13 @@
 		});
 		
 		$('form[name = frmWrite]').submit(function(){
-			if($('#adminpwd').val()==''){
+			if($('#apwd').val()==''){
 				alert('관리자 비밀번호을 입력하세요');
-				$('#adminpwd').focus();
+				$('#apwd').focus();
 				event.preventDefault();
-			}else if($('#boardpwd').val()==''){
+			}else if($('#bpwd').val()==''){
 				alert('게시물 비밀번호을 입력하세요');
-				$('#boardpwd').focus();
+				$('#bpwd').focus();
 				event.preventDefault();
 			}else if($('#title').val()==''){
 				alert('제목을 입력하세요');
@@ -39,7 +39,7 @@
 			</div>
 		</div>
 		
-		<div class="divForm">
+		<div>
 			<form name="frmWrite" method="post" action="boardWrite_ok.jsp" >
 				<div>
 				<table style="font-size: 100%; border-collapse: collapse; margin-left:10px;
@@ -52,15 +52,15 @@
 					
 					<tr>
 						<td>관리자 아이디</td>
-						<td><input type="text" readonly id="id" name="id" value="id"/></td>
+						<td><input type="text" readonly id="id" name="id" value="admin"/></td>
 					</tr>
 					<tr>
 						<td>관리자 비밀번호</td>
-						<td><input type="password" id="inputadminpwd" name="apwd"/></td>
+						<td><input type="password" id="apwd" name="apwd"/></td>
 					</tr>
 					<tr>
 						<td>게시물 비밀번호</td>
-						<td><input type="password" id="inputboardpwd" name="bpwd"/></td>
+						<td><input type="password" id="bpwd" name="bpwd"/></td>
 					</tr>					
 					<tr>
 						<td>제목</td>
