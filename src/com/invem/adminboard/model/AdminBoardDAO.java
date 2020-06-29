@@ -8,7 +8,6 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.invem.adminmember.model.AdminMemberDTO;
 import com.invem.db.ConnectionPoolMgr2;
 
 public class AdminBoardDAO {
@@ -16,6 +15,35 @@ public class AdminBoardDAO {
 	
 	public AdminBoardDAO() {
 		pool = new ConnectionPoolMgr2();
+	}
+	
+	public int insertBoard(AdminBoardDTO dto) throws SQLException {
+		
+		Connection con=null;
+		PreparedStatement ps=null;
+		
+		try {
+			//1,2
+			con=pool.getConnection();
+			
+			//3
+			String sql="insert into board(no, userid, pwd, title, describe, cat_code)" + 
+					" values(board_seq.nextval, ?, ?, ?, ?, ?)";
+			ps=con.prepareStatement(sql);
+			
+			ps.setString(1, dto.getUserid());
+			ps.setString(2, dto.getPwd());
+			ps.setString(3, dto.getTitle());
+			ps.setString(4, dto.getDescribe());
+			ps.setString(5, dto.getCat_code());
+			
+			int cnt=ps.executeUpdate();
+			System.out.println("게시물 등록 결과, cnt="+cnt+", 매개변수 dto="+dto);
+			
+			return cnt;
+		}finally {
+			pool.dbClose(con, ps);
+		}
 	}
 	
 	public List<AdminBoardDTO> selectAll(String code) throws SQLException{

@@ -11,6 +11,10 @@ public class AdminBoardService {
 		adminBoardDao =new AdminBoardDAO();
 	}
 	
+	public int insertBoard(AdminBoardDTO dto) throws SQLException {
+		return adminBoardDao.insertBoard(dto);
+	}
+	
 	public List<AdminBoardDTO> selectAll(String code) throws SQLException{
 		return adminBoardDao.selectAll(code);
 	}
