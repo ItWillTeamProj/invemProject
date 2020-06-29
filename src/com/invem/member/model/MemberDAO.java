@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.herbmall.member.model.MemberVO;
 import com.invem.db.ConnectionPoolMgr2;
 import com.invem.login.model.LoginService;
 import com.invem.member.model.MemberDTO;
@@ -110,8 +109,8 @@ private ConnectionPoolMgr2 pool;
 				vo.setCaution(rs.getInt("caution"));
 				vo.setDateofbirth(rs.getString("dateofbirth"));
 				vo.setNickname(rs.getString("nickname"));
-				vo.setPhoneno("phoneno");
-				vo.setSum_name("sum_name");
+				vo.setPhoneno(rs.getString("phoneno"));
+				vo.setSum_name(rs.getString("sum_name"));
 				
 			}
 			
@@ -130,7 +129,7 @@ private ConnectionPoolMgr2 pool;
 			con = pool.getConnection();
 			
 			String sql = "update member"
-					+ " set zipcode=?, address=?, email=?, nickname=?, sum_name=?"
+					+ " set zipcode=?, address=?, email=?, nickname=?, sum_name=?, DATEOFBIRTH=?, phoneno=?"
 					+ " where userid=?";
 			ps = con.prepareStatement(sql);
 			
@@ -139,6 +138,8 @@ private ConnectionPoolMgr2 pool;
 			ps.setString(3, vo.getEmail());
 			ps.setString(4, vo.getNickname());
 			ps.setString(5, vo.getSum_name());
+			ps.setString(6, vo.getDateofbirth());
+			ps.setString(7, vo.getPhoneno());
 			ps.setString(6, vo.getUserid());
 			
 			int cnt = ps.executeUpdate();

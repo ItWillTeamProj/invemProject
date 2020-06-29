@@ -32,6 +32,7 @@ public class DetailController implements Controller{
 		ChampionVO cVo = null;
 		List<AbilityVO> list = null;
 		List<BoardVO> bdList = null;
+		
 		String resource = request.getSession().getServletContext().getRealPath("/config/preview.properties");
 		resource = "preview.properties";
 		System.out.println(resource);

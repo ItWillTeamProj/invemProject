@@ -17,7 +17,6 @@
 <html>
 <head>
 <meta charset="utf-8">
-<script type ="text/javascript" src = "../js/bootstrap/bootstrap.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -138,13 +137,13 @@ html{
 		    			<span style="padding-left: 5px; vertical-align:sub; margin-right: 10px;">로그인</span>
 	    			</button>
 
-					<li style="font-size:12.5px; margin-top:5px;" color=black ;>
+					<div style="font-size:12.5px; margin-top:10px; color=black; text-align: center;">
 					<a href="<%=request.getContextPath()%>/login/agreement.gg" style="margin-left:2px;">회원가입</a>
-					<a href="<%=request.getContextPath()%>/login/munhi.gg" style="margin-left:15px;">아이디·비밀번호찾기</a></li>
+					<a href="<%=request.getContextPath()%>/login/munhi.gg" style="margin-left:15px;">아이디·비밀번호찾기</a></div>
 				<br>
 				</div>
 			<%}else{ %>
-				<div style="overflow: hidden; text-align: center;">
+				<div id="InfoDesk">
 					<c:if test="${!empty smVo }">
 						<img id="tier" alt="<%=lgVo.getTier()%>" src="<%=request.getContextPath() %>/images/tier/<%=lgVo.getTier().toLowerCase()%>.png"/>
 						<div class="userInfo">
@@ -158,7 +157,6 @@ html{
 					<c:if test="${empty smVo }">
 						<img id="tier" src="<%=request.getContextPath() %>/images/tier/1445.png"/>
 						<p class="userInfo">일치하는 소환사 명이 없습니다.</p>
-						<a>소환사 명 입력하기</a>
 					</c:if>
 			   		<div style="font-size:15px; clear: both; color=black;">
 						<a href="<%=request.getContextPath()%>/login/logout.gg" style="padding-right: 10px;">로그아웃</a>
