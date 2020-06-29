@@ -1,4 +1,4 @@
-package com.invem.board.controller;
+package com.invem.reply.controller;
 
 import java.sql.SQLException;
 
@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.invem.board.model.BoardService;
 import com.invem.controller.Controller;
 
-public class BoardDeleteController implements Controller{
+public class ReplyDeleteController implements Controller{
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -18,7 +18,7 @@ public class BoardDeleteController implements Controller{
 		String cnt = request.getParameter("cnt");
 		BoardService boardServ = new BoardService();
 		
-		String msg = "비밀번호가 틀립니다.", url = "/board/deleteNonuser.gg?no="+no+"&code="+code+"&cnt=";
+		String msg = "비밀번호가 틀립니다.", url = "/reply/replyDelNonuser.gg?no="+no+"&code="+code+"&cnt=";
 		try {
 			if(boardServ.checkReplyPwd(Integer.parseInt(no), pwd)) {
 				msg = "비밀번호 일치 삭제합니다.";
@@ -38,8 +38,9 @@ public class BoardDeleteController implements Controller{
 
 	@Override
 	public boolean isRedirect() {
+		// TODO Auto-generated method stub
 		return false;
 	}
 	
-	
+
 }

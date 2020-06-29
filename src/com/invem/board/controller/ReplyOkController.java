@@ -32,6 +32,7 @@ public class ReplyOkController implements Controller{
 		vo.setReply(reply);
 		vo.setStep(1);
 		vo.setGroupno(Integer.parseInt(user_no));
+		vo.setPwd(pwd);
 		
 		BoardService boardServ = new BoardService();
 		int cnt = 0;

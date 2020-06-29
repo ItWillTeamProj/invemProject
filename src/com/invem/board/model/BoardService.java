@@ -72,4 +72,12 @@ public class BoardService {
 	public int boardDelete(int no, String code) throws SQLException {
 		return dao.boardDelete(no, code);
 	}
+	
+	public int replyDelete(int no, String code) throws SQLException {
+		return dao.replyDelete(no, code);
+	}
+	
+	public boolean checkReplyPwd(int no, String pwd) throws SQLException {
+		return dao.checkReplyPwd(no, pwd);
+	}
 }

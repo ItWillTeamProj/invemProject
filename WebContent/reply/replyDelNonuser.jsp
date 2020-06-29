@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <%
 	String no = request.getParameter("no");
 	String code = request.getParameter("code");
@@ -33,12 +32,11 @@ $(function(){
 		}
 	});
 });
-
 </script>
 </head>
 <body>
-<form name = "frmCheckPwd" method="post" action="<%=request.getContextPath()%>/board/boardDelete.gg">
-	<p>글 작성 시 비밀번호 입력</p>
+<form name = "frmCheckPwd" method="post" action="<%=request.getContextPath()%>/reply/replyDelete.gg">
+	<p>댓글 작성 시 비밀번호 입력</p>
 	<input type = "password" name = "pwd" id = "pwd" size = "30"><br>
 	<input type = "hidden" name = "no" value = "<%=no %>">
 	<input type = "hidden" name = "code" value = "<%=code %>">
@@ -50,5 +48,3 @@ $(function(){
 </form>
 </body>
 </html>
-
-
