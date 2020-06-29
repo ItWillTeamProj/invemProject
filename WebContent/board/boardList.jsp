@@ -17,6 +17,10 @@
 	List <BoardVO> list = (List<BoardVO>)request.getAttribute("list");
 	PagingVO pageVo = (PagingVO)request.getAttribute("pageVo");
 	String code = (String)request.getParameter("code");
+	String rowNum = request.getParameter("rowNum");
+	if(rowNum == null || rowNum.isEmpty()){
+		rowNum = "10";
+	}
 	
 	int num = pageVo.getNum();	//페이지당 시작 글 번호가 될수도 있지만 게시판별로
 	// 나눴을때 num + 1 로 no를 대체할 수 있다.
@@ -29,38 +33,30 @@
 $(function(){
 	$('#rowNum').change(function(){
 		var pageRow = $('#rowNum option:selected').val();
-		location.href = "<%=request.getContextPath()%>/board/boardList.gg?rowNum="+pageRow;
+		location.href = "<%=request.getContextPath()%>/board/boardList.gg?rowNum="+pageRow+"&code="+"<%=code%>";
 	});
 	
 	$('#all').click(function(){
 		location.href = "<%=request.getContextPath()%>/board/boardList.gg";
 	});
-	
 
-	
-});
-
-$('#toblog').click(function(){
-	var sId = (this).html();
+$('#toBlog').click(function(){
+	var sId = $('#uId').html();
 	$('#blogId').html(sId);
+	window.open('<%=request.getContextPath()%>/blog/blog.gg?userid='+sId, 'viewer', 'width=1000, height=700');
+});
 });
 
 
-function postPopUp(formName) {
-	var check=document.form2;
-	frm = document.getElementById(formName);
-	window.open('<%=request.getContextPath()%>/blog/blog.gg', 'viewer', 'width=1000, height=700');
-	frm.action = "<%=request.getContextPath()%>/blog/blog.gg";
-	frm.target = "form";
-	frm.method = "post";
-	frm.submit();
-}
+
+
 </script>
 <link rel="stylesheet" href="../css/bootstrap/bootstrap.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 <article>
 	<%
 	String boardName = "";
@@ -76,16 +72,20 @@ function postPopUp(formName) {
 		<%break;
 	}
 	%>
-	<h3><%=boardName %></h3>
-
+	<div class="title">
+		<h2><%=boardName %></h2>
+	</div>
 	
 	<div style = "margin-right: 20px;">
 		<input type = "button" value = "전체글" id = "all"><input type = "button" value = "인기글" id = "best" ><input type = "button" value = "공지" id = "notice">
-		<span style = "float: right"><a href = "<%=request.getContextPath()%>/board/boardWrite.gg"><img src="<%=request.getContextPath()%>/images/writeIcon.png" style="width: 20px; height: auto"></a></span><!-- 추후 아이콘으로 대체 예정 -->
+		<span style = "float: right"><a href = "<%=request.getContextPath()%>/board/boardWrite.gg?code=<%=code%>"><img src="<%=request.getContextPath()%>/images/writeIcon.png" style="width: 20px; height: auto"></a></span><!-- 추후 아이콘으로 대체 예정 -->
 		<select style = "float: right; margin-right: 10px" id = "rowNum">
-			<option value = "10">10개</option>
-			<option value = "20">20개</option>
-			<option value = "50">50개</option>
+			<option value = "10" <%if(rowNum.equals("10")){ %>
+			selected="selected"<%} %>>10개</option>
+			<option value = "20" <%if(rowNum.equals("20")){ %>
+			selected="selected"<%} %>>20개</option>
+			<option value = "50" <%if(rowNum.equals("50")){ %>
+			selected="selected"<%} %>>50개</option>
 		</select>
 	</div><br>
 
@@ -138,7 +138,7 @@ function postPopUp(formName) {
 						<span class="badge badge-pill badge-primary">new</span>
 						<%} %>
 						</a></td>
-						<td style = "text-align: center"><a href = "#" onclick="javascript:postPopUp('this.form');" id = "toBlog"><%=vo.getUserid() %></a></td>
+						<td style = "text-align: center"><a href = "#" class = "aSelect" id = "uId"><%=vo.getUserid() %></a></td>
 				<%}%>
 						<td style = "text-align: center;"><%=sdf.format(vo.getRegdate()) %></td>
 						<td style = "text-align: center;"><%=vo.getViews() %></td>
@@ -208,7 +208,13 @@ function postPopUp(formName) {
 테스트값2&nbsp;<input type="text" name="test2" value="aa"><br><br>
 
 </form>
-    
+ <div id="divLangSelect" style="background: #fff0">
+<ul id="menu">
+  <li><div id = "toBlog">블로그 가기</div></li>
+  <li><div>작성글, 댓글보기</div></li>
+  <li><div>댓글 삭제</div></li>
+</ul>
+</div>   
 </article>
 
 <script type ="text/javascript" src = "../js/bootstrap/bootstrap.js"></script> 

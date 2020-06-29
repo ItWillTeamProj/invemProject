@@ -24,7 +24,7 @@ public class DetailController implements Controller{
 		
 		String no = request.getParameter("no");
 		
-		//코드를 받아와서 게시판의 이름을 적는다 일단 페이지 확인때문에 code임의로 F로 넣음
+		//코드를 받아와서 게시판의 이름을 적는다 
 		String code = request.getParameter("code");
 		BoardService boardServ = new BoardService();
 		int replyCount = 0;

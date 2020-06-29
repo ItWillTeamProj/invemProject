@@ -15,15 +15,20 @@ public class ListController implements Controller{
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		
+		String[] role = request.getParameterValues("role");
+		String[] skill = request.getParameterValues("skill");
+		
 		ChampionService service = new ChampionService();
 		List<ChampionVO> list = null;
 		try {
-			list = service.searchAll();
+			list = service.searchAll(role, skill);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
 		request.setAttribute("champList", list);
+		request.setAttribute("role", role);
+		request.setAttribute("skill", skill);
 		return "/champion/list.jsp";
 	}
 

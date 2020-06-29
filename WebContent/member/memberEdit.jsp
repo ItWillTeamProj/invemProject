@@ -32,12 +32,7 @@
 		clear: left;		
 		font-weight: bold;
 		}
-body{
-		background-repeat:no-repeat;
-		background-image: url('<%=request.getContextPath() %>/images/backimage.jpg');
-		background-color: white;
-		background-attachment: fixed;
-	}
+
 </style>
 <article>
 <div class="divForm">

@@ -15,25 +15,33 @@
 	userid = (String)request.getAttribute("userid");
 	String no = request.getParameter("no");
 	
+	
 	int replyCount = (int)request.getAttribute("replyCount");
 	
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	
 %>
 <link rel="stylesheet" href="../css/bootstrap/bootstrap.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script type="text/javascript" src = "../js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 $(function(){
 	$('#list').click(function(){
 		location.href = "<%=request.getContextPath()%>/board/boardList.gg?code=<%=code%>";
 	});
 	
+	if("<%=vo.getUserid()%>" != "" && "<%=vo.getUserid()%>" != "unknown" && "<%=vo.getUserid()%>" != "<%=userid%>"){
+		$('#delete').css("display", "none");
+	}
+	
+	if("<%=vo.getUserid()%>" != "" && "<%=vo.getUserid()%>" != "unknown" && "<%=vo.getUserid()%>" != "<%=userid%>"){
+		$('#edit').css("display", "none");
+	}
+	
 	$('#edit').click(function(){
 		location.href = "<%=request.getContextPath()%>/board/boardEdit.gg?no=<%=no%>&code=<%=code%>";
+	});
+
+	$('#delete').click(function(){
+		location.href = "<%=request.getContextPath()%>/board/boardDelete.gg?no=<%=no%>&code=<%=code%>";
 	});
 });
 </script>
@@ -56,7 +64,10 @@ $(function(){
 	<h3><%=boardName %></h3>	
 	<hr style = "border: 0; height: 2px; background: skyblue">
 	<div>
-		<h4 style = "margin-left: 10px"><%=vo.getTitle() %></h4><a class = "btn btn-default pull-right" id="edit">수정</a>
+		<h4 style = "margin-left: 10px"><%=vo.getTitle() %></h4>
+		<a class = "btn btn-danger pull-right" id="delete">삭제</a>
+		<a class = "btn btn-info pull-right" id="edit">수정</a>
+		
 	</div>
 	<div>
 		<%if(!"unknown".equals(userid) && userid != null && !userid.isEmpty()){%>
@@ -71,8 +82,8 @@ $(function(){
 	<br><hr style = "border: 0; height: 2px; background: skyblue">
 	
 	<div style="width: 100%; height: 200px; text-align: center; float:right">
-		<a href = "#"><img src = "../images/good.jpg" style = "max-width: 100px; max-height:100px;float: left" alt = "추천"/></a>
-		<a href = "#"><img src = "../images/bad.jpg" style = "max-width: 100px; max-height:100px; float: left" alt = "신고"/></a>
+		<a href = "#"><img src = "../images/good.png" style = "max-width: 100px; max-height:100px;float: left" alt = "추천"/></a>
+		<a href = "#"><img src = "../images/bad.png" style = "max-width: 100px; max-height:100px; float: left" alt = "신고"/></a>
 	</div>
 	
 	<%if(list != null && !list.isEmpty()){%>
@@ -106,7 +117,7 @@ $(function(){
 	
 	<form name="frmReply" action="<%=request.getContextPath() %>/board/reply_ok.gg" method="post" >
 	<div>
-	<%if(userid != null && !userid.isEmpty()){%>
+	<%if("unknown".equals(userid) || userid == null || userid.isEmpty()){%>
 		<span style = "float: left; width: 15%">
 			<input type = "text" name = "nonuserid" size = "15" style = "margin-left: 5px; margin-top: 5px" value="닉네임"
 				onfocus="this.value=''">

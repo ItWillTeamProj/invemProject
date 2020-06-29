@@ -40,25 +40,24 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-body {
-	background-repeat: no-repeat;
-	background-image:
-		url('<%=request.getContextPath()%>/images/backimage.jpg');
-	background-color: white;
-	background-attachment: fixed;
-}
-
 form {
 	width: 400px;
 	height: 100px;
 	margin: 10px auto;
 	text-align: center;
 }
+fieldset {
+  min-width: 0;
+  padding: .35em .625em .75em;
+  margin: 0 2px;
+  border:1px solid silver;
+}
+
 </style>
 </head>
 <body>
-	<fieldset
-		style="text-align: center; margin-top: 30px; margin-bottom: 30px; margin-left: 30px; margin-right: 30px; border-radius: 0.5em; border-color: #6db92a; background-color: white;">
+	<fieldset style="text-align: center; margin-top: 30px; margin-bottom: 30px; margin-left: 30px; margin-right: 30px;
+			background-image:url('../images/loginback.jpg')">
 		<div
 			style="margin-left: 30px; border-left-width: 30px; padding-left: 10px; margin-bottom: 5px;">
 			<form name="frmLogin" method="post"
@@ -66,15 +65,14 @@ form {
 				<label style="font-size: x-large; margin-right: 40px;">로그인</label>
 		</div>
 		<fieldset
-			style="margin-top: 30px; margin-left: 120px; margin-right: 120px; border-radius: 0.5em; border-color: #6db92a; background-color: white;">
+			style="margin-left: 120px; margin-right: 120px; border-radius: 0.5em; border-color: #6db92a; background-color: white;">
 			<div>
-				<br> <label for="userid" class="label"
-					style="margin-right: 16px;">아이디</label> <input type="text"
-					name="userid" id="userid" value="<%=ckUserid%>">
+				<br> <label for="userid" style="margin-right: 15px;">아이디</label> 
+				<input type="text" name="userid" id="userid" value="<%=ckUserid%>">
 			</div>
 			<div>
-				<label for="pwd" class="label">비밀번호</label> <input type="password"
-					name="pwd" id="pwd">
+				<label for="pwd">비밀번호</label>
+				<input type="password" name="pwd" id="pwd">
 			</div>
 
 			<div class="align_center">

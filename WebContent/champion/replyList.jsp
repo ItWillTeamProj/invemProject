@@ -9,9 +9,9 @@
 <table id="reply">
 	<colgroup>
 	<col width="10%">
-	<col width="50%">
+	<col width="55%">
 	<col width="15%">
-	<col width="25%">
+	<col width="20%">
 	</colgroup>
 	<tr>
 		<th>번호</th>
