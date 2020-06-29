@@ -45,7 +45,7 @@
 		<input type="Button" value="회원목록" onclick="location.href='memberList.jsp'" /> 
 	</div>	
 	<div>
-		<table style="font-size: 90%; border-collapse: collapse; margin-left:10px;
+		<table style="font-size: 100%; border-collapse: collapse; margin-left:10px;
 			width:700px;">
 			<tr style="background:white; border-top:1px solid gray;">
 				<td style="padding-left: 30px;">아이디</td>

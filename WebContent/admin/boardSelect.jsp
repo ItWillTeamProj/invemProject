@@ -19,7 +19,9 @@
 	<p style="font-size: 18.7px; font-weight: bold; margin-top: 15px;">게시판종류</p> <!-- 억지로맞춤 -->	
 	<a href="<%=request.getContextPath()%>/admin/boardList.jsp?code=<%="F"%>"><div>자유게시판</div></a>
 	<a href="<%=request.getContextPath()%>/admin/boardList.jsp?code=<%="E"%>"><div>기타게시판</div></a>
-		
+	<div style="text-align: right; margin: 10px;">
+		<input type="Button" value="게시물작성" onclick="location.href='boardWrite.jsp'" />
+	</div>	
 		
 		
 		
