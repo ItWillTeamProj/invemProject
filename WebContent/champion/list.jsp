@@ -3,24 +3,54 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../inc/top.jsp"%>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" ></script>
-<link href="https://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
-<link href="../css/champion/champList.css" type="text/css" rel="stylesheet" >
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<link href='<c:url value="/css/champion/champList.css"/>' type="text/css" rel="stylesheet" >
 
 <%
 	List<ChampionVO> champList = (List)request.getAttribute("champList");
 	String[] legend = {"all", "ㄱ", "ㄴ", "ㄷ", "ㄹ", "ㅁ", "ㅂ", 
 			"ㅅ", "ㅇ", "ㅈ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ"};
 	int numOfRow = 7;
+	
+	String[] role = (String[])request.getAttribute("role");
+	String[] skill = (String[])request.getAttribute("skill");
 %>
 <script type="text/javascript">
 	$(function() {
+		<%if(role != null && role.length >0){%>
+		$("input[name=role]").each(function() {
+			<%for(int i = 0; i < role.length; i++){%>
+				if($(this).val() == '<%=role[i]%>'){
+					$(this).attr("checked","checked");
+					console.log = $(this).val();
+					console.log = '<%=role[i]%>';
+				}
+			<%}%>
+		});
+		<%}%>
+		<%if(skill != null && skill.length >0){%>
+			$("input[name=skill]").each(function() {
+				<%for(int i = 0; i < skill.length; i++){%>
+					if($(this).val() == '<%=skill[i]%>'){
+						console.log = $(this).val();
+						console.log = '<%=skill[i]%>';
+						$(this).attr("checked","checked");
+					}
+				<%}%>
+			});
+		<%}%>
+		
 		$("#champList .sel").tooltip({
 			content: function() {
 		        return $(this).prop('title');
 		   }
 		});
+		
+		$("input[type=checkbox]").change(function(){
+	        this.form.submit();
+	    });
 	});
+	
 	
 	function detail(no) {
 		location.href = "detail.gg?no=" + no;
@@ -30,42 +60,38 @@
 		<h2>챔피언 정보</h2>
 	</div>
 		<!-- 검색 상자 테이블 -->
-		<form action="champianList.jsp" method="post" name="frmSearch">
+		<form action="<c:url value='/champion/list.gg'/>" method="post" name="frmSearch">
 		<div id="filter">
 			<div>
 				<label class="label">역할 필터</label>
-				<input type="checkbox" name="role" value="warrior">전사
-				<input type="checkbox" name="role" value="tanker">탱커 <input
-				type="checkbox" name="role" value="assassin">암살자 <input
-				type="checkbox" name="role" value="mage">마법사 <input
-				type="checkbox" name="role" value="adCarry">원거리 <input
-				type="checkbox" name="role" value="supporter">서포터
+				<input type="checkbox" name="role" value="전사">전사
+				<input type="checkbox" name="role" value="탱커">탱커 <input
+				type="checkbox" name="role" value="암살자">암살자 <input
+				type="checkbox" name="role" value="마법사">마법사 <input
+				type="checkbox" name="role" value="원거리">원거리 <input
+				type="checkbox" name="role" value="서포터">서포터
 			</div>
 			<div>
 				<label class="label">스킬 필터</label>
 				<div class="skil">
-				<input type="checkbox" name="skill" value="airborne">띄우기
-					<input type="checkbox" name="skill" value="blind">실명 <input
-					type="checkbox" name="skill" value="escape">탈출 <input
-					type="checkbox" name="skill" value="fear">공포 <input
-					type="checkbox" name="skill" value="heal">치유 <input
-					type="checkbox" name="skill" value="fling">던지기 <input
-					type="checkbox" name="skill" value="knockBack">밀치기 <input
-					type="checkbox" name="skill" value="scout">정찰<br>
-				<input type="checkbox" name="skill" value="shield">보호막 <input
-					type="checkbox" name="skill" value="slience">침묵 <input
-					type="checkbox" name="skill" value="slow">둔화 <input
-					type="checkbox" name="skill" value="bind">속박 <input
-					type="checkbox" name="skill" value="ascendancy">제압 <input
-					type="checkbox" name="skill" value="hide">은신 <input
-					type="checkbox" name="skill" value="faint">기절 <input
-					type="checkbox" name="skill" value="taunt">도발
+				<input type="checkbox" name="skill" value="띄우기">띄우기
+					<input type="checkbox" name="skill" value="실명">실명 <input
+					type="checkbox" name="skill" value="탈출">탈출 <input
+					type="checkbox" name="skill" value="공포">공포 <input
+					type="checkbox" name="skill" value="치유">치유 <input
+					type="checkbox" name="skill" value="던지기">던지기 <input
+					type="checkbox" name="skill" value="밀치기">밀치기 <input
+					type="checkbox" name="skill" value="정찰">정찰<br>
+				<input type="checkbox" name="skill" value="보호막">보호막 <input
+					type="checkbox" name="skill" value="침묵">침묵 <input
+					type="checkbox" name="skill" value="둔화">둔화 <input
+					type="checkbox" name="skill" value="속박">속박 <input
+					type="checkbox" name="skill" value="제압">제압 <input
+					type="checkbox" name="skill" value="은신">은신 <input
+					type="checkbox" name="skill" value="기절">기절 <input
+					type="checkbox" name="skill" value="도발">도발
 				</div>
 			</div>
-		</div>
-		<div id="searchDiv">
-			<label id="searchChamp"  class="label">챔피언 검색</label> <input type="text"
-				name="champSearch" /> <input type="button" class="bt1" value="초기화" />
 		</div>
 		<div id=champs>
 			<%for (int i = 0; i < legend.length; i++) {	%>

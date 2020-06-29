@@ -100,6 +100,7 @@
 <ul id="menu">
   <li><div><a>블로그 가기</a></div></li>
   <li><div><a>작성글, 댓글보기</a></div></li>
+  <li><div><a >댓글 수정</a></div></li>
   <li><div><a>댓글 삭제</a></div></li>
 </ul>
 </div>

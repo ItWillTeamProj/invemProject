@@ -19,4 +19,7 @@ public class ChampionService {
 		return dao.searchByNo(no);
 	}
 		
+	public List<ChampionVO> searchAll(String[] role, String[] skill) throws SQLException{
+		return dao.searchAll(role, skill);
+	}
 }
