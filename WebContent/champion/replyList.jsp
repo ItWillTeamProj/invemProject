@@ -28,7 +28,11 @@
 				<td>${num }</td>
 				<td class="row1">${bdVo.title }</td>
 				<td><a class="aSelect">${bdVo.userid }</a></td>
-				<td><fmt:formatDate value="${bdVo.regdate }" pattern="yyyy-MM-dd"/></td>
+				<td><fmt:formatDate value="${bdVo.regdate }" pattern="yyyy-MM-dd"/>
+				<span>
+				<!-- 삭제버튼 -->
+				<a href="#"><img alt="삭제" src="" style="margin-left: 20px;"></a>
+				</span></td>
 			</tr>
 			<tr class="content1"><td colspan="4">${bdVo.describe }</td></tr>
 			<c:set var="curPos" value="${curPos + 1 }"></c:set>

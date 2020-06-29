@@ -1,7 +1,12 @@
+<%@page import="com.invem.common.LeagueVO"%>
+<%@page import="com.invem.common.SummonerVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	String userid=(String)session.getAttribute("userid");
+	SummonerVO smVo=(SummonerVO)session.getAttribute("smVo");
+	LeagueVO lgVo=(LeagueVO)session.getAttribute("lgVo");
 
 	boolean isLogin=false;
 	if(userid!=null && !userid.isEmpty()){
@@ -13,10 +18,10 @@
 <head>
 <meta charset="utf-8">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/index.css" type="text/css">
 <title>invem_index</title>
 <script type="text/javascript">
@@ -115,12 +120,11 @@ html{
 	<!-- end .header -->
 
 	<div class="sidebar1">
-		<div style="background: whitesmoke; padding-top: 7px; width:240px; height:125px;">
-	 	<span style="margin-left:45px;">리그오브레전드 인뱀</span><br>
+		<div style="background: whitesmoke; padding-top: 7px; width:240px;">
 			<%if(!isLogin){ %>
 				<div style="margin-left: 9px;">
-					<button onclick="location.href='../login/login.gg'">
-		    			<img src="../images/invemlogin.png">
+					<button style="margin-top: 15px;" onclick="location.href='<%=request.getContextPath() %>/login/login.gg'">
+		    			<img src="<%=request.getContextPath() %>/images/invemlogin.png">
 		    			<span style="padding-left: 5px; vertical-align:sub; margin-right: 10px;">로그인</span>
 	    			</button>
 
@@ -130,11 +134,23 @@ html{
 				<br>
 				</div>
 			<%}else{ %>
-				<div>
-					<img alt="브론즈" src="../images/bronze.png"/>
-			   		<div style="font-size:10px" color=black;>
-						<li><a href="<%=request.getContextPath()%>/login/logout.gg" style="margin-left: 4px;">로그아웃</a>
-						<a href="<%=request.getContextPath()%>/member/memberEdit.gg" style="margin-left: 45px;">회원정보수정</a></li>
+				<div style="overflow: hidden; text-align: center;">
+					<c:if test="${!empty smVo }">
+						<img id="tier" alt="<%=lgVo.getTier()%>" src="<%=request.getContextPath() %>/images/tier/<%=lgVo.getTier().toLowerCase()%>.png"/>
+						<div id="userInfo">
+							<p>아이디 : <%=userid %></p>
+							<p>소환사 명 : <%=smVo.getName() %></p>
+							<p>레벨 : <%=smVo.getSummonerLevel() %></p>
+							<p>티어 : <%=lgVo.getTier() %></p>
+							<p>랭크 : <%=lgVo.getRank() %></p>
+						</div>
+					</c:if>
+					<c:if test="${empty smVo }">
+						<p>일치하는 소환사 명이 없습니다.</p>
+					</c:if>
+			   		<div style="font-size:15px; clear: both;" color=black;>
+						<a href="<%=request.getContextPath()%>/login/logout.gg" style="padding-right: 10px;">로그아웃</a>
+						<a href="<%=request.getContextPath()%>/member/memberEdit.gg">회원정보수정</a>
 			  	 	</div>
 				</div>
 			<%} %>

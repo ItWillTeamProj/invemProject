@@ -7,6 +7,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.invem.common.LeagueInfo;
+import com.invem.common.LeagueVO;
+import com.invem.common.SummonerInfo;
+import com.invem.common.SummonerVO;
 import com.invem.controller.Controller;
 import com.invem.login.model.LoginService;
 import com.invem.member.model.MemberDTO;
@@ -22,14 +28,31 @@ public class LoginOKController implements Controller{
 		String saveId=request.getParameter("saveId");
 		
 		LoginService serv = new LoginService();
+		HttpSession session = request.getSession();
 		
 		String msg="로그인 처리 실패!", url="/login/login.gg";
 		try{
 			int result=serv.loginCheck(userid, pwd);
 			if(result==LoginService.LOGIN_OK){ 
 				MemberDTO vo=serv.selectMember(userid);
-
-				HttpSession session = request.getSession();
+				
+				Gson gson = new GsonBuilder().create();
+				if(vo.getSum_name() != null && !vo.getSum_name().isEmpty()) {
+					
+					String sInfo = SummonerInfo.search(vo.getSum_name());
+					
+					SummonerVO smVo = null;
+					LeagueVO lgVo = null;
+					if(sInfo.indexOf("message") == -1) {
+						smVo = gson.fromJson(sInfo, SummonerVO.class);
+						
+						String lInfo = LeagueInfo.search(smVo.getId());
+						lgVo = gson.fromJson(lInfo, LeagueVO.class);
+					}
+					session.setAttribute("smVo", smVo);
+					session.setAttribute("lgVo", lgVo);
+				}
+				
 				session.setAttribute("userid", userid);
 				session.setAttribute("userName", vo.getName());
 
