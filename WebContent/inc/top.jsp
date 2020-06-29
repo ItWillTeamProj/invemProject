@@ -56,6 +56,15 @@
 	    }
 
 	  });
+		
+		$('#logout').click(function(){
+			var logout = confirm("로그아웃 하시나요?");
+			if(logout){
+				location.href="<%=request.getContextPath()%>/login/logout.gg";
+			}else{
+				alert("잘 생각하셨습니다.");
+			}
+		});
 	});
 </script>
 </head>
@@ -131,9 +140,9 @@ html{
 				</div>
 			<%}else{ %>
 				<div>
-					<img alt="브론즈" src="../images/bronze.png"/>
+					<img alt="브론즈" src="<%=request.getContextPath() %>/images/bronze.png"/>
 			   		<div style="font-size:10px" color=black;>
-						<li><a href="<%=request.getContextPath()%>/login/logout.gg" style="margin-left: 4px;">로그아웃</a>
+						<li><a href="#" style="margin-left: 4px;" id = "logout">로그아웃</a>
 						<a href="<%=request.getContextPath()%>/member/memberEdit.gg" style="margin-left: 45px;">회원정보수정</a></li>
 			  	 	</div>
 				</div>

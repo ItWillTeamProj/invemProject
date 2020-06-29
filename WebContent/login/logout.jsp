@@ -7,9 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%
-	session.invalidate();
-	response.sendRedirect("../login/login.jsp");
-%>
+	<%
+		session.invalidate();
+		response.sendRedirect("../login/login.jsp");
+	%>
 </body>
 </html>
