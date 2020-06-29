@@ -52,15 +52,15 @@
 					
 					<tr>
 						<td>관리자 아이디</td>
-						<td><input type="text" readonly id="id" name="id" value="admin"/></td>
+						<td><input type="text" readonly id="id" name="id" value="id"/></td>
 					</tr>
 					<tr>
 						<td>관리자 비밀번호</td>
-						<td><input type="password" id="adminpwd" name="adminpwd"/></td>
+						<td><input type="password" id="inputadminpwd" name="apwd"/></td>
 					</tr>
 					<tr>
 						<td>게시물 비밀번호</td>
-						<td><input type="password" id="boardpwd" name="boardpwd"/></td>
+						<td><input type="password" id="inputboardpwd" name="bpwd"/></td>
 					</tr>					
 					<tr>
 						<td>제목</td>

@@ -68,6 +68,34 @@ public class AdminMemberDAO {
 		
 	}
 	
+	public String checkAdminPwd(String userid) throws SQLException {
+		Connection con=null;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		
+		String pwd="";
+		try {
+			//1,2
+			con=pool.getConnection();
+			
+			//3
+			String sql="select pwd from member"
+					 +" where userid=?";
+			ps=con.prepareStatement(sql);
+			ps.setString(1, userid);
+			
+			rs=ps.executeQuery();
+			
+			pwd = rs.getString("pwd");
+			
+			System.out.println("매개변수 userid : ="+userid+", pwd="+pwd);
+			
+			return pwd;
+		}finally {
+			pool.dbClose(con, ps, rs);
+		}
+	}
+	
 	
 	public AdminMemberDTO selectByUserid(String userid) throws SQLException {
 		

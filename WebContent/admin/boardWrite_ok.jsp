@@ -1,3 +1,4 @@
+<%@page import="com.invem.adminmember.model.AdminMemberService"%>
 <%@page import="com.invem.adminboard.model.AdminBoardDTO"%>
 <%@page import="com.invem.adminboard.model.AdminBoardService"%>
 <%@page import="java.sql.SQLException"%>
@@ -18,7 +19,8 @@
 	//1 파라미터
 	
 	String id = request.getParameter("id");
-	String boardpwd = request.getParameter("boardpwd");
+	String apwd = request.getParameter("apwd");
+	String bpwd = request.getParameter("bpwd");
 	String title = request.getParameter("title");
 	String describe = request.getParameter("content");
 	String code = request.getParameter("category");
@@ -26,34 +28,50 @@
 	//2 db작업
 	
 	AdminBoardService adminBoardService = new AdminBoardService();
+	AdminMemberService adminMemberService = new AdminMemberService();
 	AdminBoardDTO dto = new AdminBoardDTO();
 
+	
+	//글작성
 	dto.setUserid(id);
-	dto.setPwd(boardpwd);
+	dto.setPwd(bpwd);
 	dto.setTitle(title);
 	dto.setDescribe(describe);
 	dto.setCat_code(code);
 	
-	int cnt=0;
+	String cpwd="";
 	try{
-		cnt = adminBoardService.insertBoard(dto);	
-	}catch (SQLException e){
+		cpwd = adminMemberService.checkAdminPwd(id);
+	}catch(SQLException e){
 		e.printStackTrace();
 	}
 	
-	//3 결과처리
-	if(cnt>0){%>
+	
+	if(cpwd.equals(apwd)){
+		int cnt=0;
+		try{
+			cnt = adminBoardService.insertBoard(dto);	
+		}catch (SQLException e){
+			e.printStackTrace();
+		}
+		
+		//3 결과처리
+		if(cnt>0){%>
+			<script type="text/javascript">
+				alert('게시물 등록 성공');
+				location.href="boardList.jsp?code=<%=code%>";
+			</script>
+		<%}else{%>
+			<script type="text/javascript">
+				alert('게시물 등록 실패');
+				history.back();
+			</script>
+		<%}
+	}else if(!cpwd.equals(apwd)){%>
 		<script type="text/javascript">
-			alert('게시물 등록 성공');
-			location.href="boardList.jsp?code=<%=code%>";
-		</script>
-	<%}else{%>
-		<script type="text/javascript">
-			alert('게시물 등록 실패');
+			alert('관리자 비밀번호 불일치!');
 			history.back();
 		</script>
-	<%}
-
-%>
+	<%}%>
 </body>
 </html>
