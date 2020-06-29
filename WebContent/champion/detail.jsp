@@ -7,7 +7,8 @@
 <%@ include file="../inc/top.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <%
 	String no = request.getParameter("no");
@@ -17,14 +18,27 @@
 	response.addHeader("X-Frame-Options", "DENY");
 %>
 
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <link rel="stylesheet" href="<%=request.getContextPath()%>/css/champion/detail.css">
 
 <script type="text/javascript">
+
+
 	$(function() {
 		$("#tabs").tabs();
+
+		$(".content1").addClass("contentHide");
+
+		$("#reply .row1").each(function(){
+			$(this).click(function() {
+				$(".content1").not(this).each(function() {
+					$(this).addClass("contentHide");
+				});
+				$(this).parent().next().toggleClass("contentHide");
+			});
+		});
+
 	});
+
 </script>
 <style type="text/css">
 
@@ -37,7 +51,6 @@
 		<ul class="nav nav-tabs">
 		    <li><a href="#tabs-1" class="active">챔피언 정보</a></li>
 		    <li><a href="#tabs-2">능력치</a></li>
-		    <li><a href="#tabs-3">스토리</a></li>
 		  </ul>
 		<div id="tabs-1" style="background-image: url('../images/championSkin/s<%=no%>.jpg');">
 			<div id="icon">
@@ -58,43 +71,39 @@
 		<div id="tabs-2">
 			<c:set var="myArray" value="${fn:split(avility,',')}" />
 			<%@ include file="avilityTable.jsp" %>
-			
+
 			<div class="view"><span>챔피언 소개 영상</span></div>
-		
+
 			<div class="video-container">
 	    		<div class="jetpack-video-wrapper">
 	    		<span class="embed-youtube" style="text-align:center; display: block;">
 	    			<iframe class="youtube-player"
-	    			 src="<%=previewProp.getProperty(no).replace("watch?v=", "embed/").replace("&", "?") %>" 
-	    			 allowfullscreen 
-	    			 style="border: 1px solid #d9e5f7; display: block; margin: 0px; width: 99%; 
-	    			 height: 210px;" 
+	    			 src="<%=previewProp.getProperty(no).replace("watch?v=", "embed/").replace("&", "?") %>"
+	    			 allowfullscreen
+	    			 style="border: 1px solid #d9e5f7; display: block; margin: 0px; width: 99%;
+	    			 height: 210px;"
 	    			 data-ratio="0.5625" data-width="560" data-height="315">
 	   			 	</iframe>
 	   			 </span>
 	   			 </div>
 	 		</div>
 		</div>
-		<div id="tabs-3">
-			<p>Mauris eleifend est et turpis. Duis id erat. Suspendisse
-				potenti. Aliquam vulputate, pede vel vehicula accumsan, mi neque
-				rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante.
-				Class aptent taciti sociosqu ad litora torquent per conubia nostra,
-				per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim
-				commodo pellentesque. Praesent eu risus hendrerit ligula tempus
-				pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus a,
-				lacus.</p>
-			<p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at,
-				semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra
-				justo vitae neque. Praesent blandit adipiscing velit. Suspendisse
-				potenti. Donec mattis, pede vel pharetra blandit, magna ligula
-				faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque.
-				Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi
-				lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean
-				vehicula velit eu tellus interdum rutrum. Maecenas commodo.
-				Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus
-				hendrerit hendrerit.</p>
-		</div>
 	</nav>
+	<div>
+	<%@include file="replyList.jsp" %>
+	<%@include file="replyInsert.jsp" %>
+	</div>
+
+
+<!-- 폼 레이어  -->
+<div id="divLangSelect" style="background: #fff0">
+<ul id="menu">
+  <li><div><a>블로그 가기</a></div></li>
+  <li><div><a>작성글, 댓글보기</a></div></li>
+  <li><div><a >댓글 수정</a></div></li>
+  <li><div><a>댓글 삭제</a></div></li>
+</ul>
+</div>
+<!-- //폼 레이어  -->
 </article>
 <%@ include file="../inc/bottom.jsp"%>

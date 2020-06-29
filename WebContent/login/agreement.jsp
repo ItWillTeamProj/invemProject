@@ -9,30 +9,16 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<style type="text/css">	
-	body{
-		background-repeat:no-repeat;
-		background-image: url('http://upload3.inven.co.kr/upload/2020/06/16/bbs/i13884237924.jpg');
-		background-color: white;
-		background-attachment: fixed;
-	}
-	.agree{
-		text-align: center;
-		margin: 0 auto;
-	}
-	
-	h2.title {
-	    text-align: left;
-	}
-	
-	div txt {
-	    text-align: left;
-	}
-	
-	input {
-		position: relative;
-	}
-	
+<style type="text/css">
+fieldset {
+  min-width: 0;
+  padding: .35em .625em .75em;
+  margin: 0 2px;
+  border:1px solid silver;
+}
+label{
+	font-size:13px;
+}
 
 </style>
 <body>
@@ -54,22 +40,26 @@
 </script>
 
 
-	<article class="agree">
-		<form name="frmAgree" method="post" action="addLogin.gg">
-			<h2 class="title" style="margin-top: 30px;margin-left: 20px;">회원 약관</h2>
+	<article>
+		<form name="frmAgree" method="post" action="signup.gg">
+		<div style="margin-top: 30px; margin-bottom: 30px; margin-left: 30px; margin-right: 30px;">
+		<fieldset style="margin-top: 20px; border-radius: 0.5em;border-color: #6db92a;background-color:white;">
+			<h2 style="background-image:url(); margin-top: 30px;margin-left: 20px; margin-top: 30px;margin-left: 20px;">회원 약관</h2>
 			<div style="text-align: left; margin-left: 30px;border-left-width: 30px;padding-left: 10px;margin-bottom: 5px;">
 				<input type="checkbox" name="chkAgree1" id="chkAgree1">
 				<label for="chkAgree1">(필수)인뱀 이용약관</label>	
 			</div>
-			<p><iframe src="provision.html" width="650" height="250"></iframe></p>
+			<p><iframe src="provision.html" width="600" height="250"></iframe></p>
 			<div style="text-align: left; margin-left: 30px;border-left-width: 30px;padding-left: 10px;margin-bottom: 5px;">
 				<input type="checkbox" name="chkAgree2" id="chkAgree2">
-				<label for="chkAgree2">(필수)개인정보 수집 및 이용 동의</label>
-			</div>
-			<p><iframe src="provision2.html" width="650" height="250"></iframe></p>
-				<div style="margin-bottom: 50px;">
+				<label for="chkAgree2">개인정보 수집 및 이용 동의</label>
+		</div>
+			<p><iframe src="provision2.html" width="600" height="250"></iframe></p>
+				<div style="margin-bottom: 50px;text-align: center; font-size:12px;">
 					<input type="submit" value="회원가입"> <input type="reset" value="돌아가기" onclick="history.back(-1);">
 				</div>	
+			</fieldset>
+		</div>
 		</form>
 	</article>
 </body>
