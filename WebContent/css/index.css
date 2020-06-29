@@ -181,8 +181,14 @@ ul.login li{
 #tier{
 	width: 100px;
 }
-#userInfo{
+.userInfo{
 	color: black;
 	font-size: 0.8em;
 	text-align: left;
+}
+p.userInfo{
+	text-align: center;	
+	color: #b16018;
+	font-size: 0.9em;
+	margin-top: 5px;
 }

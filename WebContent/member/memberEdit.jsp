@@ -6,7 +6,6 @@
 <link rel="stylesheet" type="text/css" href="../css/clear.css" />
 <link rel="stylesheet" type="text/css" href="../css/formLayout.css" />
 <link rel="stylesheet" type="text/css" href="../css/mystyle.css" />
-<script type="text/javascript" src="../js/jquery-3.5.1.min.js" charset="utf-8"></script>
 <script type="text/javascript">
 	$(function(){
 		$('#wr_submit').click(function(){

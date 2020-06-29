@@ -137,7 +137,7 @@ html{
 				<div style="overflow: hidden; text-align: center;">
 					<c:if test="${!empty smVo }">
 						<img id="tier" alt="<%=lgVo.getTier()%>" src="<%=request.getContextPath() %>/images/tier/<%=lgVo.getTier().toLowerCase()%>.png"/>
-						<div id="userInfo">
+						<div class="userInfo">
 							<p>아이디 : <%=userid %></p>
 							<p>소환사 명 : <%=smVo.getName() %></p>
 							<p>레벨 : <%=smVo.getSummonerLevel() %></p>
@@ -146,9 +146,11 @@ html{
 						</div>
 					</c:if>
 					<c:if test="${empty smVo }">
-						<p>일치하는 소환사 명이 없습니다.</p>
+						<img id="tier" src="<%=request.getContextPath() %>/images/tier/1445.png"/>
+						<p class="userInfo">일치하는 소환사 명이 없습니다.</p>
+						<a>소환사 명 입력하기</a>
 					</c:if>
-			   		<div style="font-size:15px; clear: both;" color=black;>
+			   		<div style="font-size:15px; clear: both; color=black;">
 						<a href="<%=request.getContextPath()%>/login/logout.gg" style="padding-right: 10px;">로그아웃</a>
 						<a href="<%=request.getContextPath()%>/member/memberEdit.gg">회원정보수정</a>
 			  	 	</div>
