@@ -207,10 +207,6 @@ $(function(){
 		<input type="hidden" name = "code"value="<%=code %>">
     </form>
     
-<form name="form2" method="post">
-테스트값1&nbsp;<input type="text" name="test1" id = "blogId" ><br>
-
-</form>
  <div id="divLangSelect" style="background: #fff0">
 <ul id="menu">
   <li><div id = "toBlog">블로그 가기</div></li>
