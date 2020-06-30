@@ -100,7 +100,6 @@ public class BoardDAO {
 	public int updateReadCount(int no) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
-		BoardVO vo = null;
 
 		try {
 			con = pool.getConnection();
@@ -247,8 +246,8 @@ public class BoardDAO {
 
 			String sql = "insert into board";
 			if(!"unknown".equals(vo.getUserid())) {
-				sql += "(no, userid, title, describe, cat_code)" +
-						" values(board_seq.nextval, ?, ?, ?, ?)";
+				sql += "(no, userid, title, describe, cat_code, champ_no)" +
+						" values(board_seq.nextval, ?, ?, ?, ?, ?)";
 			}else {
 				sql += "(no, userid, nonuserid, pwd, title, describe, ipaddress, cat_code)" +
 						" values(board_seq.nextval, ?, ?, ?, ?, ?, ?, ?)";
@@ -269,6 +268,7 @@ public class BoardDAO {
 				ps.setString(2, vo.getTitle());
 				ps.setString(3, vo.getDescribe());
 				ps.setString(4, vo.getCat_code());
+				ps.setInt(5, vo.getChamp_no());
 			}
 
 			int cnt = ps.executeUpdate();
@@ -651,7 +651,7 @@ public class BoardDAO {
 				int step = rs.getInt("step");
 				String pwd = rs.getString("pwd");
 						
-				ReplyVO vo = new ReplyVO(rep_no, userid, reply, regdate, rep_no, groupno, sortno, step, delflag, pwd);
+				ReplyVO vo = new ReplyVO(no, userid, reply, regdate, rep_no, groupno, sortno, step, delflag, pwd);
 				
 				list.add(vo);
 						
@@ -754,5 +754,59 @@ public class BoardDAO {
 		}finally {
 			pool.dbClose(con, ps, rs);
 		}
+	}
+	
+	public List<BoardVO> searchall(int champ_no, String code) throws SQLException{
+
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		List<BoardVO> list = new ArrayList<BoardVO>();
+
+		try {
+			con = pool.getConnection();
+			String sql = "select * from board"
+					+ " where champ_no=? and cat_code=?"
+					+ " order by no desc";
+			
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, champ_no);
+			ps.setString(2, code);
+			rs = ps.executeQuery();
+
+			while(rs.next()) {
+				int no = rs.getInt("no");
+				String userid = rs.getString("userid");
+				String nonuserid = rs.getString("nonuserid");
+				String pwd = rs.getString("pwd");
+				String title = rs.getString("title");
+				Timestamp regdate = rs.getTimestamp("regdate");
+				String describe = rs.getString("describe");
+				int recommend = rs.getInt("recommend");
+				int views = rs.getInt("views");
+				String filename = rs.getString("filename");
+				long filesize = rs.getLong("filesize");
+				int downcount = rs.getInt("downcount");
+				String originalfilename = rs.getString("originalfilename");
+				String ipaddress = rs.getString("ipaddress");
+				String delflag = rs.getString("delflag");
+				String cat_code = rs.getString("cat_code");
+
+				BoardVO vo = new BoardVO(no, userid, nonuserid, pwd, title, regdate, 
+						describe, recommend, views, filename, filesize, downcount, 
+						originalfilename, ipaddress, delflag, cat_code, champ_no);
+
+				list.add(vo);
+			}
+			System.out.println("list.size = " + list.size());
+			return list;
+
+		}finally {
+			pool.dbClose(con, ps, rs);
+
+		}
+
+
 	}
 }

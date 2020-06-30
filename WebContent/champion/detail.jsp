@@ -30,14 +30,24 @@
 
 		$("#reply .row1").each(function(){
 			$(this).click(function() {
-				$(".content1").not(this).each(function() {
+				var parent = $(this).parent().next();
+				$(".content1").not(parent).each(function() {
 					$(this).addClass("contentHide");
 				});
-				$(this).parent().next().toggleClass("contentHide");
+				
+				if($(parent).hasClass("contentHide")){
+					$(parent).toggleClass("contentHide");
+				}else{
+					$(parent).addClass("contentHide");
+				}
 			});
 		});
 		
-		$("#userid").val('${userid}');
+		var result = '${userid}';
+		if(result == '' || result == 'unknown'){
+			result = '로그인을 하세요';
+		}
+		$("#userid").val(result);
 
 	});
 
@@ -92,7 +102,7 @@
 	 		</div>
 		</div>
 		<div id="tabs-3">
-		<p><%=cVo.getDescribe() %></p>
+		<p style="padding: 10px; font-weight: bold;"><%=cVo.getDescribe() %></p>
 		</div>
 	</nav>
 	<div>
@@ -106,8 +116,6 @@
 <ul id="menu">
   <li><div><a>블로그 가기</a></div></li>
   <li><div><a>작성글, 댓글보기</a></div></li>
-  <li><div><a >댓글 수정</a></div></li>
-  <li><div><a>댓글 삭제</a></div></li>
 </ul>
 </div>
 <!-- //폼 레이어  -->

@@ -135,10 +135,18 @@ nav #tabs-2{
 	text-align: center;
 }
 
+#reply td:nth-of-type(1), #reply td:nth-of-type(3), #reply td:nth-of-type(4){
+	text-align: center;
+}
+
 #reply .content1 td{
 	height: 50px;
-	padding: 5px 20px;
+	padding: 10px 20px;
 	border-bottom: 1px solid gray;
+}
+
+#reply .content1 img{
+	width: 50px;
 }
 
 #reply .row1{

@@ -46,7 +46,7 @@ public class DetailController implements Controller{
 			InputStream reader = getClass().getResourceAsStream(resource);
             properties.load(reader);
             
-            bdList = bdService.searchall("", "", "C");
+            bdList = bdService.searchall(Integer.parseInt(champNo), "C");
             
 		} catch (NumberFormatException e) {
 			e.printStackTrace();

@@ -25,6 +25,7 @@ public class ReplyOkController  implements Controller{
 		vo.setTitle(title);
 		vo.setDescribe(content);
 		vo.setCat_code(code);
+		vo.setChamp_no(Integer.parseInt(champNo));
 		
 		try {
 			service.insertBoard(vo);

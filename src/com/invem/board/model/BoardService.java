@@ -14,6 +14,10 @@ public class BoardService {
 		return dao.searchall(keyword, condition, code);
 	}
 
+	public List<BoardVO> searchall(int champ_no, String code) throws SQLException{
+		return dao.searchall(champ_no, code);
+	}
+	
 	public int updateReadCount(int no) throws SQLException {
 		return dao.updateReadCount(no);
 	}

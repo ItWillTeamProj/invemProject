@@ -19,6 +19,7 @@ public class BoardVO {
 	private String ipaddress;	//ip주소
 	private String delflag;	//삭제플래그 
 	private String cat_code;	//게시판 코드
+	private int champ_no; //챔피언번호
 	
 	public BoardVO() {
 		super();
@@ -44,6 +45,29 @@ public class BoardVO {
 		this.ipaddress = ipaddress;
 		this.delflag = delflag;
 		this.cat_code = cat_code;
+	}
+	
+	public BoardVO(int no, String userid, String nonuserid, String pwd, String title, Timestamp regdate,
+			String describe, int recommend, int views, String filename, long filesize, int downcount,
+			String originalfilename, String ipaddress, String delflag, String cat_code, int champ_no) {
+		super();
+		this.no = no;
+		this.userid = userid;
+		this.nonuserid = nonuserid;
+		this.pwd = pwd;
+		this.title = title;
+		this.regdate = regdate;
+		this.describe = describe;
+		this.recommend = recommend;
+		this.views = views;
+		this.filename = filename;
+		this.filesize = filesize;
+		this.downcount = downcount;
+		this.originalfilename = originalfilename;
+		this.ipaddress = ipaddress;
+		this.delflag = delflag;
+		this.cat_code = cat_code;
+		this.champ_no = champ_no;
 	}
 
 	public int getNo() {
@@ -174,15 +198,22 @@ public class BoardVO {
 		this.cat_code = cat_code;
 	}
 
+	public int getChamp_no() {
+		return champ_no;
+	}
+
+	public void setChamp_no(int champ_no) {
+		this.champ_no = champ_no;
+	}
+
 	@Override
 	public String toString() {
 		return "BoardVO [no=" + no + ", userid=" + userid + ", nonuserid=" + nonuserid + ", pwd=" + pwd + ", title="
 				+ title + ", regdate=" + regdate + ", describe=" + describe + ", recommend=" + recommend + ", views="
 				+ views + ", filename=" + filename + ", filesize=" + filesize + ", downcount=" + downcount
 				+ ", originalfilename=" + originalfilename + ", ipaddress=" + ipaddress + ", delflag=" + delflag
-				+ ", cat_code=" + cat_code + "]";
+				+ ", cat_code=" + cat_code + ", champ_no=" + champ_no + "]";
 	}
-	
-	
+
 	
 }
