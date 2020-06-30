@@ -33,7 +33,7 @@
 	</div>
 	<div>
 		<label for="nickName">아이디</label>
-		 <input value="" type="text" name="userid" id="userid">
+		 <input value="" type="text" name="userid" id="userid" readonly="readonly">
 	</div>
 	<div>
 		<textarea id="reContent" rows="4" cols="97" name="reContent"></textarea>
