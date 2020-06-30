@@ -33,8 +33,6 @@ public class LeagueInfo {
 		System.out.println("랭크 조회 결과 : " + response.toString());
 		
 		String result = response.toString();
-		result = result.replace("[", "");
-		result = result.replace("]", "");
 		return result;
 	}
 }

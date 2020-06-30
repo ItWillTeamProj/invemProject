@@ -1,5 +1,6 @@
 package com.invem.login.controller;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
@@ -13,6 +14,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
 import com.invem.common.LeagueInfo;
 import com.invem.common.LeagueVO;
 import com.invem.common.SummonerInfo;
@@ -46,17 +48,18 @@ public class LoginOKController implements Controller{
 					String sInfo = SummonerInfo.search(vo.getSum_name());
 					
 					SummonerVO smVo = null;
-					LeagueVO[] lgVoArr = null;
+					LeagueVO lgVo = null;
 					List<LeagueVO> list = null;
 					if(sInfo.indexOf("message") == -1) {
 						smVo = gson.fromJson(sInfo, SummonerVO.class);
 						
 						String lInfo = LeagueInfo.search(smVo.getId());
-						lgVoArr = gson.fromJson(lInfo, LeagueVO[].class);
-						list = Arrays.asList(lgVoArr);
+						System.out.println("결과 = " + lInfo);
+						list = gson.fromJson(lInfo, new TypeToken<List<LeagueVO>>(){}.getType());
+						lgVo = list.get(0);
 					}
 					session.setAttribute("smVo", smVo);
-					session.setAttribute("lgVo", list.get(0));
+					session.setAttribute("lgVo", lgVo);
 				}
 				
 				session.setAttribute("userid", userid);
@@ -85,6 +88,11 @@ public class LoginOKController implements Controller{
 			}
 		}catch(SQLException e){
 			e.printStackTrace();
+		}catch (IOException e) {
+			request.setAttribute("msg", "API 인증 기간 만료!!!");
+			request.setAttribute("url", "/index.gg");
+			
+			return "/common/message.jsp";
 		}
 		
 		//3
