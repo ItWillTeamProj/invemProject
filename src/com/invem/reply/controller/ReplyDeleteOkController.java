@@ -14,11 +14,12 @@ public class ReplyDeleteOkController implements Controller{
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		String no = request.getParameter("no");
 		String code = request.getParameter("code");
+		String groupno = request.getParameter("groupno");
 		BoardService boardServ = new BoardService();
 		
-		String msg = "삭제 성공", url = "/board/detail.gg?no="+no+"&code="+code;
+		String msg = "삭제 성공", url = "/board/detail.gg?no="+groupno+"&code="+code;
 		try {
-			boardServ.boardDelete(Integer.parseInt(no), code);	
+			boardServ.replyDelete(Integer.parseInt(no));	
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}

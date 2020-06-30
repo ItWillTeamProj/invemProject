@@ -16,9 +16,10 @@ public class ReplyDeleteController implements Controller{
 		String code = request.getParameter("code");
 		String pwd = request.getParameter("pwd");
 		String cnt = request.getParameter("cnt");
+		String groupno = request.getParameter("groupno");
 		BoardService boardServ = new BoardService();
 		
-		String msg = "비밀번호가 틀립니다.", url = "/reply/replyDelNonuser.gg?no="+no+"&code="+code+"&cnt=";
+		String msg = "비밀번호가 틀립니다.", url = "/reply/replyDelNonuser.gg?no="+no+"&groupno="+groupno+"&code="+code+"&cnt=";
 		try {
 			if(boardServ.checkReplyPwd(Integer.parseInt(no), pwd)) {
 				msg = "비밀번호 일치 삭제합니다.";
@@ -38,7 +39,6 @@ public class ReplyDeleteController implements Controller{
 
 	@Override
 	public boolean isRedirect() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 	

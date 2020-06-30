@@ -179,29 +179,13 @@ public class BoardDAO {
 
 		int cnt=0;
 		try {
-			//1,2 con
 			con=pool.getConnection();
-
-			//transaction 시작
-			con.setAutoCommit(false); //자동 커밋 안되도록 설정
-
-			//3. ps
-			//[1] update
-			String sql="update reply" +
-					" set sortno=sortno+1" +
-					" where groupno=? and sortno>?";
-			ps=con.prepareStatement(sql);
-			ps.setInt(1, vo.getGroupno());
-			ps.setInt(2, vo.getSortno());
-
-			//4. exec
-
 			//[2] insert
-			sql="insert into reply(rep_no, username, reply, no, groupno, sortno, step, pwd)" +
+			String sql="insert into reply(rep_no, username, reply, no, groupno, sortno, step, pwd)" +
 					" values(reply_seq.nextval,?,?,?,?,?,?,?)";
 			ps=con.prepareStatement(sql);
 
-			ps.setString(1, vo.getUserid());
+			ps.setString(1, vo.getusername());
 			ps.setString(2, vo.getReply());
 			ps.setInt(3, vo.getNo());
 			ps.setInt(4, vo.getGroupno());
@@ -215,13 +199,8 @@ public class BoardDAO {
 
 			//모두 성공하면 커밋
 			con.commit();
-		}catch(SQLException e) {
-			//하나라도 실패하면 롤백
-			con.rollback();
-			e.printStackTrace();
+		
 		}finally {
-			//다시 자동 커밋되도록 설정
-			con.setAutoCommit(true);
 
 			pool.dbClose(con, ps);
 		}
@@ -634,7 +613,7 @@ public class BoardDAO {
 		List<ReplyVO> list = new ArrayList<ReplyVO>();
 		try {
 			con = pool.getConnection();
-			String sql = "select * from reply where userid=?";
+			String sql = "select * from reply where username=?";
 			ps = con.prepareStatement(sql);
 			
 			ps.setString(1, userid);
@@ -690,21 +669,20 @@ public class BoardDAO {
 		}
 	}
 
-	public int replyDelete(int no, String code) throws SQLException {
+	public int replyDelete(int rep_no) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		try {
 			con = pool.getConnection();
-			String sql = "delete from reply where no=? and cat_code=?";
+			String sql = "delete from reply where rep_no=?";
 			
 			ps = con.prepareStatement(sql);
 			
-			ps.setInt(1, no);
-			ps.setString(2, code);
+			ps.setInt(1, rep_no);
 			
 			int cnt = ps.executeUpdate();
 			
-			System.out.println("삭제 결과 cnt = " + cnt + ", 매개변수 no = " + no + ", code = " + code);
+			System.out.println("삭제 결과 cnt = " + cnt + ", 매개변수 rep_no = " + rep_no);
 			
 			return cnt;
 			

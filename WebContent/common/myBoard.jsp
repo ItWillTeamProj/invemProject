@@ -8,7 +8,7 @@
 <%
 	List<BoardVO> list = (List<BoardVO>)request.getAttribute("list");
 	int currentPage = 1;	//설정된 현재 페이지
-	String sId = request.getParameter("userid");
+	String sId = request.getParameter("sId");
 	if(request.getParameter("currentPage") != null
 			&& !request.getParameter("currentPage").isEmpty()){
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
