@@ -24,7 +24,6 @@
 </script>
 <form name="reply" action='<c:url value="/champion/reply_ok.gg" />' method="post">
 	<hr>
-	<input type="hidden" name="userid" value="unknown">
 	<input type="hidden" name="champNo" value="${param.no }">
 	<input type="hidden" name="code" value="C">
 	<div>
@@ -33,8 +32,8 @@
 			maxlength="100" style="width: 300px;">
 	</div>
 	<div>
-		<label for="nickName">닉네임</label>
-		 <input value="" type="text" name="nickName" id="nickName">
+		<label for="nickName">아이디</label>
+		 <input value="" type="text" name="userid" id="userid" readonly="readonly">
 	</div>
 	<div>
 		<textarea id="reContent" rows="4" cols="97" name="reContent"></textarea>

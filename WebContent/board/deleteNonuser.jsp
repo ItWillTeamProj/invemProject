@@ -43,6 +43,7 @@ $(function(){
 	<input type = "hidden" name = "no" value = "<%=no %>">
 	<input type = "hidden" name = "code" value = "<%=code %>">
 	<input type = "hidden" name = "cnt" value = "<%=cnt %>">
+	
  	<div style = "text-align: center">
 		<input type = "submit" value = "확인">
 		<input type = "button" id = "cancel" value = "취소">

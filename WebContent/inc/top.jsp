@@ -75,7 +75,7 @@ body {
 	background-color: white;
 	background-attachment: fixed;
 }
-button{
+#loginBtn{
 	border-radius: 0.5em;
 	border-color: #6db92a;
 	background-color:white;
@@ -126,7 +126,7 @@ html{
 		<div style="background: whitesmoke; padding-top: 7px; width:240px;">
 			<%if(!isLogin){ %>
 				<div style="margin-left: 9px;">
-					<button style="margin-top: 15px;" onclick="location.href='<%=request.getContextPath() %>/login/login.gg'">
+					<button id="loginBtn" style="margin-top: 15px;" onclick="location.href='<%=request.getContextPath() %>/login/login.gg'">
 		    			<img src="<%=request.getContextPath() %>/images/invemlogin.png">
 		    			<span style="padding-left: 5px; vertical-align:sub; margin-right: 10px;">로그인</span>
 	    			</button>

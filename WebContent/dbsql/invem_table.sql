@@ -9,51 +9,52 @@ CREATE TABLE champ_list (
 	describe CLOB NOT NULL /* ���� */
 );
 
-/* ��ȸ���Խ��� */
-CREATE TABLE nonuser_board (
-	nonuser_no NUMBER NOT NULL, /* ��ȣ */
-	title VARCHAR2(300) NOT NULL, /* ���� */
-	username VARCHAR2(100) NOT NULL, /* �ۼ��� */
-	regdate DATE DEFAULT sysdate, /* ����� */
-	pwd VARCHAR2(100) NOT NULL, /* ��й�ȣ */
-	describe CLOB NOT NULL, /* ���� */
-	recommend NUMBER DEFAULT 0, /* ��õ */
-	views NUMBER DEFAULT 0, /* ��ȸ�� */
-	ipaddress VARCHAR2(30) NOT NULL, /* ip�ּ� */
-	delflag CHAR(1 BYTE) DEFAULT 'N', /* �����÷��� */
-	cat_code CHAR(1 BYTE) NOT NULL /* �Խ����ڵ� */
-);
+ CREATE TABLE "ABILITY" 
+   (	"CHAMPNO" NUMBER, 
+	"C_LEVEL" NUMBER, 
+	"attack" NUMBER, 
+	"a_speed" NUMBER, 
+	"health" NUMBER, 
+	"MANA" NUMBER, 
+	"H_REGENERATION" NUMBER, 
+	"M_REGENERATION" NUMBER, 
+	"defense" NUMBER, 
+	"m_defense" NUMBER, 
+	"speed" NUMBER, 
+	"crossroad" NUMBER
+   )
+--------------------------------------------------------
+--  DDL for Index TABLE1_PK
+--------------------------------------------------------
 
-ALTER TABLE nonuser_board
-	ADD
-		CONSTRAINT PK_nonuser_board
-		PRIMARY KEY (
-			nonuser_no
-		);
+  CREATE UNIQUE INDEX "TABLE1_PK" ON "ABILITY" ("CHAMPNO", "C_LEVEL")
+--------------------------------------------------------
+--  Constraints for Table ABILITY
+--------------------------------------------------------
 
-/* ȸ���Խ��� */
-CREATE TABLE user_board (
-	user_no NUMBER NOT NULL, /* ��ȣ */
-	userid VARCHAR2(100) NOT NULL, /* ���̵� */
-	title VARCHAR2(300) NOT NULL, /* ���� */
-	regdate DATE DEFAULT sysdate, /* ����� */
-	describe CLOB NOT NULL, /* ���� */
-	recommend NUMBER DEFAULT 0, /* ��õ */
-	views NUMBER DEFAULT 0, /* ��ȸ�� */
-	filename VARCHAR2(1000), /* ���ϸ� */
-	filesize NUMBER, /* ����ũ�� */
-	downcount NUMBER DEFAULT 0, /* �ٿ�ε�� */
-	originalfilename VARCHAR2(1000), /* �������� �̸� */
-	delflag CHAR(1 BYTE) DEFAULT 'N', /* �����÷��� */
-	cat_code CHAR(1 BYTE) NOT NULL /* �Խ����ڵ� */
-);
+  ALTER TABLE "ABILITY" ADD CONSTRAINT "TABLE1_PK" PRIMARY KEY ("CHAMPNO", "C_LEVEL") ENABLE
+  ALTER TABLE "ABILITY" MODIFY ("C_LEVEL" NOT NULL ENABLE)
+  ALTER TABLE "ABILITY" MODIFY ("CHAMPNO" NOT NULL ENABLE)
 
-ALTER TABLE user_board
-	ADD
-		CONSTRAINT PK_user_board
-		PRIMARY KEY (
-			user_no
-		);
+ CREATE TABLE "BOARD" 
+   (	"NO" NUMBER, 
+	"USERID" VARCHAR2(100), 
+	"NONUSERID" VARCHAR2(100), 
+	"PWD" VARCHAR2(20), 
+	"TITLE" VARCHAR2(300), 
+	"REGDATE" DATE DEFAULT sysdate, 
+	"DESCRIBE" CLOB, 
+	"RECOMMEND" NUMBER DEFAULT 0, 
+	"VIEWS" NUMBER DEFAULT 0, 
+	"FILENAME" VARCHAR2(1000), 
+	"FILESIZE" NUMBER, 
+	"DOWNCOUNT" NUMBER DEFAULT 0, 
+	"ORIGINALFILENAME" VARCHAR2(1000), 
+	"IPADDRESS" VARCHAR2(30), 
+	"DELFLAG" CHAR(1) DEFAULT 'N', 
+	"CAT_CODE" CHAR(1), 
+	"CHAMP_NO" NUMBER
+   )
 
 /* ������̺� */
 CREATE TABLE reply (
@@ -216,18 +217,12 @@ ALTER TABLE guestbook
 		);
 
 
-create sequence user_board_seq
+create sequence board_seq
 increment by 1
 start with 1
 nocache;
 
 create sequence zipcode_seq
-increment by 1
-start with 1
-nocache;
-
-
-create sequence nonuser_board_seq
 increment by 1
 start with 1
 nocache;

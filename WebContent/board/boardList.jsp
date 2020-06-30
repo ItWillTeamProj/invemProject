@@ -30,7 +30,6 @@
 
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 %>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 $(function(){
 	$('#rowNum').change(function(){
@@ -44,7 +43,7 @@ $(function(){
 
 	$('#toBlog').click(function(){
 		var sId = $('#uId').html();
-		$('#blogId').html(sId);
+		$('#blogId').val(sId);
 		window.open('<%=request.getContextPath()%>/blog/blog.gg?userid='+sId, 'viewer', 'width=1000, height=700');
 	
 	
@@ -56,10 +55,6 @@ $(function(){
 
 
 </script>
-<link rel="stylesheet" href="../css/bootstrap/bootstrap.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <article>
 	<%
@@ -207,10 +202,6 @@ $(function(){
 		<input type="hidden" name = "code"value="<%=code %>">
     </form>
     
-<form name="form2" method="post">
-테스트값1&nbsp;<input type="text" name="test1" id = "blogId" ><br>
-
-</form>
  <div id="divLangSelect" style="background: #fff0">
 <ul id="menu">
   <li><div id = "toBlog">블로그 가기</div></li>
@@ -220,7 +211,6 @@ $(function(){
 </div>   
 </article>
 
-<script type ="text/javascript" src = "../js/bootstrap/bootstrap.js"></script> 
 
 
 <%@ include file = "../inc/bottom.jsp"%>

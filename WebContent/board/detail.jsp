@@ -59,21 +59,22 @@ $(function(){
 		}
 	});
 	
-	$('#delReply').click(function(){
-		var rId = $('#rId').val();
-		var replyNo = $('#replyNo').val();
+	$('.delReply').click(function(){
 		
+		var rId = $('#rId').html();
+		var replyNo = $('#replyNo').html();
+		var groupNo = $('#groupNo').html();
 		
 		var result = confirm('댓글을 정말로 삭제 하시겠습니까?');
 		if(rId == "<%=userid%>"){
 			if(result){
-				location.href = "<%=request.getContextPath()%>/reply/replyDelete_ok.gg.gg?no="+replyNo+"&code=<%=code%>";
+				location.href = "<%=request.getContextPath()%>/reply/replyDelete_ok.gg?no="+replyNo+"&code=<%=code%>&groupno="+groupNo;
 			}else{
 				return false;
 			}
 		}else{
 			if(result){
-				window.open("<%=request.getContextPath()%>/reply/replyDelNonuser.gg?no=replyNo&code=<%=code%>", 'viewer', 'width=400, height=400');
+				window.open("<%=request.getContextPath()%>/reply/replyDelNonuser.gg?no=" + replyNo + "&code=<%=code%>&groupno="+groupNo, 'viewer', 'width=400, height=400');
 			}else{
 				return false;
 			}
@@ -109,7 +110,7 @@ $(function(){
 		
 	</div>
 	<div>
-		<%if(!"unknown".equals(userid) && userid != null && !userid.isEmpty()){%>
+		<%if(!"unknown".equals(vo.getUserid()) && vo.getUserid() != null && !vo.getUserid().isEmpty()){%>
 			<span style = "float: left; margin-left: 30px"><%=vo.getUserid() %> | <%=vo.getRegdate() %></span>
 			<span style = "float: right; margin-right: 20px">조회 <%=vo.getViews() %> | 추천 <%=vo.getRecommend() %> | 댓글<%=replyCount %> </span>
 		<%}else{%>
@@ -121,8 +122,8 @@ $(function(){
 	<br><hr style = "border: 0; height: 2px; background: skyblue">
 	
 	<div style="width: 100%; height: 200px; text-align: center; float:right">
-		<a href = "#"><img src = "../images/good.png" style = "max-width: 100px; max-height:100px;float: left" alt = "추천"/></a>
-		<a href = "#"><img src = "../images/bad.png" style = "max-width: 100px; max-height:100px; float: left" alt = "신고"/></a>
+		<a href = "#"><img src = "../images/good.png" style = "max-width: 100px; max-height:100px;float: left;text-align: center;" alt = "추천"/></a>
+		<a href = "#"><img src = "../images/bad.png" style = "max-width: 100px; max-height:100px; float: left;text-align: center;" alt = "신고"/></a>
 	</div>
 	
 	<%if(list != null && !list.isEmpty()){%>
@@ -142,10 +143,10 @@ $(function(){
 				ReplyVO rVo = list.get(i);
 			%>
 				<tr>
-					<td style = "text-align: center" id = "rId"><%=rVo.getUserid() %></td>
-					<td><%=rVo.getReply() %><span style="display: none;" id="replyNo"><%=rVo.getRep_no() %></span></td>
+					<td style = "text-align: center" id = "rId"><%=rVo.getusername() %></td>
+					<td><%=rVo.getReply() %><span style="display: none;" id="groupNo"><%=rVo.getGroupno() %></span><span style="display: none;" id="replyNo"><%=rVo.getRep_no() %></span></td>
 					<td style = "text-align: center"><%=sdf.format(rVo.getRegdate()) %>
-						<span><a href = "#" id = "delReply"><img style = "width: 20px;height: auto;margin-left: 10px" src = "<%=request.getContextPath()%>/images/deleteIcon.png"></a></span>
+						<span><a href = "#" class = "delReply"><img style = "width: 20px;height: auto;margin-left: 10px" src = "<%=request.getContextPath()%>/images/deleteIcon.png"></a></span>
 					</td>
 				</tr>
 			<%}%>
