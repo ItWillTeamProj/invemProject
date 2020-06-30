@@ -1,4 +1,4 @@
-<%@page import="com.invem.admincommon.model.PagingVO"%>
+<%@page import="com.invem.admincommon.model.AdminPagingVO"%>
 <%@page import="com.invem.adminboard.model.AdminBoardDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="com.invem.adminboard.model.AdminBoardService"%>
@@ -9,7 +9,6 @@
 <%
 	request.setCharacterEncoding("utf-8");
 	String code = request.getParameter("code");
-	
 	String condition=request.getParameter("searchCondition");
 	String keyword=request.getParameter("searchKeyword");
 	
@@ -18,8 +17,6 @@
 	
 	try{
 		list = adminBoardService.selectAll(code, condition, keyword);
-				
-				
 	}catch(SQLException e){
 		e.printStackTrace();
 	}
@@ -41,7 +38,7 @@
 	int totalRecord = list.size(); //전체 레코드 개수, 예)17
 	
 	
-	PagingVO pageVo = new PagingVO(currentPage, totalRecord, pageSize, blockSize);		
+	AdminPagingVO pageVo = new AdminPagingVO(currentPage, totalRecord, pageSize, blockSize);		
 	/*
 	int totalPage = (int)Math.ceil((float)totalRecord/pageSize);
 	//=> 전체 페이지 개수
@@ -198,22 +195,23 @@
 	
 	<div class="divSearch" style="text-align: center;">
 	   	<form name="frmSearch" method="post" action='<%=request.getContextPath() %>/admin/boardList.jsp'>
+	        <input type="hidden" name="code" value="<%=code%>">
 	        <select name="searchCondition" style="height:24px;">
 	            <option value="title" 
 	            	<%if("title".equals(condition)){ %>
 	            		selected="selected"
 	            	<%} %>
 	            >제목</option>
-	            <option value="content" 
-	            	<%if("content".equals(condition)){ %>
+	            <option value="describe" 
+	            	<%if("describe".equals(condition)){ %>
 	            		selected="selected"
 	            	<%} %>
 	            >내용</option>
-	            <option value="name" 
-	            	<%if("name".equals(condition)){ %>
+	            <option value="userid" 
+	            	<%if("userid".equals(condition)){ %>
 	            		selected="selected"
 	            	<%} %>
-	            >작성자</option>
+	            >아이디</option>
 	        </select>   
 	        <input type="text" name="searchKeyword" title="검색어 입력"
 	        	value="<%=keyword%>">   

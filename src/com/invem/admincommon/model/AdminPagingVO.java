@@ -1,6 +1,6 @@
 package com.invem.admincommon.model;
 
-public class PagingVO { 
+public class AdminPagingVO { 
 	private int currentPage; //현재페이지
 	private int totalRecord; //총 레코드수 17
 	private int pageSize; //페이지당 보여질 레코드수 5
@@ -13,7 +13,7 @@ public class PagingVO {
 	private int num; // 페이지당 시작 글 번호
 		//=>17, 12, 7...
 
-	public PagingVO(int currentPage, int totalRecord, int pageSize, int blockSize){  
+	public AdminPagingVO(int currentPage, int totalRecord, int pageSize, int blockSize){  
 		this.currentPage=currentPage;	  
 		this.totalRecord=totalRecord;
 

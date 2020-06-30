@@ -55,12 +55,12 @@
 	//3
 	if(cnt>0){ %>
 		<script type="text/javascript">
-			alert('글 수정되었습니다.');
+			alert('회원정보 수정완료!');
 			location.href="memberDetail.jsp?id=<%=id%>";
 		</script>	
 <%	}else{%>
 		<script type="text/javascript">
-			alert('글 수정 실패!');
+			alert('회원정보 수정실패!');
 			history.go(-1);
 		</script>
 <%	}

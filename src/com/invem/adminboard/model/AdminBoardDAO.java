@@ -61,13 +61,14 @@ public class AdminBoardDAO {
 			//3
 			String sql="select * from board where cat_code=?";
 			if(keyword!=null && !keyword.isEmpty()) { //검색의 경우
-				sql+=" where "+ condition +" like '%' || ? || '%'";
+				sql+=" and "+ condition +" like '%' || ? || '%'";
 			}		
 			sql+=" order by regdate desc";
 			
 			ps=con.prepareStatement(sql);
 			
 			ps.setString(1, code);
+			
 			if(keyword!=null && !keyword.isEmpty()) { //검색의 경우
 				ps.setString(2, keyword);
 			}

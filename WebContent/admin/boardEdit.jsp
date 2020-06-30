@@ -63,11 +63,11 @@
 				</colgroup>	
 				
 				<tr>
-					<td>게시물 번호</td>
+					<td>게시물번호</td>
 					<td><input type="text" readonly id="no" name="no" value="<%=no %>"/></td>
 				</tr>
 				<tr>
-					<td>회원 아이디</td>
+					<td>회원아이디</td>
 					<td><input type="text" readonly id="id" name="id" value="<%=dto.getUserid() %>"/></td>
 				</tr>
 				<tr>
@@ -80,12 +80,12 @@
 				</tr>
 				<tr>
 					<td>내용</td>
-					<td><textarea id="content" name="content" rows="12" cols="55"></textarea></td>
+					<td><textarea id="describe" name="describe" rows="12" cols="55"><%=dto.getDescribe() %></textarea></td>
 				</tr>
 				<tr>
 					<td>카테고리</td>
 					<td>
-						<select name="category">
+						<select name="category" style="height:26px;">
 							<option value="F" <%if(code.equals("F")){%>
 							selected="selected"	<%} %>>자유게시판</option>
 							<option value="E" <%if(code.equals("E")){%>

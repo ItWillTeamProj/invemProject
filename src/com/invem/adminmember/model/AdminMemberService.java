@@ -11,8 +11,8 @@ public class AdminMemberService {
 		adminMemberDao =new AdminMemberDAO();
 	}
 	
-	public List<AdminMemberDTO> selectAll() throws SQLException {
-		return adminMemberDao.selectAll();
+	public List<AdminMemberDTO> selectAll(String condition, String keyword) throws SQLException {
+		return adminMemberDao.selectAll(condition, keyword);
 	}
 	
 	public AdminMemberDTO selectByUserid(String userid) throws SQLException {
