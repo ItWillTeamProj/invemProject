@@ -67,7 +67,29 @@
 		});//click
 	
 </script>
+<script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
+	<script type="text/javascript">
+
+		function openDaumZipAddress() {
+
+			new daum.Postcode({
+
+				oncomplete:function(data) {
+					
+					jQuery("#zipcode").val(data.zonecode);
+
+					jQuery("#address").val(data.address);
+
+					console.log(data);
+
+				}
+
+			}).open();
+
+		}
+
+	</script>
 <style type="text/css">
 
 </style>
@@ -136,12 +158,12 @@
 			        	<%} %>>
 				</div>
 				<div>
-					<label for="zipcode">우편번호(필수)</label>
+					<label for="zipcode">우편번호</label>
 					<!-- ReadOnly -->
 					<input type="text" name="zipcode" id="zipcode" title="우편번호"
 						style="margin-top: 1px;" value="<%=memVo.getZipcode()%>"> <input type="Button"
-						value="우편번호 찾기" id="btnZipcode" title="새창열림"><br /> <span
-						class="sp1">주소</span> <input type="text" name="address" title="주소"
+						value="우편번호 찾기" id="btnZipcode" title="새창열림" onClick="openDaumZipAddress();"><br /> <span
+						class="sp1">주소</span> <input type="text" id="address" name="address" title="주소"
 						class="width_350" style="margin-top: 2px;" value="<%=memVo.getAddress()%>"><br /> <span
 						class="sp1">상세주소</span> <input type="text" name="addressDetail"
 						title="상세주소" class="width_350" style="margin-top: 4px;">

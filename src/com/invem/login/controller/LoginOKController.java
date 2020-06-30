@@ -1,6 +1,8 @@
 package com.invem.login.controller;
 
 import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +11,8 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.invem.common.LeagueInfo;
 import com.invem.common.LeagueVO;
 import com.invem.common.SummonerInfo;
@@ -42,15 +46,17 @@ public class LoginOKController implements Controller{
 					String sInfo = SummonerInfo.search(vo.getSum_name());
 					
 					SummonerVO smVo = null;
-					LeagueVO lgVo = null;
+					LeagueVO[] lgVoArr = null;
+					List<LeagueVO> list = null;
 					if(sInfo.indexOf("message") == -1) {
 						smVo = gson.fromJson(sInfo, SummonerVO.class);
 						
 						String lInfo = LeagueInfo.search(smVo.getId());
-						lgVo = gson.fromJson(lInfo, LeagueVO.class);
+						lgVoArr = gson.fromJson(lInfo, LeagueVO[].class);
+						list = Arrays.asList(lgVoArr);
 					}
 					session.setAttribute("smVo", smVo);
-					session.setAttribute("lgVo", lgVo);
+					session.setAttribute("lgVo", list.get(0));
 				}
 				
 				session.setAttribute("userid", userid);
