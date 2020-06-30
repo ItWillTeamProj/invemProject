@@ -46,7 +46,7 @@ public class AdminBoardDAO {
 		}
 	}
 	
-	public List<AdminBoardDTO> selectAll(String code) throws SQLException{
+	public List<AdminBoardDTO> selectAll(String code, String condition, String keyword) throws SQLException{
 		
 		Connection con=null;
 		PreparedStatement ps=null;
@@ -59,10 +59,19 @@ public class AdminBoardDAO {
 			con=pool.getConnection();
 			
 			//3
-			String sql="select * from board where cat_code=? order by regdate desc";
+			String sql="select * from board where cat_code=?";
+			if(keyword!=null && !keyword.isEmpty()) { //검색의 경우
+				sql+=" where "+ condition +" like '%' || ? || '%'";
+			}		
+			sql+=" order by regdate desc";
+			
 			ps=con.prepareStatement(sql);
 			
 			ps.setString(1, code);
+			if(keyword!=null && !keyword.isEmpty()) { //검색의 경우
+				ps.setString(2, keyword);
+			}
+			
 			
 			rs=ps.executeQuery();
 			while(rs.next()) {
@@ -90,7 +99,8 @@ public class AdminBoardDAO {
 				list.add(dto);
 			}
 			
-			System.out.println("list.size()="+list.size());
+			System.out.println("글목록 결과 list.size="+list.size()
+			+ ", 매개변수 condition="+condition+", keyword="+keyword+", cat_code="+code);
 
 			return list;
 			

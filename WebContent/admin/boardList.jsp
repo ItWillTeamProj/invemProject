@@ -1,3 +1,4 @@
+<%@page import="com.invem.admincommon.model.PagingVO"%>
 <%@page import="com.invem.adminboard.model.AdminBoardDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="com.invem.adminboard.model.AdminBoardService"%>
@@ -8,13 +9,17 @@
 <%
 	request.setCharacterEncoding("utf-8");
 	String code = request.getParameter("code");
-
+	
+	String condition=request.getParameter("searchCondition");
+	String keyword=request.getParameter("searchKeyword");
 	
 	AdminBoardService adminBoardService = new AdminBoardService();
 	List<AdminBoardDTO> list = null;
 	
 	try{
-		list = adminBoardService.selectAll(code);
+		list = adminBoardService.selectAll(code, condition, keyword);
+				
+				
 	}catch(SQLException e){
 		e.printStackTrace();
 	}
@@ -34,9 +39,12 @@
 	int pageSize = 5; //한 페이지에 보여줄 레코드 개수
 	int blockSize = 10; //블럭 사이즈 1~10, 11~20 => 10
 	int totalRecord = list.size(); //전체 레코드 개수, 예)17
+	
+	
+	PagingVO pageVo = new PagingVO(currentPage, totalRecord, pageSize, blockSize);		
+	/*
 	int totalPage = (int)Math.ceil((float)totalRecord/pageSize);
 	//=> 전체 페이지 개수
-	
 	//현재 페이지를 이용하는 변수
 	int firstPage = currentPage-(currentPage-1)%blockSize;
 	//=> 블럭의 시작 페이지 1,11,21..
@@ -46,7 +54,7 @@
 	//=> ArrayList에서의 시작 인덱스 0,5,10,... currentPosition (현재위치)
 	int num=totalRecord - curPos;
 	//=> 페이지당 글 리스트 시작번호 17, 12, 7, 2	
-	
+	*/
 %>        
     
 <%@ include file="../inc/top.jsp" %>  
@@ -64,6 +72,14 @@
 	<%}else if(code.equals("E")){%>
 		<h3>기타게시판</h3>	
 	<%} %>
+	
+	
+	
+	<%if(keyword!=null && !keyword.isEmpty()){ %>
+	<p>검색어 : <%=keyword %>, <%=list.size() %>건 검색되었습니다.</p>
+	<%}else{ 
+		keyword="";
+	} %>
 	
 	<div style="text-align: right; margin: 0px 10px 10px 10px;">
 		<input type="Button" value="게시판 선택 페이지" onclick="location.href='<%=request.getContextPath() %>/admin/boardSelect.jsp'" />  
@@ -96,6 +112,10 @@
 					<td colspan="6" >게시물이 존재하지 않습니다.</td>
 				</tr>			
 			<%}else{
+				
+		  	int num=pageVo.getNum();
+		  	int curPos=pageVo.getCurPos();	
+		  	
 			for(int i=0;i<pageSize;i++){
 				if(num-- < 1) break;	
 					
@@ -128,8 +148,8 @@
 		<!-- 페이지 번호 추가 -->		
 		<!-- 이전 블럭으로 이동 ◀ -->
 		<ul style="float:left; list-style:none;">
-			<%if(firstPage>1){ %>
-				<a href="boardList.jsp?currentPage=<%=firstPage-1%>&code=<%=code %>">
+			<%if(pageVo.getFirstPage()>1){ %>
+				<a href="boardList.jsp?currentPage=<%=pageVo.getFirstPage()-1%>&code=<%=code %>">
 					<li style="text-align:center; border:1px solid lightgray; margin:3px;
 					width: 26px; height: 26px; padding-top: 1px;">
 					◀</li><!-- <img src="../images/first.JPG" alt="이전 블럭으로 이동">  -->
@@ -140,8 +160,8 @@
 		
 		<!-- [1][2][3][4][5][6][7][8][9][10] -->
 		<div style="display: inline-block;">
-		<%for(int i=firstPage;i<=lastPage;i++){ 
-			if(i > totalPage) break;
+		<%for(int i=pageVo.getFirstPage();i<=pageVo.getLastPage();i++){ 
+			if(i > pageVo.getTotalPage()) break;
 		%>	<ul style="float:left; list-style:none;">
 			<%if(i!=currentPage){%>
 				<li style="text-align:center; border:1px solid lightgray; margin:3px;
@@ -162,8 +182,8 @@
 		<div style="display: inline-block;">
 		<ul style="float:right; list-style:none;">
 			
-		<%if(lastPage < totalPage){ %>
-			<a href="boardList.jsp?currentPage=<%=lastPage+1%>&code=<%=code %>">
+		<%if(pageVo.getLastPage() < pageVo.getTotalPage()){ %>
+			<a href="boardList.jsp?currentPage=<%=pageVo.getLastPage()+1%>&code=<%=code %>">
 				<li style="text-align:center; border:1px solid lightgray; margin:3px;
 				width: 26px; height: 26px; padding-top: 1px;">
 				▶</li><!-- <img src="../images/last.JPG" alt="다음 블럭으로 이동"> -->
@@ -174,5 +194,32 @@
 		</div>
 		<!--  페이지 번호 끝 -->
 	</div>
+	
+	
+	<div class="divSearch" style="text-align: center;">
+	   	<form name="frmSearch" method="post" action='<%=request.getContextPath() %>/admin/boardList.jsp'>
+	        <select name="searchCondition" style="height:24px;">
+	            <option value="title" 
+	            	<%if("title".equals(condition)){ %>
+	            		selected="selected"
+	            	<%} %>
+	            >제목</option>
+	            <option value="content" 
+	            	<%if("content".equals(condition)){ %>
+	            		selected="selected"
+	            	<%} %>
+	            >내용</option>
+	            <option value="name" 
+	            	<%if("name".equals(condition)){ %>
+	            		selected="selected"
+	            	<%} %>
+	            >작성자</option>
+	        </select>   
+	        <input type="text" name="searchKeyword" title="검색어 입력"
+	        	value="<%=keyword%>">   
+			<input type="submit" value="검색">
+	    </form>
+	</div>
+	
 	</article>
 <%@ include file="../inc/bottom.jsp" %>
