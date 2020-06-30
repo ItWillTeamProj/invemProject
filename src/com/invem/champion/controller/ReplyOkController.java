@@ -14,7 +14,6 @@ public class ReplyOkController  implements Controller{
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		String userid = request.getParameter("userid");
-		//String nickName = request.getParameter("userid");
 		String title = request.getParameter("title");
 		String content = request.getParameter("reContent");
 		String champNo = request.getParameter("champNo");

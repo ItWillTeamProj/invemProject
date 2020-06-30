@@ -36,6 +36,8 @@
 				$(this).parent().next().toggleClass("contentHide");
 			});
 		});
+		
+		$("#userid").val('${userid}');
 
 	});
 
