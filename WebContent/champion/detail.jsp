@@ -7,8 +7,6 @@
 <%@ include file="../inc/top.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <%
 	String no = request.getParameter("no");
@@ -49,6 +47,11 @@
 		}
 		$("#userid").val(result);
 
+		$('#toBlog').click(function(){
+			var sId = $('#uId').html();
+			window.open('<%=request.getContextPath()%>/blog/blog.gg?sId='+sId, 'viewer', 'width=1000, height=700');
+		});
+		
 	});
 
 </script>
@@ -114,7 +117,7 @@
 <!-- 폼 레이어  -->
 <div id="divLangSelect" style="background: #fff0">
 <ul id="menu">
-  <li><div><a>블로그 가기</a></div></li>
+  <li><div><a href="#" id="toBlog">블로그 가기</a></div></li>
   <li><div><a>작성글, 댓글보기</a></div></li>
 </ul>
 </div>

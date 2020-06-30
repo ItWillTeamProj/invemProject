@@ -5,6 +5,7 @@
 	String no = request.getParameter("no");
 	String code = request.getParameter("code");
 	String cnt = request.getParameter("cnt");
+	String userid = request.getParameter("userid");
 	if(cnt == null || cnt.isEmpty()){
 		cnt = "0";
 	}
@@ -32,6 +33,10 @@ $(function(){
 			event.preventDefault();
 		}
 	});
+	
+	if('C' == '<%=code%>'){
+		$("form[name=frmCheckPwd]").attr("action","<%=request.getContextPath()%>/board/ChampBoardDelete.gg");
+	}
 });
 
 </script>
@@ -43,6 +48,7 @@ $(function(){
 	<input type = "hidden" name = "no" value = "<%=no %>">
 	<input type = "hidden" name = "code" value = "<%=code %>">
 	<input type = "hidden" name = "cnt" value = "<%=cnt %>">
+	<input type = "hidden" name = "userid" value = "<%=userid %>">
 	
  	<div style = "text-align: center">
 		<input type = "submit" value = "확인">
