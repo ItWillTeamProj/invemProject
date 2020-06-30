@@ -52,18 +52,23 @@ fieldset {
   margin: 0 2px;
   border:1px solid silver;
 }
+.content img {
+    width: 300px;
+    height: auto;
+    }
 
 </style>
 </head>
 <body>
 	<fieldset style="text-align: center; margin-top: 30px; margin-bottom: 30px; margin-left: 30px; margin-right: 30px;
-			background-image:url('../images/loginback.jpg')">
+			background-image:url('<%=request.getContextPath()%>/images/loginback.jpg')">
 		<div
 			style="margin-left: 30px; border-left-width: 30px; padding-left: 10px; margin-bottom: 5px;">
 			<form name="frmLogin" method="post"
 				action="<%=request.getContextPath()%>/login/login_ok.gg">
 				<label style="font-size: x-large; margin-right: 40px;">로그인</label>
 		</div>
+		<img alt="이미지" src="<%=request.getContextPath()%>/images/index/bar_invem.png">
 		<fieldset
 			style="margin-left: 120px; margin-right: 120px; border-radius: 0.5em; border-color: #6db92a; background-color: white;">
 			<div>

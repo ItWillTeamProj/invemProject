@@ -28,7 +28,6 @@ public class IndexController implements Controller{
 		
 		try {
 			vo = service.searchByNo(champNo);
-			
 			InputStream reader = getClass().getResourceAsStream(resource);
             properties.load(reader);
             
