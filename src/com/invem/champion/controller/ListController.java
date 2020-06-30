@@ -17,11 +17,16 @@ public class ListController implements Controller{
 		
 		String[] role = request.getParameterValues("role");
 		String[] skill = request.getParameterValues("skill");
+		String val = request.getParameter("val");
 		
 		ChampionService service = new ChampionService();
 		List<ChampionVO> list = null;
 		try {
-			list = service.searchAll(role, skill);
+			if(val != null && !val.isEmpty()) {
+				list = service.searchAll(val);
+			}else {
+				list = service.searchAll(role, skill);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

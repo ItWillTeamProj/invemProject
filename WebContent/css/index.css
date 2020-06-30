@@ -177,3 +177,31 @@ ul.login li{
 	height: 61px;
 	margin: 0 auto;
 }
+
+#tier{
+	width: 100px;
+}
+#InfoDesk .userInfo{
+	color: black;
+	font-size: 0.8em;
+	text-align: left;
+}
+#InfoDesk p.userInfo{
+	text-align: center;	
+	color: #b16018;
+	font-size: 0.9em;
+	margin-top: 5px;
+}
+#InfoDesk{
+	overflow: hidden; 
+	text-align: center;
+}
+
+.grid{
+	border: 1px solid lightgray;
+	width:348px;
+	height:348px;
+	margin: 10px 5px 0px 5px;
+	background: white;
+	font-size: 90%
+}

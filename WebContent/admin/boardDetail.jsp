@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="com.invem.adminboard.model.AdminBoardService"%>
 <%@page import="com.invem.adminboard.model.AdminBoardDTO"%>
@@ -28,7 +29,7 @@
 		e.printStackTrace();
 	}
 	
-	
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	
 %>
 
@@ -42,12 +43,12 @@
 			<b>게시판관리</b>
 		</div>
 	</div>
-	<h3><%=dto.getUserid() %> 님의 상세정보</h3>	
+	<h3><%=dto.getUserid() %> 님의 게시물 상세정보</h3>	
 	<div style="text-align: right; margin: 0px 10px 10px 10px;">
-		<input type="Button" value="게시물목록" onclick="location.href='boardList<%=code %>.jsp'" /> 
+		<input type="Button" value="게시물목록" onclick="location.href='boardList.jsp?code=<%=code%>'" /> 
 	</div>	
 	<div>
-		<table style="font-size: 90%; border-collapse: collapse; margin-left:10px;
+		<table style="font-size: 100%; border-collapse: collapse; margin-left:10px;
 			width:700px; table-layout: fixed;">
 			
 			<colgroup>
@@ -69,7 +70,7 @@
 			</tr>
 			<tr>
 				<td style="padding-left: 30px;">작성일</td>
-				<td><%=dto.getRegdate() %></td>
+				<td><%=sdf.format(dto.getRegdate()) %></td>
 			</tr>
 			<tr style="background:white;">
 				<td style="padding-left: 30px;">추천수</td>
@@ -96,7 +97,8 @@
 		</table>
 				
 		<div class="center" style="text-align: right; margin: 10px;">
-			<input type="Button" value="게시물수정" onclick="location.href='boardEdit.jsp?no=<%=dto.getNo() %>'" />  
+			<input type="Button" value="게시물수정" onclick="location.href='boardEdit.jsp?no=<%=dto.getNo() %>&code=<%=code %>'" />
+			<input type="Button" value="게시물삭제" onclick="location.href='boardDelete.jsp?no=<%=dto.getNo() %>&code=<%=code %>'" />  
 		</div>
 	</div>
 	

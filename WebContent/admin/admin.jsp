@@ -10,20 +10,26 @@
 			<h4>관리자 페이지</h4>
 		</div>
 	</div>
-	<div style="float:left; width:360px; height:240px; background-color: pink;
-		margin-top:5px;">
+	<div style="float:left; width:300px; height:320px;
+		margin:5px 20px 10px 30px; text-align: center; background: white;">
 		<a href="<%=request.getContextPath() %>/admin/memberList.jsp">
 			<img src="<%=request.getContextPath() %>/images/admin/member.png" 
-			style="width:auto; height:240px;" >
+			style="width:auto; height:260px;" >
+			<br>
+			<b style="font-size: 30px; color: black;">회원관리</b>
 		</a>
+		
 	</div>	
 	
-	<div style="float:left; width:360px; height:240px; background-color: lightblue;
-		margin-top:5px;">
+	<div style="float:left; width:300px; height:320px;
+		margin:5px 30px 10px 20px; text-align: center; background: white;">
 		<a href="<%=request.getContextPath() %>/admin/boardSelect.jsp">
 			<img src="<%=request.getContextPath() %>/images/admin/board.png" 
-			style="width:auto; height:230px; margin-top:20px; margin-left: 5px;" >
+			style="width:auto; height:235px; margin-top:25px; margin-left: 5px;" >
+			<br>
+			<b style="font-size: 30px; color: black;">게시판관리</b>
 		</a>
+		
 	</div>
 
 </article>	

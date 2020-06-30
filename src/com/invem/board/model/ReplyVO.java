@@ -12,6 +12,7 @@ public class ReplyVO {
 	private int sortno;
 	private int step;
 	private String delflag;
+	private String pwd;
 	
 	
 	public ReplyVO() {
@@ -20,7 +21,7 @@ public class ReplyVO {
 
 
 	public ReplyVO(int rep_no, String userid, String reply, Timestamp regdate, int no, int groupno, int sortno,
-			int step, String delflag) {
+			int step, String delflag, String pwd) {
 		super();
 		this.rep_no = rep_no;
 		this.userid = userid;
@@ -31,6 +32,7 @@ public class ReplyVO {
 		this.sortno = sortno;
 		this.step = step;
 		this.delflag = delflag;
+		this.pwd = pwd;
 	}
 
 
@@ -124,13 +126,22 @@ public class ReplyVO {
 	}
 
 
+	public String getPwd() {
+		return pwd;
+	}
+
+
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
+	}
+
+
 	@Override
 	public String toString() {
 		return "ReplyVO [rep_no=" + rep_no + ", userid=" + userid + ", reply=" + reply + ", regdate=" + regdate
 				+ ", no=" + no + ", groupno=" + groupno + ", sortno=" + sortno + ", step=" + step + ", delflag="
-				+ delflag + "]";
+				+ delflag + ", pwd=" + pwd + "]";
 	}
-	
-	
+
 	
 }

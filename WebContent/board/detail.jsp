@@ -12,8 +12,9 @@
 	String code = request.getParameter("code");
 	BoardVO vo = (BoardVO)request.getAttribute("vo");
 	List<ReplyVO> list = (List<ReplyVO>)request.getAttribute("list");
-	userid = (String)request.getAttribute("userid");
+	userid = (String)session.getAttribute("userid");
 	String no = request.getParameter("no");
+	String pwd = vo.getPwd();
 	
 	
 	int replyCount = (int)request.getAttribute("replyCount");
@@ -24,10 +25,6 @@
 <link rel="stylesheet" href="../css/bootstrap/bootstrap.css">
 <script type="text/javascript">
 $(function(){
-	$('#list').click(function(){
-		location.href = "<%=request.getContextPath()%>/board/boardList.gg?code=<%=code%>";
-	});
-	
 	if("<%=vo.getUserid()%>" != "" && "<%=vo.getUserid()%>" != "unknown" && "<%=vo.getUserid()%>" != "<%=userid%>"){
 		$('#delete').css("display", "none");
 	}
@@ -36,13 +33,55 @@ $(function(){
 		$('#edit').css("display", "none");
 	}
 	
+	$('#list').click(function(){
+		location.href = "<%=request.getContextPath()%>/board/boardList.gg?code=<%=code%>";
+	});
+	
+	
 	$('#edit').click(function(){
 		location.href = "<%=request.getContextPath()%>/board/boardEdit.gg?no=<%=no%>&code=<%=code%>";
 	});
 
 	$('#delete').click(function(){
-		location.href = "<%=request.getContextPath()%>/board/boardDelete.gg?no=<%=no%>&code=<%=code%>";
+		var result = confirm('정말 삭제 하시겠습니까?');
+		if("<%=vo.getUserid()%>" == "<%=userid%>"){
+			if(result){
+				location.href = "<%=request.getContextPath()%>/board/boardDelete_ok.gg?no=<%=no%>&code=<%=code%>";
+			}else{
+				return false;
+			}
+		}else{
+			if(result){
+				window.open('<%=request.getContextPath()%>/board/deleteNonuser.gg?no=<%=no%>&code=<%=code%>', 'viewer', 'width=400, height=400');
+			}else{
+				return false;
+			}
+		}
 	});
+	
+	$('#delReply').click(function(){
+		var rId = $('#rId').val();
+		var replyNo = $('#replyNo').val();
+		
+		
+		var result = confirm('댓글을 정말로 삭제 하시겠습니까?');
+		if(rId == "<%=userid%>"){
+			if(result){
+				location.href = "<%=request.getContextPath()%>/reply/replyDelete_ok.gg.gg?no="+replyNo+"&code=<%=code%>";
+			}else{
+				return false;
+			}
+		}else{
+			if(result){
+				window.open("<%=request.getContextPath()%>/reply/replyDelNonuser.gg?no=replyNo&code=<%=code%>", 'viewer', 'width=400, height=400');
+			}else{
+				return false;
+			}
+		}
+	});
+	
+	
+	
 });
 </script>
 
@@ -103,10 +142,10 @@ $(function(){
 				ReplyVO rVo = list.get(i);
 			%>
 				<tr>
-					<td style = "text-align: center"><%=rVo.getUserid() %></td>
-					<td><%=rVo.getReply() %></td>
+					<td style = "text-align: center" id = "rId"><%=rVo.getUserid() %></td>
+					<td><%=rVo.getReply() %><span style="display: none;" id="replyNo"><%=rVo.getRep_no() %></span></td>
 					<td style = "text-align: center"><%=sdf.format(rVo.getRegdate()) %>
-						<a href = "#"><img src = "<%=request.getContextPath()%>/images/deleteIcon.png"></a>
+						<span><a href = "#" id = "delReply"><img style = "width: 20px;height: auto;margin-left: 10px" src = "<%=request.getContextPath()%>/images/deleteIcon.png"></a></span>
 					</td>
 				</tr>
 			<%}%>
@@ -146,5 +185,5 @@ $(function(){
 
 
 
-<script type ="text/javascript" src = "../js/bootstrap/bootstrap.js"></script> 
+
 <%@ include file = "../inc/bottom.jsp"%>

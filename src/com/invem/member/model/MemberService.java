@@ -1,5 +1,8 @@
 package com.invem.member.model;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class MemberService {
@@ -18,4 +21,15 @@ public class MemberService {
 		return memberdao.overlap(userid);
 	}
 	
+	public MemberDTO selectMember(String userid) throws SQLException {
+		return memberdao.selectMember(userid);
+	}
+	
+	public int updateMember(MemberDTO vo) throws SQLException {
+		return memberdao.updateMember(vo);
+	}
+	
+	public int memberOut(String userid) throws SQLException {
+		return memberdao.memberOut(userid);
+	}
 }
