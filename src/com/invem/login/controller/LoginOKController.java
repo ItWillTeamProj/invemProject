@@ -57,6 +57,7 @@ public class LoginOKController implements Controller{
 					}
 					session.setAttribute("smVo", smVo);
 					session.setAttribute("lgVo", lgVo);
+					session.setMaxInactiveInterval(60*60);
 				}
 				
 				session.setAttribute("userid", userid);

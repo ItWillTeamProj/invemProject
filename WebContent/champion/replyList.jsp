@@ -7,6 +7,25 @@
 <%
 	pageContext.setAttribute("newLine", "\r\n");
 %>
+<script type="text/javascript">
+	$(function() {
+		$('.delReply').click(function(){
+			
+			var rId = $(this).find("span").html();
+			
+			var result = confirm('댓글을 정말로 삭제 하시겠습니까?');
+			var id = '<c:out value="${userid }"/>';
+			
+			if(result){
+				window.open('<%=request.getContextPath()%>/board/deleteNonuser.gg?no=' + rId + '&code=C&userid=' + id, 'viewer', 'width=400, height=400');
+			}else{
+				return false;
+			}
+			
+			
+		});
+	});
+</script>
 <br>
 <br>
 <hr>
@@ -38,16 +57,16 @@
 	<c:forEach var="idx" begin="1" end="${page.pageSize }">
 		<c:set value="${bdList[curPos] }" var="bdVo"></c:set>
 		<c:if test="${num >= 1 }">
-			<tr>
+			<tr style="cursor: pointer;">
 				<td>${num }</td>
 				<td class="row1">${bdVo.title }</td>
-				<td><a class="aSelect">${bdVo.userid }</a></td>
+				<td><a class="aSelect" id="uId">${bdVo.userid }</a></td>
 				<td><fmt:formatDate value="${bdVo.regdate }"
 						pattern="yyyy-MM-dd" /> <span> <!-- 삭제버튼 --> <c:if
 							test="${userid == bdVo.userid }">
-							<a href="#"><img alt="삭제"
+							<a href="#" class="delReply" ><img alt="삭제"
 								src='<c:url value="/images/deleteIcon.png" />'
-								style="margin-left: 20px;"></a>
+								style="margin-left: 20px;"><span style="display: none;">${bdVo.no }</span></a>
 						</c:if>
 				</span></td>
 			</tr>

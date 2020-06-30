@@ -9,9 +9,12 @@
 	LeagueVO lgVo=(LeagueVO)session.getAttribute("lgVo");
 
 	boolean isLogin=false;
-	if(userid!=null && !userid.isEmpty()){
+	if((String)session.getAttribute("userid")!=null && !((String)session.getAttribute("userid")).isEmpty()){
+		
 		isLogin=true;
 	}
+	
+	System.out.println(userid + ", " + isLogin + ", " + smVo + ", " + lgVo);
 %>
 <!doctype html>
 <html>
