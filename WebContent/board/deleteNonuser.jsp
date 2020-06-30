@@ -5,6 +5,7 @@
 	String no = request.getParameter("no");
 	String code = request.getParameter("code");
 	String cnt = request.getParameter("cnt");
+	
 	if(cnt == null || cnt.isEmpty()){
 		cnt = "0";
 	}
@@ -19,7 +20,7 @@
 $(function(){
 	if("<%=cnt%>" == "1"){
 		
-		opener.location.href = "<%=request.getContextPath()%>/reply/replyDelete_ok.gg?no=<%=no%>&code=<%=code%>";
+		opener.location.href = "<%=request.getContextPath()%>/board/boardDelete_ok.gg?no=<%=no%>&code=<%=code%>";
 		self.close();
 	}
 	

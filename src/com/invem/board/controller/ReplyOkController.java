@@ -20,7 +20,8 @@ public class ReplyOkController implements Controller{
 		String user_no = request.getParameter("no"); 
 		String code = request.getParameter("code");
 		String username = nonuserid;
-		if(userid != null && !userid.isEmpty() && !"unknown".equals("userid")){
+		System.out.println("username = "+username);
+		if(userid != null && !userid.isEmpty() && "unknown".equals(userid)){
 			username = userid;
 		}
 		

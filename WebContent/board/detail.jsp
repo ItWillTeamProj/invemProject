@@ -74,7 +74,7 @@ $(function(){
 			}
 		}else{
 			if(result){
-				window.open("<%=request.getContextPath()%>/reply/replyDelNonuser.gg?no=" + replyNo + "&code=<%=code%>&groupno="+groupNo, 'viewer', 'width=400, height=400');
+				window.open("<%=request.getContextPath()%>/reply/replyDelNonuser.gg?no="+replyNo+"&code=<%=code%>&groupno="+groupNo, 'viewer', 'width=400, height=400');
 			}else{
 				return false;
 			}
@@ -170,7 +170,6 @@ $(function(){
 	<%} %>
 		<input type = "hidden" name = "code" value = "<%=code%>">
  		<input type = "hidden" name = "no" value = "<%=Integer.parseInt(no)%>">
-		<input type = "hidden" name = "userid" value = "<%=userid%>">
 		<span style = "float: left; width: 60%; margin-left: 20px">
 			<textarea name = "reply" rows="5" cols="60" style = "margin-left: 30px"></textarea>
 		</span>
