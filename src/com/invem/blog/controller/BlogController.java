@@ -17,7 +17,7 @@ public class BlogController implements Controller {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-		String userid = request.getParameter("userid");
+		String userid = request.getParameter("sId");
 		String curPage = request.getParameter("currentPage");
 		
 		
@@ -68,7 +68,6 @@ public class BlogController implements Controller {
 		request.setAttribute("writeCount", writeCount);
 		request.setAttribute("list", list);
 		request.setAttribute("rList", rList);
-		request.setAttribute("userid", userid);
 		request.setAttribute("pageVo", pageVo);
 		
 		return "/blog/blog.jsp?userid="+userid;

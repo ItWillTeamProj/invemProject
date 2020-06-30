@@ -59,21 +59,22 @@ $(function(){
 		}
 	});
 	
-	$('#delReply').click(function(){
-		var rId = $('#rId').val();
-		var replyNo = $('#replyNo').val();
+	$('.delReply').click(function(){
 		
+		var rId = $('#rId').html();
+		var replyNo = $('#replyNo').html();
+		var groupNo = $('#groupNo').html();
 		
 		var result = confirm('댓글을 정말로 삭제 하시겠습니까?');
 		if(rId == "<%=userid%>"){
 			if(result){
-				location.href = "<%=request.getContextPath()%>/reply/replyDelete_ok.gg.gg?no="+replyNo+"&code=<%=code%>";
+				location.href = "<%=request.getContextPath()%>/reply/replyDelete_ok.gg?no="+replyNo+"&code=<%=code%>&groupno="+groupNo;
 			}else{
 				return false;
 			}
 		}else{
 			if(result){
-				window.open("<%=request.getContextPath()%>/reply/replyDelNonuser.gg?no=replyNo&code=<%=code%>", 'viewer', 'width=400, height=400');
+				window.open("<%=request.getContextPath()%>/reply/replyDelNonuser.gg?no=" + replyNo + "&code=<%=code%>&groupno="+groupNo, 'viewer', 'width=400, height=400');
 			}else{
 				return false;
 			}
@@ -142,10 +143,10 @@ $(function(){
 				ReplyVO rVo = list.get(i);
 			%>
 				<tr>
-					<td style = "text-align: center" id = "rId"><%=rVo.getUserid() %></td>
-					<td><%=rVo.getReply() %><span style="display: none;" id="replyNo"><%=rVo.getRep_no() %></span></td>
+					<td style = "text-align: center" id = "rId"><%=rVo.getusername() %></td>
+					<td><%=rVo.getReply() %><span style="display: none;" id="groupNo"><%=rVo.getGroupno() %></span><span style="display: none;" id="replyNo"><%=rVo.getRep_no() %></span></td>
 					<td style = "text-align: center"><%=sdf.format(rVo.getRegdate()) %>
-						<span><a href = "#" id = "delReply"><img style = "width: 20px;height: auto;margin-left: 10px" src = "<%=request.getContextPath()%>/images/deleteIcon.png"></a></span>
+						<span><a href = "#" class = "delReply"><img style = "width: 20px;height: auto;margin-left: 10px" src = "<%=request.getContextPath()%>/images/deleteIcon.png"></a></span>
 					</td>
 				</tr>
 			<%}%>

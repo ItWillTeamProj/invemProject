@@ -12,11 +12,12 @@ public class ReplyDelNonuserController implements Controller{
 		String no =request.getParameter("no");
 		String code = request.getParameter("code");
 		String cnt = request.getParameter("cnt");
+		String groupno = request.getParameter("groupno");
 		String url = "";
 		if(cnt != null && !cnt.isEmpty()) {
-			url ="/reply/replyDelNonuser.jsp?no="+no+"&code="+code+"&cnt="+cnt;
+			url ="/reply/replyDelNonuser.jsp?no="+no+"&code="+code+"&cnt="+cnt+"&groupno="+groupno;
 		}else {
-			url = "/reply/replyDelNonuser.jsp?no="+no+"&code="+code;
+			url = "/reply/replyDelNonuser.jsp?no="+no+"&code="+code+"&groupno="+groupno;
 		}
 		
 		return url;
