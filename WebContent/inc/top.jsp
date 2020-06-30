@@ -44,17 +44,11 @@
 		});
 
 		$( "#menu" ).menu();
-
 		$(document).mouseup(function (e){
-
 	    var container = $('#divLangSelect');
-
 	    if( container.has(e.target).length === 0){
-
-	      container.css('display','none');
-
+			container.css('display','none');
 	    }
-
 	  });
 		
 		$('#logout').click(function(){

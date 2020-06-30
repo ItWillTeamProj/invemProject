@@ -52,7 +52,7 @@ label{
 			<p><iframe src="provision.html" width="600" height="250"></iframe></p>
 			<div style="text-align: left; margin-left: 30px;border-left-width: 30px;padding-left: 10px;margin-bottom: 5px;">
 				<input type="checkbox" name="chkAgree2" id="chkAgree2">
-				<label for="chkAgree2">개인정보 수집 및 이용 동의</label>
+				<label for="chkAgree2">(필수)개인정보 수집 및 이용 동의</label>
 		</div>
 			<p><iframe src="provision2.html" width="600" height="250"></iframe></p>
 				<div style="margin-bottom: 50px;text-align: center; font-size:12px;">

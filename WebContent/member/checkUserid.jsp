@@ -46,7 +46,7 @@
 </head>
 <body>
 	<h1>아이디 중복 검사</h1>	
-	<form name="frmDup" method="post" action="<%=request.getContextPath()%>/invem/checkUserid.gg">
+	<form name="frmDup" method="post" action="<%=request.getContextPath()%>/member/checkUserid.gg">
 		<label for="userid">아이디</label>
 		<input type="text" name="userid" id="userid" 
 			value="<%=userid%>">

@@ -9,7 +9,7 @@ import com.invem.controller.Controller;
 import com.invem.member.model.MemberDTO;
 import com.invem.member.model.MemberService;
 
-public class AddSignUpOKController implements Controller {
+public class MemberEditOKController implements Controller{
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
@@ -59,7 +59,7 @@ public class AddSignUpOKController implements Controller {
 		MemberService serv = new MemberService();
 		
 		int cnt=0;
-		String msg="당신은 가입 못합니다.", url="/login/signup.gg";
+		String msg="수정 실패", url="/login/memberEdit.gg";
 		try {
 			cnt = serv.insertMember(vo);
 			msg="환영합니다!";
