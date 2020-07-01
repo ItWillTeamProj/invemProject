@@ -15,7 +15,7 @@
 		</script>
 	<% return;
 	}
-	
+
 	MemberDTO memVo = (MemberDTO)request.getAttribute("memVo");
 
 	String phoneno = memVo.getPhoneno();
@@ -26,14 +26,18 @@
 	String email1 = "";
 	String email2 = "";
 	String detail = memVo.getDetail();
-	
+
+	if(memVo.getDetail() != null && !memVo.getDetail().isEmpty()){
+		detail = memVo.getDetail();
+	}
+
 
 	if (phoneno != null && !phoneno.isEmpty()) {
 		phoneno1 = phoneno.split("-")[0];
 		phoneno2 = phoneno.split("-")[1];
 		phoneno3 = phoneno.split("-")[2];
 	}
-	
+
 	if (email != null && !email.isEmpty()) {
 		email1 = email.split("@")[0];
 		email2 = email.split("@")[1];
@@ -67,15 +71,15 @@
 				alert('비밀번호가 일치하지 않습니다.');
 				$('#pwd2').focus();
 				event.preventDefault();
-			}			
+			}
 		$('#btnChkId').click(function(){
 			var userid=$('#userid').val();
-			
+
 			window.open('<%=request.getContextPath()%>/member/checkUserid.gg?userid='+userid,'chk',
-				'width=400,height=300,left=0,top=0,location=yes,resizable=yes');	
+				'width=400,height=300,left=0,top=0,location=yes,resizable=yes');
 		});
 	});//click
-	
+
 </script>
 <script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript">
@@ -100,11 +104,11 @@
                 if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
                     extraRoadAddr += data.bname;
                 }
-                
+
                 if(data.buildingName !== '' && data.apartment === 'Y'){
                    extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
                 }
-                
+
                 if(extraRoadAddr !== ''){
                     extraRoadAddr = ' (' + extraRoadAddr + ')';
                 }
@@ -112,7 +116,7 @@
                 document.getElementById('postcode').value = data.zonecode;
                 document.getElementById("roadAddress").value = roadAddr;
                 document.getElementById("jibunAddress").value = data.jibunAddress;
-                
+
                 if(roadAddr !== ''){
                     document.getElementById("extraAddress").value = extraRoadAddr;
                 } else {
@@ -120,7 +124,7 @@
                 }
 
                 var guideTextBox = document.getElementById("guide");
-                
+
                 if(data.autoRoadAddress) {
                     var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
                     guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
@@ -171,22 +175,22 @@
 				<div>
 					<label for="userid">회원ID</label>
 					<input type="text" name="userid" id="userid" value="<%=memVo.getUserid() %>" style="ime-mode:inactive" readonly>&nbsp;
-        			
+
 				</div>
 				<div>
 					<label for="nickname">닉네임</label> <input type="text"
 						name="nickname" id="nickname" value="<%=memVo.getNickname()%>">
 				</div>
 				<div>
-					<label for="pwd">비밀번호</label> 
+					<label for="pwd">비밀번호</label>
 					<input type="Password" name="pwd" id="pwd">
 				</div>
 				<div>
-					<label for="pwd2">비밀번호 확인</label> 
+					<label for="pwd2">비밀번호 확인</label>
 					<input type="Password" name="pwd2" id="pwd2">
 				</div>
 				<div>
-					<label for="name">이름</label> 
+					<label for="name">이름</label>
 					<span><%=memVo.getName() %></span>
 				</div>
 				<div>
@@ -214,28 +218,28 @@
 						name="email2" id="email2" title="이메일주소 뒷자리">
 						<%for(int i = 0; i < emailList.length; i++){ %>
 				            <option value="<%=emailList[i] %>"
-				            <%if(email2.equals(emailList[i])){%> 
+				            <%if(email2.equals(emailList[i])){%>
 				            selected="selected" <%} %>
 				            ><%=emailList[i] %></option>
 			            <%} %>
 			            <option value="etc"<%if(isEtc){%> selected="selected" <%} %>>직접입력</option>
 					</select> <input type="text" name="email3" id="email3"
 						title="직접입력인 경우 이메일주소 뒷자리"
-						<%if(isEtc){%> 
-			        		style="visibility:visible;" value="<%=email2 %>" 
-			        	<%}else{%> 
-			        		style="visibility:hidden;" 
+						<%if(isEtc){%>
+			        		style="visibility:visible;" value="<%=email2 %>"
+			        	<%}else{%>
+			        		style="visibility:hidden;"
 			        	<%} %>>
 				</div>
 				<div>
 					<label for="zipcode">우편번호</label>
 					<!-- ReadOnly -->
-					<input type="text" name="zipcode" id="sample4_postcode" title="우편번호" 
+					<input type="text" name="zipcode" id="sample4_postcode" title="우편번호"
 					style="margin-top: 1px;" placeholder="우편번호" value="<%=memVo.getZipcode()%>">
 					<input type="Button" value="우편번호 찾기" id="btnZipcode" title="새창열림" onClick="openDaumZipAddress();"><br>
 					<span class="sp1">주소</span>
 					<input type="text" id="address" name="address" title="주소" class="width_350"
-					style="margin-top: 2px;" value="<%=memVo.getAddress()%>"><br> 
+					style="margin-top: 2px;" value="<%=memVo.getAddress()%>"><br>
 					<span class="sp1">상세주소</span>
 					<input type="text" id="detail" name="detail" title="상세주소" class="width_350"
 					style="margin-top: 4px;" value="<%=detail%>"> <%-- ${memVo.detail} --%>

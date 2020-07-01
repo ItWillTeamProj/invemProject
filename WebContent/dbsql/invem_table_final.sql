@@ -104,14 +104,14 @@ CREATE TABLE board (
 	nonuserid VARCHAR2(100), /* 비회원아이디 */
 	pwd VARCHAR2(20), /* 비밀번호 */
 	title VARCHAR2(300), /* 제목 */
-	regdate DATE, /* 등록일 */
+	regdate DATE default sysdate, /* 등록일 */
 	describe CLOB, /* 내용 */
-	views NUMBER, /* 조회수 */
+	views NUMBER default 0, /* 조회수 */
 	ipaddress VARCHAR2(30), /* 아이피 */
-	delflag CHAR(1), /* 삭제플레그 */
+	delflag CHAR(1) default 'N', /* 삭제플레그 */
 	cat_code CHAR(1 BYTE), /* 카테고리코드 */
 	champ_no NUMBER, /* 챔피언번호 */
-	recommend NUMBER /* 리코멘드 */
+	recommend NUMBER default 0/* 리코멘드 */
 );
 
 ALTER TABLE board
@@ -208,3 +208,21 @@ ALTER TABLE recommend
 		REFERENCES board (
 			no
 		);
+		
+CREATE SEQUENCE RECOMMEND_SEQ INCREMENT BY 1 START WITH 1 MAXVALUE 9999999999 MINVALUE 1;
+
+create sequence reply_seq
+increment by 1
+start with 1
+nocache;
+
+
+create sequence guestbook_seq
+increment by 1
+start with 1
+nocache;
+
+create sequence board_seq
+increment by 1
+start with 1
+nocache;

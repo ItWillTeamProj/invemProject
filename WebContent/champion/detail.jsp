@@ -52,6 +52,11 @@
 			window.open('<%=request.getContextPath()%>/blog/blog.gg?sId='+sId, 'viewer', 'width=1000, height=700');
 		});
 		
+		$('#toList').click(function(){
+			var sId = $('#uId').html();
+			location.href = '<%=request.getContextPath()%>/board/boardList.gg?code=F&searchCondition=userid&searchKeyword='+sId;
+		});
+		
 		$("#btList").click(function() {
 			location.href = "<c:url value='/champion/list.gg'/>";
 		});
@@ -120,7 +125,7 @@
 <div id="divLangSelect" style="background: #fff0">
 <ul id="menu">
   <li><div><a href="#" id="toBlog">블로그 가기</a></div></li>
-  <li><div><a>작성글, 댓글보기</a></div></li>
+  <li><div><a href="#" id="toList">작성글 보기</a></div></li>
 </ul>
 </div>
 <!-- //폼 레이어  -->

@@ -10,8 +10,8 @@
 <%@ include file = "../inc/top.jsp"%>
 
 <%
-	String condition = (String)request.getParameter("condition");
-	String keyword = (String)request.getParameter("keyword");
+	String condition = (String)request.getAttribute("condition");
+	String keyword = (String)request.getAttribute("keyword");
 	
 
 	List <BoardVO> list = (List<BoardVO>)request.getAttribute("list");
@@ -48,6 +48,11 @@ $(function(){
 		
 		$('#menu').css("display", "none");
 	
+	});
+	
+	$('#toList').click(function(){
+		var sId = $('#uId').html();
+		location.href = '<%=request.getContextPath()%>/board/boardList.gg?code=F&searchCondition=userid&searchKeyword='+sId;
 	});
 	
 });
@@ -198,7 +203,7 @@ $(function(){
             	<%} %>
             >내용</option>
             <option value="userid"
-            	<%if("name".equals(condition)){%>
+            	<%if("userid".equals(condition)){%>
             		selected = "selected"
             	<%} %>
             >작성자</option>
@@ -217,6 +222,7 @@ $(function(){
  <div id="divLangSelect" style="background: #fff0">
 <ul id="menu">
   <li><div id = "toBlog">블로그 가기</div></li>
+   <li><div><a href="#" id="toList">작성글 보기</a></div></li>
 </ul>
 </div>   
 </article>

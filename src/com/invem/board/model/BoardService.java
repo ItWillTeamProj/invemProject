@@ -96,11 +96,17 @@ public class BoardService {
 	public int recommendInsert(String userid, int no) throws SQLException {
 		return dao.recommendInsert(userid, no);
 	}
+	
 	public int guestbookInsert(GuestbookVO vo) throws SQLException {
 		return dao.guestbookInsert(vo);
 	}
 	
 	public List<GuestbookVO> guestbookList(String userid) throws SQLException{
 		return dao.guestbookList(userid);
+	}
+	
+	public List<BoardVO> selectByTop() throws SQLException {
+		return dao.selectByTop();
+
 	}
 }

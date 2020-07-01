@@ -7,7 +7,6 @@
 <link rel="stylesheet" type="text/css" href="../css/clear.css" />
 <link rel="stylesheet" type="text/css" href="../css/formLayout.css" />
 <link rel="stylesheet" type="text/css" href="../css/mystyle.css" />
-<script type="text/javascript" src="../js/jquery-3.5.1.min.js" charset="utf-8"></script>
 <script type="text/javascript">
 	$(function(){
 		$('#wr_submit').click(function(){
@@ -102,15 +101,14 @@
 
                 document.getElementById('postcode').value = data.zonecode;
                 document.getElementById("roadAddress").value = roadAddr;
-                document.getElementById("jibunAddress").value = data.jibunAddress;
                 
                 // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
-                if(roadAddr !== ''){
+                /*if(roadAddr !== ''){
                     document.getElementById("extraAddress").value = extraRoadAddr;
                 } else {
                     document.getElementById("extraAddress").value = '';
-                }
-
+                }*/
+				/*
                 var guideTextBox = document.getElementById("guide");
                 // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
                 if(data.autoRoadAddress) {
@@ -125,7 +123,7 @@
                 } else {
                     guideTextBox.innerHTML = '';
                     guideTextBox.style.display = 'none';
-                }
+                }*/
             }
         }).open();
     }

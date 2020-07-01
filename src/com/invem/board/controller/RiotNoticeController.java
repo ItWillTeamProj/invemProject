@@ -38,7 +38,7 @@ public class RiotNoticeController implements Controller{
 		request.setAttribute("code", "R");
 		
 		
-		return "/board/boardList.jsp";
+		return "/board/riotNotice.jsp";
 	}
 
 	@Override

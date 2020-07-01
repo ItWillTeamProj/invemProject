@@ -67,15 +67,11 @@ public class BoardDAO {
 				String describe = rs.getString("describe");
 				int recommend = rs.getInt("recommend");
 				int views = rs.getInt("views");
-				String filename = rs.getString("filename");
-				long filesize = rs.getLong("filesize");
-				int downcount = rs.getInt("downcount");
-				String originalfilename = rs.getString("originalfilename");
 				String ipaddress = rs.getString("ipaddress");
 				String delflag = rs.getString("delflag");
 				String cat_code = rs.getString("cat_code");
 
-				BoardVO vo = new BoardVO(no, userid, nonuserid, pwd, title, regdate, describe, recommend, views, filename, filesize, downcount, originalfilename, ipaddress, delflag, cat_code);
+				BoardVO vo = new BoardVO(no, userid, nonuserid, pwd, title, regdate, describe, recommend, views, ipaddress, delflag, cat_code);
 
 				list.add(vo);
 				System.out.println("매개변수 vo=" + vo);
@@ -149,10 +145,6 @@ public class BoardDAO {
 				vo.setDescribe(rs.getString("describe"));
 				vo.setRecommend(rs.getInt("recommend"));
 				vo.setViews(rs.getInt("views"));
-				vo.setFilename(rs.getString("filename"));
-				vo.setFilesize(rs.getLong("filesize"));
-				vo.setDowncount(rs.getInt("downcount"));
-				vo.setOriginalfilename(rs.getString("originalfilename"));
 				vo.setIpaddress(rs.getString("ipaddress"));
 				vo.setDelflag(rs.getString("delflag"));
 				vo.setCat_code(rs.getString("cat_code"));
@@ -302,15 +294,11 @@ public class BoardDAO {
 				String describe = rs.getString("describe");
 				int recommend =rs.getInt("recommend");
 				int views = rs.getInt("views");
-				String filename = rs.getString("filename");
-				long filesize = rs.getLong("filesize");
-				int downcount = rs.getInt("downcount");
-				String originalfilename = rs.getString("originalfilename");
 				String ipaddress = rs.getString("ipaddress");
 				String delflag = rs.getString("delflag");
 				String cat_code = rs.getString("cat_code");
 
-				BoardVO vo = new BoardVO(no, userid, nonuserid, pwd, title, regdate, describe, recommend, views, filename, filesize, downcount, originalfilename, ipaddress, delflag, cat_code);
+				BoardVO vo = new BoardVO(no, userid, nonuserid, pwd, title, regdate, describe, recommend, views, ipaddress, delflag, cat_code);
 				list.add(vo);
 
 			}
@@ -432,15 +420,11 @@ public class BoardDAO {
 				String describe = rs.getString("describe");
 				int recommend =rs.getInt("recommend");
 				int views = rs.getInt("views");
-				String filename = rs.getString("filename");
-				long filesize = rs.getLong("filesize");
-				int downcount = rs.getInt("downcount");
-				String originalfilename = rs.getString("originalfilename");
 				String ipaddress = rs.getString("ipaddress");
 				String delflag = rs.getString("delflag");
 				String cat_code = rs.getString("cat_code");
 
-				BoardVO vo = new BoardVO(no, userid, nonuserid, pwd, title, regdate, describe, recommend, views, filename, filesize, downcount, originalfilename, ipaddress, delflag, cat_code);
+				BoardVO vo = new BoardVO(no, userid, nonuserid, pwd, title, regdate, describe, recommend, views, ipaddress, delflag, cat_code);
 				list.add(vo);
 
 			}
@@ -782,17 +766,12 @@ public class BoardDAO {
 				String describe = rs.getString("describe");
 				int recommend = rs.getInt("recommend");
 				int views = rs.getInt("views");
-				String filename = rs.getString("filename");
-				long filesize = rs.getLong("filesize");
-				int downcount = rs.getInt("downcount");
-				String originalfilename = rs.getString("originalfilename");
 				String ipaddress = rs.getString("ipaddress");
 				String delflag = rs.getString("delflag");
 				String cat_code = rs.getString("cat_code");
 
 				BoardVO vo = new BoardVO(no, userid, nonuserid, pwd, title, regdate, 
-						describe, recommend, views, filename, filesize, downcount, 
-						originalfilename, ipaddress, delflag, cat_code, champ_no);
+						describe, recommend, views, ipaddress, delflag, cat_code, champ_no);
 
 				list.add(vo);
 			}
@@ -941,13 +920,12 @@ public class BoardDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		
-		List<GuestbookVO> list = null;
+		List<GuestbookVO> list = new ArrayList<GuestbookVO>();
 		
 		try {
 			con = pool.getConnection();
 			String sql = "select * from guestbook order by gno desc";
 			ps = con.prepareStatement(sql);
-			
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
@@ -964,8 +942,35 @@ public class BoardDAO {
 		}finally {
 			pool.dbClose(con, ps, rs);
 		}
+	}
+
+	public List<BoardVO> selectByTop() throws SQLException {
+
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
 		
-		
-		
+		try {
+			con = pool.getConnection();
+			
+			String sql = "select * from board ORDER BY recommend desc";
+			ps = con.prepareStatement(sql);
+			
+			rs = ps.executeQuery();
+			
+			List<BoardVO> list = new ArrayList<BoardVO>();
+			while (rs.next()) {
+				BoardVO vo = new BoardVO(rs.getInt("no"), rs.getString("userid"), rs.getString("nonuserid"), 
+						rs.getString("pwd"), rs.getString("title"), rs.getTimestamp("regdate"), rs.getString("describe"), 
+						rs.getInt("recommend"), rs.getInt("views"), rs.getString("ipaddress"), 
+						rs.getString("delflag"), rs.getString("cat_code"), rs.getInt("champ_no"));
+				
+				list.add(vo);
+			}
+			
+			return list;
+		} finally {
+			pool.dbClose(con, ps, rs);
+		}
 	}
 }
