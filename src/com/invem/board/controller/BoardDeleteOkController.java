@@ -15,10 +15,14 @@ public class BoardDeleteOkController implements Controller{
 		String no = request.getParameter("no");
 		String code = request.getParameter("code");
 		BoardService boardServ = new BoardService();
-		
-		String msg = "삭제 성공", url = "/board/boardList.gg?code="+code;
+		System.out.println("no="+no);
+		String msg = "삭제 실패", url = "/board/boardList.gg?code="+code;
 		try {
 			int cnt = boardServ.boardDelete(Integer.parseInt(no), code);
+			if(cnt>0) {
+				msg = "삭제성공";
+				url = "/board/boardList.gg?code="+code;
+			}
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}

@@ -5,6 +5,7 @@
 	String code = request.getParameter("code");
 	String cnt = request.getParameter("cnt");
 	String groupno = request.getParameter("groupno");
+	String delflag = request.getParameter("delflag");
 	if(cnt == null || cnt.isEmpty()){
 		cnt = "0";
 	}
@@ -20,7 +21,7 @@
 $(function(){
 	if("<%=cnt%>" == "1"){
 		
-		opener.location.href = "<%=request.getContextPath()%>/reply/replyDelete_ok.gg?no=<%=no%>&code=<%=code%>&groupno=<%=groupno%>";
+		opener.location.href = "<%=request.getContextPath()%>/reply/replyDelete_ok.gg?no=<%=no%>&code=<%=code%>&groupno=<%=groupno%>&delflag=<%=delflag%>";
 		self.close();
 	}
 	
@@ -44,6 +45,7 @@ $(function(){
 	<input type = "hidden" name = "code" value = "<%=code %>">
 	<input type = "hidden" name = "cnt" value = "<%=cnt %>">
 	<input type = "hidden" name = "groupno" value = "<%=groupno %>">
+	<input type = "hidden" name = "delflag" value = "<%=delflag %>">
  	<div style = "text-align: center">
 		<input type = "submit" value = "확인">
 		<input type = "button" id = "cancel" value = "취소">

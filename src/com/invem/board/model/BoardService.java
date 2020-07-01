@@ -88,4 +88,12 @@ public class BoardService {
 	public int recommentCount(int no, String code, int num) throws SQLException {
 		return dao.recommentCount(no, code, num);
 	}
+	
+	public int checkRecommend(String userid, int no) throws SQLException {
+		return dao.checkRecommend(userid, no);
+	}
+	
+	public int recommendInsert(String userid, int no) throws SQLException {
+		return dao.recommendInsert(userid, no);
+	}
 }

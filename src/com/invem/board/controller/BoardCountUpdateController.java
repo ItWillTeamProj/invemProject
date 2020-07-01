@@ -17,6 +17,7 @@ public class BoardCountUpdateController implements Controller{
 		String ipaddress = request.getParameter("ipaddress");
 		String no = request.getParameter("no");
 		String code = request.getParameter("code");
+		String delflag = request.getParameter("delflag");
 		
 		
 		BoardService boardServ = new BoardService();
@@ -28,7 +29,7 @@ public class BoardCountUpdateController implements Controller{
 		
 		
 		
-		return "/board/detail.gg?no="+no+"&code="+code;
+		return "/board/detail.gg?no="+no+"&code="+code+"&delflag="+delflag;
 	}
 
 	@Override

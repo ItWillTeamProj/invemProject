@@ -43,9 +43,26 @@
 		</div>
 
 	</div>
-
-	<div>
+	<div class="grid" style="float: left;">
 		<a href="<%=request.getContextPath() %>/admin/admin.jsp">관리자</a>
+	</div>
+	<div style="clear: both; width: 98%; height: auto;" class="grid">
+		<table class="table table-striped" style="width: 100%">
+		<colgroup>
+			<col width="30%">
+			<col width="70%">
+		</colgroup>
+			<tr>
+				<th>LOL 공지사항</th>
+				<th style="overflow: hidden;">내용<a href="/board/riotNotice.gg" style="float: right;">더보기</a></th>
+			</tr>
+			<c:forEach var="msg" items="${messages }">
+				<tr>
+					<td>${msg.heading }</td>
+					<td>${msg.content }</td>
+				</tr>
+			</c:forEach>
+		</table>
 	</div>
 </article>
 <%@ include file="../inc/bottom.jsp" %>
