@@ -34,7 +34,7 @@ label{
 				alert("개인정보 약관에 동의하셔야 합니다!");
 				$('#chkAgree2').focus();
 				event.preventDefault();
-			}
+			} 
 		});
 	});
 </script>

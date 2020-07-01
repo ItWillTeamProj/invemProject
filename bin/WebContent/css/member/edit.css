@@ -1,0 +1,10 @@
+@charset "UTF-8";
+.divForm label, .divForm .sp1 {
+	width: 35%;
+	float: left;
+	text-align: right;
+	padding: 3px 15px 0 0;
+	clear: left;
+	font-weight: bold;
+    font-size: 0.9em;
+}
