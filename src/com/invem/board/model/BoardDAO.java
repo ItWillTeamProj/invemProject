@@ -794,6 +794,14 @@ public class BoardDAO {
 
 	}
 	
+	/**
+	 * 추천수 증가 감소 
+	 * @param no
+	 * @param code
+	 * @param num
+	 * @return
+	 * @throws SQLException
+	 */
 	public int recommentCount(int no, String code, int num) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;

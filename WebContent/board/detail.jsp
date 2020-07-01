@@ -85,7 +85,7 @@ $(function(){
 		location.href = "<%=request.getContextPath()%>/board/recommend.gg?no=<%=no%>&code=<%=code%>&value=G";
 	});
 	
-	$('#good').click(function(){
+	$('#bad').click(function(){
 		location.href = "<%=request.getContextPath()%>/board/recommend.gg?no=<%=no%>&code=<%=code%>&value=B";
 	});
 	
@@ -128,9 +128,9 @@ $(function(){
 	<div><%=vo.getDescribe() %></div><br>
 	<br><hr style = "border: 0; height: 2px; background: skyblue">
 	
-	<div style="width: 100%; height: 200px; text-align: center; float:right">
-		<a href = "#"><img src = "../images/good.png" style = "max-width: 100px; max-height:100px;float: left;text-align: center;" alt = "추천" id="good"/></a>
-		<a href = "#"><img src = "../images/bad.png" style = "max-width: 100px; max-height:100px; float: left;text-align: center;" alt = "신고" id="bad"/></a>
+	<div style="width: 100%; height: 200px; text-align: center;">
+		<a href = "#"><img src = "../images/good.png" style = "max-width: 100px; max-height:100px;text-align: center;" alt = "추천" id="good"/></a>
+		<a href = "#"><img src = "../images/bad.png" style = "max-width: 100px; max-height:100px;text-align: center;" alt = "신고" id="bad"/></a>
 	</div>
 	
 	<%if(list != null && !list.isEmpty()){%>

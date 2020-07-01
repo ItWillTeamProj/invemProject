@@ -20,7 +20,7 @@
 	
 	vo.setNo(Integer.parseInt(user_no));
 	vo.setSortno(Integer.parseInt(user_no));
-	vo.setUserid(username);
+	vo.setusername(username);
 	vo.setReply(reply);
 	vo.setStep(1);
 	vo.setGroupno(Integer.parseInt(user_no));

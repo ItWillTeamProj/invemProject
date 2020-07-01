@@ -1,5 +1,7 @@
 package com.invem.board.controller;
 
+import java.sql.SQLException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,13 +18,17 @@ public class BoardCountUpdateController implements Controller{
 		String no = request.getParameter("no");
 		String code = request.getParameter("code");
 		
+		
 		BoardService boardServ = new BoardService();
-		int cnt = boardServ.updateReadCount(Integer.parseInt(no));
+		try {
+			int cnt = boardServ.updateReadCount(Integer.parseInt(no));
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
 		
 		
 		
-		
-		return "/board/countUpdate.jsp?no="+no+"&userid="+userid+"&nonuserid="+nonuserid+"&ipaddress="+ipaddress+"&code="+code;
+		return "/board/detail.gg?no="+no+"&code="+code;
 	}
 
 	@Override

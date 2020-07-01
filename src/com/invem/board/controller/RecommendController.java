@@ -15,7 +15,8 @@ public class RecommendController implements Controller{
 		String no = request.getParameter("no");
 		String code = request.getParameter("code");
 		String value = request.getParameter("value");
-		String msg = "", url = "/board/detail.gg?no="+no+"&"
+		
+		String msg = "", url = "/board/detail.gg?no="+no+"&code="+code;
 		int num = 0;
 		if(value.equals("G")) {
 			num = 1;
@@ -26,16 +27,23 @@ public class RecommendController implements Controller{
 		try {
 			int cnt = boardServ.recommentCount(Integer.parseInt(no), code, num);
 			if(cnt > 0) {
-				System.out.println("조회수 변경 성공");
+				System.out.println("추천수 변경 성공");
+				if(value.equals("G")) {
+					msg = "추천 하셨습니다.";
+				}else if(value.equals("B")) {
+					msg = "비추천 하셨습니다.";
+				}
 			}else {
-				System.out.println("조회수 변경 실패");
+				System.out.println("db작업 실패");
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
 		
+		request.setAttribute("msg", msg);
+		request.setAttribute("url", url);
 		
-		return null;
+		return "/common/message.jsp";
 	}
 
 	@Override
