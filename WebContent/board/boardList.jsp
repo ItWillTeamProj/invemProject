@@ -44,7 +44,7 @@ $(function(){
 	$('#toBlog').click(function(){
 		var sId = $('#uId').html();
 		$('#blogId').val(sId);
-		window.open('<%=request.getContextPath()%>/blog/blog.gg?userid='+sId, 'viewer', 'width=1000, height=700');
+		window.open('<%=request.getContextPath()%>/blog/blog.gg?sId='+sId, 'viewer', 'width=1000, height=700');
 	
 	
 	});
@@ -122,8 +122,7 @@ $(function(){
 						<td style = "text-align: center"><%=num + 1 %></td>
 				<!-- userid가 null이면 nonuserid 비밀번호 ip주소 를 detail로 보낸다. -->
 				<%if(vo.getUserid() == null || vo.getUserid().isEmpty() || "unknown".equals(vo.getUserid())){%>
-						<td><a href = "<%=request.getContextPath() %>/board/detail.gg?nonuserid=<%=vo.getNonuserid()%>&pwd=<%=vo.getPwd()%>
-							&ipaddress=<%=vo.getIpaddress()%>&no=<%=vo.getNo() %>&code=<%=code%>"><%=vo.getTitle() %>
+						<td><a href = "<%=request.getContextPath() %>/board/detail.gg?nonuserid=<%=vo.getNonuserid()%>&ipaddress=<%=vo.getIpaddress()%>&no=<%=vo.getNo() %>&code=<%=code%>"><%=vo.getTitle() %>
 							<%if(boardServ.checkRegdate(vo.getNo())==1){ %>
 								<span class="badge badge-primary">new</span>
 							<%} %>

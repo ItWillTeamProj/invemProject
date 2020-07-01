@@ -668,7 +668,13 @@ public class BoardDAO {
 			pool.dbClose(con, ps);
 		}
 	}
-
+	
+	/**
+	 * 댓글 삭제 
+	 * @param rep_no
+	 * @return
+	 * @throws SQLException
+	 */
 	public int replyDelete(int rep_no) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -713,13 +719,13 @@ public class BoardDAO {
 			ps=con.prepareStatement(sql);
 
 			ps.setInt(1, no);
-
+			System.out.println("rep_no="+no);
 			//4
 			rs=ps.executeQuery();
 			boolean result=false;
 			if(rs.next()) {
 				String dbPwd=rs.getString(1);
-
+				System.out.println("dbpwd="+dbPwd);
 				if(dbPwd.equals(pwd)) {
 					result=true;  //비밀번호 일치
 				}

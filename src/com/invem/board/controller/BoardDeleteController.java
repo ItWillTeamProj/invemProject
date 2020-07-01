@@ -20,7 +20,7 @@ public class BoardDeleteController implements Controller{
 		
 		String msg = "비밀번호가 틀립니다.", url = "/board/deleteNonuser.gg?no="+no+"&code="+code+"&cnt=";
 		try {
-			if(boardServ.checkReplyPwd(Integer.parseInt(no), pwd)) {
+			if(boardServ.checkPwd(Integer.parseInt(no), pwd)) {
 				msg = "비밀번호 일치 삭제합니다.";
 				cnt = "1";
 			}else {

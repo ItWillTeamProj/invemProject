@@ -8,6 +8,7 @@
 	if(cnt == null || cnt.isEmpty()){
 		cnt = "0";
 	}
+	System.out.println("no="+no);
 %>    
 <!DOCTYPE html>
 <html>

@@ -5,10 +5,11 @@
 	String no = request.getParameter("no");
 	String code = request.getParameter("code");
 	String cnt = request.getParameter("cnt");
+	String userid = request.getParameter("userid");
 	if(cnt == null || cnt.isEmpty()){
 		cnt = "0";
 	}
-%>    
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,11 +19,11 @@
 <script type="text/javascript">
 $(function(){
 	if("<%=cnt%>" == "1"){
-		
-		opener.location.href = "<%=request.getContextPath()%>/reply/replyDelete_ok.gg?no=<%=no%>&code=<%=code%>";
+
+		opener.location.href = "<%=request.getContextPath()%>/board/boardDelete_ok.gg?no=<%=no%>&code=<%=code%>";
 		self.close();
 	}
-	
+
 	$('#cancel').click(function(){
 		self.close();
 	});
@@ -32,6 +33,10 @@ $(function(){
 			event.preventDefault();
 		}
 	});
+
+	if('C' == '<%=code%>'){
+		$("form[name=frmCheckPwd]").attr("action","<%=request.getContextPath()%>/board/ChampBoardDelete.gg");
+	}
 });
 
 </script>
@@ -43,7 +48,8 @@ $(function(){
 	<input type = "hidden" name = "no" value = "<%=no %>">
 	<input type = "hidden" name = "code" value = "<%=code %>">
 	<input type = "hidden" name = "cnt" value = "<%=cnt %>">
-	
+	<input type = "hidden" name = "userid" value = "<%=userid %>">
+
  	<div style = "text-align: center">
 		<input type = "submit" value = "확인">
 		<input type = "button" id = "cancel" value = "취소">
@@ -51,5 +57,3 @@ $(function(){
 </form>
 </body>
 </html>
-
-

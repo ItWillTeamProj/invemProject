@@ -18,7 +18,7 @@ public class ReplyDeleteController implements Controller{
 		String cnt = request.getParameter("cnt");
 		String groupno = request.getParameter("groupno");
 		BoardService boardServ = new BoardService();
-		
+		System.out.println("no="+no);
 		String msg = "비밀번호가 틀립니다.", url = "/reply/replyDelNonuser.gg?no="+no+"&groupno="+groupno+"&code="+code+"&cnt=";
 		try {
 			if(boardServ.checkReplyPwd(Integer.parseInt(no), pwd)) {

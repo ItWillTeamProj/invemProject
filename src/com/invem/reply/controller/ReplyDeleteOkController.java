@@ -16,10 +16,10 @@ public class ReplyDeleteOkController implements Controller{
 		String code = request.getParameter("code");
 		String groupno = request.getParameter("groupno");
 		BoardService boardServ = new BoardService();
-		
+		System.out.println("no="+no);
 		String msg = "삭제 성공", url = "/board/detail.gg?no="+groupno+"&code="+code;
 		try {
-			boardServ.replyDelete(Integer.parseInt(no));	
+			int cnt = boardServ.replyDelete(Integer.parseInt(no));	
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
