@@ -44,8 +44,6 @@
 
 	</div>
 
-	<div>
-		<a href="<%=request.getContextPath() %>/admin/admin.jsp">관리자</a>
-	</div>
+
 </article>
 <%@ include file="../inc/bottom.jsp" %>

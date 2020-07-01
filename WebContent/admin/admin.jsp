@@ -5,31 +5,29 @@
 	<%-- ADMIN 첫 화면 --%>
 	<div style="margin-top: 10px; width: 720px; height:61px;
 		background-size:100%; color:white; font-size: 30px; margin-bottom:10px;
-		background-image: url('<%=request.getContextPath() %>/images/champion/header.png');">
-		<div style="padding: 9px;">
-			<h4>관리자 페이지</h4>
+		background-image: url('<%=request.getContextPath() %>/images/champion/header2.png');">
+		<div style="padding: 10px 10px 10px 15px;">
+			<b>관리자 메인페이지</b>
 		</div>
 	</div>
-	<div style="float:left; width:300px; height:320px;
-		margin:5px 20px 10px 30px; text-align: center; background: white;">
-		<a href="<%=request.getContextPath() %>/admin/memberList.jsp">
+	<div style="float:left; width:345px; height:320px;
+		margin:0px 5px 5px 10px; text-align: center; background: white;">
+		<a href="<%=request.getContextPath() %>/admin/memberList.gg">
 			<img src="<%=request.getContextPath() %>/images/admin/member.png" 
 			style="width:auto; height:260px;" >
 			<br>
 			<b style="font-size: 30px; color: black;">회원관리</b>
 		</a>
-		
 	</div>	
 	
-	<div style="float:left; width:300px; height:320px;
-		margin:5px 30px 10px 20px; text-align: center; background: white;">
-		<a href="<%=request.getContextPath() %>/admin/boardSelect.jsp">
+	<div style="float:right; width:345px; height:320px;
+		margin:0px 10px 10px 5px; text-align: center; background: white;">
+		<a href="<%=request.getContextPath() %>/admin/boardSelect.gg">
 			<img src="<%=request.getContextPath() %>/images/admin/board.png" 
 			style="width:auto; height:235px; margin-top:25px; margin-left: 5px;" >
 			<br>
 			<b style="font-size: 30px; color: black;">게시판관리</b>
 		</a>
-		
 	</div>
 
 </article>	
