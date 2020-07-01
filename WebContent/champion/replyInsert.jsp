@@ -4,7 +4,7 @@
 <script type="text/javascript">
 	$(function() {
 		$("form[name=reply]").submit(function() {
-			if($("#nickName").val()  == ''){
+			if($("#userid").val()  == '' || $("#userid").val() == '로그인을 하세요'){
 				alert("로그인을 하셔야 합니다.");
 				location.href = "<c:url value='/login/login.gg' />";
 				return false;
@@ -35,8 +35,8 @@
 		<label for="nickName">아이디</label>
 		 <input value="" type="text" name="userid" id="userid" readonly="readonly">
 	</div>
-	<div>
-		<textarea id="reContent" rows="4" cols="97" name="reContent"></textarea>
+	<div style="margin: 0 auto;">
+		<textarea id="reContent" rows="4" cols="75" name="reContent"></textarea>
 	</div>
 	<div>
 		<input type="submit" value="등록">

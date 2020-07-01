@@ -14,6 +14,7 @@ public class ReplyDelNonuserController implements Controller{
 		String cnt = request.getParameter("cnt");
 		String groupno = request.getParameter("groupno");
 		String url = "";
+		System.out.println("no="+no);
 		if(cnt != null && !cnt.isEmpty()) {
 			url ="/reply/replyDelNonuser.jsp?no="+no+"&code="+code+"&cnt="+cnt+"&groupno="+groupno;
 		}else {
@@ -25,7 +26,7 @@ public class ReplyDelNonuserController implements Controller{
 
 	@Override
 	public boolean isRedirect() {
-		return false;
+		return true;
 	}
 	
 

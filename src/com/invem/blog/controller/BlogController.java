@@ -49,7 +49,7 @@ public class BlogController implements Controller {
 		}
 		int blockSize = 10;	// 페이지의 블럭개수
 		
-		PagingVO pageVo = new PagingVO(currentPage, totalRecord, pageSize, blockSize);
+		PagingVO bPageVo = new PagingVO(currentPage, totalRecord, pageSize, blockSize);
 		
 		
 		//3. myReply.jsp
@@ -59,7 +59,16 @@ public class BlogController implements Controller {
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
+		currentPage = 1;	//설정된 현재 페이지
 		
+		totalRecord = rList.size();	//전체 게시글 수
+		pageSize = 10;	//한 페이지에 보여줄 게시글 개수
+		if(request.getParameter("rowNum") != null && !request.getParameter("rowNum").isEmpty()){
+			pageSize = Integer.parseInt(request.getParameter("rowNum"));
+		}
+		blockSize = 10;	// 페이지의 블럭개수
+		
+		PagingVO rPageVo = new PagingVO(currentPage, totalRecord, pageSize, blockSize);
 		
 		//4. guestbook.jsp
 		
@@ -68,7 +77,8 @@ public class BlogController implements Controller {
 		request.setAttribute("writeCount", writeCount);
 		request.setAttribute("list", list);
 		request.setAttribute("rList", rList);
-		request.setAttribute("pageVo", pageVo);
+		request.setAttribute("pageVo", bPageVo);
+		request.setAttribute("rPageVo", rPageVo);
 		
 		return "/blog/blog.jsp?userid="+userid;
 	}

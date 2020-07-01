@@ -18,7 +18,7 @@ public class BoardDeleteOkController implements Controller{
 		
 		String msg = "삭제 성공", url = "/board/boardList.gg?code="+code;
 		try {
-			boardServ.boardDelete(Integer.parseInt(no), code);	
+			int cnt = boardServ.boardDelete(Integer.parseInt(no), code);
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
