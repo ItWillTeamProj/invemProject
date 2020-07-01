@@ -15,8 +15,10 @@ public class RecommendController implements Controller{
 		String no = request.getParameter("no");
 		String code = request.getParameter("code");
 		String value = request.getParameter("value");
-
-		String msg = "", url = "/board/detail.gg?no="+no+"&code="+code;
+		String delflag = request.getParameter("delflag");
+		String userid = request.getParameter("userid");
+		
+		String msg = "", url = "/board/detail.gg?no="+no+"&code="+code+"&delflag="+delflag;
 		int num = 0;
 		if(value.equals("G")) {
 			num = 1;
@@ -24,17 +26,42 @@ public class RecommendController implements Controller{
 			num = -1;
 		}
 		BoardService boardServ = new BoardService();
+		
+		
+		
+		int recommendCount = 0;
 		try {
-			int cnt = boardServ.recommentCount(Integer.parseInt(no), code, num);
-			if(cnt > 0) {
-				System.out.println("추천수 변경 성공");
-				if(value.equals("G")) {
-					msg = "추천 하셨습니다.";
-				}else if(value.equals("B")) {
-					msg = "비추천 하셨습니다.";
-				}
+			if(userid == null || userid.isEmpty() || "unknown".equals(userid)) {
+				msg = "추천 / 비추천은 회원만 가능합니다.";
+				
 			}else {
-				System.out.println("db작업 실패");
+				int cnt = boardServ.recommendInsert(userid, Integer.parseInt(no));
+				if(cnt>0) {
+					System.out.println("추천등록 성공");
+				}else {
+					System.out.println("추천등록 실패");
+				}
+				
+				recommendCount = boardServ.checkRecommend(userid, Integer.parseInt(no));
+				
+			}	
+			
+			
+			if(recommendCount > 1) {
+				msg = "추천 / 비추천은 각 게시물에 계정당 1회만 가능합니다.";
+			}else {
+				
+				int cnt2 = boardServ.recommentCount(Integer.parseInt(no), code, num);
+				if(cnt2 > 0) {
+					System.out.println("추천수 변경 성공");
+					if(value.equals("G")) {
+						msg = "추천 하셨습니다.";
+					}else if(value.equals("B")) {
+						msg = "비추천 하셨습니다.";
+					}
+				}else {
+					System.out.println("db작업 실패");
+				}
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();

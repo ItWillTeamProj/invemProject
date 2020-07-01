@@ -78,6 +78,7 @@ public class BoardDAO {
 				BoardVO vo = new BoardVO(no, userid, nonuserid, pwd, title, regdate, describe, recommend, views, filename, filesize, downcount, originalfilename, ipaddress, delflag, cat_code);
 
 				list.add(vo);
+				System.out.println("매개변수 vo=" + vo);
 			}
 			System.out.println("list.size = " + list.size());
 			return list;
@@ -658,12 +659,15 @@ public class BoardDAO {
 		PreparedStatement ps = null;
 		try {
 			con = pool.getConnection();
-			String sql = "delete from board where no=? and cat_code=?";
+			String sql = "update board" +
+						" set delflag=?" +
+						" where no=? and cat_code=?";
 			
 			ps = con.prepareStatement(sql);
 			
-			ps.setInt(1, no);
-			ps.setString(2, code);
+			ps.setString(1, "Y");
+			ps.setInt(2, no);
+			ps.setString(3, code);
 			
 			int cnt = ps.executeUpdate();
 			
@@ -834,5 +838,64 @@ public class BoardDAO {
 			pool.dbClose(con, ps);
 		}
 		
+	}
+	/**
+	 * 추천한 적이 있는지 확인
+	 * @param userid
+	 * @param no
+	 * @return
+	 * @throws SQLException
+	 */
+	public int checkRecommend(String userid, int no) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			con = pool.getConnection();
+			String sql = "select count(*) from recommend where userid=? and board_no=?";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, userid);
+			ps.setInt(2, no);
+			
+			rs = ps.executeQuery();
+			int cnt = 0;
+			if(rs.next()) {
+				cnt = rs.getInt(1);
+			}
+			System.out.println("추천 확인 cnt = " + cnt + ", 매개변수 userid = " + userid + ", no = " + no);
+			return cnt;
+		}finally {
+			pool.dbClose(con, ps, rs);
+		}
+	}
+	
+	/**
+	 * 추천 입력
+	 * @param userid
+	 * @param no
+	 * @return
+	 * @throws SQLException
+	 */
+	public int recommendInsert(String userid, int no) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		try {
+			con = pool.getConnection();
+			String sql = "insert into recommend(no, board_no, userid)"
+						+ "values(recommend_seq.nextval, ?, ?)";
+			ps = con.prepareStatement(sql);
+			
+			ps.setInt(1, no);
+			ps.setString(2, userid);
+			
+			int cnt = ps.executeUpdate();
+			System.out.println("입력결과  cnt = " + cnt + ", 매개변수 userid = " + userid + ", no=" + no);
+			return cnt;
+		}finally {
+			pool.dbClose(con, ps);
+			
+		}
 	}
 }

@@ -12,10 +12,12 @@
 	String code = request.getParameter("code");
 	BoardVO vo = (BoardVO)request.getAttribute("vo");
 	List<ReplyVO> list = (List<ReplyVO>)request.getAttribute("list");
-	String no = request.getParameter("no");
+	String no = (String)request.getAttribute("no");
 	String pwd = vo.getPwd();
-
-
+	String delflag = request.getParameter("delflag");
+	if(delflag == null || delflag.isEmpty()){
+		delflag = (String)request.getAttribute("delflag");
+	}
 	int replyCount = (int)request.getAttribute("replyCount");
 
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -38,7 +40,7 @@ $(function(){
 
 
 	$('#edit').click(function(){
-		location.href = "<%=request.getContextPath()%>/board/boardEdit.gg?no=<%=no%>&code=<%=code%>";
+		location.href = "<%=request.getContextPath()%>/board/boardEdit.gg?no=<%=no%>&code=<%=code%>&delflag=<%=delflag%>";
 	});
 
 	$('#delete').click(function(){
@@ -67,13 +69,13 @@ $(function(){
 		var result = confirm('댓글을 정말로 삭제 하시겠습니까?');
 		if(rId == "<%=userid%>"){
 			if(result){
-				location.href = "<%=request.getContextPath()%>/reply/replyDelete_ok.gg?no="+replyNo+"&code=<%=code%>&groupno="+groupNo;
+				location.href = "<%=request.getContextPath()%>/reply/replyDelete_ok.gg?no="+replyNo+"&code=<%=code%>&groupno="+groupNo+"&delflag=<%=delflag%>";
 			}else{
 				return false;
 			}
 		}else{
 			if(result){
-				window.open("<%=request.getContextPath()%>/reply/replyDelNonuser.gg?no="+replyNo+"&code=<%=code%>&groupno="+groupNo, 'viewer', 'width=400, height=400');
+				window.open("<%=request.getContextPath()%>/reply/replyDelNonuser.gg?no="+replyNo+"&code=<%=code%>&groupno="+groupNo+"&delflag=<%=delflag%>", 'viewer', 'width=400, height=400');
 			}else{
 				return false;
 			}
@@ -81,11 +83,11 @@ $(function(){
 	});
 
 	$('#good').click(function(){
-		location.href = "<%=request.getContextPath()%>/board/recommend.gg?no=<%=no%>&code=<%=code%>&value=G";
+		location.href = "<%=request.getContextPath()%>/board/recommend.gg?no=<%=no%>&code=<%=code%>&value=G&delflag=<%=delflag%>&userid=<%=userid%>";
 	});
 
 	$('#bad').click(function(){
-		location.href = "<%=request.getContextPath()%>/board/recommend.gg?no=<%=no%>&code=<%=code%>&value=B";
+		location.href = "<%=request.getContextPath()%>/board/recommend.gg?no=<%=no%>&code=<%=code%>&value=B&delflag=<%=delflag%>&userid=<%=userid%>";
 	});
 
 
@@ -109,12 +111,18 @@ $(function(){
 	%>
 	<h3><%=boardName %></h3>
 	<hr style = "border: 0; height: 2px; background: skyblue">
+	<%if(delflag.equals("N")){ %>
 	<div style="overflow: hidden;">
 		<h4 style = "margin-left: 10px; float: left;"><%=vo.getTitle() %></h4>
 		<a class = "btn btn-danger pull-right" id="delete" style="float: right;">삭제</a>
 		<a class = "btn btn-info pull-right" id="edit" style="float: right;">수정</a>
 
 	</div>
+	<%}else{ %>
+	<div style="overflow: hidden;">
+		<h4 style = "margin-left: 10px; float: left;">삭제된 게시물 입니다.</h4>
+	</div>
+	<%} %>
 	<div style="overflow: hidden; margin-top: 10px;">
 		<%if(!"unknown".equals(vo.getUserid()) && vo.getUserid() != null && !vo.getUserid().isEmpty()){%>
 			<span style = "float: left; margin-left: 30px"><%=vo.getUserid() %> | <%=vo.getRegdate() %></span>
@@ -124,12 +132,16 @@ $(function(){
 			<span style = "float: right; margin-right: 20px">조회 <%=vo.getViews() %> | 추천 <%=vo.getRecommend() %> | 댓글<%=replyCount %>  </span>
 		<%} %>
 	</div><br><hr style = "border: 0; height: 2px; background: skyblue">
+	<%if(delflag.equals("N")){ %>
 	<div><%=vo.getDescribe() %></div><br>
+	<%}else{ %>
+	<p>삭제된 게시물입니다.</p>
+	<%} %>
 	<br><hr style = "border: 0; height: 2px; background: skyblue">
 
 	<div style="width: 100%; height: 200px; text-align: center; margin-top: 70px;">
-		<a href = "#"><img src = "../images/good.png" style = "max-width: 100px; max-height:100px; text-align: center;" alt = "추천"/></a>
-		<a href = "#"><img src = "../images/bad.png" style = "max-width: 100px; max-height:100px; text-align: center;" alt = "신고"/></a>
+		<a href = "#"><img src = "../images/good.png" style = "max-width: 100px; max-height:100px; text-align: center;" alt = "추천" id = "good"/></a>
+		<a href = "#"><img src = "../images/bad.png" style = "max-width: 100px; max-height:100px; text-align: center;" alt = "신고" id = "bad"/></a>
 
 	</div>
 
@@ -175,6 +187,7 @@ $(function(){
 	<%}else{%>
 		<input type="hidden" value="<%=userid %>" name="userid">
 	<%} %>
+		<input type = "hidden" name = "delflag" value = "<%=delflag %>">
 		<input type = "hidden" name = "code" value = "<%=code%>">
  		<input type = "hidden" name = "no" value = "<%=Integer.parseInt(no)%>">
 		<textarea id="reply" name = "reply" rows="5" cols="60"

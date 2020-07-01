@@ -9,7 +9,7 @@
 	userid = vo.getUserid();	
 	String nonuserid = vo.getNonuserid();
 	String code = (String)request.getAttribute("code");
-	
+	String delflag = (String)request.getAttribute("delflag");
 
 %>
 
@@ -79,6 +79,7 @@
 		<%}%>
 		<input type="hidden" name="no" value="<%=vo.getNo() %>">
 			<hr style="border: 0; height: 2px; background: skyblue">
+		<input type="hidden" name="delflag" value="<%=delflag%>">
 		<textarea name="ir1" id="ir1" rows="10" cols="50"><%=vo.getDescribe()%></textarea>
 			<hr style="border: 0; height: 2px; background: skyblue">
 		<div style="float: right; margin-right: 220px">
