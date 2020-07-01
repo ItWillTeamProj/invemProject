@@ -18,7 +18,7 @@ public class AdminMemberDAO {
 		pool = new ConnectionPoolMgr2();
 	}
 	
-	public List<AdminMemberDTO> selectAll() throws SQLException{
+	public List<AdminMemberDTO> selectAll(String condition, String keyword) throws SQLException{
 		
 		Connection con=null;
 		PreparedStatement ps=null;
@@ -32,8 +32,17 @@ public class AdminMemberDAO {
 			
 			//3
 			String sql="select * from member";
+			if(keyword!=null && !keyword.isEmpty()) { //검색의 경우
+				sql+=" where "+ condition +" like '%' || ? || '%'";
+			}				
+			sql+=" order by regdate desc";
+			
+			
 			ps=con.prepareStatement(sql);
 			
+			if(keyword!=null && !keyword.isEmpty()) { //검색의 경우
+				ps.setString(1, keyword);
+			}
 
 			rs=ps.executeQuery();
 			while(rs.next()) {

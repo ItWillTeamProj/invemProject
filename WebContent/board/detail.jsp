@@ -12,15 +12,14 @@
 	String code = request.getParameter("code");
 	BoardVO vo = (BoardVO)request.getAttribute("vo");
 	List<ReplyVO> list = (List<ReplyVO>)request.getAttribute("list");
-	userid = (String)session.getAttribute("userid");
 	String no = request.getParameter("no");
 	String pwd = vo.getPwd();
-	
-	
+
+
 	int replyCount = (int)request.getAttribute("replyCount");
-	
+
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-	
+
 %>
 <link rel="stylesheet" href="../css/bootstrap/bootstrap.css">
 <script type="text/javascript">
@@ -28,16 +27,16 @@ $(function(){
 	if("<%=vo.getUserid()%>" != "" && "<%=vo.getUserid()%>" != "unknown" && "<%=vo.getUserid()%>" != "<%=userid%>"){
 		$('#delete').css("display", "none");
 	}
-	
+
 	if("<%=vo.getUserid()%>" != "" && "<%=vo.getUserid()%>" != "unknown" && "<%=vo.getUserid()%>" != "<%=userid%>"){
 		$('#edit').css("display", "none");
 	}
-	
+
 	$('#list').click(function(){
 		location.href = "<%=request.getContextPath()%>/board/boardList.gg?code=<%=code%>";
 	});
-	
-	
+
+
 	$('#edit').click(function(){
 		location.href = "<%=request.getContextPath()%>/board/boardEdit.gg?no=<%=no%>&code=<%=code%>";
 	});
@@ -58,13 +57,13 @@ $(function(){
 			}
 		}
 	});
-	
+
 	$('.delReply').click(function(){
-		
+
 		var rId = $('#rId').html();
 		var replyNo = $('#replyNo').html();
 		var groupNo = $('#groupNo').html();
-		
+
 		var result = confirm('댓글을 정말로 삭제 하시겠습니까?');
 		if(rId == "<%=userid%>"){
 			if(result){
@@ -80,9 +79,16 @@ $(function(){
 			}
 		}
 	});
-	
-	
-	
+
+	$('#good').click(function(){
+		location.href = "<%=request.getContextPath()%>/board/recommend.gg?no=<%=no%>&code=<%=code%>&value=G";
+	});
+
+	$('#bad').click(function(){
+		location.href = "<%=request.getContextPath()%>/board/recommend.gg?no=<%=no%>&code=<%=code%>&value=B";
+	});
+
+
 });
 </script>
 
@@ -101,13 +107,13 @@ $(function(){
 		<%break;
 	}
 	%>
-	<h3><%=boardName %></h3>	
+	<h3><%=boardName %></h3>
 	<hr style = "border: 0; height: 2px; background: skyblue">
 	<div>
 		<h4 style = "margin-left: 10px"><%=vo.getTitle() %></h4>
 		<a class = "btn btn-danger pull-right" id="delete">삭제</a>
 		<a class = "btn btn-info pull-right" id="edit">수정</a>
-		
+
 	</div>
 	<div>
 		<%if(!"unknown".equals(vo.getUserid()) && vo.getUserid() != null && !vo.getUserid().isEmpty()){%>
@@ -120,12 +126,13 @@ $(function(){
 	</div><br><hr style = "border: 0; height: 2px; background: skyblue">
 	<div><%=vo.getDescribe() %></div><br>
 	<br><hr style = "border: 0; height: 2px; background: skyblue">
-	
-	<div style="width: 100%; height: 200px; text-align: center; float:right">
-		<a href = "#"><img src = "../images/good.png" style = "max-width: 100px; max-height:100px;float: left;text-align: center;" alt = "추천"/></a>
-		<a href = "#"><img src = "../images/bad.png" style = "max-width: 100px; max-height:100px; float: left;text-align: center;" alt = "신고"/></a>
+
+	<div style="width: 100%; height: 200px; text-align: center; margin-top: 70px;">
+		<a href = "#"><img src = "../images/good.png" style = "max-width: 100px; max-height:100px; text-align: center;" alt = "추천"/></a>
+		<a href = "#"><img src = "../images/bad.png" style = "max-width: 100px; max-height:100px; text-align: center;" alt = "신고"/></a>
+
 	</div>
-	
+
 	<%if(list != null && !list.isEmpty()){%>
 		<b>댓글 목록</b><br><br>
 		<table style = "width: 100%;" class="table table-hover table-sm">
@@ -139,7 +146,7 @@ $(function(){
 				<th>댓글</th>
 				<th style = "text-align: center">작성일</th>
 			</tr>
-			<%for(int i = 0; i < list.size(); i++){ 
+			<%for(int i = 0; i < list.size(); i++){
 				ReplyVO rVo = list.get(i);
 			%>
 				<tr>
@@ -153,34 +160,34 @@ $(function(){
 		</table>
 		<%} %>
 	<br>
-	
-	
+
+
 	<form name="frmReply" action="<%=request.getContextPath() %>/board/reply_ok.gg" method="post" >
-	<div>
+	<div style="overflow: hidden;">
 	<%if("unknown".equals(userid) || userid == null || userid.isEmpty()){%>
-		<span style = "float: left; width: 15%">
-			<input type = "text" name = "nonuserid" size = "15" style = "margin-left: 5px; margin-top: 5px" value="닉네임"
+		<span style = "float: left; width: 19%">
+			<input type = "text" name = "nonuserid" size = "15" style = "margin-left: 5px; margin-top: 10px" value="닉네임"
 				onfocus="this.value=''">
-			<input type = "text" name = "pwd" size = "15" style = "margin-left: 5px; margin-top: 5px" value="비밀번호"
-				onfocus="this.value=''; type = 'password'"> 
+			<input type = "text" name = "pwd" size = "15" style = "margin-left: 5px; margin-top: 10px" value="비밀번호"
+				onfocus="this.value=''; type = 'password'">
 		</span>
-	
+
 	<%}else{%>
-		<span style = "float: left; width: 15%"><%=userid %></span>
+		<input type="hidden" value="<%=userid %>">
 	<%} %>
 		<input type = "hidden" name = "code" value = "<%=code%>">
  		<input type = "hidden" name = "no" value = "<%=Integer.parseInt(no)%>">
-		<span style = "float: left; width: 60%; margin-left: 20px">
-			<textarea name = "reply" rows="5" cols="60" style = "margin-left: 30px"></textarea>
-		</span>
-		<span><input type = "submit" value = "등록" 
-			style = "width: 90px; height: 30px; float: right; margin-right: 10px; margin-top: 5px">
-		<input type = "button" id = "list" value ="목록으로"
-		style = "width: 90px; height: 30px; float: right; margin-right: 10px; margin-top: 5px"></span>
+		<textarea id="reply" name = "reply" rows="5" cols="60"
+			style = "float: left; width: 60%; margin-left: 25px;"></textarea>
+		<div style="float: left; margin-left: 10px; margin-top: 10px;"><input type = "submit" value = "등록"
+			style = "width: 90px; height: 30px;  margin-right: 10px; margin-top: 5px">
+		<br><input type = "button" id = "list" value ="목록으로"
+		style = "width: 90px; height: 30px; margin-right: 10px; margin-top: 5px">
+		</div>
 	</div>
 	</form>
 	<br><br>
-	
+
 </article>
 
 

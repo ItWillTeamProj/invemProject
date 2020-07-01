@@ -793,4 +793,37 @@ public class BoardDAO {
 
 
 	}
+	
+	/**
+	 * 추천수 증가 감소 
+	 * @param no
+	 * @param code
+	 * @param num
+	 * @return
+	 * @throws SQLException
+	 */
+	public int recommentCount(int no, String code, int num) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		try {
+			con = pool.getConnection();
+			String sql = "update board"+
+							" set recommend = recommend + ?"+
+							" where no=? and cat_code=?";
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, num);
+			ps.setInt(2, no);
+			ps.setString(3, code);
+			
+			int cnt = ps.executeUpdate();
+			
+			System.out.println("추천 변경 결과 cnt = " + cnt + "매개변수 no = " + no + ", code=" +code + ", num=" + num);
+			
+			return cnt;
+		}finally {
+			pool.dbClose(con, ps);
+		}
+		
+	}
 }

@@ -15,8 +15,8 @@ public class AdminBoardService {
 		return adminBoardDao.insertBoard(dto);
 	}
 	
-	public List<AdminBoardDTO> selectAll(String code) throws SQLException{
-		return adminBoardDao.selectAll(code);
+	public List<AdminBoardDTO> selectAll(String code, String condition, String keyword) throws SQLException{
+		return adminBoardDao.selectAll(code, condition, keyword);
 	}
 	
 	public AdminBoardDTO selectByNo(int no) throws SQLException {
