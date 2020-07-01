@@ -109,13 +109,13 @@ $(function(){
 	%>
 	<h3><%=boardName %></h3>
 	<hr style = "border: 0; height: 2px; background: skyblue">
-	<div>
-		<h4 style = "margin-left: 10px"><%=vo.getTitle() %></h4>
-		<a class = "btn btn-danger pull-right" id="delete">삭제</a>
-		<a class = "btn btn-info pull-right" id="edit">수정</a>
+	<div style="overflow: hidden;">
+		<h4 style = "margin-left: 10px; float: left;"><%=vo.getTitle() %></h4>
+		<a class = "btn btn-danger pull-right" id="delete" style="float: right;">삭제</a>
+		<a class = "btn btn-info pull-right" id="edit" style="float: right;">수정</a>
 
 	</div>
-	<div>
+	<div style="overflow: hidden; margin-top: 10px;">
 		<%if(!"unknown".equals(vo.getUserid()) && vo.getUserid() != null && !vo.getUserid().isEmpty()){%>
 			<span style = "float: left; margin-left: 30px"><%=vo.getUserid() %> | <%=vo.getRegdate() %></span>
 			<span style = "float: right; margin-right: 20px">조회 <%=vo.getViews() %> | 추천 <%=vo.getRecommend() %> | 댓글<%=replyCount %> </span>
@@ -173,7 +173,7 @@ $(function(){
 		</span>
 
 	<%}else{%>
-		<input type="hidden" value="<%=userid %>">
+		<input type="hidden" value="<%=userid %>" name="userid">
 	<%} %>
 		<input type = "hidden" name = "code" value = "<%=code%>">
  		<input type = "hidden" name = "no" value = "<%=Integer.parseInt(no)%>">

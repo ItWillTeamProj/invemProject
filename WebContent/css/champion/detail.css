@@ -199,3 +199,10 @@ form[name=frmSearch]{
 form[name=frmSearch] .label{
 	font-size: 90%;
 }
+
+input#btList {
+    float: right;
+    margin: 10px;
+    width: 160px;
+    height: 35px;
+}
