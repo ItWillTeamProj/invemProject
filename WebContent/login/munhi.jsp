@@ -22,10 +22,15 @@
 	  border-radius: 0.5em;
 	  border-color: #6db92a;
 	  background-color:white;
+	  background-image:url('<%=request.getContextPath()%>/images/back3.png')
 	}
 	label{
 	font-size:13px;
 	}
+	iframe{
+	background:#ffffff8a;
+	text
+}
 
 </style>
 </head>

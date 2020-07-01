@@ -234,7 +234,7 @@
          <input type="reset" value="돌아가기" onclick="history.back(-1);">
     </div>
 </fieldset>
-    <input type ="text" name="chkId" id="chkId">
+    <input type ="hidden" name="chkId" id="chkId">
     <input type ="hidden" name="caution" id="caution">
         
 </form>

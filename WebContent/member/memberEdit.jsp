@@ -148,7 +148,7 @@
 	  border-radius: 0.5em;
 	  border-color: #6db92a;
 	  background-color:white;
-	}
+	  }
 	label{
 	font-size:13px;
 	}
