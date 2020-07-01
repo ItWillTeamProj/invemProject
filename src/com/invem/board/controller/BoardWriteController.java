@@ -27,15 +27,15 @@ public class BoardWriteController implements Controller{
 				url = "/index.gg";
 				num = 1;
 			break;
-			
 		}
+		
+		
 		
 		request.setAttribute("msg", msg);
 		request.setAttribute("url", url);
 		
 		request.setAttribute("userid", userid);
 		request.setAttribute("boardName", boardName);
-		
 		if(num == 1) {
 			return "/common/message.jsp";
 		}else {
@@ -48,5 +48,5 @@ public class BoardWriteController implements Controller{
 		return false;
 	}
 	
-
+	
 }

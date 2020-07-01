@@ -26,8 +26,7 @@ public class BoardWriteOkController implements Controller{
 		BoardVO vo = new BoardVO();
 		BoardService boardServ = new BoardService();
 		
-		String ip=request.getRemoteAddr();
-		String ip2=request.getRemoteHost();
+		String ip = getRemoteAddr(request);
 		
 		vo.setUserid(userid);
 		vo.setNonuserid(nonuserid);
@@ -60,5 +59,34 @@ public class BoardWriteOkController implements Controller{
 		return false;
 	}
 	
+	public static String getRemoteAddr(HttpServletRequest request) {
+        String ip = null;
+        ip = request.getHeader("X-Forwarded-For");
+        if (ip == null || ip.isEmpty() || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) { 
+            ip = request.getHeader("Proxy-Client-IP"); 
+        } 
+        if (ip == null || ip.isEmpty() || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) { 
+            ip = request.getHeader("WL-Proxy-Client-IP"); 
+        } 
+        if (ip == null || ip.isEmpty() || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) { 
+            ip = request.getHeader("HTTP_CLIENT_IP"); 
+        } 
+        if (ip == null || ip.isEmpty() || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) { 
+            ip = request.getHeader("HTTP_X_FORWARDED_FOR"); 
+        }
+        if (ip == null || ip.isEmpty() || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) { 
+            ip = request.getHeader("X-Real-IP"); 
+        }
+        if (ip == null || ip.isEmpty() || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) { 
+            ip = request.getHeader("X-RealIP"); 
+        }
+        if (ip == null || ip.isEmpty() || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) { 
+            ip = request.getHeader("REMOTE_ADDR");
+        }
+        if (ip == null || ip.isEmpty() || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) { 
+            ip = request.getRemoteAddr(); 
+        }
+        return ip;
+    }
 
 }
