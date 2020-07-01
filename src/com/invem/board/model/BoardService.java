@@ -84,4 +84,8 @@ public class BoardService {
 	public boolean checkReplyPwd(int no, String pwd) throws SQLException {
 		return dao.checkReplyPwd(no, pwd);
 	}
+	
+	public int recommentCount(int no, String code, int num) throws SQLException {
+		return dao.recommentCount(no, code, num);
+	}
 }

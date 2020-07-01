@@ -13,7 +13,12 @@
 	//no로 해당당 항목의 readcount 값을 찾은 후 +1해서 update하고 detail.jsp로 이동 
 	
 	//1.파라미터 읽기
+	String userid = request.getParameter("userid");
+	String nonuserid = request.getParameter("nonuserid");
+	String ipaddress = request.getParameter("ipaddress");
 	String no = request.getParameter("no");
+	String code = request.getParameter("code");
+	
 	
 	if(no == null || no.isEmpty()){%>
 		<script type="text/javascript">
@@ -22,6 +27,16 @@
 		</script>
 		<%return;
 	}
+	
+	String url = request.getContextPath()+"/board/detail.gg?no="+no; 
+	
+	if("unknown".equals(userid) || userid == null || userid.isEmpty()){
+		url+="&userid="+userid+"&code="+code;
+	}else{
+		url+="&nonuserid="+nonuserid+"&ipaddress="+ipaddress+"&code="+code;
+	}
+	
+	
 	//2.
 	BoardService boardServ = new BoardService();
 	int cnt = 0;
@@ -34,8 +49,8 @@
 	if(cnt > 0){
 		System.out.println("조회수 증가 성공");%>
 		<script type="text/javascript">
-			alert("조회수 증가 실패!");
-			location.href = "<%=request.getContextPath()%>/board/detail.gg?no=<%=no%>";
+			alert("조회수 증가 성공!");
+			location.href = "<%=url%>";
 		</script>
 	<%}else{%>
 		<script type="text/javascript">

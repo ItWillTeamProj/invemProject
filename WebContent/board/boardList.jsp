@@ -122,7 +122,7 @@ $(function(){
 						<td style = "text-align: center"><%=num + 1 %></td>
 				<!-- userid가 null이면 nonuserid 비밀번호 ip주소 를 detail로 보낸다. -->
 				<%if(vo.getUserid() == null || vo.getUserid().isEmpty() || "unknown".equals(vo.getUserid())){%>
-						<td><a href = "<%=request.getContextPath() %>/board/detail.gg?nonuserid=<%=vo.getNonuserid()%>&ipaddress=<%=vo.getIpaddress()%>&no=<%=vo.getNo() %>&code=<%=code%>"><%=vo.getTitle() %>
+						<td><a href = "<%=request.getContextPath() %>/board/countUpdate.gg?nonuserid=<%=vo.getNonuserid()%>&ipaddress=<%=vo.getIpaddress()%>&no=<%=vo.getNo() %>&code=<%=code%>"><%=vo.getTitle() %>
 							<%if(boardServ.checkRegdate(vo.getNo())==1){ %>
 								<span class="badge badge-primary">new</span>
 							<%} %>
@@ -130,7 +130,7 @@ $(function(){
 						<td style = "text-align: center"><%=vo.getNonuserid() %></td>
 				<%}else{ %>
 				<!-- userid가 있으면 userid만 detail로 보낸다. -->
-						<td><a href = "<%=request.getContextPath() %>/board/detail.gg?no=<%=vo.getNo()%>&userid=<%=vo.getUserid()%>&code=<%=code%>"><%=vo.getTitle() %>
+						<td><a href = "<%=request.getContextPath() %>/board/countUpdate.gg?no=<%=vo.getNo()%>&userid=<%=vo.getUserid()%>&code=<%=code%>"><%=vo.getTitle() %>
 						<!-- 24시간 이내 작성글인경우 new띄우기 -->
 						<%if(boardServ.checkRegdate(vo.getNo())==1){ %>
 						<span class="badge badge-primary">new</span>
