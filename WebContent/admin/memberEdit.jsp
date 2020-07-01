@@ -129,9 +129,27 @@
 			</tr>
 			<tr style="border-bottom:1px solid gray;">
 				<td style="padding-left: 30px;">경고</td>
-				<td><input type="text" id="caution"  name="caution"
+				
+				<!--<td><input type="text" id="caution"  name="caution"
 					size="28px" style="margin-left:100px;"
-	            	value="<%=dto.getCaution() %>"/></td>
+	            	value="<%=dto.getCaution() %>"/></td>-->
+	            	
+	            <td>
+					<select name="caution" style="margin-left:100px; height:26px;">
+						<option value="0" <%if(dto.getCaution()==0){%>
+						selected="selected"	<%} %>>0회</option>
+						<option value="1" <%if(dto.getCaution()==1){%>
+						selected="selected"	<%} %>>1회</option>
+						<option value="2" <%if(dto.getCaution()==2){%>
+						selected="selected"	<%} %>>2회</option>
+						<option value="3" <%if(dto.getCaution()==3){%>
+						selected="selected"	<%} %>>3회</option>
+						<option value="4" <%if(dto.getCaution()==4){%>
+						selected="selected"	<%} %>>4회</option>
+						<option value="5" <%if(dto.getCaution()==5){%>
+						selected="selected"	<%} %>>5회</option>
+					</select>
+				</td>	
 	            <td># 경고 5회 이상 로그인 불가</td>
 			</tr>
 		</table>
