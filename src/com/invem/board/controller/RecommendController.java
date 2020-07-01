@@ -15,7 +15,7 @@ public class RecommendController implements Controller{
 		String no = request.getParameter("no");
 		String code = request.getParameter("code");
 		String value = request.getParameter("value");
-		
+
 		String msg = "", url = "/board/detail.gg?no="+no+"&code="+code;
 		int num = 0;
 		if(value.equals("G")) {
@@ -39,10 +39,10 @@ public class RecommendController implements Controller{
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		request.setAttribute("msg", msg);
 		request.setAttribute("url", url);
-		
+
 		return "/common/message.jsp";
 	}
 
@@ -50,5 +50,5 @@ public class RecommendController implements Controller{
 	public boolean isRedirect() {
 		return false;
 	}
-	
+
 }

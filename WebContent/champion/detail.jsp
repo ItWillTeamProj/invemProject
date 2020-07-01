@@ -64,11 +64,11 @@
 	</div>
 	<nav id="tabs">
 		<ul class="nav nav-tabs">
-		    <li><a href="#tabs-1" class="active">챔피언 정보</a></li>
-		    <li><a href="#tabs-2">능력치</a></li>
-		    <li><a href="#tabs-3">챔피언 소개</a></li>
+		    <li><a href="#tabs-1" class="active nav-item">챔피언 정보</a></li>
+		    <li><a href="#tabs-2" class="nav-item">능력치</a></li>
+		    <li><a href="#tabs-3" class="nav-item">챔피언 소개</a></li>
 		  </ul>
-		<div id="tabs-1" style="background-image: url('../images/championSkin/s<%=no%>.jpg');">
+		<div id="tabs-1"  style="background-image: url('../images/championSkin/s<%=no%>.jpg');">
 			<div id="icon">
 				<div><img alt="icon" src="<%=request.getContextPath()%>/images/championIcon/i<%=no%>.png" style="width: 126px; height: 126px;"></div>
 				<div><img alt="icon" src="<%=request.getContextPath()%>/images/champion/frame.png" style="width: 130px; height: 130px;"></div>
