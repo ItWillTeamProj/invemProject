@@ -1,5 +1,5 @@
 package com.invem.common;
 
 public class ApiKey {
-	public static final String API_KEY = "RGAPI-a723017f-34a6-44d8-ae2d-6caf9c3a8b44";
+	public static final String API_KEY = "RGAPI-d6ceb993-688a-4932-a237-42449868bcbf";
 }
