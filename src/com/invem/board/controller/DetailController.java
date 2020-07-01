@@ -61,6 +61,7 @@ public class DetailController implements Controller{
 		request.setAttribute("code", code);
 		request.setAttribute("vo", vo);
 		request.setAttribute("list", list);
+		request.setAttribute("no", no);
 		request.setAttribute("userid", userid);
 		request.setAttribute("replyCount", replyCount);
 		request.setAttribute("nonuserid", nonuserid);
