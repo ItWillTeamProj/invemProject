@@ -7,7 +7,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	request.setCharacterEncoding("utf-8");
+	/*
 	String code = request.getParameter("code");
 	String condition=request.getParameter("searchCondition");
 	String keyword=request.getParameter("searchKeyword");
@@ -20,11 +20,15 @@
 	}catch(SQLException e){
 		e.printStackTrace();
 	}
-	
+	*/
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	
+	List<AdminBoardDTO> list = (List<AdminBoardDTO>)request.getAttribute("list");
+	String code = (String)request.getAttribute("code");
+	String condition = (String)request.getAttribute("condition");
+	String keyword = (String)request.getAttribute("keyword");
+	
 	//페이징 처리
-	//list.jsp?currentPage=2
 	int currentPage=1;  //현재 페이지
 	
 	if(request.getParameter("currentPage")!=null 
@@ -58,19 +62,16 @@
 	<article>
 	<div style="margin-top: 10px; width: 720px; height:61px;
 		background-size:100%; color:white; font-size: 30px; margin-bottom:10px;
-		background-image: url('<%=request.getContextPath() %>/images/champion/header.png');">
+		background-image: url('<%=request.getContextPath() %>/images/champion/header2.png');">
 		<div style="padding: 10px 10px 10px 15px;">
-			<b>게시판관리</b>
+			<b>게시판관리 <%if(code.equals("F")){ %>
+						- 자유게시판 목록
+					  <%}else if(code.equals("E")){%>
+						- 기타게시판 목록
+						<%} %>
+			</b>
 		</div>
 	</div>
-	
-	<%if(code.equals("F")){ %>
-		<h3>자유게시판</h3>	
-	<%}else if(code.equals("E")){%>
-		<h3>기타게시판</h3>	
-	<%} %>
-	
-	
 	
 	<%if(keyword!=null && !keyword.isEmpty()){ %>
 	<p>검색어 : <%=keyword %>, <%=list.size() %>건 검색되었습니다.</p>
@@ -78,9 +79,7 @@
 		keyword="";
 	} %>
 	
-	<div style="text-align: right; margin: 0px 10px 10px 10px;">
-		<input type="Button" value="게시판 선택 페이지" onclick="location.href='<%=request.getContextPath() %>/admin/boardSelect.jsp'" />  
-	</div>
+	
 	<div>
 	<table class="boardBox"
 		style="border-top :1px solid gray; border-bottom: 1px solid gray;
@@ -88,7 +87,7 @@
 		<colgroup>
 			<col style="width:80px;" />
 			<col style="width:120px;" />
-			<col style="width:210px;" />		
+			<col style="width:210px;" />
 			<col style="width:130px;" />
 			<col style="width:90px;" />
 			<col style="width:80px;" />
@@ -118,10 +117,14 @@
 					
 				AdminBoardDTO dto = list.get(curPos++);
 			%>
-					<tr style="text-align: left;">
+								
+					<tr onclick="location.href='<%=request.getContextPath()%>/admin/boardDetail.gg?no=<%=dto.getNo() %>&code=<%=dto.getCat_code()%>'"
+						onmouseover="this.style.background='white'" 
+						onmouseout="this.style.background='whitesmoke'"
+						style="text-align: left; cursor:pointer;">
 						<td><%=dto.getNo() %></td>
 						<td><%=dto.getUserid() %></td>
-						<td><a href="boardDetail.jsp?no=<%=dto.getNo() %>&code=<%=dto.getCat_code()%>"><%=dto.getTitle() %></a></td>					
+						<td><%=dto.getTitle() %></td>					
 						<td><%=sdf.format(dto.getRegdate()) %></td>
 						<td><%=dto.getViews() %></td>
 						<%if(code.equals("F")){%>
@@ -146,7 +149,7 @@
 		<!-- 이전 블럭으로 이동 ◀ -->
 		<ul style="float:left; list-style:none;">
 			<%if(pageVo.getFirstPage()>1){ %>
-				<a href="boardList.jsp?currentPage=<%=pageVo.getFirstPage()-1%>&code=<%=code %>">
+				<a href="<%=request.getContextPath() %>/admin/boardList.gg?currentPage=<%=pageVo.getFirstPage()-1%>&code=<%=code %>">
 					<li style="text-align:center; border:1px solid lightgray; margin:3px;
 					width: 26px; height: 26px; padding-top: 1px;">
 					◀</li><!-- <img src="../images/first.JPG" alt="이전 블럭으로 이동">  -->
@@ -163,7 +166,7 @@
 			<%if(i!=currentPage){%>
 				<li style="text-align:center; border:1px solid lightgray; margin:3px;
 				width: 26px; height: 26px; padding-top: 1px;">
-					<a href="boardList.jsp?currentPage=<%=i%>&code=<%=code %>" style="color: black;"><%=i %></a>
+					<a href="<%=request.getContextPath() %>/admin/boardList.gg?currentPage=<%=i%>&code=<%=code %>" style="color: black;"><%=i %></a>
 				</li>
 			<%}else{ %>
 				<li style="text-align:center; border:1px solid lightgray; margin:3px;
@@ -180,7 +183,7 @@
 		<ul style="float:right; list-style:none;">
 			
 		<%if(pageVo.getLastPage() < pageVo.getTotalPage()){ %>
-			<a href="boardList.jsp?currentPage=<%=pageVo.getLastPage()+1%>&code=<%=code %>">
+			<a href="<%=request.getContextPath() %>/admin/boardList.gg?currentPage=<%=pageVo.getLastPage()+1%>&code=<%=code %>">
 				<li style="text-align:center; border:1px solid lightgray; margin:3px;
 				width: 26px; height: 26px; padding-top: 1px;">
 				▶</li><!-- <img src="../images/last.JPG" alt="다음 블럭으로 이동"> -->
@@ -194,7 +197,7 @@
 	
 	
 	<div class="divSearch" style="text-align: center;">
-	   	<form name="frmSearch" method="post" action='<%=request.getContextPath() %>/admin/boardList.jsp'>
+	   	<form name="frmSearch" method="post" action='<%=request.getContextPath() %>/admin/boardList.gg'>
 	        <input type="hidden" name="code" value="<%=code%>">
 	        <select name="searchCondition" style="height:24px;">
 	            <option value="title" 
@@ -217,6 +220,9 @@
 	        	value="<%=keyword%>">   
 			<input type="submit" value="검색">
 	    </form>
+	</div>
+	<div style="text-align: center; margin: 10px 10px 10px 10px;">
+		<input type="Button" value="뒤로" onclick="location.href='<%=request.getContextPath() %>/admin/boardSelect.gg'" />  
 	</div>
 	
 	</article>

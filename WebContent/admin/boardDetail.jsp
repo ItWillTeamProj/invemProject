@@ -5,8 +5,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	request.setCharacterEncoding("utf-8");
-
 	String no = request.getParameter("no");
 	String code = request.getParameter("code");
 	
@@ -18,16 +16,10 @@
 	
 	<%return;
 } 
+//2
 
-	//2
-	AdminBoardService adminBoardService = new AdminBoardService();
-	AdminBoardDTO dto = null;
-	
-	try{
-		dto = adminBoardService.selectByNo(Integer.parseInt(no));
-	}catch(SQLException e){
-		e.printStackTrace();
-	}
+	AdminBoardDTO dto = (AdminBoardDTO)request.getAttribute("dto");
+	code = (String)request.getAttribute("code");
 	
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	
@@ -38,15 +30,13 @@
 <article>
 	<div style="margin-top: 10px; width: 720px; height:61px;
 		background-size:100%; color:white; font-size: 30px; margin-bottom:15px;
-		background-image: url('<%=request.getContextPath() %>/images/champion/header.png');">
+		background-image: url('<%=request.getContextPath() %>/images/champion/header2.png');">
 		<div style="padding: 10px 10px 10px 15px;">
-			<b>게시판관리</b>
+			<b>게시판관리 - 게시물 상세정보</b>
 		</div>
 	</div>
-	<h3><%=dto.getUserid() %> 님의 게시물 상세정보</h3>	
-	<div style="text-align: right; margin: 0px 10px 10px 10px;">
-		<input type="Button" value="게시물목록" onclick="location.href='boardList.jsp?code=<%=code%>'" /> 
-	</div>	
+	<h3></h3>	
+	
 	<div>
 		<table style="font-size: 100%; border-collapse: collapse; margin-left:10px;
 			width:700px; table-layout: fixed;">
@@ -96,9 +86,10 @@
 			
 		</table>
 				
-		<div class="center" style="text-align: right; margin: 10px;">
-			<input type="Button" value="게시물수정" onclick="location.href='boardEdit.jsp?no=<%=dto.getNo() %>&code=<%=code %>'" />
-			<input type="Button" value="게시물삭제" onclick="location.href='boardDelete.jsp?no=<%=dto.getNo() %>&code=<%=code %>'" />  
+		<div class="center" style="text-align: center; margin: 10px;">
+			<input type="Button" value="수정" onclick="location.href='<%=request.getContextPath()%>/admin/boardEdit.gg?no=<%=dto.getNo() %>&code=<%=code %>'" />
+			<input type="Button" value="삭제" onclick="location.href='<%=request.getContextPath()%>/admin/boardDelete.gg?no=<%=dto.getNo() %>&code=<%=code %>'" />
+			<input type="Button" value="목록" onclick="location.href='<%=request.getContextPath()%>/admin/boardList.gg?code=<%=code%>'" />
 		</div>
 	</div>
 	

@@ -5,8 +5,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	request.setCharacterEncoding("utf-8");
-
 	String id = request.getParameter("id");
 	
 	if(id==null || id.isEmpty()){ %>
@@ -17,7 +15,7 @@
 	
 	<%return;
 	}
-	
+	/*
 	AdminMemberService adminMemberService = new AdminMemberService();
 	AdminMemberDTO dto = null;
 	
@@ -26,7 +24,8 @@
 	}catch(SQLException e){
 		e.printStackTrace();
 	}
-	
+	*/
+	AdminMemberDTO dto = (AdminMemberDTO)request.getAttribute("dto");
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	
 %>
@@ -35,34 +34,23 @@
 <article>
 	<div style="margin-top: 10px; width: 720px; height:61px;
 		background-size:100%; color:white; font-size: 30px; margin-bottom:15px;
-		background-image: url('<%=request.getContextPath() %>/images/champion/header.png');">
+		background-image: url('<%=request.getContextPath() %>/images/champion/header2.png');">
 		<div style="padding: 10px 10px 10px 15px;">
-			<b>회원관리</b>
+			<b>회원관리 - 회원정보수정</b>
 		</div>
+		
 	</div>	
-	<h3><%=id %> 님의 정보수정</h3>
-	<div style="text-align: right; margin: 0px 10px 10px 10px;">
-		<input type="Button" value="회원정보" onclick="location.href='memberDetail.jsp?id=<%=dto.getUserid() %>'" />  
-		<input type="Button" value="회원목록" onclick="location.href='memberList.jsp'" />  
-	</div>	
-	<form name="formEdit" method="post" action="memberEdit_ok.jsp">
+	<form name="formEdit" method="post" action="memberEdit_ok.gg">
 		<!-- 수정 시 id가 필요 hidden에 담아서 보낸다 -->
-		<input type="hidden" name="id" value="<%=id %>">
+		<input type="hidden" name="id" value="<%=dto.getUserid() %>">
 		<table style="font-size: 100%; border-collapse: collapse; margin-left:10px;
 			width:700px;">
-			<tr style="background:white; border-top:1px solid gray;">
+			<tr style="border-top:1px solid gray;">
 				<td style="padding-left: 30px;">아이디</td>
 				<td><input type="text" readonly id="id" name="id" 
 	            	size="28px" style="margin-left:100px;"
 	            	value="<%=dto.getUserid() %>"/></td>
 	            <td># 아이디 수정불가</td>
-			</tr>
-			<tr>
-				<td style="padding-left: 30px;">닉네임</td>
-				<td><input type="text" id="nickname" name="nickname"
-	            	size="28px" style="margin-left:100px;"
-	            	value="<%=dto.getNickname() %>" /></td>
-	            <td>&nbsp;</td>
 			</tr>
 			<tr style="background:white;">
 				<td style="padding-left: 30px;">이름</td>
@@ -153,8 +141,9 @@
 	            <td># 경고 5회 이상 로그인 불가</td>
 			</tr>
 		</table>
-		<div style="text-align:right; margin:10px;">
-			<input type="submit" value="수정완료"/>
+		<div style="text-align:center; margin:10px;">
+			<input type="submit" value="수정"/>
+			<input type="Button" value="뒤로" onclick="location.href='memberDetail.gg?id=<%=dto.getUserid() %>'" />  
         </div>
 	</form>
 

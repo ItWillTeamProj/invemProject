@@ -38,19 +38,14 @@
 <article>
 	<div style="margin-top: 10px; width: 720px; height:61px;
 		background-size:100%; color:white; font-size: 30px; margin-bottom:15px;
-		background-image: url('<%=request.getContextPath() %>/images/champion/header.png');">
+		background-image: url('<%=request.getContextPath() %>/images/champion/header2.png');">
 		<div style="padding: 10px 10px 10px 15px;">
-			<b>게시판관리</b>
+			<b>게시판관리 - 게시물수정</b>
 		</div>
 	</div>
-	<h3><%=dto.getUserid() %> 님의 게시물수정</h3>
-	<div style="text-align: right; margin: 0px 10px 10px 10px;">
-		<input type="Button" value="게시물 상세정보" onclick="location.href='boardDetail.jsp?no=<%=no %>&code=<%=code %>'" />  
-		<input type="Button" value="게시물 목록" onclick="location.href='boardList.jsp?code=<%=code %>'" />  
-	</div>	
 	
 	<div>
-		<form name="frmEdit" method="post" action="boardEdit_ok.jsp" >
+		<form name="frmEdit" method="post" action="<%=request.getContextPath() %>/admin/boardEdit_ok.gg" >
 			<!-- 수정 시 no가 필요 hidden에 담아서 보낸다 -->
 			<input type="hidden" name="no" value="<%=no %>">
 			<div>
@@ -98,7 +93,7 @@
 			<br>
 			<div style="text-align: center;">
 				<input type="submit" value="수정"/>
-				<input type="Button" value="게시물 상세보기 페이지" onclick="location.href='<%=request.getContextPath() %>/admin/boardDetail.jsp?no=<%=no %>&code=<%=code %>'" />         
+				<input type="Button" value="뒤로" onclick="location.href='<%=request.getContextPath() %>/admin/boardDetail.gg?no=<%=no %>&code=<%=code %>'" />         
 			</div>
 		</form>
 	</div>   
