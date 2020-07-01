@@ -6,6 +6,7 @@
 	String code = request.getParameter("code");
 	String cnt = request.getParameter("cnt");
 	String userid = request.getParameter("userid");
+	String delflag = request.getParameter("delflag");
 	if(cnt == null || cnt.isEmpty()){
 		cnt = "0";
 	}
@@ -20,7 +21,7 @@
 $(function(){
 	if("<%=cnt%>" == "1"){
 
-		opener.location.href = "<%=request.getContextPath()%>/board/boardDelete_ok.gg?no=<%=no%>&code=<%=code%>";
+		opener.location.href = "<%=request.getContextPath()%>/board/boardDelete_ok.gg?no=<%=no%>&code=<%=code%>&delflag=<%=delflag%>";
 		self.close();
 	}
 

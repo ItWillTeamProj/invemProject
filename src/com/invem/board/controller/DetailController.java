@@ -19,6 +19,7 @@ public class DetailController implements Controller{
 		String nonuserid = request.getParameter("nonuserid");
 		String ipaddress = request.getParameter("ipaddress");
 		String pwd = request.getParameter("pwd");
+		String delflag = request.getParameter("delflag");
 		
 		BoardVO vo = new BoardVO();
 		
@@ -56,6 +57,7 @@ public class DetailController implements Controller{
 		
 		
 		
+		request.setAttribute("no", no);
 		request.setAttribute("code", code);
 		request.setAttribute("vo", vo);
 		request.setAttribute("list", list);
@@ -63,6 +65,7 @@ public class DetailController implements Controller{
 		request.setAttribute("userid", userid);
 		request.setAttribute("replyCount", replyCount);
 		request.setAttribute("nonuserid", nonuserid);
+		request.setAttribute("delflag", delflag);
 		
 		return "/board/detail.jsp";
 	}

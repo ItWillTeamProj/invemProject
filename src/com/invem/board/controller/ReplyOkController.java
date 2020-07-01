@@ -20,8 +20,8 @@ public class ReplyOkController implements Controller{
 		String user_no = request.getParameter("no"); 
 		String code = request.getParameter("code");
 		String username = nonuserid;
-		System.out.println("username = "+username);
-		System.out.println("userid="+userid);
+		String delflag = request.getParameter("delflag");
+		
 		if(userid != null && !userid.isEmpty() && !"unknown".equals(userid)){
 			username = userid;
 		}
@@ -38,7 +38,7 @@ public class ReplyOkController implements Controller{
 		
 		BoardService boardServ = new BoardService();
 		int cnt = 0;
-		String msg = "댓글등록 실패", url = "/board/detail.gg?no="+user_no+"&code="+code;
+		String msg = "댓글등록 실패", url = "/board/detail.gg?no="+user_no+"&code="+code+"&delflag="+delflag;
 		try{
 			cnt = boardServ.reply(vo);
 			if(cnt>0) {

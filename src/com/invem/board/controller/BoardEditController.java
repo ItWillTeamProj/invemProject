@@ -15,6 +15,7 @@ public class BoardEditController implements Controller{
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		String no = request.getParameter("no");
 		String code = request.getParameter("code");
+		String delflag = request.getParameter("delflag");
 		
 		int num = 0;
 		String boardName = "";
@@ -22,7 +23,7 @@ public class BoardEditController implements Controller{
 		switch(code){
 			case "F":
 			boardName = "자유게시판";
-			url = "/board/boardEdit.jsp?code="+code;
+			url = "/board/boardEdit.jsp?code="+code+"&delflag="+delflag;
 			break;
 			default:
 				msg = "잘못된 접근입니다.";
@@ -51,6 +52,7 @@ public class BoardEditController implements Controller{
 		request.setAttribute("vo", vo);
 		request.setAttribute("boardName", boardName);
 		request.setAttribute("code", code);
+		request.setAttribute("delflag", delflag);
 		
 		if(num == 1) {
 			return "/common/message.jsp";
