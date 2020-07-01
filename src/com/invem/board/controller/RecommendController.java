@@ -15,7 +15,7 @@ public class RecommendController implements Controller{
 		String no = request.getParameter("no");
 		String code = request.getParameter("code");
 		String value = request.getParameter("value");
-		String msg = "", url = "/board/detail.gg?no="+no+"&"
+		String msg = "", url = "/board/detail.gg?no="+no+"&";
 		int num = 0;
 		if(value.equals("G")) {
 			num = 1;

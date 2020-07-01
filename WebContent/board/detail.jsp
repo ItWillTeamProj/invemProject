@@ -127,7 +127,7 @@ $(function(){
 	<div><%=vo.getDescribe() %></div><br>
 	<br><hr style = "border: 0; height: 2px; background: skyblue">
 	
-	<div style="width: 100%; height: 200px; text-align: center;">
+	<div style="width: 100%; height: 200px; text-align: center; margin-top: 70px;">
 		<a href = "#"><img src = "../images/good.png" style = "max-width: 100px; max-height:100px; text-align: center;" alt = "추천"/></a>
 		<a href = "#"><img src = "../images/bad.png" style = "max-width: 100px; max-height:100px; text-align: center;" alt = "신고"/></a>
 
@@ -165,10 +165,10 @@ $(function(){
 	<form name="frmReply" action="<%=request.getContextPath() %>/board/reply_ok.gg" method="post" >
 	<div style="overflow: hidden;">
 	<%if("unknown".equals(userid) || userid == null || userid.isEmpty()){%>
-		<span style = "float: left; width: 15%">
-			<input type = "text" name = "nonuserid" size = "15" style = "margin-left: 5px; margin-top: 5px" value="닉네임"
+		<span style = "float: left; width: 19%">
+			<input type = "text" name = "nonuserid" size = "15" style = "margin-left: 5px; margin-top: 10px" value="닉네임"
 				onfocus="this.value=''">
-			<input type = "text" name = "pwd" size = "15" style = "margin-left: 5px; margin-top: 5px" value="비밀번호"
+			<input type = "text" name = "pwd" size = "15" style = "margin-left: 5px; margin-top: 10px" value="비밀번호"
 				onfocus="this.value=''; type = 'password'"> 
 		</span>
 	
@@ -178,8 +178,8 @@ $(function(){
 		<input type = "hidden" name = "code" value = "<%=code%>">
  		<input type = "hidden" name = "no" value = "<%=Integer.parseInt(no)%>">
 		<textarea id="reply" name = "reply" rows="5" cols="60" 
-			style = "float: left; width: 60%; margin: 0 20px;"></textarea>
-		<div style="float: left;"><input type = "submit" value = "등록" 
+			style = "float: left; width: 60%; margin-left: 25px;"></textarea>
+		<div style="float: left; margin-left: 10px; margin-top: 10px;"><input type = "submit" value = "등록" 
 			style = "width: 90px; height: 30px;  margin-right: 10px; margin-top: 5px">
 		<br><input type = "button" id = "list" value ="목록으로"
 		style = "width: 90px; height: 30px; margin-right: 10px; margin-top: 5px">
