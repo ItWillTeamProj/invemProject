@@ -9,6 +9,7 @@
 <%
 	List<BoardVO> list = (List<BoardVO>)request.getAttribute("list");
 	PagingVO pageVo = (PagingVO)request.getAttribute("pageVo");
+	pageVo.setPageSize(6);
 	int bNum = pageVo.getNum();	//페이지당 시작 글 번호가 될수도 있지만 게시판별로
 	// 나눴을때 num + 1 로 no를 대체할 수 있다.
 	int bCurPos = pageVo.getCurPos();	//페이지당 시작 인덱스 번호
@@ -34,7 +35,7 @@
 
 				BoardVO vo = list.get(bCurPos++);%>
 			<tr>
-				<td><%=vo.getNo() %></td>
+				<td><%=bNum+1 %></td>
 				<td><%=vo.getTitle() %></td>
 				<td><%=Utility.cutString(vo.getDescribe(), 30) %></td>
 				<td><%=vo.getRegdate() %></td>
@@ -48,22 +49,22 @@
 	<div style = "text-align: center">
 		<ul class="pagination pagination-sm">
 		<%if(pageVo.getFirstPage() > 1){ %>
-			 <li class="previous"><a href="<%=request.getContextPath() %>/blog/blog.gg?userid=${param.userid}&currentPage=<%=pageVo.getFirstPage() - 1 %>#tabs-2">Previous</a></li>
+			 <li class="previous"><a href="<%=request.getContextPath() %>/blog/blog.gg?sId=${param.userid}&currentPage=<%=pageVo.getFirstPage() - 1 %>#tabs-2">Previous</a></li>
 		<%} %>
 	
 		<%for(int i = pageVo.getFirstPage(); i <= pageVo.getLastPage(); i++){
 			if(i > pageVo.getTotalPage()) break;
 		%>
 			<%if(i != pageVo.getCurrentPage()){ %>
-			<li><a href="<%=request.getContextPath() %>/blog/blog.gg?userid=${param.userid}&currentPage=<%=i%>#tabs-2"><%=i %></a></li>
+			<li><a href="<%=request.getContextPath() %>/blog/blog.gg?sId=${param.userid}&currentPage=<%=i%>#tabs-2"><%=i %></a></li>
 			
 		<%}else{ %>
-			<li class="active"><a href="<%=request.getContextPath() %>/blog/blog.gg?userid=${param.userid}>&currentPage=<%=i%>#tabs-2"><%=i %></a></li>
+			<li class="active"><a href="<%=request.getContextPath() %>/blog/blog.gg?sId=${param.userid}&currentPage=<%=i%>#tabs-2"><%=i %></a></li>
 			<%}//if %>
 		<%}//for %>
 	
 		<%if(pageVo.getLastPage() < pageVo.getTotalPage()){ %>
-			<li class="next"><a href="<%=request.getContextPath() %>/blog/blog.gg?userid=${param.userid}&currentPage=<%=pageVo.getLastPage() + 1 %>#tabs-2">Next</a></li>
+			<li class="next"><a href="<%=request.getContextPath() %>/blog/blog.gg?sId=${param.userid}&currentPage=<%=pageVo.getLastPage() + 1 %>#tabs-2">Next</a></li>
 		<%} %>
 		</ul>
 	</div>

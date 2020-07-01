@@ -898,4 +898,74 @@ public class BoardDAO {
 			
 		}
 	}
+	
+	/**
+	 * 방명록 글작성
+	 * @param vo
+	 * @return
+	 * @throws SQLException
+	 */
+	public int guestbookInsert(GuestbookVO vo) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		try {
+			con = pool.getConnection();
+			String sql = "insert into guestbook(gno, userid, writer_id, g_comment)"
+						+" values(guestbook_seq.nextval, ?, ?, ?)";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, vo.getUserid());
+			ps.setString(2, vo.getWriter_id());
+			ps.setString(3, vo.getG_comment());
+			
+			int cnt = ps.executeUpdate();
+			
+			System.out.println("입력결과 cnt = " + cnt + ", 매개변수 vo=" + vo);
+			
+			return cnt;
+			
+		}finally {
+			pool.dbClose(con, ps);
+		}
+	}
+	
+	
+	/**
+	 * 방명록 리스트
+	 * @param userid
+	 * @return
+	 * @throws SQLException
+	 */
+	public List<GuestbookVO> guestbookList(String userid) throws SQLException{
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		List<GuestbookVO> list = null;
+		
+		try {
+			con = pool.getConnection();
+			String sql = "select * from guestbook order by gno desc";
+			ps = con.prepareStatement(sql);
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				int gno = rs.getInt("gno");
+				String writerId = rs.getString("writer_id");
+				Timestamp regdate = rs.getTimestamp("regdate");
+				String comment = rs.getString("comment");
+				
+				GuestbookVO vo = new GuestbookVO(gno, userid, writerId, comment, regdate);
+				
+				list.add(vo);
+			}
+			return list;
+		}finally {
+			pool.dbClose(con, ps, rs);
+		}
+		
+		
+		
+	}
 }
