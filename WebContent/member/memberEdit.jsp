@@ -25,7 +25,7 @@
 	String email = memVo.getEmail();
 	String email1 = "";
 	String email2 = "";
-	String detail = "";
+	String detail = memVo.getDetail();
 	
 
 	if (phoneno != null && !phoneno.isEmpty()) {
@@ -37,10 +37,6 @@
 	if (email != null && !email.isEmpty()) {
 		email1 = email.split("@")[0];
 		email2 = email.split("@")[1];
-	}
-	
-	if (detail != null && !detail.isEmpty()) {
-		detail="";
 	}
 
 	int counter = 0;
@@ -169,13 +165,13 @@
 <article>
 	<div class="divForm">
 		<form name="frm1" method="post"
-			action="<%=request.getContextPath()%>/login/memberEdit_ok.gg">
+			action="<%=request.getContextPath()%>/member/memberEdit_ok.gg">
 			<fieldset>
 				<h2 style="text-align:center;">회원 정보 수정</h2>
 				<div>
 					<label for="userid">회원ID</label>
-					<input type="text" name="userid" id="userid" value="<%=memVo.getUserid() %>" style="ime-mode:inactive">&nbsp;
-        			<input type="button" value="중복확인" id="btnChkId" title="새창열림"> 
+					<input type="text" name="userid" id="userid" value="<%=memVo.getUserid() %>" style="ime-mode:inactive" readonly>&nbsp;
+        			
 				</div>
 				<div>
 					<label for="nickname">닉네임</label> <input type="text"
@@ -242,7 +238,7 @@
 					style="margin-top: 2px;" value="<%=memVo.getAddress()%>"><br> 
 					<span class="sp1">상세주소</span>
 					<input type="text" id="detail" name="detail" title="상세주소" class="width_350"
-					style="margin-top: 4px;" value="<%=memVo.getDetail()%>">
+					style="margin-top: 4px;" value="<%=detail%>"> <%-- ${memVo.detail} --%>
 				</div>
 				<div>
 					<label for="sum_name">소환사명</label> <input type="text"

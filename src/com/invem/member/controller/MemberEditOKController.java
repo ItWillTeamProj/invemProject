@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.invem.controller.Controller;
+import com.invem.login.model.LoginService;
 import com.invem.member.model.MemberDTO;
 import com.invem.member.model.MemberService;
 
@@ -17,7 +18,6 @@ public class MemberEditOKController implements Controller{
 		String userid = request.getParameter("userid");
 		String nickname = request.getParameter("nickname");
 		String pwd = request.getParameter("pwd");
-		String name = request.getParameter("name");
 		String dateofbirth = request.getParameter("dateofbirth");
 		
 		String phoneno1 = request.getParameter("phoneno1");
@@ -47,7 +47,6 @@ public class MemberEditOKController implements Controller{
 		vo.setUserid(userid);
 		vo.setNickname(nickname);
 		vo.setPwd(pwd);
-		vo.setName(name);
 		vo.setDateofbirth(dateofbirth);
 		vo.setPhoneno(phoneno);
 		vo.setEmail(email);
@@ -57,13 +56,25 @@ public class MemberEditOKController implements Controller{
 		vo.setSum_name(sum_name);
 		
 		MemberService serv = new MemberService();
+		LoginService lserv = new LoginService();
 		
 		int cnt=0;
-		String msg="수정 실패", url="/login/memberEdit.gg";
+		String msg="수정 실패", url="/member/memberEdit.gg";
 		try {
-			cnt = serv.insertMember(vo);
-			msg="환영합니다!";
-			url="/index.gg";
+			int result=lserv.loginCheck(userid, pwd);
+			if(result==LoginService.LOGIN_OK){ 
+				cnt = serv.updateMember(vo);
+				if(cnt>0) {
+					msg="수정완료입니다!";
+					url="/member/memberEdit.gg";
+				}
+			}else if(result==LoginService.PWD_DISAGREE){
+				msg="비밀번호가 일치하지 않습니다.";
+			}else if(result==LoginService.ID_NONE){
+				msg="해당 아이디가 존재하지 않습니다.";				
+			}else{
+				msg="탈퇴한 회원입니다.";
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
