@@ -41,7 +41,6 @@ public class DetailController implements Controller{
 		List<ReplyVO> list = null;
 		int cnt = 0;
 		try{
-			cnt = boardServ.updateReadCount(Integer.parseInt(no));
 			list = boardServ.selectReplyByNo(Integer.parseInt(no));
 		}catch(SQLException e){
 			e.printStackTrace();
