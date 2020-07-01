@@ -104,7 +104,7 @@ $(function(){
 
 					<tr>
 						<td><%=num + 1 %></td>
-						<td><a><%=msg.getHeading() %></a></td>
+						<td><a href="<%=%>"><%=msg.getHeading() %></a></td>
 						<td><%=msg.getUpdated_at().substring(0, msg.getUpdated_at().indexOf("T")) %></td>
 					</tr>
 			<%}

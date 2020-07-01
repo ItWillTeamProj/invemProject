@@ -7,11 +7,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import java.util.ArrayList;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import com.invem.board.model.BoardService;
 import com.invem.board.model.BoardVO;
 import com.invem.board.model.ReplyVO;
+import com.invem.common.LeagueInfo;
+import com.invem.common.LeagueVO;
 import com.invem.common.PagingVO;
+import com.invem.common.SummonerInfo;
+import com.invem.common.SummonerVO;
 import com.invem.controller.Controller;
+import com.invem.member.model.MemberDTO;
+import com.invem.member.model.MemberService;
 
 public class BlogController implements Controller {
 
@@ -71,14 +81,37 @@ public class BlogController implements Controller {
 		PagingVO rPageVo = new PagingVO(currentPage, totalRecord, pageSize, blockSize);
 		
 		//4. guestbook.jsp
+		MemberService serv = new MemberService();
+		//riot api
+		MemberDTO vo=serv.selectMember(userid);
 		
+		Gson gson = new GsonBuilder().create();
+		if(vo.getSum_name() != null && !vo.getSum_name().isEmpty()) {
+			
+			String sInfo = SummonerInfo.search(vo.getSum_name());
+			
+			SummonerVO smVo = null;
+			LeagueVO lgVo = null;
+			List<LeagueVO> lgList = null;
+			if(sInfo.indexOf("message") == -1) {
+				smVo = gson.fromJson(sInfo, SummonerVO.class);
+				
+				String lInfo = LeagueInfo.search(smVo.getId());
+				System.out.println("결과 = " + lInfo);
+				lgList = gson.fromJson(lInfo, new TypeToken<List<LeagueVO>>(){}.getType());
+				lgVo = lgList.get(0);
+			}
 		
+			request.setAttribute("smVo", smVo);
+			request.setAttribute("lgVo", lgVo);
+		}
 		request.setAttribute("curPage", curPage);
 		request.setAttribute("writeCount", writeCount);
 		request.setAttribute("list", list);
 		request.setAttribute("rList", rList);
 		request.setAttribute("pageVo", bPageVo);
 		request.setAttribute("rPageVo", rPageVo);
+		
 		
 		return "/blog/blog.jsp?userid="+userid;
 	}
