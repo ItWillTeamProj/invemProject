@@ -44,7 +44,32 @@
 
 	</div>
 	<div class="grid" style="float: left;">
-		<a href="<%=request.getContextPath() %>/admin/admin.jsp">관리자</a>
+		<table class="table table-striped" style="clear: both;">
+			<tr>
+				<th>제목</th>
+				<th>작성자</th>
+				<th>조회</th>
+				<th>추천</th>
+			</tr>
+			<c:if test="${empty bdList }">
+				<tr>
+					<td colspan="6" style="text-align: center;">게시물이 없습니다.</td>
+				</tr>
+			</c:if>
+			<c:if test="${!empty bdList }">
+				<c:forEach begin="0" end="${fn:length(bdList) }" var="i">
+					<c:set value="${bdList[i] }" var="bdVO"/>
+					<c:if test="${i < 5 }">
+						<tr>
+							<td><a href='<c:url value="/board/detail.gg?no=${bdVO.no }&code=${bdVO.cat_code }&delflag=${bdVO.delflag }"/>'>${bdVO.title }</a></td>
+							<td>${bdVO.userid }</td>
+							<td>${bdVO.views }</td>
+							<td>${bdVO.recommend }</td>
+						</tr>
+					</c:if>
+				</c:forEach>
+			</c:if>
+		</table>
 	</div>
 	<div style="clear: both; width: 98%; height: auto;" class="grid">
 		<table class="table table-striped" style="width: 100%">
@@ -54,12 +79,12 @@
 		</colgroup>
 			<tr>
 				<th>LOL 공지사항</th>
-				<th style="overflow: hidden;">내용<a href="/board/riotNotice.gg" style="float: right;">더보기</a></th>
+				<th style="overflow: hidden;">내용<a href="<%=request.getContextPath() %>/board/riotNotice.gg" style="float: right;">더보기</a></th>
 			</tr>
 			<c:forEach var="msg" items="${messages }">
 				<tr>
 					<td>${msg.heading }</td>
-					<td>${msg.content }</td>
+					<td>${fn:substring(msg.content,0,30) }...</td>
 				</tr>
 			</c:forEach>
 		</table>

@@ -27,6 +27,10 @@
 	String email2 = "";
 	String detail = "";
 	
+	if(memVo.getDetail() != null && !memVo.getDetail().isEmpty()){
+		detail = memVo.getDetail();
+	}
+	
 
 	if (phoneno != null && !phoneno.isEmpty()) {
 		phoneno1 = phoneno.split("-")[0];
@@ -242,7 +246,7 @@
 					style="margin-top: 2px;" value="<%=memVo.getAddress()%>"><br> 
 					<span class="sp1">상세주소</span>
 					<input type="text" id="detail" name="detail" title="상세주소" class="width_350"
-					style="margin-top: 4px;" value="<%=memVo.getDetail()%>">
+					style="margin-top: 4px;" value="<%=detail%>">
 				</div>
 				<div>
 					<label for="sum_name">소환사명</label> <input type="text"

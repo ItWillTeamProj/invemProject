@@ -1,5 +1,4 @@
 <%@page import="com.invem.common.Message"%>
-<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.invem.common.PagingVO"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.util.List"%>
@@ -12,10 +11,10 @@
 
 	List <Message> list = (List<Message>)request.getAttribute("messages");
 	PagingVO pageVo = (PagingVO)request.getAttribute("pageVo");
-	String code = (String)request.getParameter("code");
+	String code = (String)request.getAttribute("code");
 	String rowNum = request.getParameter("rowNum");
 	if(rowNum == null || rowNum.isEmpty()){
-		rowNum = "10";
+		rowNum = "5";
 	}
 	
 	
@@ -23,8 +22,12 @@
 	// 나눴을때 num + 1 로 no를 대체할 수 있다.
 	int curPos = pageVo.getCurPos();	//페이지당 시작 인덱스 번호
 
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 %>
+<style type="text/css">
+.contentHide{
+	display: none;
+}
+</style>
 <script type="text/javascript">
 $(function(){
 	$('#rowNum').change(function(){
@@ -34,6 +37,23 @@ $(function(){
 	
 	$('#all').click(function(){
 		location.href = "<%=request.getContextPath()%>/board/riotNotice.gg?code=<%=code%>";
+	});
+	
+	$(".content1").addClass("contentHide");
+
+	$(".row1").each(function(){
+		$(this).click(function() {
+			var parent = $(this).parent().next();
+			$(".content1").not(parent).each(function() {
+				$(this).addClass("contentHide");
+			});
+			
+			if($(parent).hasClass("contentHide")){
+				$(parent).toggleClass("contentHide");
+			}else{
+				$(parent).addClass("contentHide");
+			}
+		});
 	});
 	
 });
@@ -62,25 +82,19 @@ $(function(){
 		<h2><%=boardName %></h2>
 	</div>
 	
-	<div style = "margin-right: 20px;">
-		<input type = "button" value = "전체글" id = "all"><input type = "button" value = "인기글" id = "best" >
-		<input type = "button" value = "공지" id = "notice">
-		<span style = "float: right"><a href = "<%=request.getContextPath()%>/board/riotNotice.gg?code=<%=code%>">
-			<img src="<%=request.getContextPath()%>/images/writeIcon.png" style="width: 20px; height: auto"></a>
-		</span><!-- 추후 아이콘으로 대체 예정 -->
+	<div style = "margin: 50px 20px 10px 20px; overflow: hidden;">
 		<select style = "float: right; margin-right: 10px" id = "rowNum">
+			<option value = "5" <%if(rowNum.equals("5")){ %>
+			selected="selected"<%} %>>5개</option>
 			<option value = "10" <%if(rowNum.equals("10")){ %>
 			selected="selected"<%} %>>10개</option>
 			<option value = "20" <%if(rowNum.equals("20")){ %>
 			selected="selected"<%} %>>20개</option>
-			<option value = "50" <%if(rowNum.equals("50")){ %>
-			selected="selected"<%} %>>50개</option>
 		</select>
+	<span style="float: right; margin-right: 10px;">게시물 수</span>
 	</div><br>
 
 	<table style = "width: 700px" class="table table-striped table-sm table-hover">
-		<!-- caption걸어주는게 좋다고 들음 -->
-		<caption><%=boardName %> 목록입니다.</caption>
 		<colgroup>
 			<col style = "width: 10%">
 			<col style = "width: 60%">
@@ -102,11 +116,13 @@ $(function(){
 
 				Message msg = list.get(curPos++);%>
 
-					<tr>
-						<td><%=num + 1 %></td>
-						<td><a href="<%=%>"><%=msg.getHeading() %></a></td>
-						<td><%=msg.getUpdated_at().substring(0, msg.getUpdated_at().indexOf("T")) %></td>
+					<tr >
+						<td style="text-align: center;"><%=num + 1 %></td>
+						<td class="row1" style="font-weight: bold; cursor: pointer;"><%=msg.getHeading() %></td>
+						<td style="text-align: center;"><%=(msg.getUpdated_at().substring(0, msg.getUpdated_at().indexOf("T"))).replace(". ", ".<br>") %></td>
 					</tr>
+					<tr class="content1">
+					<td colspan="3"><p style="font-size: 1.4em; padding: 30px 20px;"><%=msg.getContent() %></p></td>
 			<%}
 			
 
@@ -138,7 +154,5 @@ $(function(){
 	</div>
     
 </article>
-
-
 
 <%@ include file = "../inc/bottom.jsp"%>

@@ -9,6 +9,8 @@ import java.util.Properties;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.invem.board.model.BoardService;
+import com.invem.board.model.BoardVO;
 import com.invem.champion.model.ChampionService;
 import com.invem.champion.model.ChampionVO;
 import com.invem.common.Message;
@@ -42,11 +44,22 @@ public class IndexController implements Controller{
 		
 		List<Message> messages = StatusInfo.search();
 		
+		//추천 많은거
+		BoardService bdService = new BoardService();
+		List<BoardVO> bdList = null;
+		try {
+			bdList = bdService.selectByTop();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 		request.setAttribute("champVo", vo);
 		request.setAttribute("prop", properties);
 		request.setAttribute("messages", messages);
+		request.setAttribute("bdList", bdList);
 		
 		return "/index/index.jsp";
+		
 	}
 
 	@Override

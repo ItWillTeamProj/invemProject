@@ -12,10 +12,6 @@ public class BoardVO {
 	private String describe;	//글내용
 	private int recommend;	//추천
 	private int views;	//조회수
-	private String filename;	//파일이름
-	private long filesize;	//파일크기
-	private int downcount;	//다운로드 수
-	private String originalfilename;	//원본파일 이름
 	private String ipaddress;	//ip주소
 	private String delflag;	//삭제플래그 
 	private String cat_code;	//게시판 코드
@@ -25,9 +21,10 @@ public class BoardVO {
 		super();
 	}
 
+	
+
 	public BoardVO(int no, String userid, String nonuserid, String pwd, String title, Timestamp regdate,
-			String describe, int recommend, int views, String filename, long filesize, int downcount,
-			String originalfilename, String ipaddress, String delflag, String cat_code) {
+			String describe, int recommend, int views, String ipaddress, String delflag, String cat_code) {
 		super();
 		this.no = no;
 		this.userid = userid;
@@ -38,18 +35,16 @@ public class BoardVO {
 		this.describe = describe;
 		this.recommend = recommend;
 		this.views = views;
-		this.filename = filename;
-		this.filesize = filesize;
-		this.downcount = downcount;
-		this.originalfilename = originalfilename;
 		this.ipaddress = ipaddress;
 		this.delflag = delflag;
 		this.cat_code = cat_code;
 	}
-	
+
+
+
 	public BoardVO(int no, String userid, String nonuserid, String pwd, String title, Timestamp regdate,
-			String describe, int recommend, int views, String filename, long filesize, int downcount,
-			String originalfilename, String ipaddress, String delflag, String cat_code, int champ_no) {
+			String describe, int recommend, int views, String ipaddress, String delflag, String cat_code,
+			int champ_no) {
 		super();
 		this.no = no;
 		this.userid = userid;
@@ -60,15 +55,13 @@ public class BoardVO {
 		this.describe = describe;
 		this.recommend = recommend;
 		this.views = views;
-		this.filename = filename;
-		this.filesize = filesize;
-		this.downcount = downcount;
-		this.originalfilename = originalfilename;
 		this.ipaddress = ipaddress;
 		this.delflag = delflag;
 		this.cat_code = cat_code;
 		this.champ_no = champ_no;
 	}
+
+
 
 	public int getNo() {
 		return no;
@@ -142,38 +135,7 @@ public class BoardVO {
 		this.views = views;
 	}
 
-	public String getFilename() {
-		return filename;
-	}
-
-	public void setFilename(String filename) {
-		this.filename = filename;
-	}
-
-	public long getFilesize() {
-		return filesize;
-	}
-
-	public void setFilesize(long filesize) {
-		this.filesize = filesize;
-	}
-
-	public int getDowncount() {
-		return downcount;
-	}
-
-	public void setDowncount(int downcount) {
-		this.downcount = downcount;
-	}
-
-	public String getOriginalfilename() {
-		return originalfilename;
-	}
-
-	public void setOriginalfilename(String originalfilename) {
-		this.originalfilename = originalfilename;
-	}
-
+	
 	public String getIpaddress() {
 		return ipaddress;
 	}
@@ -210,10 +172,8 @@ public class BoardVO {
 	public String toString() {
 		return "BoardVO [no=" + no + ", userid=" + userid + ", nonuserid=" + nonuserid + ", pwd=" + pwd + ", title="
 				+ title + ", regdate=" + regdate + ", describe=" + describe + ", recommend=" + recommend + ", views="
-				+ views + ", filename=" + filename + ", filesize=" + filesize + ", downcount=" + downcount
-				+ ", originalfilename=" + originalfilename + ", ipaddress=" + ipaddress + ", delflag=" + delflag
-				+ ", cat_code=" + cat_code + ", champ_no=" + champ_no + "]";
+				+ views + ", ipaddress=" + ipaddress + ", delflag=" + delflag + ", cat_code=" + cat_code + ", champ_no="
+				+ champ_no + "]";
 	}
 
-	
 }

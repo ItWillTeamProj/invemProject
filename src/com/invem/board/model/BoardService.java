@@ -96,4 +96,8 @@ public class BoardService {
 	public int recommendInsert(String userid, int no) throws SQLException {
 		return dao.recommendInsert(userid, no);
 	}
+	
+	public List<BoardVO> selectByTop() throws SQLException {
+		return dao.selectByTop();
+	}
 }
