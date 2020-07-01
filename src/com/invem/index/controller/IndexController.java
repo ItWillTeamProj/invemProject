@@ -3,6 +3,7 @@ package com.invem.index.controller;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Properties;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.invem.champion.model.ChampionService;
 import com.invem.champion.model.ChampionVO;
+import com.invem.common.Message;
+import com.invem.common.StatusInfo;
 import com.invem.controller.Controller;
 
 public class IndexController implements Controller{
@@ -37,8 +40,11 @@ public class IndexController implements Controller{
 			e.printStackTrace();
 		}
 		
+		List<Message> messages = StatusInfo.search();
+		
 		request.setAttribute("champVo", vo);
 		request.setAttribute("prop", properties);
+		request.setAttribute("messages", messages);
 		
 		return "/index/index.jsp";
 	}
