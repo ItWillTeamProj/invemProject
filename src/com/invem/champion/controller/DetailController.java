@@ -32,6 +32,7 @@ public class DetailController implements Controller{
 		ChampionVO cVo = null;
 		List<AbilityVO> list = null;
 		List<BoardVO> bdList = null;
+		
 		String resource = request.getSession().getServletContext().getRealPath("/config/preview.properties");
 		resource = "preview.properties";
 		System.out.println(resource);
@@ -45,7 +46,7 @@ public class DetailController implements Controller{
 			InputStream reader = getClass().getResourceAsStream(resource);
             properties.load(reader);
             
-            bdList = bdService.searchall("", "", "C");
+            bdList = bdService.searchall(Integer.parseInt(champNo), "C");
             
 		} catch (NumberFormatException e) {
 			e.printStackTrace();

@@ -20,7 +20,7 @@
 		try{
 			list=zipcodeService.selectZipcode(dong);	
 			
-			totalRecord=list.size(); //전체 레코드 개수, 예)17
+			totalRecord=list.size();
 			
 		}catch(SQLException e){
 			e.printStackTrace();
@@ -31,7 +31,7 @@
 	
 	//3
 	//페이징 처리
-	int currentPage=1;  //현재 페이지
+	int currentPage=1;
 	
 	if(request.getParameter("currentPage")!=null 
 		&& !request.getParameter("currentPage").isEmpty()){
@@ -39,8 +39,8 @@
 		=Integer.parseInt(request.getParameter("currentPage"));
 	}
 	
-	int pageSize=10; //한 페이지에 보여줄 레코드 개수
-	int blockSize=10; //블럭 사이즈 1~10, 11~20 => 10
+	int pageSize=10; 
+	int blockSize=10;
 	
 	PagingVO pageVo 
 		= new PagingVO(currentPage, totalRecord, pageSize, blockSize);

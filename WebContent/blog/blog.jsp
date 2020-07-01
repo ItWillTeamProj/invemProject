@@ -1,21 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	String blogId = request.getParameter("blogId"); 
-	String test2 = request.getParameter("test2");
-	System.out.println(test2);
+	String blogId = request.getParameter("userid"); 
+	String sUserid = (String)session.getAttribute("userid");
 %>
 <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>jQuery UI Tabs - Default functionality</title>
+<title>${param.userid }님의 블로그</title>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/resources/demos/style.css">
-<link rel="stylesheet" href="../css/bootstrap/bootstrap.css">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="../css/bootstrap/bootstrap.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -42,13 +38,11 @@
     <li><a href="#tabs-4" class="nav-item">방명록</a></li>
     
   </ul>
+	<%@include file = "/common/guestbook.jsp" %>
   	<%@include file = "/common/blogHome.jsp" %>
   	<%@include file = "/common/myBoard.jsp" %>
 	<%@include file = "/common/myReply.jsp" %>
-	<%@include file = "/common/guestbook.jsp" %>
 </div>
 
-
-<script type ="text/javascript" src = "../js/bootstrap/bootstrap.js"></script> 
 </body>
 </html>

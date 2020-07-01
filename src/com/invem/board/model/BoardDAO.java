@@ -100,7 +100,6 @@ public class BoardDAO {
 	public int updateReadCount(int no) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
-		BoardVO vo = null;
 
 		try {
 			con = pool.getConnection();
@@ -180,34 +179,19 @@ public class BoardDAO {
 
 		int cnt=0;
 		try {
-			//1,2 con
 			con=pool.getConnection();
-
-			//transaction 시작
-			con.setAutoCommit(false); //자동 커밋 안되도록 설정
-
-			//3. ps
-			//[1] update
-			String sql="update reply" +
-					" set sortno=sortno+1" +
-					" where groupno=? and sortno>?";
-			ps=con.prepareStatement(sql);
-			ps.setInt(1, vo.getGroupno());
-			ps.setInt(2, vo.getSortno());
-
-			//4. exec
-
 			//[2] insert
-			sql="insert into reply(rep_no, username, reply, no, groupno, sortno, step)" +
-					" values(reply_seq.nextval,?,?,?,?,?,?)";
+			String sql="insert into reply(rep_no, username, reply, no, groupno, sortno, step, pwd)" +
+					" values(reply_seq.nextval,?,?,?,?,?,?,?)";
 			ps=con.prepareStatement(sql);
 
-			ps.setString(1, vo.getUserid());
+			ps.setString(1, vo.getusername());
 			ps.setString(2, vo.getReply());
 			ps.setInt(3, vo.getNo());
 			ps.setInt(4, vo.getGroupno());
 			ps.setInt(5, vo.getSortno()+1);
 			ps.setInt(6, vo.getStep() +1);
+			ps.setString(7,  vo.getPwd());
 
 			cnt=ps.executeUpdate();
 			System.out.println("답변하기 결과, cnt="+cnt
@@ -215,13 +199,8 @@ public class BoardDAO {
 
 			//모두 성공하면 커밋
 			con.commit();
-		}catch(SQLException e) {
-			//하나라도 실패하면 롤백
-			con.rollback();
-			e.printStackTrace();
+		
 		}finally {
-			//다시 자동 커밋되도록 설정
-			con.setAutoCommit(true);
 
 			pool.dbClose(con, ps);
 		}
@@ -246,8 +225,8 @@ public class BoardDAO {
 
 			String sql = "insert into board";
 			if(!"unknown".equals(vo.getUserid())) {
-				sql += "(no, userid, title, describe, cat_code)" +
-						" values(board_seq.nextval, ?, ?, ?, ?)";
+				sql += "(no, userid, title, describe, cat_code, champ_no)" +
+						" values(board_seq.nextval, ?, ?, ?, ?, ?)";
 			}else {
 				sql += "(no, userid, nonuserid, pwd, title, describe, ipaddress, cat_code)" +
 						" values(board_seq.nextval, ?, ?, ?, ?, ?, ?, ?)";
@@ -268,6 +247,7 @@ public class BoardDAO {
 				ps.setString(2, vo.getTitle());
 				ps.setString(3, vo.getDescribe());
 				ps.setString(4, vo.getCat_code());
+				ps.setInt(5, vo.getChamp_no());
 			}
 
 			int cnt = ps.executeUpdate();
@@ -362,8 +342,8 @@ public class BoardDAO {
 				int sortno = no;
 				int step = rs.getInt("step");
 				String delflag = rs.getString("delflag");
-
-				ReplyVO vo = new ReplyVO(rep_no, username, reply, regdate, rep_no, rno, sortno, step, delflag);
+				String pwd = rs.getString("pwd");
+				ReplyVO vo = new ReplyVO(rep_no, username, reply, regdate, rep_no, rno, sortno, step, delflag, pwd);
 
 				list.add(vo);
 
@@ -582,7 +562,13 @@ public class BoardDAO {
 
 		}
 	}
-
+	/**
+	 * 게시판의 게시글 비밀번호확인
+	 * @param no
+	 * @param pwd
+	 * @return
+	 * @throws SQLException
+	 */
 	public boolean checkPwd(int no, String pwd) throws SQLException {
 		Connection con=null;
 		PreparedStatement ps=null;
@@ -627,7 +613,7 @@ public class BoardDAO {
 		List<ReplyVO> list = new ArrayList<ReplyVO>();
 		try {
 			con = pool.getConnection();
-			String sql = "select * from reply where userid=?";
+			String sql = "select * from reply where username=?";
 			ps = con.prepareStatement(sql);
 			
 			ps.setString(1, userid);
@@ -642,8 +628,9 @@ public class BoardDAO {
 				String reply = rs.getString("reply");
 				int sortno = rs.getInt("sortno");
 				int step = rs.getInt("step");
+				String pwd = rs.getString("pwd");
 						
-				ReplyVO vo = new ReplyVO(rep_no, userid, reply, regdate, rep_no, groupno, sortno, step, delflag);
+				ReplyVO vo = new ReplyVO(no, userid, reply, regdate, rep_no, groupno, sortno, step, delflag, pwd);
 				
 				list.add(vo);
 						
@@ -656,5 +643,154 @@ public class BoardDAO {
 		}
 				
 	}
+	
+	public int boardDelete(int no, String code) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		try {
+			con = pool.getConnection();
+			String sql = "delete from board where no=? and cat_code=?";
+			
+			ps = con.prepareStatement(sql);
+			
+			ps.setInt(1, no);
+			ps.setString(2, code);
+			
+			int cnt = ps.executeUpdate();
+			
+			System.out.println("삭제 결과 cnt = " + cnt + ", 매개변수 no = " + no + ", code = " + code);
+			
+			return cnt;
+			
+			
+			
+		}finally {
+			pool.dbClose(con, ps);
+		}
+	}
+	
+	/**
+	 * 댓글 삭제 
+	 * @param rep_no
+	 * @return
+	 * @throws SQLException
+	 */
+	public int replyDelete(int rep_no) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		try {
+			con = pool.getConnection();
+			String sql = "delete from reply where rep_no=?";
+			
+			ps = con.prepareStatement(sql);
+			
+			ps.setInt(1, rep_no);
+			
+			int cnt = ps.executeUpdate();
+			
+			System.out.println("삭제 결과 cnt = " + cnt + ", 매개변수 rep_no = " + rep_no);
+			
+			return cnt;
+			
+			
+			
+		}finally {
+			pool.dbClose(con, ps);
+		}
+	}
+	/**
+	 * 댓글의 번호로 비밀번호 확인
+	 * @param no
+	 * @param pwd
+	 * @return
+	 * @throws SQLException
+	 */
+	public boolean checkReplyPwd(int no, String pwd) throws SQLException {
+		Connection con=null;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
 
+		try {
+			//1,2
+			con=pool.getConnection();
+
+			//3
+			String sql="select pwd from reply where rep_no=?";
+			ps=con.prepareStatement(sql);
+
+			ps.setInt(1, no);
+			System.out.println("rep_no="+no);
+			//4
+			rs=ps.executeQuery();
+			boolean result=false;
+			if(rs.next()) {
+				String dbPwd=rs.getString(1);
+				System.out.println("dbpwd="+dbPwd);
+				if(dbPwd.equals(pwd)) {
+					result=true;  //비밀번호 일치
+				}
+			}
+
+			System.out.println("비밀번호 체크 결과, result="+result
+				+", 매개변수 no="+no+", pwd="+pwd);
+
+			return result;
+		}finally {
+			pool.dbClose(con, ps, rs);
+		}
+	}
+	
+	public List<BoardVO> searchall(int champ_no, String code) throws SQLException{
+
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		List<BoardVO> list = new ArrayList<BoardVO>();
+
+		try {
+			con = pool.getConnection();
+			String sql = "select * from board"
+					+ " where champ_no=? and cat_code=?"
+					+ " order by no desc";
+			
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, champ_no);
+			ps.setString(2, code);
+			rs = ps.executeQuery();
+
+			while(rs.next()) {
+				int no = rs.getInt("no");
+				String userid = rs.getString("userid");
+				String nonuserid = rs.getString("nonuserid");
+				String pwd = rs.getString("pwd");
+				String title = rs.getString("title");
+				Timestamp regdate = rs.getTimestamp("regdate");
+				String describe = rs.getString("describe");
+				int recommend = rs.getInt("recommend");
+				int views = rs.getInt("views");
+				String filename = rs.getString("filename");
+				long filesize = rs.getLong("filesize");
+				int downcount = rs.getInt("downcount");
+				String originalfilename = rs.getString("originalfilename");
+				String ipaddress = rs.getString("ipaddress");
+				String delflag = rs.getString("delflag");
+				String cat_code = rs.getString("cat_code");
+
+				BoardVO vo = new BoardVO(no, userid, nonuserid, pwd, title, regdate, 
+						describe, recommend, views, filename, filesize, downcount, 
+						originalfilename, ipaddress, delflag, cat_code, champ_no);
+
+				list.add(vo);
+			}
+			System.out.println("list.size = " + list.size());
+			return list;
+
+		}finally {
+			pool.dbClose(con, ps, rs);
+
+		}
+
+
+	}
 }

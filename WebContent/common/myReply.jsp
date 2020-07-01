@@ -1,9 +1,18 @@
+<%@page import="com.invem.board.model.BoardVO"%>
+<%@page import="com.invem.common.PagingVO"%>
 <%@page import="com.invem.board.model.ReplyVO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 	List<ReplyVO> rList = (List<ReplyVO>)request.getAttribute("rList");
+	PagingVO rPageVo = (PagingVO)request.getAttribute("rPageVo");
+	int currentPage = 1;	//설정된 현재 페이지
+	
+	int rNum = rPageVo.getNum();	//페이지당 시작 글 번호가 될수도 있지만 게시판별로
+	// 나눴을때 num + 1 로 no를 대체할 수 있다.
+	int rCurPos = rPageVo.getCurPos();	//페이지당 시작 인덱스 번호
+	
 %>
 <div id="tabs-3">
 	<h1>댓글 페이지</h1>
@@ -17,8 +26,10 @@
 		</tr>
 		<%
 		if(rList != null && !rList.isEmpty()){
-			for(int i = 0; i < rList.size(); i++){
-				ReplyVO vo = rList.get(i);
+			for(int i = 0; i < rPageVo.getPageSize(); i++){
+				if(rNum -- < 1)	break;
+
+				ReplyVO vo = rList.get(rCurPos++);
 			%>
 			<tr>
 				<td><%=vo.getNo() %></td>
@@ -32,23 +43,23 @@
 		%>
 		<div style = "text-align: center">
 		<ul class="pagination pagination-sm">
-		<%if(pageVo.getFirstPage() > 1){ %>
-			 <li class="previous"><a href="/blog/blog.gg#tabs-2?currentPage=<%=pageVo.getFirstPage() - 1 %>">Previous</a></li>
+		<%if(rPageVo.getFirstPage() > 1){ %>
+			 <li class="previous"><a href="/blog/blog.gg?currentPage=userid=${param.userid}&<%=rPageVo.getFirstPage() - 1 %>#tabs-3">Previous</a></li>
 		<%} %>
 	
-		<%for(int i = pageVo.getFirstPage(); i <= pageVo.getLastPage(); i++){
-			if(i > pageVo.getTotalPage()) break;
+		<%for(int i = rPageVo.getFirstPage(); i <= rPageVo.getLastPage(); i++){
+			if(i > rPageVo.getTotalPage()) break;
 		%>
-			<%if(i != pageVo.getCurrentPage()){ %>
-			<li><a href="/blog/blog.gg#tabs-2?currentPage=<%=i%>"><%=i %></a></li>
+			<%if(i != rPageVo.getCurrentPage()){ %>
+			<li><a href="/blog/blog.gg?userid=${param.userid}&currentPage=<%=i%>"#tabs-3><%=i %></a></li>
 			
 		<%}else{ %>
-			<li class="active"><a href="/blog/blog.gg#tabs-2?currentPage=<%=i%>"><%=i %></a></li>
+			<li class="active"><a href="/blog/blog.gg?userid=${param.userid}&currentPage=<%=i%>#tabs-3"><%=i %></a></li>
 			<%}//if %>
 		<%}//for %>
 	
-		<%if(pageVo.getLastPage() < pageVo.getTotalPage()){ %>
-			<li class="next"><a href="/blog/blog.gg#tabs-2?currentPage=<%=pageVo.getLastPage() + 1 %>">Next</a></li>
+		<%if(rPageVo.getLastPage() < rPageVo.getTotalPage()){ %>
+			<li class="next"><a href="/blog/blog.gg?userid=${param.userid}&currentPage=<%=rPageVo.getLastPage() + 1 %>#tabs-3">Next</a></li>
 		<%} %>
 		</ul>
 	</div>

@@ -40,7 +40,7 @@
 			});
 		<%}%>
 		
-		$("#champList .sel").tooltip({
+		$('[data-toggle="tooltip"]').tooltip({
 			content: function() {
 		        return $(this).prop('title');
 		   }
@@ -95,7 +95,8 @@
 		</div>
 		<div id=champs>
 			<%for (int i = 0; i < legend.length; i++) {	%>
-					<a href="chamianList.jsp?val=<%=legend[i]%>"><%=legend[i]%></a>
+					<a href="<%=request.getContextPath() %>/champion/list.gg?val=<%=legend[i]%>">
+					<%=legend[i]%></a>
 			<%}%>
 		</div>
 		</form>
@@ -111,7 +112,7 @@
 						+ "<p style='clear: both; margin-top: 5px; font-size: 14px;'>"+ vo.getDescribe()
 						+ "</p>";%>
 					<td data-geo="<%=vo.getChamp_no()%>">
-						<div class="sel"
+						<div class="sel1" data-toggle="tooltip" 
 							style="background-image: url('../images/championIcon/i<%=vo.getChamp_no()%>.png');"
 							 title="<%=title%>" onclick="detail(<%=vo.getChamp_no()%>)"></div>
 						<span><%=vo.getName()%></span>

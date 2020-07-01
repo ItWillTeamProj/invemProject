@@ -12,8 +12,9 @@
 	String code = request.getParameter("code");
 	BoardVO vo = (BoardVO)request.getAttribute("vo");
 	List<ReplyVO> list = (List<ReplyVO>)request.getAttribute("list");
-	userid = (String)request.getAttribute("userid");
+	userid = (String)session.getAttribute("userid");
 	String no = request.getParameter("no");
+	String pwd = vo.getPwd();
 	
 	
 	int replyCount = (int)request.getAttribute("replyCount");
@@ -24,10 +25,6 @@
 <link rel="stylesheet" href="../css/bootstrap/bootstrap.css">
 <script type="text/javascript">
 $(function(){
-	$('#list').click(function(){
-		location.href = "<%=request.getContextPath()%>/board/boardList.gg?code=<%=code%>";
-	});
-	
 	if("<%=vo.getUserid()%>" != "" && "<%=vo.getUserid()%>" != "unknown" && "<%=vo.getUserid()%>" != "<%=userid%>"){
 		$('#delete').css("display", "none");
 	}
@@ -36,13 +33,56 @@ $(function(){
 		$('#edit').css("display", "none");
 	}
 	
+	$('#list').click(function(){
+		location.href = "<%=request.getContextPath()%>/board/boardList.gg?code=<%=code%>";
+	});
+	
+	
 	$('#edit').click(function(){
 		location.href = "<%=request.getContextPath()%>/board/boardEdit.gg?no=<%=no%>&code=<%=code%>";
 	});
 
 	$('#delete').click(function(){
-		location.href = "<%=request.getContextPath()%>/board/boardDelete.gg?no=<%=no%>&code=<%=code%>";
+		var result = confirm('정말 삭제 하시겠습니까?');
+		if("<%=vo.getUserid()%>" == "<%=userid%>"){
+			if(result){
+				location.href = "<%=request.getContextPath()%>/board/boardDelete_ok.gg?no=<%=no%>&code=<%=code%>";
+			}else{
+				return false;
+			}
+		}else{
+			if(result){
+				window.open('<%=request.getContextPath()%>/board/deleteNonuser.gg?no=<%=no%>&code=<%=code%>', 'viewer', 'width=400, height=400');
+			}else{
+				return false;
+			}
+		}
 	});
+	
+	$('.delReply').click(function(){
+		
+		var rId = $('#rId').html();
+		var replyNo = $('#replyNo').html();
+		var groupNo = $('#groupNo').html();
+		
+		var result = confirm('댓글을 정말로 삭제 하시겠습니까?');
+		if(rId == "<%=userid%>"){
+			if(result){
+				location.href = "<%=request.getContextPath()%>/reply/replyDelete_ok.gg?no="+replyNo+"&code=<%=code%>&groupno="+groupNo;
+			}else{
+				return false;
+			}
+		}else{
+			if(result){
+				window.open("<%=request.getContextPath()%>/reply/replyDelNonuser.gg?no="+replyNo+"&code=<%=code%>&groupno="+groupNo, 'viewer', 'width=400, height=400');
+			}else{
+				return false;
+			}
+		}
+	});
+	
+	
+	
 });
 </script>
 
@@ -70,7 +110,7 @@ $(function(){
 		
 	</div>
 	<div>
-		<%if(!"unknown".equals(userid) && userid != null && !userid.isEmpty()){%>
+		<%if(!"unknown".equals(vo.getUserid()) && vo.getUserid() != null && !vo.getUserid().isEmpty()){%>
 			<span style = "float: left; margin-left: 30px"><%=vo.getUserid() %> | <%=vo.getRegdate() %></span>
 			<span style = "float: right; margin-right: 20px">조회 <%=vo.getViews() %> | 추천 <%=vo.getRecommend() %> | 댓글<%=replyCount %> </span>
 		<%}else{%>
@@ -82,8 +122,8 @@ $(function(){
 	<br><hr style = "border: 0; height: 2px; background: skyblue">
 	
 	<div style="width: 100%; height: 200px; text-align: center; float:right">
-		<a href = "#"><img src = "../images/good.png" style = "max-width: 100px; max-height:100px;float: left" alt = "추천"/></a>
-		<a href = "#"><img src = "../images/bad.png" style = "max-width: 100px; max-height:100px; float: left" alt = "신고"/></a>
+		<a href = "#"><img src = "../images/good.png" style = "max-width: 100px; max-height:100px;float: left;text-align: center;" alt = "추천"/></a>
+		<a href = "#"><img src = "../images/bad.png" style = "max-width: 100px; max-height:100px; float: left;text-align: center;" alt = "신고"/></a>
 	</div>
 	
 	<%if(list != null && !list.isEmpty()){%>
@@ -103,10 +143,10 @@ $(function(){
 				ReplyVO rVo = list.get(i);
 			%>
 				<tr>
-					<td style = "text-align: center"><%=rVo.getUserid() %></td>
-					<td><%=rVo.getReply() %></td>
+					<td style = "text-align: center" id = "rId"><%=rVo.getusername() %></td>
+					<td><%=rVo.getReply() %><span style="display: none;" id="groupNo"><%=rVo.getGroupno() %></span><span style="display: none;" id="replyNo"><%=rVo.getRep_no() %></span></td>
 					<td style = "text-align: center"><%=sdf.format(rVo.getRegdate()) %>
-						<a href = "#"><img src = "<%=request.getContextPath()%>/images/deleteIcon.png"></a>
+						<span><a href = "#" class = "delReply"><img style = "width: 20px;height: auto;margin-left: 10px" src = "<%=request.getContextPath()%>/images/deleteIcon.png"></a></span>
 					</td>
 				</tr>
 			<%}%>
@@ -130,7 +170,6 @@ $(function(){
 	<%} %>
 		<input type = "hidden" name = "code" value = "<%=code%>">
  		<input type = "hidden" name = "no" value = "<%=Integer.parseInt(no)%>">
-		<input type = "hidden" name = "userid" value = "<%=userid%>">
 		<span style = "float: left; width: 60%; margin-left: 20px">
 			<textarea name = "reply" rows="5" cols="60" style = "margin-left: 30px"></textarea>
 		</span>
@@ -146,5 +185,5 @@ $(function(){
 
 
 
-<script type ="text/javascript" src = "../js/bootstrap/bootstrap.js"></script> 
+
 <%@ include file = "../inc/bottom.jsp"%>

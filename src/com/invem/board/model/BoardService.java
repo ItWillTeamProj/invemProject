@@ -14,6 +14,10 @@ public class BoardService {
 		return dao.searchall(keyword, condition, code);
 	}
 
+	public List<BoardVO> searchall(int champ_no, String code) throws SQLException{
+		return dao.searchall(champ_no, code);
+	}
+	
 	public int updateReadCount(int no) throws SQLException {
 		return dao.updateReadCount(no);
 	}
@@ -67,5 +71,17 @@ public class BoardService {
 	
 	public List<ReplyVO> selectAllReply(String userid) throws SQLException{
 		return dao.selectAllReply(userid);
+	}
+	
+	public int boardDelete(int no, String code) throws SQLException {
+		return dao.boardDelete(no, code);
+	}
+	
+	public int replyDelete(int no) throws SQLException {
+		return dao.replyDelete(no);
+	}
+	
+	public boolean checkReplyPwd(int no, String pwd) throws SQLException {
+		return dao.checkReplyPwd(no, pwd);
 	}
 }

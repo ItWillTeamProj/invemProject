@@ -20,7 +20,8 @@ public class ReplyOkController implements Controller{
 		String user_no = request.getParameter("no"); 
 		String code = request.getParameter("code");
 		String username = nonuserid;
-		if(userid != null && !userid.isEmpty() && userid.equals("unknown")){
+		System.out.println("username = "+username);
+		if(userid != null && !userid.isEmpty() && "unknown".equals(userid)){
 			username = userid;
 		}
 		
@@ -28,10 +29,11 @@ public class ReplyOkController implements Controller{
 		
 		vo.setNo(Integer.parseInt(user_no));
 		vo.setSortno(Integer.parseInt(user_no));
-		vo.setUserid(username);
+		vo.setusername(username);
 		vo.setReply(reply);
 		vo.setStep(1);
 		vo.setGroupno(Integer.parseInt(user_no));
+		vo.setPwd(pwd);
 		
 		BoardService boardServ = new BoardService();
 		int cnt = 0;
@@ -39,7 +41,7 @@ public class ReplyOkController implements Controller{
 		try{
 			cnt = boardServ.reply(vo);
 			if(cnt>0) {
-				System.out.println("userid = " + vo.getUserid());
+				System.out.println("userid = " + vo.getusername());
 				msg = "댓글 등록 성공";
 			}
 		}catch(SQLException e){

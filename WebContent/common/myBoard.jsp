@@ -1,3 +1,4 @@
+<%@page import="com.invem.common.Utility"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.invem.common.PagingVO"%>
 <%@page import="com.invem.board.model.BoardService"%>
@@ -7,22 +8,10 @@
     pageEncoding="UTF-8"%>
 <%
 	List<BoardVO> list = (List<BoardVO>)request.getAttribute("list");
-	int currentPage = 1;	//설정된 현재 페이지
-	
-	if(request.getParameter("currentPage") != null
-			&& !request.getParameter("currentPage").isEmpty()){
-		currentPage = Integer.parseInt(request.getParameter("currentPage"));
-	}	//파라미터로 페이지가 넘어왔다면 1이 아니라 넘어온 값을 읽어서 현재페이지의 값이 된다
-	int totalRecord = list.size();	//전체 게시글 수
-	int pageSize = 10;	//한 페이지에 보여줄 게시글 개수
-	if(request.getParameter("rowNum") != null && !request.getParameter("rowNum").isEmpty()){
-		pageSize = Integer.parseInt(request.getParameter("rowNum"));
-	}
-	int blockSize = 10;	// 페이지의 블럭개수
-	
-	PagingVO pageVo = new PagingVO(currentPage, totalRecord, pageSize, blockSize);
-
-
+	PagingVO pageVo = (PagingVO)request.getAttribute("pageVo");
+	int bNum = pageVo.getNum();	//페이지당 시작 글 번호가 될수도 있지만 게시판별로
+	// 나눴을때 num + 1 로 no를 대체할 수 있다.
+	int bCurPos = pageVo.getCurPos();	//페이지당 시작 인덱스 번호
 	
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -40,13 +29,14 @@
 		</tr>
 		<%
 		if(list != null && !list.isEmpty()){
-			for(int i = 0; i < list.size(); i++){
-				BoardVO vo = list.get(i);
-			%>
+			for(int i = 0; i < pageVo.getPageSize(); i++){
+				if(bNum -- < 1)	break;
+
+				BoardVO vo = list.get(bCurPos++);%>
 			<tr>
 				<td><%=vo.getNo() %></td>
 				<td><%=vo.getTitle() %></td>
-				<td><%=vo.getDescribe() %></td>
+				<td><%=Utility.cutString(vo.getDescribe(), 30) %></td>
 				<td><%=vo.getRegdate() %></td>
 				
 			</tr>
@@ -58,22 +48,22 @@
 	<div style = "text-align: center">
 		<ul class="pagination pagination-sm">
 		<%if(pageVo.getFirstPage() > 1){ %>
-			 <li class="previous"><a href="/blog/blog.gg#tabs-2?currentPage=<%=pageVo.getFirstPage() - 1 %>">Previous</a></li>
+			 <li class="previous"><a href="<%=request.getContextPath() %>/blog/blog.gg?userid=${param.userid}&currentPage=<%=pageVo.getFirstPage() - 1 %>#tabs-2">Previous</a></li>
 		<%} %>
 	
 		<%for(int i = pageVo.getFirstPage(); i <= pageVo.getLastPage(); i++){
 			if(i > pageVo.getTotalPage()) break;
 		%>
 			<%if(i != pageVo.getCurrentPage()){ %>
-			<li><a href="/blog/blog.gg#tabs-2?currentPage=<%=i%>"><%=i %></a></li>
+			<li><a href="<%=request.getContextPath() %>/blog/blog.gg?userid=${param.userid}&currentPage=<%=i%>#tabs-2"><%=i %></a></li>
 			
 		<%}else{ %>
-			<li class="active"><a href="/blog/blog.gg#tabs-2?currentPage=<%=i%>"><%=i %></a></li>
+			<li class="active"><a href="<%=request.getContextPath() %>/blog/blog.gg?userid=${param.userid}>&currentPage=<%=i%>#tabs-2"><%=i %></a></li>
 			<%}//if %>
 		<%}//for %>
 	
 		<%if(pageVo.getLastPage() < pageVo.getTotalPage()){ %>
-			<li class="next"><a href="/blog/blog.gg#tabs-2?currentPage=<%=pageVo.getLastPage() + 1 %>">Next</a></li>
+			<li class="next"><a href="<%=request.getContextPath() %>/blog/blog.gg?userid=${param.userid}&currentPage=<%=pageVo.getLastPage() + 1 %>#tabs-2">Next</a></li>
 		<%} %>
 		</ul>
 	</div>

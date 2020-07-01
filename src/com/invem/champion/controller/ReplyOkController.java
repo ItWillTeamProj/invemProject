@@ -14,7 +14,6 @@ public class ReplyOkController  implements Controller{
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		String userid = request.getParameter("userid");
-		//String nickName = request.getParameter("userid");
 		String title = request.getParameter("title");
 		String content = request.getParameter("reContent");
 		String champNo = request.getParameter("champNo");
@@ -26,6 +25,7 @@ public class ReplyOkController  implements Controller{
 		vo.setTitle(title);
 		vo.setDescribe(content);
 		vo.setCat_code(code);
+		vo.setChamp_no(Integer.parseInt(champNo));
 		
 		try {
 			service.insertBoard(vo);
