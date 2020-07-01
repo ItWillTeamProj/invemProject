@@ -19,6 +19,10 @@ fieldset {
 label{
 	font-size:13px;
 }
+iframe{
+	background:#ffffff8a;
+	text
+}
 
 </style>
 <body>
@@ -43,7 +47,8 @@ label{
 	<article>
 		<form name="frmAgree" method="post" action="signup.gg">
 		<div style="margin-top: 30px; margin-bottom: 30px; margin-left: 30px; margin-right: 30px;">
-		<fieldset style="margin-top: 20px; border-radius: 0.5em;border-color: #6db92a;background-color:white;">
+		<fieldset style="margin-top: 20px; border-radius: 0.5em;border-color: #6db92a;background-color:white;
+			background-image:url('<%=request.getContextPath()%>/images/back1.png')">
 			<h2 style="background-image:url(); margin-top: 30px;margin-left: 20px; margin-top: 30px;margin-left: 20px;">회원 약관</h2>
 			<div style="text-align: left; margin-left: 30px;border-left-width: 30px;padding-left: 10px;margin-bottom: 5px;">
 				<input type="checkbox" name="chkAgree1" id="chkAgree1">

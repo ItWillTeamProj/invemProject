@@ -35,15 +35,15 @@
 				alert('생일을 입력해주세요!');
 				$('#dateofbirth').focus();
 				event.preventDefault();
-			}else if($('#zipcode').val().length<1){
+			}else if($('#postcode').val().length<1){
 				alert('우편번호을 입력해주세요!');
 				$('#zipcode').focus();
 				event.preventDefault();
-			}else if($('#address').val().length<1){
+			}else if($('#roadAddress').val().length<1){
 				alert('주소를 입력해주세요!');
 				$('#address').focus();
 				event.preventDefault();
-			}else if($('#chkId').val()!='Y'){
+			}else if($('#chkId').val()!=='Y'){
 				alert('아이디 중복확인을 하셔야 합니다.');
 				$("#btnChkId").focus();
 				event.preventDefault();
