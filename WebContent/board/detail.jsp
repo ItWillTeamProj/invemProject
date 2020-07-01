@@ -12,7 +12,6 @@
 	String code = request.getParameter("code");
 	BoardVO vo = (BoardVO)request.getAttribute("vo");
 	List<ReplyVO> list = (List<ReplyVO>)request.getAttribute("list");
-	userid = (String)session.getAttribute("userid");
 	String no = request.getParameter("no");
 	String pwd = vo.getPwd();
 	
@@ -128,9 +127,10 @@ $(function(){
 	<div><%=vo.getDescribe() %></div><br>
 	<br><hr style = "border: 0; height: 2px; background: skyblue">
 	
-	<div style="width: 100%; height: 200px; text-align: center; float:right">
-		<a href = "#"><img src = "../images/good.png" style = "max-width: 100px; max-height:100px;float: left;text-align: center;" alt = "추천" id="good"/></a>
-		<a href = "#"><img src = "../images/bad.png" style = "max-width: 100px; max-height:100px; float: left;text-align: center;" alt = "신고" id="bad"/></a>
+	<div style="width: 100%; height: 200px; text-align: center;">
+		<a href = "#"><img src = "../images/good.png" style = "max-width: 100px; max-height:100px; text-align: center;" alt = "추천"/></a>
+		<a href = "#"><img src = "../images/bad.png" style = "max-width: 100px; max-height:100px; text-align: center;" alt = "신고"/></a>
+
 	</div>
 	
 	<%if(list != null && !list.isEmpty()){%>
@@ -163,7 +163,7 @@ $(function(){
 	
 	
 	<form name="frmReply" action="<%=request.getContextPath() %>/board/reply_ok.gg" method="post" >
-	<div>
+	<div style="overflow: hidden;">
 	<%if("unknown".equals(userid) || userid == null || userid.isEmpty()){%>
 		<span style = "float: left; width: 15%">
 			<input type = "text" name = "nonuserid" size = "15" style = "margin-left: 5px; margin-top: 5px" value="닉네임"
@@ -173,17 +173,17 @@ $(function(){
 		</span>
 	
 	<%}else{%>
-		<span style = "float: left; width: 15%"><%=userid %></span>
+		<input type="hidden" value="<%=userid %>">
 	<%} %>
 		<input type = "hidden" name = "code" value = "<%=code%>">
  		<input type = "hidden" name = "no" value = "<%=Integer.parseInt(no)%>">
-		<span style = "float: left; width: 60%; margin-left: 20px">
-			<textarea name = "reply" rows="5" cols="60" style = "margin-left: 30px"></textarea>
-		</span>
-		<span><input type = "submit" value = "등록" 
-			style = "width: 90px; height: 30px; float: right; margin-right: 10px; margin-top: 5px">
-		<input type = "button" id = "list" value ="목록으로"
-		style = "width: 90px; height: 30px; float: right; margin-right: 10px; margin-top: 5px"></span>
+		<textarea id="reply" name = "reply" rows="5" cols="60" 
+			style = "float: left; width: 60%; margin: 0 20px;"></textarea>
+		<div style="float: left;"><input type = "submit" value = "등록" 
+			style = "width: 90px; height: 30px;  margin-right: 10px; margin-top: 5px">
+		<br><input type = "button" id = "list" value ="목록으로"
+		style = "width: 90px; height: 30px; margin-right: 10px; margin-top: 5px">
+		</div>
 	</div>
 	</form>
 	<br><br>
