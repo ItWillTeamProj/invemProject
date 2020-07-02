@@ -12,8 +12,8 @@
 <%
 	String condition = (String)request.getAttribute("condition");
 	String keyword = (String)request.getAttribute("keyword");
-	
-
+	String sort = (String)request.getAttribute("sort");
+	String isNotice = (String)request.getAttribute("isNotice");
 	List <BoardVO> list = (List<BoardVO>)request.getAttribute("list");
 	PagingVO pageVo = (PagingVO)request.getAttribute("pageVo");
 	String code = (String)request.getParameter("code");
@@ -21,6 +21,11 @@
 	if(rowNum == null || rowNum.isEmpty()){
 		rowNum = "10";
 	}
+	
+	if(!"N".equals(sort) && !"B".equals(sort)){
+		sort = "N";
+	}
+	
 	
 	
 	int num = pageVo.getNum();	//페이지당 시작 글 번호가 될수도 있지만 게시판별로
@@ -37,10 +42,17 @@ $(function(){
 		location.href = "<%=request.getContextPath()%>/board/boardList.gg?rowNum="+pageRow+"&code="+"<%=code%>";
 	});
 	
-	$('#all').click(function(){
-		location.href = "<%=request.getContextPath()%>/board/boardList.gg?code=<%=code%>";
+	$('#newest').click(function(){
+		location.href = "<%=request.getContextPath()%>/board/boardList.gg?code=<%=code%>&sort=N";
+	});
+	$('#best').click(function(){
+		location.href = "<%=request.getContextPath()%>/board/boardList.gg?code=<%=code%>&sort=B";
 	});
 
+	$('#notice').click(function(){
+		location.href = "<%=request.getContextPath()%>/board/boardList.gg?code=<%=code%>&isNotice=Y";
+	});
+	
 	$('#toBlog').click(function(){
 		var sId = $('#uId').html();
 		$('#blogId').val(sId);
@@ -67,8 +79,11 @@ $(function(){
 	String boardName = "";
 	switch(code){
 		case "F":
-		boardName = "자유게시판";
-		break;
+			boardName = "자유게시판";
+			break;
+		case "E":
+			boardName = "기타게시판";
+			break;
 		default:%>
 		<script type="text/javascript">
 			alert('잘못된 접근입니다.');
@@ -82,7 +97,7 @@ $(function(){
 	</div>
 	
 	<div style = "margin-right: 20px;">
-		<input type = "button" value = "전체글" id = "all"><input type = "button" value = "인기글" id = "best" ><input type = "button" value = "공지" id = "notice">
+		<input type = "button" value = "최신순" id = "newest"><input type = "button" value = "인기글" id = "best" ><input type = "button" value = "공지" id = "notice">
 		<span style = "float: right"><a href = "<%=request.getContextPath()%>/board/boardWrite.gg?code=<%=code%>"><img src="<%=request.getContextPath()%>/images/writeIcon.png" style="width: 20px; height: auto"></a></span><!-- 추후 아이콘으로 대체 예정 -->
 		<select style = "float: right; margin-right: 10px" id = "rowNum">
 			<option value = "10" <%if(rowNum.equals("10")){ %>
@@ -170,22 +185,42 @@ $(function(){
 	<div style = "text-align: center">
 		<ul class="pagination pagination-sm">
 		<%if(pageVo.getFirstPage() > 1){ %>
-			 <li class="previous"><a href="<%=request.getContextPath()%>/board/boardList.gg?currentPage=<%=pageVo.getFirstPage() - 1 %>&code=<%=code%>&rowNum=<%=rowNum%>">Previous</a></li>
+			 <li class="previous"><a href="<%=request.getContextPath()%>/board/boardList.gg?currentPage=<%=pageVo.getFirstPage() - 1 %>
+			 &code=<%=code%>&rowNum=<%=rowNum%>&sort=<%=sort%>
+			 <%if("Y".equals(isNotice)){%>
+			 	&isNotice=Y
+			 	<%}%>
+			 ">Previous</a></li>
 		<%} %>
 	
 		<%for(int i = pageVo.getFirstPage(); i <= pageVo.getLastPage(); i++){
 			if(i > pageVo.getTotalPage()) break;
 		%>
 			<%if(i != pageVo.getCurrentPage()){ %>
-			<li><a href="<%=request.getContextPath() %>/board/boardList.gg?currentPage=<%=i%>&code=<%=code%>&rowNum=<%=rowNum%>"><%=i %></a></li>
+			<li><a href="<%=request.getContextPath() %>/board/boardList.gg?
+			currentPage=<%=i%>&code=<%=code%>&rowNum=<%=rowNum%>&sort=<%=sort%>
+			<%if("Y".equals(isNotice)){%>
+			 	&isNotice=Y
+			 	<%}%>
+			"><%=i %></a></li>
 			
 		<%}else{ %>
-			<li class="active"><a href="<%=request.getContextPath() %>/board/boardList.gg?currentPage=<%=i%>&code=<%=code%>&rowNum=<%=rowNum%>"><%=i %></a></li>
+			<li class="active"><a href="<%=request.getContextPath() %>/board/boardList.gg?
+			currentPage=<%=i%>&code=<%=code%>&rowNum=<%=rowNum%>&sort=<%=sort%>
+			<%if("Y".equals(isNotice)){%>
+			 	&isNotice=Y
+			 	<%}%>
+			"><%=i %></a></li>
 			<%}//if %>
 		<%}//for %>
 	
 		<%if(pageVo.getLastPage() < pageVo.getTotalPage()){ %>
-			<li class="next"><a href="<%=request.getContextPath()%>/board/boardList.gg?currentPage=<%=pageVo.getLastPage() + 1 %>&code=<%=code%>&rowNum=<%=rowNum%>">Next</a></li>
+			<li class="next"><a href="<%=request.getContextPath()%>/board/boardList.gg?
+			currentPage=<%=pageVo.getLastPage() + 1 %>&code=<%=code%>&rowNum=<%=rowNum%>&sort=<%=sort%>
+			<%if("Y".equals(isNotice)){%>
+			 	&isNotice=Y
+			 	<%}%>
+			">Next</a></li>
 		<%} %>
 		</ul>
 	</div>

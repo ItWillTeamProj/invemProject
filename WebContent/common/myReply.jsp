@@ -32,7 +32,7 @@
 				ReplyVO vo = rList.get(rCurPos++);
 			%>
 			<tr>
-				<td><%=vo.getNo() %></td>
+				<td><%=vo.getGroupno() %></td>
 				<td><%=vo.getReply() %></td>
 				<td><%=vo.getRegdate() %></td>
 				

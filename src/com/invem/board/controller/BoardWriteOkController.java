@@ -38,7 +38,9 @@ public class BoardWriteOkController implements Controller{
 		
 		String msg = "글 등록 실패", url = "/board/boardWrite.gg?code="+cat_code;
 		try{
+			System.out.println("매개변수 vo="+vo);
 			int cnt = boardServ.insertBoard(vo);
+			System.out.println("글 등록여부 cnt="+cnt);
 			if(cnt > 0){
 				msg = "글 등록 성공";
 				url = "/board/boardList.gg?code="+cat_code;

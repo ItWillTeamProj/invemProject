@@ -13,6 +13,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.invem.board.model.BoardService;
 import com.invem.board.model.BoardVO;
+import com.invem.board.model.GuestbookVO;
 import com.invem.board.model.ReplyVO;
 import com.invem.common.LeagueInfo;
 import com.invem.common.LeagueVO;
@@ -111,6 +112,26 @@ public class BlogController implements Controller {
 		request.setAttribute("rList", rList);
 		request.setAttribute("pageVo", bPageVo);
 		request.setAttribute("rPageVo", rPageVo);
+		
+		//게스트 북
+		List<GuestbookVO> gList = new ArrayList<GuestbookVO>();
+		gList = boardServ.guestbookList(userid);
+		System.out.println(gList);
+		
+		
+		currentPage = 1;	//설정된 현재 페이지
+		
+		if(request.getParameter("currentPage") != null
+				&& !request.getParameter("currentPage").isEmpty()){
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}	//파라미터로 페이지가 넘어왔다면 1이 아니라 넘어온 값을 읽어서 현재페이지의 값이 된다
+		totalRecord = gList.size();	//전체 게시글 수
+		pageSize = 6;	//한 페이지에 보여줄 게시글 개수
+		blockSize = 10;	// 페이지의 블럭개수
+		
+		PagingVO gPageVo = new PagingVO(currentPage, totalRecord, pageSize, blockSize);
+		request.setAttribute("gPageVo", gPageVo);
+		request.setAttribute("gList", gList);
 		
 		
 		return "/blog/blog.jsp?userid="+userid;

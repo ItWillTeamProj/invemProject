@@ -28,7 +28,7 @@ public class BoardDAO {
 	 * @throws SQLException
 	 */
 
-	public List<BoardVO> searchall(String keyword, String condition, String code) throws SQLException{
+	public List<BoardVO> searchall(String keyword, String condition, String code, String sort) throws SQLException{
 
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -45,7 +45,15 @@ public class BoardDAO {
 			}else {
 				sql += " where cat_code = ?";
 			}
-			sql += " order by no desc";
+			
+			if("N".equals(sort)) {			
+				sql += " order by no desc";
+			}else if("B".equals(sort)) {
+				sql += " order by recommend desc, no desc";
+			}else {
+				sql += " order by no desc";
+			}
+			
 			ps = con.prepareStatement(sql);
 
 			if(keyword != null && !keyword.isEmpty()) {	//검색의 경우
@@ -250,6 +258,7 @@ public class BoardDAO {
 			}
 
 			int cnt = ps.executeUpdate();
+			
 			System.out.println("cnt = " + cnt + ", 매개변수 vo = " + vo);
 			return cnt;
 
@@ -915,15 +924,16 @@ public class BoardDAO {
 		
 		try {
 			con = pool.getConnection();
-			String sql = "select * from guestbook order by gno desc";
+			String sql = "select * from guestbook where userid =? order by gno desc";
 			ps = con.prepareStatement(sql);
+			ps.setString(1, userid);
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
 				int gno = rs.getInt("gno");
 				String writerId = rs.getString("writer_id");
 				Timestamp regdate = rs.getTimestamp("regdate");
-				String comment = rs.getString("comment");
+				String comment = rs.getString("g_comment");
 				
 				GuestbookVO vo = new GuestbookVO(gno, userid, writerId, comment, regdate);
 				
@@ -964,4 +974,56 @@ public class BoardDAO {
 			pool.dbClose(con, ps, rs);
 		}
 	}
+	
+	/**
+	 * 공지사항 눌렀을때 
+	 * @return
+	 * @throws SQLException
+	 */
+	public List<BoardVO> selectNotice() throws SQLException{
+
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		List<BoardVO> list = new ArrayList<BoardVO>();
+
+		try {
+			con = pool.getConnection();
+			String sql = "select * from board where cat_code = ? order by no desc";
+			ps = con.prepareStatement(sql);
+			
+			ps.setString(1, "A");
+			rs = ps.executeQuery();
+
+			while(rs.next()) {
+				int no = rs.getInt("no");
+				String userid = rs.getString("userid");
+				String nonuserid = rs.getString("nonuserid");
+				String pwd = rs.getString("pwd");
+				String title = rs.getString("title");
+				Timestamp regdate = rs.getTimestamp("regdate");
+				String describe = rs.getString("describe");
+				int recommend = rs.getInt("recommend");
+				int views = rs.getInt("views");
+				String ipaddress = rs.getString("ipaddress");
+				String delflag = rs.getString("delflag");
+				String cat_code = rs.getString("cat_code");
+
+				BoardVO vo = new BoardVO(no, userid, nonuserid, pwd, title, regdate, describe, recommend, views, ipaddress, delflag, cat_code);
+
+				list.add(vo);
+				System.out.println("매개변수 vo=" + vo);
+			}
+			System.out.println("list.size = " + list.size());
+			return list;
+
+		}finally {
+			pool.dbClose(con, ps, rs);
+
+		}
+
+
+	}
+	
 }
