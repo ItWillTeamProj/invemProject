@@ -39,11 +39,11 @@
 	
 	<div style="float:left; width:345px; height:320px;
 		margin:0px 5px 5px 10px; text-align: center; background: white;">
-		<a href="<%=request.getContextPath() %>/admin/boardWrite.gg">
+		<a href="<%=request.getContextPath() %>/admin/boardList.gg?code=<%="A"%>">
 			<img src="<%=request.getContextPath() %>/images/admin/write.png" 
 			style="width:auto; height:210px; margin-top: 28px;" >
 			<br><br>
-			<b style="font-size: 30px; color: black;">공지사항 등록</b>
+			<b style="font-size: 30px; color: black;">공지사항</b>
 		</a>
 	</div>
 	

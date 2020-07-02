@@ -4,8 +4,10 @@
 <%@ include file="../inc/top.jsp"%>
 <style type="text/css">
 p {
-	text-align: center;
-	margin: 10px;
+    text-align: center;
+    font-size: 3.5em;
+    color: #efeeee;
+    text-shadow: 0px 0px 20px #09096775;
 }
 
 fieldset {
@@ -22,8 +24,8 @@ fieldset {
 }
 
 #div1 {
-	width: 600px;
-	margin: 160px auto;
+	width: 700px;
+	margin: 50px auto;
 }
 input.form-control.form-control-lg {
     height: 60px;
@@ -31,23 +33,63 @@ input.form-control.form-control-lg {
     font-size: 2em;
     text-align: center;
 }
+#notice{
+	border-radius: 10px;
+    height: 60px;
+    margin-bottom: 40px;
+}
 
+#notice h2{
+	padding-top: 14px;
+    color: black;
+    text-shadow: 0px 0px 20px #ffe1e1;
+    font-weight: 900;
+    font-size: 3em;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #090967;
+    border-color: #00003c;
+    width: 150px;
+    margin: 0 10px;
+}
 </style>
+<script type="text/javascript">
+	$(function() {
+		$("#login").click(function() {
+			location.href = "<c:url value='/login/login.gg'/>";
+		});
+		
+		$("#searchPwd").click(function() {
+			location.href = "<c:url value='/login/munhi_ok.gg?search=pwd'/>";
+		});
+		
+		$("#searchId").click(function() {
+			location.href = "<c:url value='/login/munhi_ok.gg?search=id'/>";
+		});
+	});
+
+</script>
 <article>
+<div class="title">
+		<h2>아이디·비밀번호 찾기</h2>
+	</div>
 	<div id="div1">
 		<fieldset
 			style="margin-bottom: 30px; margin-left: 30px; margin-right: 30px; ">
-			<div style="width: 80%; margin: 0 auto; margin-top: 70px; text-align: center;">
-				<div>"${mList[0].name }" 님에 해당하는 아이디</div>
+			<div style="width: 80%; margin: 0 auto; margin-top: 50px; text-align: center;">
+				<div id="notice"><h2>${mList[0].name }님의 아이디</h2></div>
+				<div style="background: #3535358f; width: 66%; margin: 0 auto; height: 100px;
+    				border: 7px solid #cdbee3; padding: 1px;">
 				<c:if test="${empty mList }">
-					<span>일치하는 회원 정보가 없습니다.</span>
+					<p>일치하는 회원 정보가 없습니다.</p>
 				</c:if>
 				<c:if test="${!empty mList }">
 					<c:forEach items="${mList }" var="l">
 						<p>${l.userid }</p>
 					</c:forEach>
 				</c:if>
-				<span></span>
+				</div>
 			</div>
 			<div style="text-align: center; margin: 50px 0;">
 				<c:if test="${empty mList }">

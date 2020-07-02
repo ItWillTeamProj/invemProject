@@ -14,20 +14,34 @@ public class MemberDetailController implements Controller {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		
-		String id = request.getParameter("id");
+		String userid = (String)request.getSession().getAttribute("userid");
 		
-		AdminMemberService adminMemberService = new AdminMemberService();
-		AdminMemberDTO dto = null;
-		
-		try{
-			dto = adminMemberService.selectByUserid(id);		
-		}catch(SQLException e){
-			e.printStackTrace();
+		if(userid==null || userid.isEmpty() || !userid.equals("admin")) {
+			
+			String msg="잘못된 로그인 정보! 메인화면으로 돌아갑니다";
+			String url="/index.gg";
+			
+			request.setAttribute("msg", msg);
+			request.setAttribute("url", url);
+			
+			return "/common/message.jsp";
+			
+		}else {
+			String id = request.getParameter("id");
+			
+			AdminMemberService adminMemberService = new AdminMemberService();
+			AdminMemberDTO dto = null;
+			
+			try{
+				dto = adminMemberService.selectByUserid(id);		
+			}catch(SQLException e){
+				e.printStackTrace();
+			}
+			
+			request.setAttribute("dto", dto);
+			
+			return "/admin/memberDetail.jsp";
 		}
-		
-		request.setAttribute("dto", dto);
-		
-		return "/admin/memberDetail.jsp";
 	}
 
 	@Override

@@ -75,9 +75,11 @@
 				<td style="padding-left: 30px;">카테고리</td>
 				<%if(code.equals("F")){%>
 				<td>자유게시판</td>
-				<%}else{%>
+				<%}else if(code.equals("E")){%>
 				<td>기타게시판</td>
-				<%}%>
+				<%}else if(code.equals("A")){%>
+				<td>공지사항</td>
+				<%} %>
 			</tr>
 			<tr style="border-bottom:1px solid gray;">
 				<td style="padding-left: 30px;">내용</td>

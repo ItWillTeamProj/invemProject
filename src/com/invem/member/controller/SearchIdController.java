@@ -24,7 +24,7 @@ public class SearchIdController implements Controller{
 			e.printStackTrace();
 		}
 		request.setAttribute("mList", list);
-		return "/login/searchResult.jsp";
+		return "/login/resultId.jsp";
 	}
 
 	@Override
