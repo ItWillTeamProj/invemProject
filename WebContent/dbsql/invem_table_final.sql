@@ -39,7 +39,7 @@ ALTER TABLE reply
 /* 회원 */
 CREATE TABLE member (
 	userid VARCHAR2(100) NOT NULL, /* 아이디 */
-	nickname VARCHAR2(100) NOT NULL, /* 닉네임 */
+	nickname VARCHAR2(100) , /* 닉네임 */
 	pwd VARCHAR2(100) NOT NULL, /* 비밀번호 */
 	name VARCHAR2(50) NOT NULL, /* 이름 */
 	dateofbirth VARCHAR2(10) NOT NULL, /* 생년월일 */
@@ -85,8 +85,8 @@ ALTER TABLE category
 CREATE TABLE guestbook (
 	gno NUMBER NOT NULL, /* 방명록번호 */
 	userid VARCHAR2(100) NOT NULL, /* 블로거아이디 */
-	writer_id <지정 되지 않음>, /* 작성자아이디 */
-	g_comment VARCHAR2(1000) NOT NULL, /* 방명록 */
+	writer_id VARCHAR2(100), /* 작성자아이디 */
+	g_comment VARCHAR2(1000) , /* 방명록 */
 	regdate DATE DEFAULT sysdate /* 작성일 */
 );
 
@@ -187,16 +187,6 @@ ALTER TABLE ablilty
 		)
 		REFERENCES champ_list (
 			champ_no
-		);
-
-ALTER TABLE recommend
-	ADD
-		CONSTRAINT FK_member_TO_recommend
-		FOREIGN KEY (
-			userid
-		)
-		REFERENCES member (
-			userid
 		);
 
 ALTER TABLE recommend
