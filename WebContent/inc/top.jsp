@@ -3,11 +3,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
-<%
+<%	
+	
 	String userid=(String)session.getAttribute("userid");
 	SummonerVO smVo=(SummonerVO)session.getAttribute("smVo");
 	LeagueVO lgVo=(LeagueVO)session.getAttribute("lgVo");
-
+	
 	boolean isLogin=false;
 	if((String)session.getAttribute("userid")!=null && !((String)session.getAttribute("userid")).isEmpty()){
 		
@@ -170,15 +171,20 @@ html{
 		<li><a href="<%=request.getContextPath()%>/board/boardList.gg?code=F">자유게시판</a></li>
 		<li><a href="#">베스트공략</a></li>
 		<li><a href="<%=request.getContextPath()%>/compony/compony.gg">회사정보</a></li>
-	</ul>
-	<%if(userid==null || userid!="admin" || userid.isEmpty()) {%>
-	<%}else{ %>
-	<div style="margin-top: 500px;">
-		<a href="<%=request.getContextPath() %>/admin/admin.gg">
-		<img src="<%=request.getContextPath() %>/images/admin/admin2.png" 
-			style="margin:10px; width:20px; height:20px;">관리자 메인 페이지</a>
-	</div>
+		
+		
+		<%if(userid==null || userid!="admin" || userid.isEmpty()) {%>
+		<%}else{ %>
+		<li>
+			<a href="<%=request.getContextPath() %>/admin/admin.gg">
+			<img src="<%=request.getContextPath() %>/images/admin/admin2.png" 
+			style="width:20px; height:20px;">&nbsp;관리자 메인 페이지</a>
+		</li>
 	<%}%>
+		
+		
+	</ul>
+	
 	</div>
 	<!-- end .sidebar1 -->
 	<div class="content">

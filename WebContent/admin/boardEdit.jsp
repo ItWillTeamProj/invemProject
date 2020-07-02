@@ -77,6 +77,8 @@
 					<td>내용</td>
 					<td><textarea id="describe" name="describe" rows="12" cols="55"><%=dto.getDescribe() %></textarea></td>
 				</tr>
+				
+				<%if(userid!="admin"){ %>
 				<tr>
 					<td>카테고리</td>
 					<td>
@@ -88,6 +90,17 @@
 						</select>
 					</td>
 				</tr>
+				<%}else{ %>
+				<tr>
+					<td>카테고리</td>
+					<td>
+						<select name="category" style="height:26px;">
+							<option value="A" <%if(code.equals("A")){%>
+							selected="selected"	<%} %>>공지사항</option>
+						</select>
+					</td>
+				</tr>
+				<%} %>
 			</table>
 			</div>
 			<br>
