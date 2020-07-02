@@ -84,6 +84,24 @@ $(function(){
 		case "E":
 			boardName = "기타게시판";
 			break;
+		case "T":
+			boardName = "Top 게시판";
+			break;
+		case "M":
+			boardName = "Mid 게시판";
+			break;	
+		case "J":
+			boardName = "Jungle 게시판";
+			break;
+		case "B":
+			boardName = "Bot 게시판";
+			break;
+		case "S":
+			boardName = "Support 게시판";
+			break;
+		case "P":
+			boardName = "챔피언 공략 게시판";
+			break;
 		default:%>
 		<script type="text/javascript">
 			alert('잘못된 접근입니다.');
