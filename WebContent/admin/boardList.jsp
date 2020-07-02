@@ -68,7 +68,10 @@
 						- 자유게시판 목록
 					  <%}else if(code.equals("E")){%>
 						- 기타게시판 목록
-						<%} %>
+					  <%}else if(code.equals("A")){%>
+						- 공지사항 목록
+					  <%} %>
+			
 			</b>
 		</div>
 	</div>
@@ -131,6 +134,8 @@
 						<td>자유게시판</td>
 						<%}else if(code.equals("E")){%>
 						<td>기타게시판</td>
+						<%}else if(code.equals("A")){%>
+						<td>공지사항</td>
 						<%} %>
 						
 					</tr>
@@ -222,6 +227,9 @@
 	    </form>
 	</div>
 	<div style="text-align: center; margin: 10px 10px 10px 10px;">
+		<%if(userid=="admin"){%>
+		<input type="Button" value="작성" onclick="location.href='<%=request.getContextPath() %>/admin/boardWrite.gg'" />  
+		<%}%>
 		<input type="Button" value="뒤로" onclick="location.href='<%=request.getContextPath() %>/admin/boardSelect.gg'" />  
 	</div>
 	

@@ -74,8 +74,7 @@
 						<td>카테고리</td>
 						<td>
 							<select name="category">
-								<option value="F">자유게시판</option>
-								<option value="E">기타게시판</option>
+								<option value="A">공지사항</option>
 							</select>
 						</td>
 					</tr>
@@ -84,7 +83,7 @@
 				<br>
 				<div style="text-align: center;">
 					<input type="submit" value="등록"/>
-					<input type="Button" value="뒤로" onclick="location.href='<%=request.getContextPath() %>/admin/boardSelect.gg'" />         
+					<input type="Button" value="뒤로" onclick="location.href='<%=request.getContextPath() %>/admin/boardList.gg?no='" />         
 				</div>
 			</form>
 		</div>   
