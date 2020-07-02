@@ -124,7 +124,7 @@
 <!-- 폼 레이어  -->
 <div id="divLangSelect" style="background: #fff0">
 <ul id="menu">
-  <li><div><a href="#" id="toBlog">블로그 가기</a></div></li>
+  <li><div><a href="#" id="toBlog">블로그 가기</a></div><div style="display: none;" id="uId"></div></li>
   <li><div><a href="#" id="toList">작성글 보기</a></div></li>
 </ul>
 </div>
