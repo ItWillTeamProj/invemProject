@@ -176,16 +176,14 @@ html{
 		<li><a href="#">베스트공략</a></li>
 		<li><a href="<%=request.getContextPath()%>/compony/compony.gg">찾아오시는 길</a></li>
 
-		<%if(userid==null || userid!="admin" || userid.isEmpty()) {%>
-		<%}else{ %>
-		<li>
-			<a href="<%=request.getContextPath() %>/admin/admin.gg">
-			<img src="<%=request.getContextPath() %>/images/admin/admin2.png"
-			style="width:20px; height:20px;">&nbsp;관리자 메인 페이지</a>
-		</li>
-	<%}%>
+		<%if("admin".equals(userid)) {%>
+			<li>
+				<a href="<%=request.getContextPath() %>/admin/admin.gg">
+				<img src="<%=request.getContextPath() %>/images/admin/admin2.png"
+					style="width:20px; height:20px;">&nbsp;관리자 메인 페이지</a>
+			</li>
+		<%} %>
 	</ul>
-
 	</div>
 	<!-- end .sidebar1 -->
 	<div class="content">

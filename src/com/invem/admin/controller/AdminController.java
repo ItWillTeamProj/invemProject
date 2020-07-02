@@ -12,7 +12,6 @@ public class AdminController implements Controller {
 		
 		String userid = (String)request.getSession().getAttribute("userid");
 		
-		userid="admin";
 		if(userid==null || userid.isEmpty() || !userid.equals("admin")) {
 			
 			String msg="잘못된 로그인 정보! 메인화면으로 돌아갑니다";
