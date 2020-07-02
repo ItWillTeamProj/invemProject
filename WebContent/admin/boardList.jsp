@@ -37,8 +37,8 @@
 		=Integer.parseInt(request.getParameter("currentPage"));
 	}
 	
-	int pageSize = 5; //한 페이지에 보여줄 레코드 개수
-	int blockSize = 10; //블럭 사이즈 1~10, 11~20 => 10
+	int pageSize = 10; //한 페이지에 보여줄 레코드 개수
+	int blockSize = 5; //블럭 사이즈 1~10, 11~20 => 10
 	int totalRecord = list.size(); //전체 레코드 개수, 예)17
 	
 	
@@ -227,8 +227,8 @@
 	    </form>
 	</div>
 	<div style="text-align: center; margin: 10px 10px 10px 10px;">
-		<%if(userid=="admin"){%>
-		<input type="Button" value="작성" onclick="location.href='<%=request.getContextPath() %>/admin/boardWrite.gg'" />  
+		<%if("A".equals(code)){%>
+			<input type="Button" value="작성" onclick="location.href='<%=request.getContextPath() %>/admin/boardWrite.gg'" />  
 		<%}%>
 		<input type="Button" value="뒤로" onclick="location.href='<%=request.getContextPath() %>/admin/boardSelect.gg'" />  
 	</div>
