@@ -4,18 +4,17 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <%
+
 	String userid=(String)session.getAttribute("userid");
 	SummonerVO smVo=(SummonerVO)session.getAttribute("smVo");
 	LeagueVO lgVo=(LeagueVO)session.getAttribute("lgVo");
 
-	
-	
 	boolean isLogin=false;
 	if((String)session.getAttribute("userid")!=null && !((String)session.getAttribute("userid")).isEmpty()){
-		
+
 		isLogin=true;
 	}
-	
+
 	System.out.println(userid + ", " + isLogin + ", " + smVo + ", " + lgVo);
 %>
 <!doctype html>
@@ -177,6 +176,13 @@ html{
 		<li><a href="#">베스트공략</a></li>
 		<li><a href="<%=request.getContextPath()%>/compony/compony.gg">찾아오시는 길</a></li>
 
+		<%if("admin".equals(userid)) {%>
+			<li>
+				<a href="<%=request.getContextPath() %>/admin/admin.gg">
+				<img src="<%=request.getContextPath() %>/images/admin/admin2.png"
+					style="width:20px; height:20px;">&nbsp;관리자 메인 페이지</a>
+			</li>
+		<%} %>
 	</ul>
 	</div>
 	<!-- end .sidebar1 -->

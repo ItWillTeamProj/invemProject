@@ -15,25 +15,40 @@ public class BoardListController implements Controller {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		
-		String code = request.getParameter("code");
-		String condition=request.getParameter("searchCondition");
-		String keyword=request.getParameter("searchKeyword");
+		String userid = (String)request.getSession().getAttribute("userid");
+		if(userid==null || userid.isEmpty() || !userid.equals("admin")) {
+			
+			String msg="잘못된 로그인 정보! 메인화면으로 돌아갑니다";
+			String url="/index.gg";
+			
+			request.setAttribute("msg", msg);
+			request.setAttribute("url", url);
+			
+			return "/common/message.jsp";
+			
+		}else {		
 		
-		AdminBoardService adminBoardService = new AdminBoardService();
-		List<AdminBoardDTO> list = null;
-		
-		try{
-			list = adminBoardService.selectAll(code, condition, keyword);
-		}catch(SQLException e){
-			e.printStackTrace();
+			String code = request.getParameter("code");
+			String condition=request.getParameter("searchCondition");
+			String keyword=request.getParameter("searchKeyword");
+			
+			AdminBoardService adminBoardService = new AdminBoardService();
+			List<AdminBoardDTO> list = null;
+			
+			try{
+				list = adminBoardService.selectAll(code, condition, keyword);
+			}catch(SQLException e){
+				e.printStackTrace();
+			}
+			
+			request.setAttribute("list", list);
+			request.setAttribute("code", code);
+			request.setAttribute("condition", condition);
+			request.setAttribute("keyword", keyword);		
+			
+			return "/admin/boardList.jsp";
+			
 		}
-		
-		request.setAttribute("list", list);
-		request.setAttribute("code", code);
-		request.setAttribute("condition", condition);
-		request.setAttribute("keyword", keyword);		
-		
-		return "/admin/boardList.jsp";
 	}
 
 	@Override

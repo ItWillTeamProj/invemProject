@@ -28,9 +28,9 @@
 <%@ include file="../inc/top.jsp" %>
 
 <article>
-	<div style="margin-top: 10px; width: 720px; height:61px;
+	<div style="width: 720px; height:61px;
 		background-size:100%; color:white; font-size: 30px; margin-bottom:15px;
-		background-image: url('<%=request.getContextPath() %>/images/champion/header2.png');">
+		background-image: url('<%=request.getContextPath() %>/images/champion/header.png');">
 		<div style="padding: 10px 10px 10px 15px;">
 			<b>게시판관리 - 게시물 상세정보</b>
 		</div>
@@ -75,9 +75,11 @@
 				<td style="padding-left: 30px;">카테고리</td>
 				<%if(code.equals("F")){%>
 				<td>자유게시판</td>
-				<%}else{%>
+				<%}else if(code.equals("E")){%>
 				<td>기타게시판</td>
-				<%}%>
+				<%}else if(code.equals("A")){%>
+				<td>공지사항</td>
+				<%} %>
 			</tr>
 			<tr style="border-bottom:1px solid gray;">
 				<td style="padding-left: 30px;">내용</td>

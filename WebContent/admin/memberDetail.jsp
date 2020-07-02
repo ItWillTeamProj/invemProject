@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="com.invem.adminmember.model.AdminMemberDTO"%>
 <%@page import="com.invem.adminmember.model.AdminMemberService"%>
@@ -6,6 +7,7 @@
 <%
 
 	String id = request.getParameter("id");
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	if(id==null || id.isEmpty()){ %>
 	<script type="text/javascript">
 		alert("잘못된 url 입니다.");
@@ -33,9 +35,9 @@
 <%@ include file="../inc/top.jsp" %>
 
 <article>
-	<div style="margin-top: 10px; width: 720px; height:61px;
+	<div style="width: 720px; height:61px;
 		background-size:100%; color:white; font-size: 30px; margin-bottom:15px;
-		background-image: url('<%=request.getContextPath() %>/images/champion/header2.png');">
+		background-image: url('<%=request.getContextPath() %>/images/champion/header.png');">
 		<div style="padding: 10px 10px 10px 15px;">
 			<b>회원관리 - 회원상세정보</b>
 		</div>
@@ -82,7 +84,7 @@
 			</tr>
 			<tr style="background:white;">
 				<td style="padding-left: 30px;">가입일</td>
-				<td><%=dto.getRegdate() %></td>
+				<td><%=sdf.format(dto.getRegdate()) %></td>
 			</tr> 
 			<tr style="border-bottom:1px solid gray;">
 				<td style="padding-left: 30px;">경고</td>

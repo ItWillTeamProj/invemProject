@@ -36,9 +36,9 @@
 <%@ include file="../inc/top.jsp" %>
 
 <article>
-	<div style="margin-top: 10px; width: 720px; height:61px;
+	<div style="width: 720px; height:61px;
 		background-size:100%; color:white; font-size: 30px; margin-bottom:15px;
-		background-image: url('<%=request.getContextPath() %>/images/champion/header2.png');">
+		background-image: url('<%=request.getContextPath() %>/images/champion/header.png');">
 		<div style="padding: 10px 10px 10px 15px;">
 			<b>게시판관리 - 게시물수정</b>
 		</div>
@@ -77,6 +77,8 @@
 					<td>내용</td>
 					<td><textarea id="describe" name="describe" rows="12" cols="55"><%=dto.getDescribe() %></textarea></td>
 				</tr>
+				
+				<%if(userid!="admin"){ %>
 				<tr>
 					<td>카테고리</td>
 					<td>
@@ -88,6 +90,17 @@
 						</select>
 					</td>
 				</tr>
+				<%}else{ %>
+				<tr>
+					<td>카테고리</td>
+					<td>
+						<select name="category" style="height:26px;">
+							<option value="A" <%if(code.equals("A")){%>
+							selected="selected"	<%} %>>공지사항</option>
+						</select>
+					</td>
+				</tr>
+				<%} %>
 			</table>
 			</div>
 			<br>

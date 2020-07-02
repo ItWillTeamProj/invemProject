@@ -60,15 +60,18 @@
     
 <%@ include file="../inc/top.jsp" %>  
 	<article>
-	<div style="margin-top: 10px; width: 720px; height:61px;
+	<div style="width: 720px; height:61px;
 		background-size:100%; color:white; font-size: 30px; margin-bottom:10px;
-		background-image: url('<%=request.getContextPath() %>/images/champion/header2.png');">
+		background-image: url('<%=request.getContextPath() %>/images/champion/header.png');">
 		<div style="padding: 10px 10px 10px 15px;">
 			<b>게시판관리 <%if(code.equals("F")){ %>
 						- 자유게시판 목록
 					  <%}else if(code.equals("E")){%>
 						- 기타게시판 목록
-						<%} %>
+					  <%}else if(code.equals("A")){%>
+						- 공지사항 목록
+					  <%} %>
+			
 			</b>
 		</div>
 	</div>
@@ -131,6 +134,8 @@
 						<td>자유게시판</td>
 						<%}else if(code.equals("E")){%>
 						<td>기타게시판</td>
+						<%}else if(code.equals("A")){%>
+						<td>공지사항</td>
 						<%} %>
 						
 					</tr>
@@ -222,6 +227,9 @@
 	    </form>
 	</div>
 	<div style="text-align: center; margin: 10px 10px 10px 10px;">
+		<%if(userid=="admin"){%>
+		<input type="Button" value="작성" onclick="location.href='<%=request.getContextPath() %>/admin/boardWrite.gg'" />  
+		<%}%>
 		<input type="Button" value="뒤로" onclick="location.href='<%=request.getContextPath() %>/admin/boardSelect.gg'" />  
 	</div>
 	

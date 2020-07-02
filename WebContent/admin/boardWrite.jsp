@@ -31,9 +31,9 @@
 </script>
 
 	<article>
-		<div style="margin-top: 10px; width: 720px; height:61px;
+		<div style="width: 720px; height:61px;
 			background-size:100%; color:white; font-size: 30px; margin-bottom:10px;
-			background-image: url('<%=request.getContextPath() %>/images/champion/header2.png');">
+			background-image: url('<%=request.getContextPath() %>/images/champion/header.png');">
 			<div style="padding: 10px 10px 10px 15px;">
 				<b>게시판관리 - 공지사항 등록</b>
 			</div>
@@ -74,8 +74,7 @@
 						<td>카테고리</td>
 						<td>
 							<select name="category">
-								<option value="F">자유게시판</option>
-								<option value="E">기타게시판</option>
+								<option value="A">공지사항</option>
 							</select>
 						</td>
 					</tr>
@@ -84,7 +83,7 @@
 				<br>
 				<div style="text-align: center;">
 					<input type="submit" value="등록"/>
-					<input type="Button" value="뒤로" onclick="location.href='<%=request.getContextPath() %>/admin/boardSelect.gg'" />         
+					<input type="Button" value="뒤로" onclick="location.href='<%=request.getContextPath() %>/admin/boardList.gg?no='" />         
 				</div>
 			</form>
 		</div>   

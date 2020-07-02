@@ -63,7 +63,7 @@ public class AddSignUpOKController implements Controller {
 		try {
 			cnt = serv.insertMember(vo);
 			msg="환영합니다!";
-			url="/index.gg";
+			url="/login/login.gg?signId="+userid;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

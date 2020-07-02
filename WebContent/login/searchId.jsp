@@ -45,6 +45,9 @@ input.form-control.form-control-lg {
 	});
 </script>
 <article>
+<div class="title">
+		<h2>아이디 찾기</h2>
+	</div>
 	<form action="<%=request.getContextPath()%>/login/searchId.gg"
 		name="frm" method="post">
 		<fieldset

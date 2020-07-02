@@ -16,6 +16,10 @@
 			}
 		}
 	}
+	
+	if(request.getParameter("signId") != null && !request.getParameter("signId").isEmpty()){
+		ckUserid = request.getParameter("signId");
+	}
 %>
 
 <script type="text/javascript">

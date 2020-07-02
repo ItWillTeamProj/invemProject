@@ -12,21 +12,36 @@ public class BoardDeleteOKController implements Controller {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-		
-		String no=request.getParameter("no");
-		String code=request.getParameter("code");
-		
-		//2
-		AdminBoardService adminBoardService = new AdminBoardService();
+
+		String userid = (String)request.getSession().getAttribute("userid");
+		if(userid==null || userid.isEmpty() || !userid.equals("admin")) {
 			
-		int cnt=0;
-		try{
-			cnt=adminBoardService.deleteBoard(Integer.parseInt(no));
-		}catch(SQLException e){
-			e.printStackTrace();
-		}
+			String msg="잘못된 로그인 정보! 메인화면으로 돌아갑니다";
+			String url="/index.gg";
+			
+			request.setAttribute("msg", msg);
+			request.setAttribute("url", url);
+			
+			return "/common/message.jsp";
+			
+		}else {		
+		
+			String no=request.getParameter("no");
+			String code=request.getParameter("code");
+			
+			//2
+			AdminBoardService adminBoardService = new AdminBoardService();
 				
-		return "/admin/boardList.gg?code="+code;
+			int cnt=0;
+			try{
+				cnt=adminBoardService.deleteBoard(Integer.parseInt(no));
+			}catch(SQLException e){
+				e.printStackTrace();
+			}
+					
+			return "/admin/boardList.gg?code="+code;
+			
+		}
 	}
 
 	@Override

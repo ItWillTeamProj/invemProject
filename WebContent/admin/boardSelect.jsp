@@ -9,9 +9,9 @@
     
 <%@ include file="../inc/top.jsp" %>  
 	<article>
-	<div style="margin-top: 10px; width: 720px; height:61px;
+	<div style="width: 720px; height:61px;
 		background-size:100%; color:white; font-size: 30px; margin-bottom:10px;
-		background-image: url('<%=request.getContextPath() %>/images/champion/header2.png');">
+		background-image: url('<%=request.getContextPath() %>/images/champion/header.png');">
 		<div style="padding: 10px 10px 10px 15px;">
 			<b>게시판관리 - 메인페이지</b>
 		</div>
@@ -39,11 +39,11 @@
 	
 	<div style="float:left; width:345px; height:320px;
 		margin:0px 5px 5px 10px; text-align: center; background: white;">
-		<a href="<%=request.getContextPath() %>/admin/boardWrite.gg">
+		<a href="<%=request.getContextPath() %>/admin/boardList.gg?code=<%="A"%>">
 			<img src="<%=request.getContextPath() %>/images/admin/write.png" 
 			style="width:auto; height:210px; margin-top: 28px;" >
 			<br><br>
-			<b style="font-size: 30px; color: black;">공지사항 등록</b>
+			<b style="font-size: 30px; color: black;">공지사항</b>
 		</a>
 	</div>
 	
