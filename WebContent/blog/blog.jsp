@@ -31,7 +31,7 @@
 </head>
 <body>
  
-<div id="tabs">
+<div id="tabs" style = "border-bottom: 0px">
   <ul>
     <li><a href="#tabs-1" class="nav-item">블로그 홈</a></li>
     <li><a href="#tabs-2" class="nav-item">게시물</a></li>

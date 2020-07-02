@@ -18,15 +18,14 @@
 %>
 
 
-
-
-
-
-
  <div id="tabs-4">
-	<h1>방명록 페이지</h1>
-	<h3>다른회원이 방명록을 남길 수 있는 페이지 입니다.</h3>
-	<h5>현재 include한 페이지 guestbook.jsp</h5>
+	<div style="margin-top: 10px; width: 100%; height:61px;
+		background-size:100%; color:white; font-size: 30px; margin-bottom:10px; 
+		background-image: url('<%=request.getContextPath() %>/images/champion/header2.png');">
+		<div style="padding: 10px 10px 10px 15px;">
+			<b>방명록을 남겨주세요</b>
+		</div>
+	</div>
 	<form name="frmReply" action="<%=request.getContextPath() %>/guestbook/guestbookInsert.gg" method="post" 
 		style="overflow: hidden;">
 	<div>
