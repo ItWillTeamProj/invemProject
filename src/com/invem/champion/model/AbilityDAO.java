@@ -25,7 +25,7 @@ public class AbilityDAO {
 		try {
 			con = pool.getConnection();
 			
-			String sql = "select * from ability where champno = ? order by c_level";
+			String sql = "select * from ability where champ_no = ? order by c_level";
 			ps = con.prepareStatement(sql);
 			
 			ps.setInt(1, champNo);

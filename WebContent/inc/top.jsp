@@ -168,12 +168,16 @@ html{
 		<li><a href="<%=request.getContextPath()%>/index.gg">INVEM HOME</a></li>
 		<li><a href="<%=request.getContextPath()%>/board/riotNotice.gg">LOL 공지사항</a></li>
 		<li><a href="<%=request.getContextPath()%>/champion/list.gg">챔피언정보</a></li>
+		<li><a href="<%=request.getContextPath()%>/board/boardList.gg?code=P">챔피언 공략 게시판</a></li>
 		<li><a href="<%=request.getContextPath()%>/board/boardList.gg?code=F">자유게시판</a></li>
-
-		<li><a href="<%=request.getContextPath()%>/board/boardList.gg?code=E">기타게시판</a></li>
-		<li><a href="<%=request.getContextPath()%>/compony/compony.gg">회사정보</a></li>
-
-		<li><a href="#">베스트공략</a></li>
+		<li><a href="<%=request.getContextPath()%>/board/boardList.gg?code=E">기타게시판</a></li><br>
+		<li>------------포지션 게시판-----------</li>
+		<li><a>Top</a></li>
+		<li><a>Jungle</a></li>
+		<li><a>Mid</a></li>
+		<li><a>Bot</a></li>
+		<li><a>Support</a></li>
+		<li>-----------------------------------</li><br>
 		<li><a href="<%=request.getContextPath()%>/compony/compony.gg">찾아오시는 길</a></li>
 
 		<%if("admin".equals(userid)) {%>

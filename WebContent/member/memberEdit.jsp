@@ -160,7 +160,7 @@
 	font-size:13px;
 	}
 	.divForm label, .divForm .sp1{
-	width:40%;
+	width:30%;
 	}
 	form{
 	margin-left:50px;
