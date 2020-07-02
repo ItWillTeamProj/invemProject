@@ -28,7 +28,7 @@ public class LoginDAO {
 			con=pool.getConnection();
 			
 			//3
-			String sql="select pwd from member where userid= ?  and caution <=5";
+			String sql="select pwd from member where userid= ?  and caution <5";
 			ps=con.prepareStatement(sql);
 			ps.setString(1, userid);
 			
