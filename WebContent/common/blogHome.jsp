@@ -29,7 +29,6 @@
 						</c:if>
 						<c:if test="${empty smVo }">
 							<img id="tier" src="<%=request.getContextPath() %>/images/tier/1445.png"/>
-							<p class="userInfo">일치하는 소환사 명이 없습니다.</p>
 						</c:if>
 				   		
 					</div>
@@ -37,10 +36,15 @@
 			</div>
 					<div class="userInfo" style = "font-size:130%; float: left; margin-top:40px; margin-left: 70px">
 						<p>아이디 : ${param.userid }</p>
+					<c:if test="${!empty smVo }">
 						<p>소환사명 : <%=smVo.getName() %></p>
 						<p>레벨 : <%=smVo.getSummonerLevel() %></p>
 						<p>티어 : <%=lgVo.getTier() %></p>
 						<p>랭크 : <%=lgVo.getRank() %></p><br><br>
+					</c:if>
+					<c:if test="${empty smVo }">
+						<p class="userInfo">일치하는 소환사 명이 없습니다.</p>
+					</c:if>
 						<b>지금까지 작성한 게시물 수는 <%=cnt %>건입니다.</b><br>
 						<b>지금까지 작성한 댓글 수는 <%=replyCnt %>건입니다.</b>
 					</div>

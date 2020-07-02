@@ -94,7 +94,7 @@ $(function(){
 	<span style="float: right; margin-right: 10px;">게시물 수</span>
 	</div><br>
 
-	<table style = "width: 700px" class="table table-striped table-sm table-hover">
+	<table style = "width: 700px; margin: 0 auto;" class="table table-striped table-sm table-hover">
 		<colgroup>
 			<col style = "width: 10%">
 			<col style = "width: 60%">

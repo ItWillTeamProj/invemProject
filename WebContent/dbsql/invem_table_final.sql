@@ -116,7 +116,7 @@ ALTER TABLE board
 		);
 
 /* 특성 */
-CREATE TABLE ablilty (
+CREATE TABLE ability (
 	champ_no NUMBER NOT NULL, /* 번호 */
 	c_level NUMBER NOT NULL, /* 레벨 */
 	attack NUMBER, /* 공격력 */
@@ -128,7 +128,7 @@ CREATE TABLE ablilty (
 	defense NUMBER, /* 방어력 */
 	m_defense NUMBER, /* 마방 */
 	speed NUMBER, /* 이동속도 */
-	crossread NUMBER /* 사거리 */
+	crossroad NUMBER /* 사거리 */
 );
 
 ALTER TABLE ablilty

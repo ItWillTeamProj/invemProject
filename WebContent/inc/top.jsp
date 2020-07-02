@@ -43,13 +43,15 @@
 		});
 		//-- 버튼 클릭시 버튼을 클릭한 위치 근처에 레이어 생성 --//
 		$('.aSelect').click(function(e) {
-		 var divTop = e.pageY - 15; //상단 좌표
-		 var divLeft = e.pageX + 20; //좌측 좌표
-		 $('#divLangSelect').css({
-		     "top": divTop
-		     ,"left": divLeft
-		     , "position": "absolute"
-		 }).show();
+			 var divTop = e.pageY - 15; //상단 좌표
+			 var divLeft = e.pageX + 20; //좌측 좌표
+			 var uId = $(this).html();
+			 $("#uId").html(uId);
+			 $('#divLangSelect').css({
+			     "top": divTop
+			     ,"left": divLeft
+			     , "position": "absolute"
+			 }).show();
 		});
 
 		$( "#menu" ).menu();
@@ -68,6 +70,12 @@
 				alert("잘 생각하셨습니다.");
 				event.preventDefault();
 			}
+		});
+		$('#toBlogMe').click(function(){
+			var mySid = '<%=userid%>';
+			window.open('<%=request.getContextPath()%>/blog/blog.gg?sId='+mySid, 'viewer', 'width=780, height=580, scrollbars=no, resizable=no, toolbars=no, menubar=no, left=500, top=200');
+			
+		
 		});
 	});
 </script>
@@ -93,9 +101,26 @@ span{
 html{
 	font-size:15px;
 }
+
+.liTitle {
+    margin-bottom: 5px;
+    text-align: center;
+    background: #6cb82a;
+    height: 40px;
+    font-size: 18px;
+    font-weight: bold;
+    border-image-slice: 1;
+    border-top: 15px;
+    border-left: 15px;
+    border-style: solid;
+    border-bottom-width: 0px;
+    border-right-width: 0px;
+    padding-right: 15px;
+    border-image: linear-gradient(to right, #ffb700 100%, #6cb82a 10%);
+}
 </style>
 <body>
-<div class="container" >
+<div class="container" style="padding: 0" >
 	<div class="header" style="background-color: rgb(0, 0, 60);">
 		<a href="<%=request.getContextPath() %>/index.gg">
 			<img src="<%=request.getContextPath() %>/images/index/bar_invem.png"
@@ -146,7 +171,7 @@ html{
 					<c:if test="${!empty smVo }">
 						<img id="tier" alt="<%=lgVo.getTier()%>" src="<%=request.getContextPath() %>/images/tier/<%=lgVo.getTier().toLowerCase()%>.png"/>
 						<div class="userInfo">
-							<p>아이디 : <%=userid %></p>
+							<p>아이디 : <%=userid %><a id = "toBlogMe" href="#"> (내 블로그 가기)</a></p>
 							<p>소환사 명 : <%=smVo.getName() %></p>
 							<p>레벨 : <%=smVo.getSummonerLevel() %></p>
 							<p>티어 : <%=lgVo.getTier() %></p>
@@ -156,6 +181,7 @@ html{
 					<c:if test="${empty smVo }">
 						<img id="tier" src="<%=request.getContextPath() %>/images/tier/1445.png"/>
 						<p class="userInfo">일치하는 소환사 명이 없습니다.</p>
+						<p style="color: black;">아이디 : <%=userid %><a id = "toBlogMe" href="#"> (내 블로그 가기)</a></p>
 					</c:if>
 			   		<div style="font-size:15px; clear: both; color=black;">
 						<a href="<%=request.getContextPath()%>/login/logout.gg" style="padding-right: 10px;" id = "logout">로그아웃</a>
@@ -165,15 +191,21 @@ html{
 			<%} %>
 		</div>
 	<ul class="nav">
+		<li class="liTitle">INVEM</li>
 		<li><a href="<%=request.getContextPath()%>/index.gg">INVEM HOME</a></li>
 		<li><a href="<%=request.getContextPath()%>/board/riotNotice.gg">LOL 공지사항</a></li>
 		<li><a href="<%=request.getContextPath()%>/champion/list.gg">챔피언정보</a></li>
+		<li><a href="<%=request.getContextPath()%>/board/boardList.gg?code=P">챔피언 공략 게시판</a></li>
 		<li><a href="<%=request.getContextPath()%>/board/boardList.gg?code=F">자유게시판</a></li>
-
 		<li><a href="<%=request.getContextPath()%>/board/boardList.gg?code=E">기타게시판</a></li>
-		<li><a href="<%=request.getContextPath()%>/compony/compony.gg">회사정보</a></li>
-
-		<li><a href="#">베스트공략</a></li>
+		<li>&nbsp;</li>
+		<li class="liTitle">포지션 게시판</li>
+		<li><a>Top</a></li>
+		<li><a>Jungle</a></li>
+		<li><a>Mid</a></li>
+		<li><a>Bot</a></li>
+		<li><a>Support</a></li>
+		<li>&nbsp;</li>
 		<li><a href="<%=request.getContextPath()%>/compony/compony.gg">찾아오시는 길</a></li>
 
 		<%if("admin".equals(userid)) {%>

@@ -13,10 +13,6 @@ public class AdminBoardDTO {
 	private String describe;
 	private int recommend;
 	private int views;
-	private String filename;
-	private int filesize;
-	private int downcount;
-	private String originalFilename;
 	private String ipAddress;
 	private String delflag;
 	private String cat_code;
@@ -25,9 +21,10 @@ public class AdminBoardDTO {
 		super();
 	}
 
+	
+
 	public AdminBoardDTO(int no, String userid, String nonUserid, String pwd, String title, Timestamp regdate,
-			String describe, int recommend, int views, String filename, int filesize, int downcount,
-			String originalFilename, String ipAddress, String delflag, String cat_code) {
+			String describe, int recommend, int views, String ipAddress, String delflag, String cat_code) {
 		super();
 		this.no = no;
 		this.userid = userid;
@@ -38,14 +35,12 @@ public class AdminBoardDTO {
 		this.describe = describe;
 		this.recommend = recommend;
 		this.views = views;
-		this.filename = filename;
-		this.filesize = filesize;
-		this.downcount = downcount;
-		this.originalFilename = originalFilename;
 		this.ipAddress = ipAddress;
 		this.delflag = delflag;
 		this.cat_code = cat_code;
 	}
+
+
 
 	public int getNo() {
 		return no;
@@ -119,37 +114,7 @@ public class AdminBoardDTO {
 		this.views = views;
 	}
 
-	public String getFilename() {
-		return filename;
-	}
-
-	public void setFilename(String filename) {
-		this.filename = filename;
-	}
-
-	public int getFilesize() {
-		return filesize;
-	}
-
-	public void setFilesize(int filesize) {
-		this.filesize = filesize;
-	}
-
-	public int getDowncount() {
-		return downcount;
-	}
-
-	public void setDowncount(int downcount) {
-		this.downcount = downcount;
-	}
-
-	public String getOriginalFilename() {
-		return originalFilename;
-	}
-
-	public void setOriginalFilename(String originalFilename) {
-		this.originalFilename = originalFilename;
-	}
+	
 
 	public String getIpAddress() {
 		return ipAddress;
@@ -175,13 +140,16 @@ public class AdminBoardDTO {
 		this.cat_code = cat_code;
 	}
 
+
+
 	@Override
 	public String toString() {
 		return "AdminBoardDTO [no=" + no + ", userid=" + userid + ", nonUserid=" + nonUserid + ", pwd=" + pwd
 				+ ", title=" + title + ", regdate=" + regdate + ", describe=" + describe + ", recommend=" + recommend
-				+ ", views=" + views + ", filename=" + filename + ", filesize=" + filesize + ", downcount=" + downcount
-				+ ", originalFilename=" + originalFilename + ", ipAddress=" + ipAddress + ", delflag=" + delflag
-				+ ", cat_code=" + cat_code + "]";
+				+ ", views=" + views + ", ipAddress=" + ipAddress + ", delflag=" + delflag + ", cat_code=" + cat_code
+				+ "]";
 	}
+
+	
 
 }

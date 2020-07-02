@@ -9,6 +9,8 @@
     pageEncoding="UTF-8"%>
 <%@ include file = "../inc/top.jsp"%>
 
+</style>
+
 <%
 	String condition = (String)request.getAttribute("condition");
 	String keyword = (String)request.getAttribute("keyword");
@@ -58,7 +60,6 @@ $(function(){
 		$('#blogId').val(sId);
 		window.open('<%=request.getContextPath()%>/blog/blog.gg?sId='+sId, 'viewer', 'width=780, height=580, scrollbars=no, resizable=no, toolbars=no, menubar=no, left=500, top=200');
 		
-		$('#menu').css("display", "none");
 	
 	});
 	
@@ -83,6 +84,24 @@ $(function(){
 			break;
 		case "E":
 			boardName = "기타게시판";
+			break;
+		case "T":
+			boardName = "Top 게시판";
+			break;
+		case "M":
+			boardName = "Mid 게시판";
+			break;	
+		case "J":
+			boardName = "Jungle 게시판";
+			break;
+		case "B":
+			boardName = "Bot 게시판";
+			break;
+		case "S":
+			boardName = "Support 게시판";
+			break;
+		case "P":
+			boardName = "챔피언 공략 게시판";
 			break;
 		default:%>
 		<script type="text/javascript">
@@ -169,7 +188,7 @@ $(function(){
 							<span class="badge badge-primary">new</span>
 							<%} %>
 						</a></td>
-						<td style = "text-align: center"><a href = "#" class = "aSelect" id = "uId"><%=vo.getUserid() %></a></td>
+						<td style = "text-align: center"><a href = "#" class = "aSelect" ><%=vo.getUserid() %></a></td>
 				<%}%>
 						<td style = "text-align: center;"><%=sdf.format(vo.getRegdate()) %></td>
 						<td style = "text-align: center;"><%=vo.getViews() %></td>
@@ -256,7 +275,7 @@ $(function(){
     
  <div id="divLangSelect" style="background: #fff0">
 <ul id="menu">
-  <li><div id = "toBlog">블로그 가기</div></li>
+  <li><div id = "toBlog">블로그 가기</div><div id="uId" style="display: none;"></div></li>
    <li><div><a href="#" id="toList">작성글 보기</a></div></li>
 </ul>
 </div>   

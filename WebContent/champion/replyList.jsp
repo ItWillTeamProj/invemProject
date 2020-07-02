@@ -60,7 +60,7 @@
 			<tr style="cursor: pointer;">
 				<td>${num }</td>
 				<td class="row1">${bdVo.title }</td>
-				<td><a class="aSelect" id="uId">${bdVo.userid }</a></td>
+				<td><a class="aSelect">${bdVo.userid }</a></td>
 				<td><fmt:formatDate value="${bdVo.regdate }"
 						pattern="yyyy-MM-dd" /> <span> <!-- 삭제버튼 --> <c:if
 							test="${userid == bdVo.userid }">
