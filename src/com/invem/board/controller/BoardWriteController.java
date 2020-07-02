@@ -19,9 +19,13 @@ public class BoardWriteController implements Controller{
 		String msg = "", url = "";
 		switch(code){
 			case "F":
-			boardName = "자유게시판";
-			url = "/board/boardWrite.jsp?code="+code;
-			break;
+				boardName = "자유게시판";
+				url = "/board/boardWrite.jsp?code="+code;
+				break;
+			case "E":
+				boardName = "기타게시판";
+				url = "/board/boardWrite.jsp?code="+code;
+				break;
 			default:
 				msg = "잘못된 접근입니다.";
 				url = "/index.gg";

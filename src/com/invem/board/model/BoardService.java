@@ -10,8 +10,8 @@ public class BoardService {
 		dao = new BoardDAO();
 	}
 
-	public List<BoardVO> searchall(String keyword, String condition, String code) throws SQLException{
-		return dao.searchall(keyword, condition, code);
+	public List<BoardVO> searchall(String keyword, String condition, String code, String sort) throws SQLException{
+		return dao.searchall(keyword, condition, code, sort);
 	}
 
 	public List<BoardVO> searchall(int champ_no, String code) throws SQLException{
@@ -108,5 +108,9 @@ public class BoardService {
 	public List<BoardVO> selectByTop() throws SQLException {
 		return dao.selectByTop();
 
+	}
+	
+	public List<BoardVO> selectNotice() throws SQLException{
+		return dao.selectNotice();
 	}
 }

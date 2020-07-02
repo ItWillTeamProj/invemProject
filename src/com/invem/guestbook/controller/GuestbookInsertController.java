@@ -1,7 +1,6 @@
 package com.invem.guestbook.controller;
 
 import java.sql.SQLException;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,8 +33,6 @@ public class GuestbookInsertController implements Controller{
 		gVo.setWriter_id(username);
 		gVo.setG_comment(reply);
 		
-		List<GuestbookVO> list = null;
-		
 		
 		BoardService boardService = new BoardService();
 		try {
@@ -46,13 +43,16 @@ public class GuestbookInsertController implements Controller{
 				System.out.println("방명록 등록 실패");
 			}
 			
-			list = boardService.guestbookList(blogId);
 			
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
+		
+		
+		
 		return "/blog/blog.gg?sId="+blogId+"&#tabs-4";
 	}
+	
 	
 	
 	@Override

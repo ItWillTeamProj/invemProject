@@ -12,11 +12,8 @@
 	LeagueVO lgVo = (LeagueVO)request.getAttribute("lgVo");
 %>
 <div id="tabs-1">
-	<h1>${param.userid }님의 블로그 홈 화면입니다.</h1>
-	<h3>여기에는 기본적인 회원 정보 와 지금껏 작성한 게시물 수 등을 출력할 예정입니다.</h3>
-	<h5>현재 include한 페이지 blogHome.jsp</h5>
+	<h1>${param.userid }님의 블로그</h1>
 	<p>지금까지 작성한 게시물 수는 <%=cnt %>건입니다.</p>
-	<p>${param.userid }</p>
 	<div style="background: whitesmoke; padding-top: 7px; width:240px;">
 				<div id="InfoDesk">
 					<c:if test="${!empty smVo }">

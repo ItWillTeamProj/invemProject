@@ -26,9 +26,19 @@ public class BoardListController implements Controller{
 		//db작업
 		BoardService boardServ = new BoardService();
 		List<BoardVO> list = new ArrayList<BoardVO>();
-
+		
+		//공지사항인지 아닌지
+		String isNotice = request.getParameter("isNotice");
+		
+		//최신순, 추천순 정렬
+		String sort = request.getParameter("sort");
+		
 		try{
-			list = boardServ.searchall(keyword, condition, code);
+			if("Y".equals(isNotice)) {
+				list = boardServ.selectNotice();
+			}else {
+				list = boardServ.searchall(keyword, condition, code, sort);
+			}
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
@@ -60,8 +70,8 @@ public class BoardListController implements Controller{
 		
 		request.setAttribute("condition", condition);
 		request.setAttribute("keyword", keyword);
-		
-		
+		request.setAttribute("sort", sort);
+		request.setAttribute("isNotice", isNotice);
 		return "/board/boardList.jsp";
 	}
 
