@@ -176,23 +176,20 @@ public class BoardDAO {
 			//[2] insert
 			String sql = "";
 			if(vo.getPwd() == null || vo.getPwd().isEmpty()) {//회원
-				sql="insert into reply(rep_no, username, reply, no, groupno, sortno, step)" +
-						" values(reply_seq.nextval,?,?,?,?,?,?)";
+				sql="insert into reply(rep_no, username, reply, groupno)" +
+						" values(reply_seq.nextval,?,?,?)";
 			}else {//비회원
-				sql="insert into reply(rep_no, username, reply, no, groupno, sortno, step, pwd)" +
-						" values(reply_seq.nextval,?,?,?,?,?,?,?)";
+				sql="insert into reply(rep_no, username, reply, groupno, pwd)" +
+						" values(reply_seq.nextval,?,?,?,?)";
 			}
 			
 			ps=con.prepareStatement(sql);
 
 			ps.setString(1, vo.getusername());
 			ps.setString(2, vo.getReply());
-			ps.setInt(3, vo.getNo());
-			ps.setInt(4, vo.getGroupno());
-			ps.setInt(5, vo.getSortno()+1);
-			ps.setInt(6, vo.getStep() +1);
+			ps.setInt(3, vo.getGroupno());
 			if(vo.getPwd() != null && !vo.getPwd().isEmpty()) {
-				ps.setString(7,  vo.getPwd());
+				ps.setString(4,  vo.getPwd());
 			}
 
 			cnt=ps.executeUpdate();
@@ -337,12 +334,9 @@ public class BoardDAO {
 				String username = rs.getString("username");
 				String  reply = rs.getString("reply");
 				Timestamp regdate = rs.getTimestamp("regdate");
-				int rno = rs.getInt("no");
-				int sortno = no;
-				int step = rs.getInt("step");
 				String delflag = rs.getString("delflag");
 				String pwd = rs.getString("pwd");
-				ReplyVO vo = new ReplyVO(rep_no, username, reply, regdate, rep_no, rno, sortno, step, delflag, pwd);
+				ReplyVO vo = new ReplyVO(rep_no, username, reply, regdate,  no, delflag, pwd);
 
 				list.add(vo);
 
@@ -615,17 +609,14 @@ public class BoardDAO {
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
-				int no = rs.getInt("no");
 				String delflag = rs.getString("delflag");
 				int groupno = rs.getInt("groupno");
 				Timestamp regdate = rs.getTimestamp("regdate");
 				int rep_no = rs.getInt("rep_no");
 				String reply = rs.getString("reply");
-				int sortno = rs.getInt("sortno");
-				int step = rs.getInt("step");
 				String pwd = rs.getString("pwd");
 						
-				ReplyVO vo = new ReplyVO(no, userid, reply, regdate, rep_no, groupno, sortno, step, delflag, pwd);
+				ReplyVO vo = new ReplyVO(rep_no, userid, reply, regdate,  groupno, delflag, pwd);
 				
 				list.add(vo);
 						
@@ -954,7 +945,7 @@ public class BoardDAO {
 		try {
 			con = pool.getConnection();
 			
-			String sql = "select * from board ORDER BY recommend desc";
+			String sql = "select * from board where delflag='N' ORDER BY recommend desc";
 			ps = con.prepareStatement(sql);
 			
 			rs = ps.executeQuery();

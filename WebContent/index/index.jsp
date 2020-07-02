@@ -62,7 +62,12 @@
 					<c:if test="${i < 5 }">
 						<tr>
 							<td><a href='<c:url value="/board/detail.gg?no=${bdVO.no }&code=${bdVO.cat_code }&delflag=${bdVO.delflag }"/>'>${bdVO.title }</a></td>
-							<td>${bdVO.userid }</td>
+							<c:if test="${bdVO.userid == null || empty bdVO.userid || bdVO.userid == 'unknown'}">
+								<td>${bdVO.userid }</td>
+							</c:if>
+							<c:if test="${!empty bdVO.userid && bdVO.userid != 'unknown' }">
+								<td>${bdVO.userid }</td>
+							</c:if>
 							<td>${bdVO.views }</td>
 							<td>${bdVO.recommend }</td>
 						</tr>
