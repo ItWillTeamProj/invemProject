@@ -8,6 +8,8 @@
 	SummonerVO smVo=(SummonerVO)session.getAttribute("smVo");
 	LeagueVO lgVo=(LeagueVO)session.getAttribute("lgVo");
 
+	
+	
 	boolean isLogin=false;
 	if((String)session.getAttribute("userid")!=null && !((String)session.getAttribute("userid")).isEmpty()){
 		

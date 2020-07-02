@@ -60,12 +60,6 @@ ALTER TABLE member
 			userid
 		);
 
-ALTER TABLE member
-	ADD
-		CONSTRAINT UK_member
-		UNIQUE (
-			nickname
-		);
 
 /* 게시판종류 */
 CREATE TABLE category (
