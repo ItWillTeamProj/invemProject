@@ -169,7 +169,7 @@ html{
 		<li><a href="<%=request.getContextPath()%>/champion/list.gg">챔피언정보</a></li>
 		<li><a href="<%=request.getContextPath()%>/board/boardList.gg?code=F">자유게시판</a></li>
 		<li><a href="#">베스트공략</a></li>
-		<li><a href="<%=request.getContextPath()%>/compony/compony.gg">회사정보</a></li>
+		<li><a href="<%=request.getContextPath()%>/compony/compony.gg">찾아오시는 길</a></li>
 	</ul>
 	</div>
 	<!-- end .sidebar1 -->
