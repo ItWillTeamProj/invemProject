@@ -181,8 +181,15 @@ public class BoardDAO {
 		try {
 			con=pool.getConnection();
 			//[2] insert
-			String sql="insert into reply(rep_no, username, reply, no, groupno, sortno, step, pwd)" +
-					" values(reply_seq.nextval,?,?,?,?,?,?,?)";
+			String sql = "";
+			if(vo.getPwd() == null || vo.getPwd().isEmpty()) {//회원
+				sql="insert into reply(rep_no, username, reply, no, groupno, sortno, step)" +
+						" values(reply_seq.nextval,?,?,?,?,?,?)";
+			}else {//비회원
+				sql="insert into reply(rep_no, username, reply, no, groupno, sortno, step, pwd)" +
+						" values(reply_seq.nextval,?,?,?,?,?,?,?)";
+			}
+			
 			ps=con.prepareStatement(sql);
 
 			ps.setString(1, vo.getusername());
@@ -191,7 +198,9 @@ public class BoardDAO {
 			ps.setInt(4, vo.getGroupno());
 			ps.setInt(5, vo.getSortno()+1);
 			ps.setInt(6, vo.getStep() +1);
-			ps.setString(7,  vo.getPwd());
+			if(vo.getPwd() != null && !vo.getPwd().isEmpty()) {
+				ps.setString(7,  vo.getPwd());
+			}
 
 			cnt=ps.executeUpdate();
 			System.out.println("답변하기 결과, cnt="+cnt
@@ -792,5 +801,38 @@ public class BoardDAO {
 		}
 
 
+	}
+	
+	/**
+	 * 추천수 증가 감소 
+	 * @param no
+	 * @param code
+	 * @param num
+	 * @return
+	 * @throws SQLException
+	 */
+	public int recommentCount(int no, String code, int num) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		try {
+			con = pool.getConnection();
+			String sql = "update board"+
+							" set recommend = recommend + ?"+
+							" where no=? and cat_code=?";
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, num);
+			ps.setInt(2, no);
+			ps.setString(3, code);
+			
+			int cnt = ps.executeUpdate();
+			
+			System.out.println("추천 변경 결과 cnt = " + cnt + "매개변수 no = " + no + ", code=" +code + ", num=" + num);
+			
+			return cnt;
+		}finally {
+			pool.dbClose(con, ps);
+		}
+		
 	}
 }

@@ -66,10 +66,6 @@
 	'width=400,height=300,left=0,top=0,location=yes,resizable=yes');	
 		});
 		
-		$('#btnZipcode').click(function(){
-			window.open('<%=request.getContextPath()%>/zipcode/zipcode.gg','zip',
-	'width=500,height=500,left=0,top=0,location=yes,resizable=yes');
-		});
 	});
 	
 	function validate_userid(id){
@@ -83,6 +79,56 @@
 	}
 	
 	
+</script>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    function execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                var roadAddr = data.roadAddress; // 도로명 주소 변수
+                var extraRoadAddr = ''; // 참고 항목 변수
+
+                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                    extraRoadAddr += data.bname;
+                }
+                
+                if(data.buildingName !== '' && data.apartment === 'Y'){
+                   extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                
+                if(extraRoadAddr !== ''){
+                    extraRoadAddr = ' (' + extraRoadAddr + ')';
+                }
+
+                document.getElementById('postcode').value = data.zonecode;
+                document.getElementById("roadAddress").value = roadAddr;
+                document.getElementById("jibunAddress").value = data.jibunAddress;
+                
+                // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
+                if(roadAddr !== ''){
+                    document.getElementById("extraAddress").value = extraRoadAddr;
+                } else {
+                    document.getElementById("extraAddress").value = '';
+                }
+
+                var guideTextBox = document.getElementById("guide");
+                // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+                if(data.autoRoadAddress) {
+                    var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+                    guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+                    guideTextBox.style.display = 'block';
+
+                } else if(data.autoJibunAddress) {
+                    var expJibunAddr = data.autoJibunAddress;
+                    guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+                    guideTextBox.style.display = 'block';
+                } else {
+                    guideTextBox.innerHTML = '';
+                    guideTextBox.style.display = 'none';
+                }
+            }
+        }).open();
+    }
 </script>
 
 <style type="text/css">
@@ -118,7 +164,7 @@
 	<h2 style="text-align:center;">회원 가입</h2>
     <div>
         <label for="userid">회원ID(필수)</label>
-        <input type="text" name="userid" id="userid" style="ime-mode:inactive">&nbsp;
+        <input type="text" name="userid" id="userid" placeholder="중복확인(필)" style="ime-mode:inactive">&nbsp;
         <input type="button" value="중복확인" id="btnChkId" title="새창열림">
     </div>
     <div>        
@@ -139,7 +185,7 @@
     </div>
     <div>        
         <label for="dateofbirth">생년월일(필수)<br>(yy-mm-dd)</label>
-        <input type="text" name="dateofbirth" id="dateofbirth" style="margin-top: 15px;">
+        <input type="text" name="dateofbirth" id="dateofbirth" placeholder="(-)을 넣어주세요" style="margin-top: 15px;">
     </div>
    	<div style="margin-top: 8px;">
         <label for="phoneno1">핸드폰</label><select name="phoneno1" id="phoneno1" title="휴대폰 앞자리">
@@ -172,12 +218,12 @@
     </div>
     <div>
         <label for="zipcode">우편번호(필수)</label><!-- ReadOnly -->
-        <input type="text" name="zipcode" id="zipcode" title="우편번호" style="margin-top: 1px;">
-        <input type="Button" value="우편번호 찾기" id="btnZipcode" title="새창열림"><br />
+    	<input type="text" name="zipcode" id="postcode" title="우편번호" style="margin-top: 1px;" placeholder="우편번호">
+		<input type="button" id="btnZipcode" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
         <span class="sp1">주소</span>
-        <input type="text" name="address" title="주소" style="margin-top: 2px;"><br />
-        <span class="sp1">상세주소</span>
-        <input type="text" name="addressDetail" title="상세주소" style="margin-top: 4px;">
+		<input type="text" name="address" id="roadAddress" placeholder="도로명주소" style="width: 255px; margin-top: 2px;"><br>
+		<span class="sp1">상세주소</span>
+		<input type="text" name="detail" id="addressDetail" placeholder="상세주소" style="margin-top: 4px; width:255px;">
     </div>
     <div>        
         <label for="sum_name">소환사명</label>

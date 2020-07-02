@@ -1,0 +1,193 @@
+@charset "UTF-8";
+.container{
+	padding: 0;
+}
+article{
+	width: 98%;
+	margin: 0 auto;
+}
+nav #tabs-1{
+	background-repeat: no-repeat;
+	background-size: contain;
+	height: 408px;
+}
+nav#tabs {
+	width: 99%;
+	margin: 0 auto;
+}
+#icon div:first-of-type{
+	position: relative; 
+	top: 30px; 
+	left: 31px;
+}
+
+#icon div:nth-of-type(2){
+	position: relative; 
+	top: -98px; 
+	left: 29px;
+}
+
+#icon{
+	position: absolute;
+}
+#detail{
+	background: rgba(0,0,0,0.5);
+	width: 410px;
+	height: 120px;
+	float: right;
+	margin-top: 29px;
+	margin-bottom: 30px;
+	margin-right: 30px;
+	font-size: 20px;
+	color: white;
+	padding-top: 10px;
+}
+#describe{
+	background: rgba(0,0,0,0.5);
+	width: 580px;
+	clear: both;
+	margin: 0 auto;
+	padding: 10px;
+}
+
+ul.nav {
+    border-top: 0;
+}
+
+.ui-widget-header {
+    background: #8090AB;
+}
+#tabs a:focus{
+	background: #007fff;
+}
+.nav-tabs>li>a {
+    margin-right: 0;
+}
+#detail p {
+    margin: 0 0 10px;
+    text-shadow: 0 0 20px black;
+}
+#describe p {
+    margin: 0 0 10px;
+    text-shadow: 0 0 20px black;
+}
+nav #tabs-2{
+	overflow: hidden;
+}
+.video-container {
+    position: relative;
+    padding-bottom: 30.25%;
+    padding-top: 30px; height: 0; 
+    overflow: hidden;
+    top : 60px; left: 10px;
+}
+ 
+.video-container iframe,
+.video-container object,
+.video-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #d9e5f7;
+}
+
+.title h2{
+	color: white;
+	padding-top: 15px;
+	padding-left: 30px;
+}
+.view {
+    width: 363px;
+    height: 30px;
+    clear: both;
+    display: inline-block;
+    position: relative;
+    left: 10px;
+    top: 61px;
+    text-align: center;
+    border: 1px solid;
+    color: #d9e5f7;
+    background: #0f355a;
+}
+
+.view span{
+	top: 4px;
+    position: relative;
+    font-size: 17px;
+    font-weight: bold;
+    text-shadow: 2px 2px #041021;
+}
+
+.contentHide{
+	display: none;
+}
+
+#reply{
+	border: 1px solid gray;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+#reply th{
+	background: #8090ab;
+	text-align: center;
+}
+
+#reply .content1 td{
+	height: 50px;
+	padding: 5px 20px;
+	border-bottom: 1px solid gray;
+}
+
+#reply .row1{
+	height: 25px;
+	
+}
+
+form[name=reply]{
+	margin: 0 auto 20px auto;
+	clear: both;
+	overflow: hidden;
+	font-size: 1em;
+}
+
+form[name=reply] div:first-of-type {
+	float: left;
+}
+
+form[name=reply] div:nth-of-type(2){
+	float: right;
+	margin-right: 5px;
+	margin-bottom: 20px;
+}
+
+form[name=reply] span{
+	font-size: 1.2em;
+}
+
+form[name=reply] div:nth-of-type(3){
+	clear: both;
+}
+
+form[name=reply] div:last-of-type{
+	float: right;
+	padding-right: 5px;
+}
+
+form[name=reply] input[type=submit]{
+	width: 100px;
+	height: 30px;
+}
+
+.ui-state-hover{
+	color: black;
+}
+
+form[name=frmSearch]{
+	font-size: 1.6em;
+}
+form[name=frmSearch] .label{
+	font-size: 90%;
+}

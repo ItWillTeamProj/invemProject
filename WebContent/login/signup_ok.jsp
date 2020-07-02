@@ -50,8 +50,6 @@
 			}			
 		});//click
 	});
-	
-	
 </script>
 
 <style type="text/css">
@@ -67,7 +65,7 @@
 </style>
 <article>
 <div class="divForm">
-<form name="frm1" method="post" action="<%=request.getContextPath() %>/login/addLogin_ok.gg">
+<form name="frm1" method="post" action="<%=request.getContextPath() %>/login/signup_ok.gg">
 <fieldset>
 	<legend style = "margin-left: 80px">회원 가입</legend>
     <div>

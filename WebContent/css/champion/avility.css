@@ -36,3 +36,9 @@
 nav #tabs-2 {
 	background: #041021;
 }
+nav #tabs-3 {
+	background: #041021;
+	color: #d9e5f7;
+	text-shadow: 2px 2px #041021;
+	line-height: 50px;
+}

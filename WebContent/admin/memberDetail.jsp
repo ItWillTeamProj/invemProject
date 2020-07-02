@@ -4,7 +4,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	request.setCharacterEncoding("utf-8");
 
 	String id = request.getParameter("id");
 	if(id==null || id.isEmpty()){ %>
@@ -14,9 +13,10 @@
 	</script>
 	
 	<%return;
-} 
-
+	} 
+	
 	//2
+	/*
 	AdminMemberService adminMemberService = new AdminMemberService();
 	AdminMemberDTO dto = null;
 	
@@ -25,8 +25,8 @@
 	}catch(SQLException e){
 		e.printStackTrace();
 	}
-	
-	
+	*/
+	AdminMemberDTO dto = (AdminMemberDTO)request.getAttribute("dto");
 	int ct = dto.getCaution();
 %>
 
@@ -35,25 +35,18 @@
 <article>
 	<div style="margin-top: 10px; width: 720px; height:61px;
 		background-size:100%; color:white; font-size: 30px; margin-bottom:15px;
-		background-image: url('<%=request.getContextPath() %>/images/champion/header.png');">
+		background-image: url('<%=request.getContextPath() %>/images/champion/header2.png');">
 		<div style="padding: 10px 10px 10px 15px;">
-			<b>회원관리</b>
+			<b>회원관리 - 회원상세정보</b>
 		</div>
 	</div>
-	<h3><%=id %> 님의 상세정보</h3>	
-	<div style="text-align: right; margin: 0px 10px 10px 10px;">
-		<input type="Button" value="회원목록" onclick="location.href='memberList.jsp'" /> 
-	</div>	
+
 	<div>
 		<table style="font-size: 100%; border-collapse: collapse; margin-left:10px;
 			width:700px;">
-			<tr style="background:white; border-top:1px solid gray;">
+			<tr style="border-top:1px solid gray;">
 				<td style="padding-left: 30px;">아이디</td>
 				<td><%=dto.getUserid() %></td>
-			</tr>
-			<tr>
-				<td style="padding-left: 30px;">닉네임</td>
-				<td><%=dto.getNickname() %></td>
 			</tr>
 			<tr style="background:white;">
 				<td style="padding-left: 30px;">이름</td>
@@ -102,8 +95,9 @@
 			</tr>
 		</table>
 				
-		<div class="center" style="text-align: right; margin: 10px;">
-			<input type="Button" value="정보수정" onclick="location.href='memberEdit.jsp?id=<%=dto.getUserid() %>'" />  
+		<div style="text-align: center; margin: 10px;">
+			<input type="Button" value="수정" onclick="location.href='memberEdit.gg?id=<%=dto.getUserid() %>'" />
+			<input type="Button" value="목록" onclick="location.href='memberList.gg'" />   
 		</div>
 	</div>
 </article>	

@@ -33,14 +33,14 @@
 	<article>
 		<div style="margin-top: 10px; width: 720px; height:61px;
 			background-size:100%; color:white; font-size: 30px; margin-bottom:10px;
-			background-image: url('<%=request.getContextPath() %>/images/champion/header.png');">
+			background-image: url('<%=request.getContextPath() %>/images/champion/header2.png');">
 			<div style="padding: 10px 10px 10px 15px;">
-				<b>게시판관리</b>
+				<b>게시판관리 - 공지사항 등록</b>
 			</div>
 		</div>
 		
 		<div>
-			<form name="frmWrite" method="post" action="boardWrite_ok.jsp" >
+			<form name="frmWrite" method="post" action="<%=request.getContextPath() %>/admin/boardWrite_ok.gg" >
 				<div>
 				<table style="font-size: 100%; border-collapse: collapse; margin-left:10px;
 					width:700px;">
@@ -84,7 +84,7 @@
 				<br>
 				<div style="text-align: center;">
 					<input type="submit" value="등록"/>
-					<input type="Button" value="게시판 선택 페이지" onclick="location.href='<%=request.getContextPath() %>/admin/boardSelect.jsp'" />         
+					<input type="Button" value="뒤로" onclick="location.href='<%=request.getContextPath() %>/admin/boardSelect.gg'" />         
 				</div>
 			</form>
 		</div>   
