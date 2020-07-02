@@ -39,7 +39,7 @@ ALTER TABLE reply
 /* 회원 */
 CREATE TABLE member (
 	userid VARCHAR2(100) NOT NULL, /* 아이디 */
-	nickname VARCHAR2(100) , /* 닉네임 */
+	nickname VARCHAR2(100), /* 닉네임 */
 	pwd VARCHAR2(100) NOT NULL, /* 비밀번호 */
 	name VARCHAR2(50) NOT NULL, /* 이름 */
 	dateofbirth VARCHAR2(10) NOT NULL, /* 생년월일 */
@@ -192,7 +192,7 @@ ALTER TABLE recommend
 		REFERENCES board (
 			no
 		);
-		
+
 CREATE SEQUENCE RECOMMEND_SEQ INCREMENT BY 1 START WITH 1 MAXVALUE 9999999999 MINVALUE 1;
 
 create sequence reply_seq

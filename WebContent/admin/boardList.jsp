@@ -60,9 +60,9 @@
     
 <%@ include file="../inc/top.jsp" %>  
 	<article>
-	<div style="margin-top: 10px; width: 720px; height:61px;
+	<div style="width: 720px; height:61px;
 		background-size:100%; color:white; font-size: 30px; margin-bottom:10px;
-		background-image: url('<%=request.getContextPath() %>/images/champion/header2.png');">
+		background-image: url('<%=request.getContextPath() %>/images/champion/header.png');">
 		<div style="padding: 10px 10px 10px 15px;">
 			<b>게시판관리 <%if(code.equals("F")){ %>
 						- 자유게시판 목록
