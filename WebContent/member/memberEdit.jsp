@@ -25,6 +25,7 @@
 	String email = memVo.getEmail();
 	String email1 = "";
 	String email2 = "";
+	String email3 = "";
 	String detail = "";
 
 	if(memVo.getDetail() != null && !memVo.getDetail().isEmpty()){
@@ -213,24 +214,26 @@
 						title="휴대폰 뒷자리" class="width_80" style="width: 50px;" value="<%=phoneno3%>">
 				</div>
 				<div>
-					<label for="email1">이메일 주소</label> <input type="text" name="email1"
-						id="email1" title="이메일주소 앞자리" style="width: 90px;" value="<%=email1%>">@ <select
-						name="email2" id="email2" title="이메일주소 뒷자리">
-						<%for(int i = 0; i < emailList.length; i++){ %>
-				            <option value="<%=emailList[i] %>"
-				            <%if(email2.equals(emailList[i])){%>
-				            selected="selected" <%} %>
-				            ><%=emailList[i] %></option>
+					<label for="email1">이메일 주소</label>
+					<input type="text" name="email1" id="email1" title="이메일주소 앞자리" 
+						style="width: 90px;" value="<%=email1%>">@ 
+					<select	name="email2" id="email2" title="이메일주소 뒷자리">
+							<%for(int i = 0; i < emailList.length; i++){ %>
+						    <option value="<%=emailList[i] %>"
+						    <%if(email2.equals(emailList[i])){%>
+				            	selected="selected"
+				            <%} %>>
+				            <%=emailList[i] %></option>
 			            <%} %>
 			            <option value="etc"<%if(isEtc){%> selected="selected" <%} %>>직접입력</option>
-					</select> <input type="text" name="email3" id="email3"
-						title="직접입력인 경우 이메일주소 뒷자리"
+					</select>
+					<input type="text" name="email3" id="email3" title="직접입력인 경우 이메일주소 뒷자리"
 						<%if(isEtc){%>
 			        		style="visibility:visible;" value="<%=email2 %>"
 			        	<%}else{%>
 			        		style="visibility:hidden;"
 			        	<%} %>>
-				</div>
+					</div>
 				<div>
 					<label for="zipcode">우편번호</label>
 					<!-- ReadOnly -->

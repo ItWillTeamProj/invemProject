@@ -130,18 +130,19 @@ private ConnectionPoolMgr2 pool;
 			con = pool.getConnection();
 			
 			String sql = "update member"
-					+ " set zipcode=?, address=?, email=?, nickname=?, sum_name=?, dateofbirth=?, phoneno=?"
+					+ " set zipcode=?, address=?, email=?, detail=?, nickname=?, sum_name=?, dateofbirth=?, phoneno=?"
 					+ " where userid=?";
 			ps = con.prepareStatement(sql);
 			
 			ps.setString(1, vo.getZipcode());
 			ps.setString(2, vo.getAddress());
 			ps.setString(3, vo.getEmail());
-			ps.setString(4, vo.getNickname());
-			ps.setString(5, vo.getSum_name());
-			ps.setString(6, vo.getDateofbirth());
-			ps.setString(7, vo.getPhoneno());
-			ps.setString(8, vo.getUserid());
+			ps.setString(4, vo.getDetail());
+			ps.setString(5, vo.getNickname());
+			ps.setString(6, vo.getSum_name());
+			ps.setString(7, vo.getDateofbirth());
+			ps.setString(8, vo.getPhoneno());
+			ps.setString(9, vo.getUserid());
 			
 			int cnt = ps.executeUpdate();
 			System.out.println("수정결과 cnt=" + cnt + ", 매개변수 vo=" + vo);

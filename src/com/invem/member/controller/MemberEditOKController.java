@@ -25,6 +25,7 @@ public class MemberEditOKController implements Controller{
 		String phoneno3 = request.getParameter("phoneno3");
 
 		String email1 = request.getParameter("email1");
+		String email2 = request.getParameter("email2");
 		String email3 = request.getParameter("email3");
 
 		String zipcode = request.getParameter("zipcode");
