@@ -1026,4 +1026,33 @@ public class BoardDAO {
 
 	}
 	
+	public int replycountById(String userid) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		int cnt = 0;
+
+		try {
+			con = pool.getConnection();
+
+			String sql = "select count(*) from reply where username = ?";
+			ps = con.prepareStatement(sql);
+
+			ps.setString(1, userid);
+
+			rs = ps.executeQuery();
+
+			if(rs.next()) {
+				cnt = rs.getInt(1);
+			}
+
+			System.out.println("cnt = " + cnt + ", 매개변수 userid = " + userid);
+			return cnt;
+		}finally {
+			pool.dbClose(con, ps, rs);
+
+		}
+	}
+	
 }

@@ -113,4 +113,8 @@ public class BoardService {
 	public List<BoardVO> selectNotice() throws SQLException{
 		return dao.selectNotice();
 	}
+	
+	public int replycountById(String userid) throws SQLException {
+		return dao.replycountById(userid);
+	}
 }

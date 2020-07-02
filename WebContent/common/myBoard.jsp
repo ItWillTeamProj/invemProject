@@ -9,7 +9,6 @@
 <%
 	List<BoardVO> list = (List<BoardVO>)request.getAttribute("list");
 	PagingVO pageVo = (PagingVO)request.getAttribute("pageVo");
-	pageVo.setPageSize(6);
 	int bNum = pageVo.getNum();	//페이지당 시작 글 번호가 될수도 있지만 게시판별로
 	// 나눴을때 num + 1 로 no를 대체할 수 있다.
 	int bCurPos = pageVo.getCurPos();	//페이지당 시작 인덱스 번호
@@ -18,9 +17,13 @@
 
 %>
 <div id="tabs-2">
-	<h1>게시물 페이지</h1>
-	<h3>지금껏 회원이 작성한 게시물의 리스트를 출력할 페이지 입니다.</h3>
-	<h5>현재 include한 페이지 myBoard.jsp</h5>
+	<div style="margin-top: 10px; width: 100%; height:61px;
+		background-size:100%; color:white; font-size: 30px; margin-bottom:10px; 
+		background-image: url('<%=request.getContextPath() %>/images/champion/header2.png');">
+		<div style="padding: 10px 10px 10px 15px;">
+			<b>작성글 모음</b>
+		</div>
+	</div>
 	<table table class="table table-hover table-sm">
 		<tr>
 			<th>번호</th>
@@ -58,7 +61,7 @@
 			<%if(i != pageVo.getCurrentPage()){ %>
 			<li><a href="<%=request.getContextPath() %>/blog/blog.gg?sId=${param.userid}&currentPage=<%=i%>#tabs-2"><%=i %></a></li>
 			
-		<%}else{ %>
+		<%}else{ %>	
 			<li class="active"><a href="<%=request.getContextPath() %>/blog/blog.gg?sId=${param.userid}&currentPage=<%=i%>#tabs-2"><%=i %></a></li>
 			<%}//if %>
 		<%}//for %>
