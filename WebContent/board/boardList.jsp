@@ -56,7 +56,7 @@ $(function(){
 	$('#toBlog').click(function(){
 		var sId = $('#uId').html();
 		$('#blogId').val(sId);
-		window.open('<%=request.getContextPath()%>/blog/blog.gg?sId='+sId, 'viewer', 'width=1000, height=700');
+		window.open('<%=request.getContextPath()%>/blog/blog.gg?sId='+sId, 'viewer', 'width=1000, height=600, scrollbars=no, resizable=no, toolbars=no, menubar=no, left=500, top=200');
 		
 		$('#menu').css("display", "none");
 	

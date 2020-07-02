@@ -40,6 +40,7 @@ public class BlogController implements Controller {
 		
 		BoardService boardServ = new BoardService();
 		int writeCount = boardServ.countByUserid(userid);
+		int replyCount = boardServ.replycountById(userid);
 		//2. myBoard.jsp
 		List<BoardVO> list = new ArrayList<BoardVO>();
 		try {
@@ -54,10 +55,7 @@ public class BlogController implements Controller {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}	//파라미터로 페이지가 넘어왔다면 1이 아니라 넘어온 값을 읽어서 현재페이지의 값이 된다
 		int totalRecord = list.size();	//전체 게시글 수
-		int pageSize = 10;	//한 페이지에 보여줄 게시글 개수
-		if(request.getParameter("rowNum") != null && !request.getParameter("rowNum").isEmpty()){
-			pageSize = Integer.parseInt(request.getParameter("rowNum"));
-		}
+		int pageSize = 6;	//한 페이지에 보여줄 게시글 개수
 		int blockSize = 10;	// 페이지의 블럭개수
 		
 		PagingVO bPageVo = new PagingVO(currentPage, totalRecord, pageSize, blockSize);
@@ -71,12 +69,12 @@ public class BlogController implements Controller {
 			e.printStackTrace();
 		}
 		currentPage = 1;	//설정된 현재 페이지
-		
-		totalRecord = rList.size();	//전체 게시글 수
-		pageSize = 10;	//한 페이지에 보여줄 게시글 개수
-		if(request.getParameter("rowNum") != null && !request.getParameter("rowNum").isEmpty()){
-			pageSize = Integer.parseInt(request.getParameter("rowNum"));
+		if(request.getParameter("currentPage") != null
+				&& !request.getParameter("currentPage").isEmpty()){
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
+		totalRecord = rList.size();	//전체 게시글 수
+		pageSize = 6;	//한 페이지에 보여줄 게시글 개수
 		blockSize = 10;	// 페이지의 블럭개수
 		
 		PagingVO rPageVo = new PagingVO(currentPage, totalRecord, pageSize, blockSize);
@@ -112,7 +110,7 @@ public class BlogController implements Controller {
 		request.setAttribute("rList", rList);
 		request.setAttribute("pageVo", bPageVo);
 		request.setAttribute("rPageVo", rPageVo);
-		
+		request.setAttribute("replyCount", replyCount);
 		//게스트 북
 		List<GuestbookVO> gList = new ArrayList<GuestbookVO>();
 		gList = boardServ.guestbookList(userid);
