@@ -253,6 +253,7 @@ public class BoardDAO {
 			}
 
 			int cnt = ps.executeUpdate();
+			
 			System.out.println("cnt = " + cnt + ", 매개변수 vo = " + vo);
 			return cnt;
 
