@@ -29,6 +29,7 @@ public class LoginOKController implements Controller{
 		String userid=request.getParameter("userid");
 		String pwd=request.getParameter("pwd");
 		String saveId=request.getParameter("saveId");
+		String caution=request.getParameter("caution");
 		
 		LoginService serv = new LoginService();
 		HttpSession session = request.getSession();
@@ -74,13 +75,12 @@ public class LoginOKController implements Controller{
 					ck.setPath("/"); 
 					response.addCookie(ck);
 				}
-				
 				msg=vo.getName()+ "님 로그인되었습니다.";
 				url="/index.gg";
 			}else if(result==LoginService.PWD_DISAGREE){
 				msg="비밀번호가 일치하지 않습니다.";
 			}else if(result==LoginService.ID_NONE){
-				msg="해당 아이디가 존재하지 않습니다.";				
+				msg="해당 아이디가 존재하지 않거나 블록 처리 되었습니다.";			
 			}else{
 				msg="탈퇴한 회원입니다.";
 			}
