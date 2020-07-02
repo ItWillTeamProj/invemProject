@@ -14,6 +14,10 @@ public class LoginService {
 	public static final int PWD_DISAGREE=2;	//비밀번호 불일치
 	public static final int ID_NONE=3;	//아이디가 존재하지 않음
 	
+	//경고 처리관련
+	public static final int Cap_OK=1; //경고없음
+	public static final int Cap_OUT=2; //경고5회이상
+	
 	private LoginDAO logindao;
 	
 	public LoginService() {
@@ -27,6 +31,5 @@ public class LoginService {
 	public MemberDTO selectMember(String userid) throws SQLException {
 		return logindao.selectMember(userid);
 	}
-	
 		
 }

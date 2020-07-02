@@ -25,7 +25,7 @@
 	String email = memVo.getEmail();
 	String email1 = "";
 	String email2 = "";
-	String detail = memVo.getDetail();
+	String detail = "";
 
 	if(memVo.getDetail() != null && !memVo.getDetail().isEmpty()){
 		detail = memVo.getDetail();
