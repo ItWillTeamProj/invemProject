@@ -1,9 +1,7 @@
 package com.invem.member.model;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public class MemberService {
 	
@@ -27,6 +25,10 @@ public class MemberService {
 	
 	public int updateMember(MemberDTO vo) throws SQLException {
 		return memberdao.updateMember(vo);
+	}
+	
+	public List<MemberDTO> selectByName(String name) throws SQLException {
+		return memberdao.selectByName(name);
 	}
 	
 }
