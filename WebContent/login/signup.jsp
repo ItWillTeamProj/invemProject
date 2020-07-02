@@ -147,7 +147,7 @@
 	font-size:13px;
 	}
 	.divForm label, .divForm .sp1{
-	width:40%;
+	width:30%;
 	}
 	form{
 	margin-left:50px;
@@ -183,7 +183,7 @@
     </div>
     <div>        
         <label for="dateofbirth">생년월일(필수)<br>(yy-mm-dd)</label>
-        <input type="text" name="dateofbirth" id="dateofbirth" placeholder="(-)을 넣어주세요" style="margin-top: 15px;">
+        <input type="text" name="dateofbirth" id="dateofbirth" maxlength="8" placeholder="(-)을 넣어주세요" style="margin-top: 15px;">
     </div>
    	<div style="margin-top: 8px;">
         <label for="phoneno1">핸드폰</label><select name="phoneno1" id="phoneno1" title="휴대폰 앞자리">
