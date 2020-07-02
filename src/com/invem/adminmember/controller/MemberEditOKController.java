@@ -27,14 +27,14 @@ public class MemberEditOKController implements Controller {
 		String sum_name=request.getParameter("sum_name");
 		String caution=request.getParameter("caution");
 		
-		String nickname="x";//삭제될 것 임시로 값을 넣음
+		String nickname="x";//임시로 값을 넣음
 		//2
 		AdminMemberService adminMemberService = new AdminMemberService();
 		AdminMemberDTO dto = new AdminMemberDTO();
 			
 		dto.setUserid(id);
 		dto.setName(name);
-		dto.setNickname(nickname); //삭제될 것 임시로 값을 넣음
+		dto.setNickname(nickname); //임시로 값을 넣음
 		dto.setDateofbirth(dateOfBirth);
 		dto.setPhoneno(phoneno);
 		dto.setEmail(email);

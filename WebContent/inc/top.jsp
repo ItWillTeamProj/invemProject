@@ -169,6 +169,14 @@ html{
 		<li><a href="#">베스트공략</a></li>
 		<li><a href="#">화이팅</a></li>
 	</ul>
+	<%if(userid==null || userid!="admin" || userid.isEmpty()) {%>
+	<%}else{ %>
+	<div style="margin-top: 500px;">
+		<a href="<%=request.getContextPath() %>/admin/admin.gg">
+		<img src="<%=request.getContextPath() %>/images/admin/admin2.png" 
+			style="margin:10px; width:20px; height:20px;">관리자 메인 페이지</a>
+	</div>
+	<%}%>
 	</div>
 	<!-- end .sidebar1 -->
 	<div class="content">

@@ -8,11 +8,7 @@
 			<a href="#"><img src="<%=request.getContextPath() %>/images/sidebar2/sidebar2long.png" 
 				style="width:220px; margin: 10px 10px 0px 10px;"></a>
 		</div>
-		<div>
-			<a href="<%=request.getContextPath() %>/admin/admin.gg">
-				<img src="<%=request.getContextPath() %>/images/bottom/admin.png" 
-					style="margin:10px; width:20px; height:20px;">관리자 메인 페이지</a>
-		</div>
+		
 	</div>
 	<!-- end .container -->
 
