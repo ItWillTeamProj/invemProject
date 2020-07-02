@@ -55,7 +55,7 @@ public class BlogController implements Controller {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}	//파라미터로 페이지가 넘어왔다면 1이 아니라 넘어온 값을 읽어서 현재페이지의 값이 된다
 		int totalRecord = list.size();	//전체 게시글 수
-		int pageSize = 6;	//한 페이지에 보여줄 게시글 개수
+		int pageSize = 5;	//한 페이지에 보여줄 게시글 개수
 		int blockSize = 10;	// 페이지의 블럭개수
 		
 		PagingVO bPageVo = new PagingVO(currentPage, totalRecord, pageSize, blockSize);
@@ -74,7 +74,7 @@ public class BlogController implements Controller {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
 		totalRecord = rList.size();	//전체 게시글 수
-		pageSize = 6;	//한 페이지에 보여줄 게시글 개수
+		pageSize = 5;	//한 페이지에 보여줄 게시글 개수
 		blockSize = 10;	// 페이지의 블럭개수
 		
 		PagingVO rPageVo = new PagingVO(currentPage, totalRecord, pageSize, blockSize);
@@ -124,7 +124,7 @@ public class BlogController implements Controller {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}	//파라미터로 페이지가 넘어왔다면 1이 아니라 넘어온 값을 읽어서 현재페이지의 값이 된다
 		totalRecord = gList.size();	//전체 게시글 수
-		pageSize = 6;	//한 페이지에 보여줄 게시글 개수
+		pageSize = 5;	//한 페이지에 보여줄 게시글 개수
 		blockSize = 10;	// 페이지의 블럭개수
 		
 		PagingVO gPageVo = new PagingVO(currentPage, totalRecord, pageSize, blockSize);

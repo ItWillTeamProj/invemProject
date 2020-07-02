@@ -26,14 +26,15 @@
 			<b>방명록을 남겨주세요</b>
 		</div>
 	</div>
+	<div style="margin-bottom: 5px;">
 	<form name="frmReply" action="<%=request.getContextPath() %>/guestbook/guestbookInsert.gg" method="post" 
 		style="overflow: hidden;">
-	<div>
+	
 	<c:if test="${empty userid }">
 		<span style = "float: left; width: 15%">
-			<input type = "text" name = "nonuserid" size = "15" style = "margin-left: 5px; margin-top: 5px" value="닉네임"
+			<input type = "text" name = "nonuserid" size = "15" style = "height: 28px; margin-left: 5px; value="닉네임"
 				onfocus="this.value=''">
-			<input type = "text" name = "pwd" size = "15" style = "margin-left: 5px; margin-top: 5px" value="비밀번호"
+			<input type = "text" name = "pwd" size = "15" style = "height: 28px; margin-left: 5px; margin-top: 9px" value="비밀번호"
 				onfocus="this.value=''; type = 'password'"> 
 		</span>
 	</c:if>
@@ -41,17 +42,16 @@
 		<span style = "float: left; width: 15%">${userid }</span>
 		<input type = "hidden" name = "userid" value = "${userid }">
 	</c:if>
-		<span style = "float: left; width: 60%; margin-left: 20px">
-			<textarea name = "reply" rows="5" cols="60" style = "margin-left: 30px"></textarea>
+		<span style = "float: left; width: 60%; margin-left: 18px">
+			<textarea name = "reply" rows="3" cols="61" style = "margin-left: 33px"></textarea>
 		</span>
 		<input type = "hidden" name = "blogId" value = "<%=blogId%>">
 		<span><input type = "submit" value = "등록" 
-			style = "width: 100px; height: 30px; float: right; margin-right: 10px">
-		<input type = "button" id = "list" value ="목록으로"
-		style = "width: 100px; height: 30px; float: right; margin-right: 10px"></span>
-	</div>
-	</form>
+			style = "width: 100px; height: 65px; float: right; margin-right: 10px">
+		</span>
 	
+	</form>
+	</div>
 	<table table class="table table-hover table-sm">
 		<tr>
 			<th>번호</th>

@@ -56,7 +56,7 @@ $(function(){
 	$('#toBlog').click(function(){
 		var sId = $('#uId').html();
 		$('#blogId').val(sId);
-		window.open('<%=request.getContextPath()%>/blog/blog.gg?sId='+sId, 'viewer', 'width=1000, height=600, scrollbars=no, resizable=no, toolbars=no, menubar=no, left=500, top=200');
+		window.open('<%=request.getContextPath()%>/blog/blog.gg?sId='+sId, 'viewer', 'width=780, height=580, scrollbars=no, resizable=no, toolbars=no, menubar=no, left=500, top=200');
 		
 		$('#menu').css("display", "none");
 	
@@ -96,8 +96,10 @@ $(function(){
 		<h2><%=boardName %></h2>
 	</div>
 	
-	<div style = "margin-right: 20px;">
-		<input type = "button" value = "최신순" id = "newest"><input type = "button" value = "인기글" id = "best" ><input type = "button" value = "공지" id = "notice">
+	<div style = "margin: 10px 10px 10px 10px;">
+		<input type = "button" value = "최신순" id = "newest">
+		<input type = "button" value = "인기글" id = "best" style="margin-left: 3px;">
+		<input type = "button" value = "공지" id = "notice" style="margin-left: 3px;">
 		<span style = "float: right"><a href = "<%=request.getContextPath()%>/board/boardWrite.gg?code=<%=code%>"><img src="<%=request.getContextPath()%>/images/writeIcon.png" style="width: 20px; height: auto"></a></span><!-- 추후 아이콘으로 대체 예정 -->
 		<select style = "float: right; margin-right: 10px" id = "rowNum">
 			<option value = "10" <%if(rowNum.equals("10")){ %>
@@ -108,10 +110,8 @@ $(function(){
 			selected="selected"<%} %>>50개</option>
 		</select>
 	</div><br>
-
+	<div style="margin-left:10px;">
 	<table style = "width: 700px" class="table table-striped table-sm table-hover">
-		<!-- caption걸어주는게 좋다고 들음 -->
-		<caption><%=boardName %> 목록입니다.</caption>
 		<colgroup>
 			<col style = "width: 8%">
 			<col style = "width: 43%">
@@ -180,7 +180,7 @@ $(function(){
 
 			}%>
 	</table><hr style = "border: 0; height: 2px; background: skyblue">
-	
+	</div>
 	
 	<div style = "text-align: center">
 		<ul class="pagination pagination-sm">

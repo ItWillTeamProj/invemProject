@@ -56,8 +56,10 @@
 </script>
 <article style="width: 800px">
 	
-	<h3>게시글 수정 : <%=boardName %></h3>
-	<hr style="border: 0; height: 2px; background: skyblue">
+	<div class="title">
+		<h2><%=boardName %> - 수정화면</h2>
+	</div>
+	<div style="margin-top: 10px;">
 	<form name="frmEdit" method="post" onsubmit="check()" action = "<%=request.getContextPath()%>/board/boardEdit_ok.gg">
 	
 		<%if("unknown".equals(userid) || userid == null || userid.isEmpty()){%>
@@ -78,15 +80,16 @@
 			name="title" value="<%=vo.getTitle()%>"><br>
 		<%}%>
 		<input type="hidden" name="no" value="<%=vo.getNo() %>">
-			<hr style="border: 0; height: 2px; background: skyblue">
 		<input type="hidden" name="delflag" value="<%=delflag%>">
+		<div style="margin-left:10px;">
 		<textarea name="ir1" id="ir1" rows="10" cols="50"><%=vo.getDescribe()%></textarea>
-			<hr style="border: 0; height: 2px; background: skyblue">
+		</div>
 		<div style="float: right; margin-right: 220px">
 			<input type="button" value="취소" id = "cancel">
 			<input type="submit" value="수정">
 		</div>
 	</form>
+	</div>
 </article>
 
 <%@ include file="../inc/bottom.jsp"%>
