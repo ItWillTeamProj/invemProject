@@ -110,6 +110,7 @@ private ConnectionPoolMgr2 pool;
 				vo.setDateofbirth(rs.getString("dateofbirth"));
 				vo.setNickname(rs.getString("nickname"));
 				vo.setPhoneno(rs.getString("phoneno"));
+				vo.setDetail(rs.getString("detail"));
 				vo.setSum_name(rs.getString("sum_name"));
 				
 			}
@@ -129,7 +130,7 @@ private ConnectionPoolMgr2 pool;
 			con = pool.getConnection();
 			
 			String sql = "update member"
-					+ " set zipcode=?, address=?, email=?, nickname=?, sum_name=?, DATEOFBIRTH=?, phoneno=?"
+					+ " set zipcode=?, address=?, email=?, nickname=?, sum_name=?, dateofbirth=?, phoneno=?"
 					+ " where userid=?";
 			ps = con.prepareStatement(sql);
 			
@@ -140,33 +141,10 @@ private ConnectionPoolMgr2 pool;
 			ps.setString(5, vo.getSum_name());
 			ps.setString(6, vo.getDateofbirth());
 			ps.setString(7, vo.getPhoneno());
-			ps.setString(6, vo.getUserid());
+			ps.setString(8, vo.getUserid());
 			
 			int cnt = ps.executeUpdate();
 			System.out.println("수정결과 cnt=" + cnt + ", 매개변수 vo=" + vo);
-			return cnt;
-		} finally {
-			pool.dbClose(con, ps);
-		}
-	}
-	
-	public int memberOut(String userid) throws SQLException {
-		Connection con = null;
-		PreparedStatement ps = null;
-		
-		try {
-			con = pool.getConnection();
-			
-			String sql = "update member " + 
-					" set outdate = sysdate " + 
-					" where userid = ?";
-			ps = con.prepareStatement(sql);
-			
-			ps.setString(1, userid);
-			
-			int cnt = ps.executeUpdate();
-			
-			System.out.println("탈퇴결과 cnt=" + cnt + ", 매개변수 userid=" + userid);
 			return cnt;
 		} finally {
 			pool.dbClose(con, ps);

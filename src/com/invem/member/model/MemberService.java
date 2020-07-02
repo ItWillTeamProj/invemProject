@@ -29,7 +29,4 @@ public class MemberService {
 		return memberdao.updateMember(vo);
 	}
 	
-	public int memberOut(String userid) throws SQLException {
-		return memberdao.memberOut(userid);
-	}
 }

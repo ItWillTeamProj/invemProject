@@ -26,19 +26,19 @@
 	<hr>
 	<input type="hidden" name="champNo" value="${param.no }">
 	<input type="hidden" name="code" value="C">
-	<div>
+	<div style="margin-left: 10px;">
 		<label for="title">제목</label> 
 		<input type="text" name="title" id="title"
 			maxlength="100" style="width: 300px;">
 	</div>
-	<div>
+	<div style="margin-right: 10px;">
 		<label for="nickName">아이디</label>
 		 <input value="" type="text" name="userid" id="userid" readonly="readonly">
 	</div>
-	<div style="margin: 0 auto;">
+	<div style="margin: 0 auto; text-align: center;">
 		<textarea id="reContent" rows="4" cols="75" name="reContent"></textarea>
 	</div>
 	<div>
-		<input type="submit" value="등록">
+		<input type="submit" value="등록" style="margin-top: 5px;">
 	</div>
 </form>

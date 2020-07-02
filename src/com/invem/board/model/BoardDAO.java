@@ -67,17 +67,14 @@ public class BoardDAO {
 				String describe = rs.getString("describe");
 				int recommend = rs.getInt("recommend");
 				int views = rs.getInt("views");
-				String filename = rs.getString("filename");
-				long filesize = rs.getLong("filesize");
-				int downcount = rs.getInt("downcount");
-				String originalfilename = rs.getString("originalfilename");
 				String ipaddress = rs.getString("ipaddress");
 				String delflag = rs.getString("delflag");
 				String cat_code = rs.getString("cat_code");
 
-				BoardVO vo = new BoardVO(no, userid, nonuserid, pwd, title, regdate, describe, recommend, views, filename, filesize, downcount, originalfilename, ipaddress, delflag, cat_code);
+				BoardVO vo = new BoardVO(no, userid, nonuserid, pwd, title, regdate, describe, recommend, views, ipaddress, delflag, cat_code);
 
 				list.add(vo);
+				System.out.println("매개변수 vo=" + vo);
 			}
 			System.out.println("list.size = " + list.size());
 			return list;
@@ -148,10 +145,6 @@ public class BoardDAO {
 				vo.setDescribe(rs.getString("describe"));
 				vo.setRecommend(rs.getInt("recommend"));
 				vo.setViews(rs.getInt("views"));
-				vo.setFilename(rs.getString("filename"));
-				vo.setFilesize(rs.getLong("filesize"));
-				vo.setDowncount(rs.getInt("downcount"));
-				vo.setOriginalfilename(rs.getString("originalfilename"));
 				vo.setIpaddress(rs.getString("ipaddress"));
 				vo.setDelflag(rs.getString("delflag"));
 				vo.setCat_code(rs.getString("cat_code"));
@@ -183,23 +176,20 @@ public class BoardDAO {
 			//[2] insert
 			String sql = "";
 			if(vo.getPwd() == null || vo.getPwd().isEmpty()) {//회원
-				sql="insert into reply(rep_no, username, reply, no, groupno, sortno, step)" +
-						" values(reply_seq.nextval,?,?,?,?,?,?)";
+				sql="insert into reply(rep_no, username, reply, groupno)" +
+						" values(reply_seq.nextval,?,?,?)";
 			}else {//비회원
-				sql="insert into reply(rep_no, username, reply, no, groupno, sortno, step, pwd)" +
-						" values(reply_seq.nextval,?,?,?,?,?,?,?)";
+				sql="insert into reply(rep_no, username, reply, groupno, pwd)" +
+						" values(reply_seq.nextval,?,?,?,?)";
 			}
 			
 			ps=con.prepareStatement(sql);
 
 			ps.setString(1, vo.getusername());
 			ps.setString(2, vo.getReply());
-			ps.setInt(3, vo.getNo());
-			ps.setInt(4, vo.getGroupno());
-			ps.setInt(5, vo.getSortno()+1);
-			ps.setInt(6, vo.getStep() +1);
+			ps.setInt(3, vo.getGroupno());
 			if(vo.getPwd() != null && !vo.getPwd().isEmpty()) {
-				ps.setString(7,  vo.getPwd());
+				ps.setString(4,  vo.getPwd());
 			}
 
 			cnt=ps.executeUpdate();
@@ -301,15 +291,11 @@ public class BoardDAO {
 				String describe = rs.getString("describe");
 				int recommend =rs.getInt("recommend");
 				int views = rs.getInt("views");
-				String filename = rs.getString("filename");
-				long filesize = rs.getLong("filesize");
-				int downcount = rs.getInt("downcount");
-				String originalfilename = rs.getString("originalfilename");
 				String ipaddress = rs.getString("ipaddress");
 				String delflag = rs.getString("delflag");
 				String cat_code = rs.getString("cat_code");
 
-				BoardVO vo = new BoardVO(no, userid, nonuserid, pwd, title, regdate, describe, recommend, views, filename, filesize, downcount, originalfilename, ipaddress, delflag, cat_code);
+				BoardVO vo = new BoardVO(no, userid, nonuserid, pwd, title, regdate, describe, recommend, views, ipaddress, delflag, cat_code);
 				list.add(vo);
 
 			}
@@ -347,12 +333,9 @@ public class BoardDAO {
 				String username = rs.getString("username");
 				String  reply = rs.getString("reply");
 				Timestamp regdate = rs.getTimestamp("regdate");
-				int rno = rs.getInt("no");
-				int sortno = no;
-				int step = rs.getInt("step");
 				String delflag = rs.getString("delflag");
 				String pwd = rs.getString("pwd");
-				ReplyVO vo = new ReplyVO(rep_no, username, reply, regdate, rep_no, rno, sortno, step, delflag, pwd);
+				ReplyVO vo = new ReplyVO(rep_no, username, reply, regdate,  no, delflag, pwd);
 
 				list.add(vo);
 
@@ -431,15 +414,11 @@ public class BoardDAO {
 				String describe = rs.getString("describe");
 				int recommend =rs.getInt("recommend");
 				int views = rs.getInt("views");
-				String filename = rs.getString("filename");
-				long filesize = rs.getLong("filesize");
-				int downcount = rs.getInt("downcount");
-				String originalfilename = rs.getString("originalfilename");
 				String ipaddress = rs.getString("ipaddress");
 				String delflag = rs.getString("delflag");
 				String cat_code = rs.getString("cat_code");
 
-				BoardVO vo = new BoardVO(no, userid, nonuserid, pwd, title, regdate, describe, recommend, views, filename, filesize, downcount, originalfilename, ipaddress, delflag, cat_code);
+				BoardVO vo = new BoardVO(no, userid, nonuserid, pwd, title, regdate, describe, recommend, views, ipaddress, delflag, cat_code);
 				list.add(vo);
 
 			}
@@ -629,17 +608,14 @@ public class BoardDAO {
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
-				int no = rs.getInt("no");
 				String delflag = rs.getString("delflag");
 				int groupno = rs.getInt("groupno");
 				Timestamp regdate = rs.getTimestamp("regdate");
 				int rep_no = rs.getInt("rep_no");
 				String reply = rs.getString("reply");
-				int sortno = rs.getInt("sortno");
-				int step = rs.getInt("step");
 				String pwd = rs.getString("pwd");
 						
-				ReplyVO vo = new ReplyVO(no, userid, reply, regdate, rep_no, groupno, sortno, step, delflag, pwd);
+				ReplyVO vo = new ReplyVO(rep_no, userid, reply, regdate,  groupno, delflag, pwd);
 				
 				list.add(vo);
 						
@@ -658,12 +634,15 @@ public class BoardDAO {
 		PreparedStatement ps = null;
 		try {
 			con = pool.getConnection();
-			String sql = "delete from board where no=? and cat_code=?";
+			String sql = "update board" +
+						" set delflag=?" +
+						" where no=? and cat_code=?";
 			
 			ps = con.prepareStatement(sql);
 			
-			ps.setInt(1, no);
-			ps.setString(2, code);
+			ps.setString(1, "Y");
+			ps.setInt(2, no);
+			ps.setString(3, code);
 			
 			int cnt = ps.executeUpdate();
 			
@@ -778,17 +757,12 @@ public class BoardDAO {
 				String describe = rs.getString("describe");
 				int recommend = rs.getInt("recommend");
 				int views = rs.getInt("views");
-				String filename = rs.getString("filename");
-				long filesize = rs.getLong("filesize");
-				int downcount = rs.getInt("downcount");
-				String originalfilename = rs.getString("originalfilename");
 				String ipaddress = rs.getString("ipaddress");
 				String delflag = rs.getString("delflag");
 				String cat_code = rs.getString("cat_code");
 
 				BoardVO vo = new BoardVO(no, userid, nonuserid, pwd, title, regdate, 
-						describe, recommend, views, filename, filesize, downcount, 
-						originalfilename, ipaddress, delflag, cat_code, champ_no);
+						describe, recommend, views, ipaddress, delflag, cat_code, champ_no);
 
 				list.add(vo);
 			}
@@ -834,5 +808,160 @@ public class BoardDAO {
 			pool.dbClose(con, ps);
 		}
 		
+	}
+	/**
+	 * 추천한 적이 있는지 확인
+	 * @param userid
+	 * @param no
+	 * @return
+	 * @throws SQLException
+	 */
+	public int checkRecommend(String userid, int no) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			con = pool.getConnection();
+			String sql = "select count(*) from recommend where userid=? and board_no=?";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, userid);
+			ps.setInt(2, no);
+			
+			rs = ps.executeQuery();
+			int cnt = 0;
+			if(rs.next()) {
+				cnt = rs.getInt(1);
+			}
+			System.out.println("추천 확인 cnt = " + cnt + ", 매개변수 userid = " + userid + ", no = " + no);
+			return cnt;
+		}finally {
+			pool.dbClose(con, ps, rs);
+		}
+	}
+	
+	/**
+	 * 추천 입력
+	 * @param userid
+	 * @param no
+	 * @return
+	 * @throws SQLException
+	 */
+	public int recommendInsert(String userid, int no) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		try {
+			con = pool.getConnection();
+			String sql = "insert into recommend(no, board_no, userid)"
+						+ "values(recommend_seq.nextval, ?, ?)";
+			ps = con.prepareStatement(sql);
+			
+			ps.setInt(1, no);
+			ps.setString(2, userid);
+			
+			int cnt = ps.executeUpdate();
+			System.out.println("입력결과  cnt = " + cnt + ", 매개변수 userid = " + userid + ", no=" + no);
+			return cnt;
+		}finally {
+			pool.dbClose(con, ps);
+			
+		}
+	}
+	
+	/**
+	 * 방명록 글작성
+	 * @param vo
+	 * @return
+	 * @throws SQLException
+	 */
+	public int guestbookInsert(GuestbookVO vo) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		try {
+			con = pool.getConnection();
+			String sql = "insert into guestbook(gno, userid, writer_id, g_comment)"
+						+" values(guestbook_seq.nextval, ?, ?, ?)";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, vo.getUserid());
+			ps.setString(2, vo.getWriter_id());
+			ps.setString(3, vo.getG_comment());
+			
+			int cnt = ps.executeUpdate();
+			
+			System.out.println("입력결과 cnt = " + cnt + ", 매개변수 vo=" + vo);
+			
+			return cnt;
+			
+		}finally {
+			pool.dbClose(con, ps);
+		}
+	}
+	
+	
+	/**
+	 * 방명록 리스트
+	 * @param userid
+	 * @return
+	 * @throws SQLException
+	 */
+	public List<GuestbookVO> guestbookList(String userid) throws SQLException{
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		List<GuestbookVO> list = new ArrayList<GuestbookVO>();
+		
+		try {
+			con = pool.getConnection();
+			String sql = "select * from guestbook order by gno desc";
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				int gno = rs.getInt("gno");
+				String writerId = rs.getString("writer_id");
+				Timestamp regdate = rs.getTimestamp("regdate");
+				String comment = rs.getString("comment");
+				
+				GuestbookVO vo = new GuestbookVO(gno, userid, writerId, comment, regdate);
+				
+				list.add(vo);
+			}
+			return list;
+		}finally {
+			pool.dbClose(con, ps, rs);
+		}
+	}
+
+	public List<BoardVO> selectByTop() throws SQLException {
+
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			con = pool.getConnection();
+			
+			String sql = "select * from board where delflag='N' ORDER BY recommend desc";
+			ps = con.prepareStatement(sql);
+			
+			rs = ps.executeQuery();
+			
+			List<BoardVO> list = new ArrayList<BoardVO>();
+			while (rs.next()) {
+				BoardVO vo = new BoardVO(rs.getInt("no"), rs.getString("userid"), rs.getString("nonuserid"), 
+						rs.getString("pwd"), rs.getString("title"), rs.getTimestamp("regdate"), rs.getString("describe"), 
+						rs.getInt("recommend"), rs.getInt("views"), rs.getString("ipaddress"), 
+						rs.getString("delflag"), rs.getString("cat_code"), rs.getInt("champ_no"));
+				
+				list.add(vo);
+			}
+			
+			return list;
+		} finally {
+			pool.dbClose(con, ps, rs);
+		}
 	}
 }

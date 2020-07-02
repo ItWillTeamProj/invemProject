@@ -21,6 +21,7 @@ public class BoardEditOkController implements Controller{
 		String describe = request.getParameter("ir1");
 		String cat_code = request.getParameter("code");
 		String no = request.getParameter("no");
+		String delflag = request.getParameter("delflag");
 		
 		
 		BoardVO vo = new BoardVO();
@@ -38,7 +39,7 @@ public class BoardEditOkController implements Controller{
 		vo.setCat_code(cat_code);
 		vo.setNo(Integer.parseInt(no));
 		System.out.println(no);
-		String msg = "글 수정 실패", url = "/board/boardEdit.gg?no="+no+"&code="+vo.getCat_code();
+		String msg = "글 수정 실패", url = "/board/boardEdit.gg?no="+no+"&code="+vo.getCat_code()+"&delflag="+delflag;
 		try{
 			if("unknown".equals(userid) || userid.isEmpty() || userid == null) {
 				if(boardServ.checkPwd(Integer.parseInt(no), pwd)) {
@@ -54,7 +55,7 @@ public class BoardEditOkController implements Controller{
 			int cnt = boardServ.editBoard(vo);
 			if(cnt > 0){
 				msg = "글 수정 성공";
-				url = "/board/detail.gg?no="+no+"&code="+vo.getCat_code();
+				url = "/board/detail.gg?no="+no+"&code="+vo.getCat_code()+"&delflag="+delflag;
 			}
 		}catch(SQLException e){
 			e.printStackTrace();

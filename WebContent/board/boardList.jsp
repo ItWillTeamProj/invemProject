@@ -10,8 +10,8 @@
 <%@ include file = "../inc/top.jsp"%>
 
 <%
-	String condition = (String)request.getParameter("condition");
-	String keyword = (String)request.getParameter("keyword");
+	String condition = (String)request.getAttribute("condition");
+	String keyword = (String)request.getAttribute("keyword");
 	
 
 	List <BoardVO> list = (List<BoardVO>)request.getAttribute("list");
@@ -45,8 +45,14 @@ $(function(){
 		var sId = $('#uId').html();
 		$('#blogId').val(sId);
 		window.open('<%=request.getContextPath()%>/blog/blog.gg?sId='+sId, 'viewer', 'width=1000, height=700');
+		
+		$('#menu').css("display", "none");
 	
+	});
 	
+	$('#toList').click(function(){
+		var sId = $('#uId').html();
+		location.href = '<%=request.getContextPath()%>/board/boardList.gg?code=F&searchCondition=userid&searchKeyword='+sId;
 	});
 	
 });
@@ -122,19 +128,31 @@ $(function(){
 						<td style = "text-align: center"><%=num + 1 %></td>
 				<!-- userid가 null이면 nonuserid 비밀번호 ip주소 를 detail로 보낸다. -->
 				<%if(vo.getUserid() == null || vo.getUserid().isEmpty() || "unknown".equals(vo.getUserid())){%>
-						<td><a href = "<%=request.getContextPath() %>/board/countUpdate.gg?nonuserid=<%=vo.getNonuserid()%>&ipaddress=<%=vo.getIpaddress()%>&no=<%=vo.getNo() %>&code=<%=code%>"><%=vo.getTitle() %>
+						<td><a href = "<%=request.getContextPath() %>/board/countUpdate.gg?nonuserid=<%=vo.getNonuserid()%>&ipaddress=<%=vo.getIpaddress()%>&no=<%=vo.getNo() %>&code=<%=code%>&delflag=<%=vo.getDelflag() %>">
+						<%if(vo.getDelflag().equals("N")) {%>
+						<%=vo.getTitle() %>
+						<%}else if(vo.getDelflag().equals("Y")){ %>
+						삭제된 게시물 입니다.
+						<%} %>
+							<!-- 24시간 이내 작성글인경우 new띄우기 -->
 							<%if(boardServ.checkRegdate(vo.getNo())==1){ %>
 								<span class="badge badge-primary">new</span>
 							<%} %>
 						</a></td>
 						<td style = "text-align: center"><%=vo.getNonuserid() %></td>
 				<%}else{ %>
+				
 				<!-- userid가 있으면 userid만 detail로 보낸다. -->
-						<td><a href = "<%=request.getContextPath() %>/board/countUpdate.gg?no=<%=vo.getNo()%>&userid=<%=vo.getUserid()%>&code=<%=code%>"><%=vo.getTitle() %>
-						<!-- 24시간 이내 작성글인경우 new띄우기 -->
-						<%if(boardServ.checkRegdate(vo.getNo())==1){ %>
-						<span class="badge badge-primary">new</span>
+						<td><a href = "<%=request.getContextPath() %>/board/countUpdate.gg?no=<%=vo.getNo()%>&userid=<%=vo.getUserid()%>&code=<%=code%>&delflag=<%=vo.getDelflag() %>">
+						<%if(vo.getDelflag().equals("N")) {%>
+						<%=vo.getTitle() %>
+						<%}else if(vo.getDelflag().equals("Y")){ %>
+						삭제된 게시물 입니다.
 						<%} %>
+							<!-- 24시간 이내 작성글인경우 new띄우기 -->
+							<%if(boardServ.checkRegdate(vo.getNo())==1){ %>
+							<span class="badge badge-primary">new</span>
+							<%} %>
 						</a></td>
 						<td style = "text-align: center"><a href = "#" class = "aSelect" id = "uId"><%=vo.getUserid() %></a></td>
 				<%}%>
@@ -185,7 +203,7 @@ $(function(){
             	<%} %>
             >내용</option>
             <option value="userid"
-            	<%if("name".equals(condition)){%>
+            	<%if("userid".equals(condition)){%>
             		selected = "selected"
             	<%} %>
             >작성자</option>
@@ -204,8 +222,7 @@ $(function(){
  <div id="divLangSelect" style="background: #fff0">
 <ul id="menu">
   <li><div id = "toBlog">블로그 가기</div></li>
-  <li><div>작성글, 댓글보기</div></li>
-  <li><div>댓글 삭제</div></li>
+   <li><div><a href="#" id="toList">작성글 보기</a></div></li>
 </ul>
 </div>   
 </article>

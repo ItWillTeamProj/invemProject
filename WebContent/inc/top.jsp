@@ -65,6 +65,7 @@
 				location.href="<%=request.getContextPath()%>/login/logout.gg";
 			}else{
 				alert("잘 생각하셨습니다.");
+				event.preventDefault();
 			}
 		});
 	});
@@ -156,7 +157,7 @@ html{
 						<p class="userInfo">일치하는 소환사 명이 없습니다.</p>
 					</c:if>
 			   		<div style="font-size:15px; clear: both; color=black;">
-						<a href="<%=request.getContextPath()%>/login/logout.gg" style="padding-right: 10px;">로그아웃</a>
+						<a href="<%=request.getContextPath()%>/login/logout.gg" style="padding-right: 10px;" id = "logout">로그아웃</a>
 						<a href="<%=request.getContextPath()%>/member/memberEdit.gg">회원정보수정</a>
 			  	 	</div>
 				</div>
@@ -164,10 +165,11 @@ html{
 		</div>
 	<ul class="nav">
 		<li><a href="<%=request.getContextPath()%>/index.gg">INVEM HOME</a></li>
+		<li><a href="<%=request.getContextPath()%>/board/riotNotice.gg">LOL 공지사항</a></li>
 		<li><a href="<%=request.getContextPath()%>/champion/list.gg">챔피언정보</a></li>
 		<li><a href="<%=request.getContextPath()%>/board/boardList.gg?code=F">자유게시판</a></li>
 		<li><a href="#">베스트공략</a></li>
-		<li><a href="#">화이팅</a></li>
+		<li><a href="<%=request.getContextPath()%>/compony/compony.gg">회사정보</a></li>
 	</ul>
 	<%if(userid==null || userid!="admin" || userid.isEmpty()) {%>
 	<%}else{ %>
