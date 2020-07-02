@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.invem.db.ConnectionPoolMgr2;
 import com.invem.login.model.LoginService;
@@ -98,7 +100,7 @@ private ConnectionPoolMgr2 pool;
 			rs = ps.executeQuery();
 			
 			MemberDTO vo = new MemberDTO();
-			while (rs.next()) {
+			if (rs.next()) {
 				vo.setAddress(rs.getString("address"));
 				vo.setEmail(rs.getString("email"));
 				vo.setName(rs.getString("name"));
@@ -117,6 +119,47 @@ private ConnectionPoolMgr2 pool;
 			
 			System.out.println("조회 결과 vo=" + vo + ", 매개변수 userid=" + userid);
 			return vo;
+		} finally {
+			pool.dbClose(con, ps, rs);
+		}
+	}
+	
+	public List<MemberDTO> selectByName(String name) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			con = pool.getConnection();
+			
+			String sql = "select * from member where name = ?";
+			ps = con.prepareStatement(sql);
+			
+			ps.setString(1, name);
+			
+			rs = ps.executeQuery();
+			
+			List<MemberDTO> list = new ArrayList<MemberDTO>();
+			while (rs.next()) {
+				MemberDTO vo = new MemberDTO();
+				vo.setAddress(rs.getString("address"));
+				vo.setEmail(rs.getString("email"));
+				vo.setName(rs.getString("name"));
+				vo.setPwd(rs.getString("pwd"));
+				vo.setRegdate(rs.getTimestamp("regdate"));
+				vo.setUserid(rs.getString("userid"));
+				vo.setZipcode(rs.getString("zipcode"));
+				vo.setCaution(rs.getInt("caution"));
+				vo.setDateofbirth(rs.getString("dateofbirth"));
+				vo.setNickname(rs.getString("nickname"));
+				vo.setPhoneno(rs.getString("phoneno"));
+				vo.setDetail(rs.getString("detail"));
+				vo.setSum_name(rs.getString("sum_name"));
+				list.add(vo);
+			}
+			
+			System.out.println("조회 결과 list.size=" + list.size() + ", 매개변수 name=" + name);
+			return list;
 		} finally {
 			pool.dbClose(con, ps, rs);
 		}

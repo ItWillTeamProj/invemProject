@@ -18,6 +18,10 @@ public class RecommendController implements Controller{
 		String delflag = request.getParameter("delflag");
 		String userid = request.getParameter("userid");
 		
+		if(userid == null || userid.isEmpty() || userid.equals("null")){
+			userid = "";
+		}
+		
 		String msg = "", url = "/board/detail.gg?no="+no+"&code="+code+"&delflag="+delflag;
 		int num = 0;
 		if(value.equals("G")) {
@@ -33,6 +37,10 @@ public class RecommendController implements Controller{
 		try {
 			if(userid == null || userid.isEmpty() || "unknown".equals(userid)) {
 				msg = "추천 / 비추천은 회원만 가능합니다.";
+				request.setAttribute("msg", msg);
+				request.setAttribute("url", url);
+
+				return "/common/message.jsp";
 				
 			}else {
 				int cnt = boardServ.recommendInsert(userid, Integer.parseInt(no));
