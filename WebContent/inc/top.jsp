@@ -16,6 +16,8 @@
 	}
 
 	System.out.println(userid + ", " + isLogin + ", " + smVo + ", " + lgVo);
+	
+	
 %>
 <!doctype html>
 <html>
@@ -76,6 +78,11 @@
 			window.open('<%=request.getContextPath()%>/blog/blog.gg?sId='+mySid, 'viewer', 'width=780, height=580, scrollbars=no, resizable=no, toolbars=no, menubar=no, left=500, top=200');
 			
 		
+		});
+		
+		$("#loginBtn").click(function() {
+			var link = document.location.href; 
+			location.href = "<%=request.getContextPath() %>/login/login.gg?location="+link;
 		});
 	});
 </script>
@@ -156,7 +163,7 @@ html{
 		<div style="background: whitesmoke; padding-top: 7px; width:240px;">
 			<%if(!isLogin){ %>
 				<div style="margin-left: 9px;">
-					<button id="loginBtn" style="margin-top: 15px;" onclick="location.href='<%=request.getContextPath() %>/login/login.gg'">
+					<button id="loginBtn" style="margin-top: 15px;">
 		    			<img src="<%=request.getContextPath() %>/images/invemlogin.png">
 		    			<span style="padding-left: 5px; vertical-align:sub; margin-right: 10px;">로그인</span>
 	    			</button>
@@ -200,11 +207,11 @@ html{
 		<li><a href="<%=request.getContextPath()%>/board/boardList.gg?code=E">기타게시판</a></li>
 		<li>&nbsp;</li>
 		<li class="liTitle">포지션 게시판</li>
-		<li><a>Top</a></li>
-		<li><a>Jungle</a></li>
-		<li><a>Mid</a></li>
-		<li><a>Bot</a></li>
-		<li><a>Support</a></li>
+		<li><a href="<%=request.getContextPath()%>/board/boardList.gg?code=T">Top</a></li>
+		<li><a href="<%=request.getContextPath()%>/board/boardList.gg?code=J">Jungle</a></li>
+		<li><a href="<%=request.getContextPath()%>/board/boardList.gg?code=M">Mid</a></li>
+		<li><a href="<%=request.getContextPath()%>/board/boardList.gg?code=B">Bot</a></li>
+		<li><a href="<%=request.getContextPath()%>/board/boardList.gg?code=S">Support</a></li>
 		<li>&nbsp;</li>
 		<li><a href="<%=request.getContextPath()%>/compony/compony.gg">찾아오시는 길</a></li>
 

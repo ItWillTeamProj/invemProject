@@ -9,6 +9,7 @@
 		userid = "unknown";
 	}
 %>
+
 <script type="text/javascript" src="../se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 <script type="text/javascript">
 	$(function(){
