@@ -95,6 +95,7 @@ $(function(){
 </script>
 
 <article>
+	
 	<%
 	String boardName = "";
 	switch(code){
@@ -109,14 +110,17 @@ $(function(){
 		<%break;
 	}
 	%>
-	<h3><%=boardName %></h3>
-	<hr style = "border: 0; height: 2px; background: skyblue">
-	<%if(delflag.equals("N")){ %>
-	<div style="overflow: hidden;">
-		<h4 style = "margin-left: 10px; float: left;"><%=vo.getTitle() %></h4>
-		<a class = "btn btn-danger pull-right" id="delete" style="float: right;">삭제</a>
-		<a class = "btn btn-info pull-right" id="edit" style="float: right;">수정</a>
-
+	
+		<div class="title">
+			<h2><%=boardName %> - 상세정보</h2>
+		</div>
+	<div style="margin-top: 15px;">
+		<%if(delflag.equals("N")){ %>
+		<div style="overflow: hidden;">
+			<h4 style = "margin-left: 10px; float: left;"><%=vo.getTitle() %></h4>
+			<a class = "btn btn-danger pull-right" id="delete" style="float: right; margin-left: 5px">삭제</a>
+			<a class = "btn btn-info pull-right" id="edit" style="float: right;">수정</a>
+		</div>
 	</div>
 	<%}else{ %>
 	<div style="overflow: hidden;">
@@ -131,17 +135,17 @@ $(function(){
 			<span style = "float: left; margin-left: 30px"><%=vo.getNonuserid() %>(<%=vo.getIpaddress() %>) | <%=vo.getRegdate() %></span>
 			<span style = "float: right; margin-right: 20px">조회 <%=vo.getViews() %> | 추천 <%=vo.getRecommend() %> | 댓글<%=replyCount %>  </span>
 		<%} %>
-	</div><br><hr style = "border: 0; height: 2px; background: skyblue">
+	</div><hr style = "border: 0; height: 2px; background: lightgray">
 	<%if(delflag.equals("N")){ %>
 	<div><%=vo.getDescribe() %></div><br>
 	<%}else{ %>
 	<p>삭제된 게시물입니다.</p>
 	<%} %>
-	<br><hr style = "border: 0; height: 2px; background: skyblue">
+	<br>
 
-	<div style="width: 100%; height: 200px; text-align: center; margin-top: 70px;">
-		<a href = "#"><img src = "../images/good.png" style = "max-width: 100px; max-height:100px; text-align: center;" alt = "추천" id = "good"/></a>
-		<a href = "#"><img src = "../images/bad.png" style = "max-width: 100px; max-height:100px; text-align: center;" alt = "신고" id = "bad"/></a>
+	<div style="width: 100%; height: 200px; text-align: center; margin-top: 150px;">
+		<a href = "#"><img src = "../images/good.png" style = "max-width: 80px; max-height:80px; text-align: center;" alt = "추천" id = "good"/></a>
+		<a href = "#"><img src = "../images/bad.png" style = "max-width: 80px; max-height:80px; text-align: center;" alt = "신고" id = "bad"/></a>
 
 	</div>
 

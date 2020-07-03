@@ -93,6 +93,14 @@ span{
 html{
 	font-size:15px;
 }
+.liTitle{
+	text-align: center;
+    background: #6cb82a;
+    border-top: 5px solid #ffb700;
+    height: 39px;
+    font-size: 18px;
+    padding-top: 4px;
+}
 </style>
 <body>
 <div class="container" >
@@ -165,14 +173,22 @@ html{
 			<%} %>
 		</div>
 	<ul class="nav">
+		<li class="liTitle">INVEM</li>
 		<li><a href="<%=request.getContextPath()%>/index.gg">INVEM HOME</a></li>
 		<li><a href="<%=request.getContextPath()%>/board/riotNotice.gg">LOL 공지사항</a></li>
 		<li><a href="<%=request.getContextPath()%>/champion/list.gg">챔피언정보</a></li>
+		<li><a href="<%=request.getContextPath()%>/board/boardList.gg?code=P">챔피언 공략 게시판</a></li>
 		<li><a href="<%=request.getContextPath()%>/board/boardList.gg?code=F">자유게시판</a></li>
 		<li><a href="<%=request.getContextPath()%>/board/boardList.gg?code=E">기타게시판</a></li>
-		<li><a href="#">베스트공략</a></li>
+		<li>&nbsp;</li>
+		<li class="liTitle">포지션 게시판</li>
+		<li><a>Top</a></li>
+		<li><a>Jungle</a></li>
+		<li><a>Mid</a></li>
+		<li><a>Bot</a></li>
+		<li><a>Support</a></li>
+		<li>&nbsp;</li>
 		<li><a href="<%=request.getContextPath()%>/compony/compony.gg">찾아오시는 길</a></li>
-		
 
 		<%if("admin".equals(userid)) {%>
 			<li>

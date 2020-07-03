@@ -26,7 +26,6 @@ public class MemberEditOKController implements Controller{
 
 		String email1 = request.getParameter("email1");
 		String email2 = request.getParameter("email2");
-		String email3 = request.getParameter("email3");
 
 		String zipcode = request.getParameter("zipcode");
 		String address = request.getParameter("address");
@@ -40,8 +39,8 @@ public class MemberEditOKController implements Controller{
 		if(phoneno2 != null && !phoneno2.isEmpty() && phoneno3 != null && !phoneno3.isEmpty()){
 			phoneno = phoneno1 + "-" + phoneno2 + "-" + phoneno3;
 		}
-		if(email1 != null && !email1.isEmpty() && email3 != null && !email3.isEmpty()){
-			email = email1 + "@" + email3;
+		if(email1 != null && !email1.isEmpty() && email2 != null && !email2.isEmpty()){
+			email = email1 + "@" + email2;
 	    }
 		
 		MemberDTO vo = new MemberDTO();
