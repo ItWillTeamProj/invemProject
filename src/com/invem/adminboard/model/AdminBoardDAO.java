@@ -86,17 +86,12 @@ public class AdminBoardDAO {
 				String describe = rs.getString("describe");
 				int recommend = rs.getInt("recommend");
 				int views = rs.getInt("views");
-				String filename = rs.getString("filename");
-				int filesize = rs.getInt("filesize");
-				int downcount = rs.getInt("downcount");
-				String originalFilename = rs.getString("originalFilename");
 				String ipAddress = rs.getString("ipAddress");
 				String delFlag = rs.getString("delFlag");
 				String cat_code = rs.getString("cat_code");
 				
 				AdminBoardDTO dto = new AdminBoardDTO(no, userid, nonUserid, pwd, 
-						title, regdate, describe, recommend, views, 
-						filename, filesize, downcount, originalFilename, ipAddress, delFlag, cat_code);
+						title, regdate, describe, recommend, views, ipAddress, delFlag, cat_code);
 				list.add(dto);
 			}
 			
@@ -141,10 +136,6 @@ public class AdminBoardDAO {
 				String describe = rs.getString("describe");
 				int recommend = rs.getInt("recommend");
 				int views = rs.getInt("views");
-				String filename = rs.getString("filename");
-				int filesize = rs.getInt("filesize");
-				int downcount = rs.getInt("downcount");
-				String originalFilename = rs.getString("originalFilename");
 				String ipAddress = rs.getString("ipAddress");
 				String delFlag = rs.getString("delFlag");
 				String cat_code = rs.getString("cat_code");
@@ -158,10 +149,6 @@ public class AdminBoardDAO {
 				dto.setDescribe(describe);
 				dto.setRecommend(recommend);
 				dto.setViews(views);
-				dto.setFilename(filename);
-				dto.setFilesize(filesize);
-				dto.setDowncount(downcount);
-				dto.setOriginalFilename(originalFilename);
 				dto.setIpAddress(ipAddress);
 				dto.setDelflag(delFlag);
 				dto.setCat_code(cat_code);

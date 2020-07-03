@@ -39,11 +39,19 @@ fieldset {
 		
 			// 마커가 지도 위에 표시되도록 설정합니다
 			marker.setMap(map);
+			$(function() {
+				jQuery('#detailMap').click(function (e) {  
+		            e.preventDefault();  
+		            var url = "https://map.naver.com/v5/search/%EC%82%BC%EC%9B%90%ED%83%80%EC%9B%8C/place/18786244?c=14140162.8975259,4508869.4706479,14,0,0,0,dh";  
+		            window.open(url, "_blank");  
+		        });  
+
+			});
 			</script>
 		</div>
 		<div><br><br>
 			<h2>찾아오시는 길</h2><br>
-			<a href="https://map.naver.com/v5/search/%EC%82%BC%EC%9B%90%ED%83%80%EC%9B%8C/place/18786244?c=14140162.8975259,4508869.4706479,14,0,0,0,dh">상세보기</a>
+			<a href="#" id="detailMap">상세보기</a>
 			<fieldset style="margin-left: 150px; margin-right: 150px; border-radius: 0.5em; margin-top: 20px; border-color: #6db92a;background-color:white;">
 				<span>삼원타워 기업,빌딩</span><br>
 				<span>서울특별시 강남구 테헤란로 124</span><br>

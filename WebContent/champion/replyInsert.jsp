@@ -36,7 +36,7 @@
 		 <input value="" type="text" name="userid" id="userid" readonly="readonly">
 	</div>
 	<div style="margin: 0 auto; text-align: center;">
-		<textarea id="reContent" rows="4" cols="75" name="reContent"></textarea>
+		<textarea id="reContent" rows="4" cols="70" name="reContent"></textarea>
 	</div>
 	<div>
 		<input type="submit" value="등록" style="margin-top: 5px; margin-right: 14px;">

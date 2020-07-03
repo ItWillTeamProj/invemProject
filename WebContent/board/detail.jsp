@@ -24,6 +24,11 @@
 
 %>
 <link rel="stylesheet" href="../css/bootstrap/bootstrap.css">
+<style type="text/css">
+.nav {
+    display: block;
+    }
+</style>
 <script type="text/javascript">
 $(function(){
 	if("<%=vo.getUserid()%>" != "" && "<%=vo.getUserid()%>" != "unknown" && "<%=vo.getUserid()%>" != "<%=userid%>"){
