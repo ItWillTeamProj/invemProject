@@ -175,23 +175,22 @@ public class AdminMemberDAO {
 			con = pool.getConnection();
 			
 			String sql="update member" 
-					+" set nickname=?, name=?, dateOfBirth=?, phoneno=?,"
+					+" set name=?, dateOfBirth=?, phoneno=?,"
 					+" email=?, zipcode=?, address=?, detail=?, sum_name=? , caution=?" 
 					+" where userid=?";
 			ps=con.prepareStatement(sql);
 			
-			ps.setString(1, dto.getNickname());
-			ps.setString(2, dto.getName());
-			ps.setString(3, dto.getDateofbirth());
-			ps.setString(4, dto.getPhoneno());
-			ps.setString(5, dto.getEmail());
-			ps.setString(6, dto.getZipcode());
-			ps.setString(7, dto.getAddress());
-			ps.setString(8, dto.getDetail());
-			ps.setString(9, dto.getSum_name());
-			ps.setInt(10, dto.getCaution()); 
+			ps.setString(1, dto.getName());
+			ps.setString(2, dto.getDateofbirth());
+			ps.setString(3, dto.getPhoneno());
+			ps.setString(4, dto.getEmail());
+			ps.setString(5, dto.getZipcode());
+			ps.setString(6, dto.getAddress());
+			ps.setString(7, dto.getDetail());
+			ps.setString(8, dto.getSum_name());
+			ps.setInt(9, dto.getCaution()); 
 			
-			ps.setString(11, dto.getUserid());
+			ps.setString(10, dto.getUserid());
 			
 			int cnt=ps.executeUpdate();
 			System.out.println("회원정보 수정결과, cnt="+cnt+", 매개변수 dto="+dto);

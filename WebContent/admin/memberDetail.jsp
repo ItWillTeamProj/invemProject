@@ -30,6 +30,7 @@
 	*/
 	AdminMemberDTO dto = (AdminMemberDTO)request.getAttribute("dto");
 	int ct = dto.getCaution();
+	
 %>
 
 <%@ include file="../inc/top.jsp" %>
@@ -60,11 +61,11 @@
 			</tr>
 			<tr style="background:white;">
 				<td style="padding-left: 30px;">전화번호</td>
-				<td><%=dto.getPhoneno() %></td>
+				<td>${dto.phoneno}</td>
 			</tr>
 			<tr>
 				<td style="padding-left: 30px;">이메일</td>
-				<td><%=dto.getEmail() %></td>
+				<td>${dto.email}</td>
 			</tr>
 			<tr style="background:white;">
 				<td style="padding-left: 30px;">우편번호</td>
@@ -76,11 +77,11 @@
 			</tr>
 			<tr style="background:white;">
 				<td style="padding-left: 30px;">주소상세</td>
-				<td><%=dto.getDetail() %></td>
+				<td>${dto.detail}</td>
 			</tr>
 			<tr>
 				<td style="padding-left: 30px;">소환사명</td>
-				<td><%=dto.getSum_name() %></td>
+				<td>${dto.sum_name }</td>
 			</tr>
 			<tr style="background:white;">
 				<td style="padding-left: 30px;">가입일</td>

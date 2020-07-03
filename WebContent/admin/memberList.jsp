@@ -103,8 +103,15 @@
 						onmouseout="this.style.background='whitesmoke'"
 						style="text-align: left; cursor:pointer;">
 						<td><%=dto.getUserid() %></td>
-						<td><%=dto.getName() %></td>					
-						<td><%=dto.getEmail() %></td>
+						<td><%=dto.getName() %></td>	
+						<%
+						if(dto.getEmail() == null || dto.getEmail().isEmpty()){%>
+							<td><%="" %></td>
+						<%}else{%>
+							<td><%=dto.getEmail() %></td>
+						<%}
+						%>				
+						
 						<td><%=sdf.format(dto.getRegdate()) %></td>
 						<td>&nbsp;<%=dto.getCaution() %>회</td>
 					</tr>

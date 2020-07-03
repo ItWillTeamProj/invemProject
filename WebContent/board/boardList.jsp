@@ -203,9 +203,9 @@ $(function(){
 	
 	<div style = "text-align: center">
 		<ul class="pagination pagination-sm">
-		<%if(pageVo.getFirstPage() > 1){ %>
-			 <li class="previous"><a href="<%=request.getContextPath()%>/board/boardList.gg?currentPage=<%=pageVo.getFirstPage() - 1 %>
-			 &code=<%=code%>&rowNum=<%=rowNum%>&sort=<%=sort%>
+		<%if(pageVo.getFirstPage() > 1){	%>
+			
+			 <li class="previous"><a href="<%=request.getContextPath()%>/board/boardList.gg?currentPage=<%=pageVo.getFirstPage() - 1 %>&code=<%=code%>&rowNum=<%=rowNum%>&sort=<%=sort%>
 			 <%if("Y".equals(isNotice)){%>
 			 	&isNotice=Y
 			 	<%}%>

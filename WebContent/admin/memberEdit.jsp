@@ -70,14 +70,14 @@
 				<td style="padding-left: 30px;">전화번호</td>
 				<td><input type="text" id="phone" name="phone" 
 	            	size="28px" style="margin-left:100px;"
-	            	value="<%=dto.getPhoneno() %>"/></td>
+	            	value="${dto.phoneno}"/></td>
 	            <td>&nbsp;</td>
 			</tr>
 			<tr>
 				<td style="padding-left: 30px;">이메일</td>
 				<td><input type="text" id="email" name="email"
 	            	size="28px" style="margin-left:100px;"
-	            	value="<%=dto.getEmail() %>"/></td>
+	            	value="${dto.email }"/></td>
 	            <td>&nbsp;</td>
 			</tr>
 			<tr style="background:white;">
@@ -98,14 +98,14 @@
 				<td style="padding-left: 30px;">주소상세</td>
 				<td><input type="text" id="detail" name="detail" 
 	            	size="28px" style="margin-left:100px;"
-	            	value="<%=dto.getDetail() %>"/></td>
+	            	value="${dto.detail}"/></td>
 	            <td>&nbsp;</td>
 			</tr>
 			<tr>
 				<td style="padding-left: 30px;">소환사명</td>
 				<td><input type="text" id="sum_name" name="sum_name"
 	            	size="28px" style="margin-left:100px;"
-	            	value="<%=dto.getSum_name() %>"/></td>
+	            	value="${dto.sum_name }"/></td>
 	            <td>&nbsp;</td>
 			</tr>
 			<tr style="background:white;">
