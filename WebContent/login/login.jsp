@@ -20,10 +20,23 @@
 	if(request.getParameter("signId") != null && !request.getParameter("signId").isEmpty()){
 		ckUserid = request.getParameter("signId");
 	}
+	String url = request.getParameter("location");
+	
+	if(url != null && !url.isEmpty()){
+		int urlIdx = url.lastIndexOf("/invem/");
+		System.out.println("url="+url +", idx="+ urlIdx);
+		url = url.substring(urlIdx);
+		url = url.replace("/invem", "");
+		System.out.println("변경 후 url="+url);
+	}else{
+		url="";
+	}
+	
 %>
 
 <script type="text/javascript">
 	$(function() {
+		<%-- alert(<%=url%>); --%>
 		$('form[name=frmLogin]').submit(function() {
 			if ($('#userid').val().length < 1) {
 				alert('아이디를 입력하세요');
@@ -74,6 +87,7 @@ fieldset {
 		<img alt="이미지" src="<%=request.getContextPath()%>/images/index/bar_invem.png">
 		<fieldset
 			style="margin-left: 120px; margin-right: 120px; border-radius: 0.5em; border-color: #6db92a; background-color: white;">
+			<input type="hidden" value="<%=url%>" name="url">
 			<div>
 				<br> <label for="userid" style="margin-right: 15px;">아이디</label> 
 				<input type="text" name="userid" id="userid" value="<%=ckUserid%>">

@@ -45,6 +45,12 @@
 	</div>
 	<div class="grid" style="float: left;">
 		<table class="table table-striped" style="clear: both;">
+		<colgroup>
+			<col width="50%">
+			<col width="20%">
+			<col width="15%">
+			<col width="15%">
+		</colgroup>
 			<tr>
 				<th>제목</th>
 				<th>작성자</th>
@@ -53,7 +59,7 @@
 			</tr>
 			<c:if test="${empty bdList }">
 				<tr>
-					<td colspan="6" style="text-align: center;">게시물이 없습니다.</td>
+					<td colspan="4" style="text-align: center;">게시물이 없습니다.</td>
 				</tr>
 			</c:if>
 			<c:if test="${!empty bdList }">
@@ -63,7 +69,7 @@
 						<tr>
 							<td><a href='<c:url value="/board/detail.gg?no=${bdVO.no }&code=${bdVO.cat_code }&delflag=${bdVO.delflag }"/>'>${bdVO.title }</a></td>
 							<c:if test="${bdVO.userid == null || empty bdVO.userid || bdVO.userid == 'unknown'}">
-								<td>${bdVO.userid }</td>
+								<td>${bdVO.nonuserid }</td>
 							</c:if>
 							<c:if test="${!empty bdVO.userid && bdVO.userid != 'unknown' }">
 								<td>${bdVO.userid }</td>

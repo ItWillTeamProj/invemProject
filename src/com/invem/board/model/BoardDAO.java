@@ -330,7 +330,7 @@ public class BoardDAO {
 
 		try {
 			con = pool.getConnection();
-			String sql = "select * from reply where groupno = ?";
+			String sql = "select * from reply where groupno = ? order by rep_no desc";
 			ps = con.prepareStatement(sql);
 
 			ps.setInt(1, no);

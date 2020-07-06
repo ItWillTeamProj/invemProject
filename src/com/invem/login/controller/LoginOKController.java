@@ -30,6 +30,7 @@ public class LoginOKController implements Controller{
 		String pwd=request.getParameter("pwd");
 		String saveId=request.getParameter("saveId");
 		String caution=request.getParameter("caution");
+		String location = request.getParameter("url");
 		
 		LoginService serv = new LoginService();
 		HttpSession session = request.getSession();
@@ -39,6 +40,11 @@ public class LoginOKController implements Controller{
 			int result=serv.loginCheck(userid, pwd);
 			if(result==LoginService.LOGIN_OK){ 
 				MemberDTO vo=serv.selectMember(userid);
+				if(vo.getCaution() >= 5) {
+					msg = "5회 이상 경고먹은 회원입니다. 관리자에게 문의 하세요!";
+					
+					return "/common/message.jsp";
+				}
 				
 				Gson gson = new GsonBuilder().create();
 				if(vo.getSum_name() != null && !vo.getSum_name().isEmpty()) {
@@ -58,7 +64,7 @@ public class LoginOKController implements Controller{
 					}
 					session.setAttribute("smVo", smVo);
 					session.setAttribute("lgVo", lgVo);
-					session.setMaxInactiveInterval(60*60);
+					session.setMaxInactiveInterval(24*60*60);
 				}
 				
 				session.setAttribute("userid", userid);
@@ -92,7 +98,9 @@ public class LoginOKController implements Controller{
 			
 			return "/common/message.jsp";
 		}
-		
+		if(location != null && !location.isEmpty() && !location.equals("null")) {
+			url = location;
+		}
 		//3
 		request.setAttribute("msg", msg);
 		request.setAttribute("url", url);

@@ -18,7 +18,7 @@ public class LogOutController implements Controller{
 
 	@Override
 	public boolean isRedirect() {
-		return false;
+		return true;
 	}
 
 }
