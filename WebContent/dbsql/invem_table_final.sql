@@ -131,9 +131,9 @@ CREATE TABLE ability (
 	crossroad NUMBER /* 사거리 */
 );
 
-ALTER TABLE ablilty
+ALTER TABLE ability
 	ADD
-		CONSTRAINT PK_ablilty
+		CONSTRAINT PK_ability
 		PRIMARY KEY (
 			champ_no,
 			c_level
@@ -173,7 +173,7 @@ ALTER TABLE board
 			cat_code
 		);
 
-ALTER TABLE ablilty
+ALTER TABLE ability
 	ADD
 		CONSTRAINT FK_champ_list_TO_ablilty
 		FOREIGN KEY (
